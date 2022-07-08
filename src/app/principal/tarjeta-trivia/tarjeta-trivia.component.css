@@ -1,0 +1,55 @@
+.principal{
+    border-radius: 10px;
+    padding: 5%;
+    margin: 5%;
+    background-color: white;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: fit-content;
+    max-width: 200px;
+    height: fit-content;
+}
+
+.rectangulo{
+    margin-top: -15%;
+    width: 38px;
+    height: 5px;
+    left: 1082px;
+    top: 604px;
+    background: #09F62F;
+    border-radius: 30px;
+}
+
+.fuente{
+    font-family: 'Abel';
+    font-style: normal;
+}
+
+.chico{
+    font-size: 15px;
+}
+
+.bottom-card{
+    /*background-color: lightblue;*/
+    display: flex;
+    justify-content: space-between;
+}
+
+.descripcion{
+    font-size: 20px;
+}
+
+.titulo{
+    font-size: 30px;
+}
+
+.violeta{
+    background-color: purple;
+}
+
+.rojo{
+    background-color: red;
+}
+
+.amarillo{
+    background-color: yellow;
+}

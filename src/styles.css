@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "Abel";
+    src: local("Abel"), url(./assets/font/Abel-Regular.ttf) format("truetype");
+}
+body{
+    background-color: #E5E5E5;
+}
