@@ -1,0 +1,153 @@
+::placeholder {
+    color: #1A0537;
+    opacity: 1;
+}
+
+input,
+select,
+textarea {
+    color: #1A0537;
+    ;
+}
+
+textarea:focus,
+input:focus {
+    color: #1A0537;
+}
+
+.buscar {
+    background-color: #1A0537;
+    border-color: #1A0537;
+}
+
+.navbar {
+    background-color: #1A0537;
+}
+
+.navbar-brand {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+
+.buscarButton {
+    border: none;
+    background-color: #A36CD9;
+    color: white;
+}
+
+#dropdownMenuButton1 {
+    color: white;
+    margin-right: 5px;
+    border-style: none;
+    box-shadow: none;
+}
+
+.dropdown-menu-left {
+    right: 0;
+    left: auto;
+    margin-top: 10px;
+    border-radius: 0%;
+    width: 300px;
+}
+
+.navbar-brand img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.marca {
+    color: white;
+    margin: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.menu {
+    border: none;
+    background-color: #1A0537;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.menu i,
+.menu span {
+    color: white;
+}
+
+.notification {
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.logout {
+    color: #800040;
+    background-color: #FF1414;
+}
+
+.desplegable {
+    color: #ED1CFF;
+}
+
+.desplegable i {
+    margin-top: 10px;
+    color: #ED1CFF;
+}
+
+@media screen and (max-width:425px) {
+    .desplegable {
+        color: #ED1CFF;
+    }
+    .desplegable i {
+        margin-top: 10px;
+        color: #ED1CFF;
+    }
+    .notification,
+    .logout {
+        width: 50%;
+        border-radius: 5%;
+        margin: 0%;
+    }
+    .buscarButton {
+        width: 25%;
+    }
+    .buscarInput {
+        width: 75%;
+    }
+    .navbar {
+        justify-content: space-around;
+        background-color: #1A0537;
+    }
+}
+
+@media screen and (min-width:450px) and (max-width:768px) {
+    .desplegable {
+        color: #ED1CFF;
+    }
+    .desplegable i {
+        margin-top: 10px;
+        color: #ED1CFF;
+    }
+    .notification,
+    .logout {
+        width: 25%;
+        border-radius: 5%;
+        margin: 0%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .buscarButton {
+        width: 25%;
+    }
+    .buscarInput {
+        width: 75%;
+    }
+    .navbar {
+        justify-content: space-between;
+        background-color: #1A0537;
+    }
+}

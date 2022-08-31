@@ -1,0 +1,46 @@
+.bgr {
+    background: url("src/assets/login-bg.jpeg");
+    /* Center the image */
+    position: relative;
+    padding-bottom: 130px;
+}
+
+.form-group p,
+.noACC span {
+    color: #A98EDA;
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.noACC {
+    cursor: pointer;
+}
+
+.registerBTN button {
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    height: 3vh 3vh;
+    background-color: #D63384;
+    color: white;
+}
+
+.imgText {
+    color: #C29FFA;
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+}
+
+.descText {
+    color: #E9ECEF;
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}

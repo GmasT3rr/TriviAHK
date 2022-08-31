@@ -3,16 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PrincipalModule } from './principal/principal.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PrincipalModule
+    HttpClientModule,
+    AuthModule.forRoot({
+      ...env.auth
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,30 @@
+#profile-img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.hr {
+    border-radius: 10%;
+    border: 3px solid #A36CD9;
+    opacity: .8;
+    width: 100%;
+}
+
+.saveChanges .btn {
+    background-color: #1A0537;
+    border-radius: 50px;
+}
+
+@media screen and (max-width:330px) {
+    #profile-img {
+        width: 120px;
+        border-radius: 50%;
+    }
+}
+
+@media screen and (min-width:330px) and (max-width:750px) {
+    #profile-img {
+        width: 120px;
+        border-radius: 50%;
+    }
+}
