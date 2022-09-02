@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import { environment as env } from '../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +13,7 @@ export class HomeComponent implements OnInit {
   public y:number
   public quizes:any[] = []
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private http: HttpClient) {
     this.x = 0
     this.y = 4
     this.quizes =[{
@@ -90,8 +92,13 @@ export class HomeComponent implements OnInit {
 
 
  ngOnInit(): void {
-  //Metodo para obtener info del login 
+  //Metodo para obtener info del login
   this.authService.idTokenClaims$.subscribe((claims) => console.log(claims));
+  //TODO
+  /*
+  Access to XMLHttpRequest at 'http://localhost:3000/trivias' from origin 'http://localhost:4200' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+  */
+  this.http.get(`${env.dev.serverUrl}/trivias`).subscribe(result => console.log('api ',result));
  }
 
 

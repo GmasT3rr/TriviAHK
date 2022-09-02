@@ -3,9 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { HttpMethod } from '@auth0/auth0-angular';
+
 
 @NgModule({
   declarations: [
@@ -17,10 +20,17 @@ import { environment as env } from '../environments/environment';
     AppRoutingModule,
     HttpClientModule,
     AuthModule.forRoot({
-      ...env.auth
+      ...env.auth,
+      httpInterceptor: {
+        allowedList: [
+          `${env.dev.serverUrl}/*`
+        ]
+      }
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
