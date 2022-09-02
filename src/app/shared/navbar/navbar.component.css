@@ -85,6 +85,7 @@ input:focus {
 }
 
 .logout {
+    margin-right: 10px;
     color: #800040;
     background-color: #FF1414;
 }

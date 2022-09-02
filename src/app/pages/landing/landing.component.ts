@@ -1,24 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import Swal from 'sweetalert2';
-import { LoginService } from './services/login.service';
-
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-landing',
+  templateUrl: './landing.component.html',
+  styleUrls: ['./landing.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LandingComponent implements OnInit {
 
   expresiones = {
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 }
   loginForm: FormGroup;
 
-  constructor(private rt:Router, private svc:LoginService,private auth: AuthService) {
+  constructor(private rt:Router,private auth: AuthService) {
     this.loginForm = this.createFormGroup();
    }
 
@@ -45,8 +42,7 @@ export class LoginComponent implements OnInit {
 
  //Traer todos los usuarios para visualizarlos
  getUsers(){
-   this.svc.getUsers().subscribe((u)=>console.log("USUARIOS: ",u)
-   )
+   
  }
 
  //Comprueba primero los campos del "login" y luego las credenciales del usuario

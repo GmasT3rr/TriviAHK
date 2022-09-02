@@ -2,5 +2,14 @@
 
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 html {
-    overflow-y: scroll;
+    overflow: auto;
 }
+
+body {
+    padding-right: 0 !important;
+}
+
+
+/* ::-webkit-scrollbar {
+    display: none;
+} */
