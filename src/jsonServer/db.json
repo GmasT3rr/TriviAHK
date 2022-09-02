@@ -1,0 +1,21 @@
+{
+    "users": [{
+            "id": 0,
+            "email": "lucramallo14@gmail.com",
+            "usuario": "u43858370",
+            "password": "12345",
+            "name": "Lucas",
+            "area": "soporte",
+            "autorizado": true
+        },
+        {
+            "id": 1,
+            "email": "u12345678@hospitalaleman.com",
+            "usuario": "u12345678",
+            "password": "12345",
+            "name": "Ian",
+            "area": "soporte",
+            "autorizado": false
+        }
+    ]
+}

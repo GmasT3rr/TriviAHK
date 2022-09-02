@@ -1,7 +1,15 @@
-@font-face {
-    font-family: "Abel";
-    src: local("Abel"), url(./assets/font/Abel-Regular.ttf) format("truetype");
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+html {
+    overflow: auto;
 }
-body{
-    background-color: #E5E5E5;
+
+body {
+    padding-right: 0 !important;
 }
+
+
+/* ::-webkit-scrollbar {
+    display: none;
+} */
