@@ -94,10 +94,6 @@ export class HomeComponent implements OnInit {
  ngOnInit(): void {
   //Metodo para obtener info del login
   this.authService.idTokenClaims$.subscribe((claims) => console.log(claims));
-  //TODO
-  /*
-  Access to XMLHttpRequest at 'http://localhost:3000/trivias' from origin 'http://localhost:4200' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-  */
   this.http.get(`${env.dev.serverUrl}/trivias`).subscribe(result => console.log('api ',result));
  }
 

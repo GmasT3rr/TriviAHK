@@ -23,7 +23,9 @@ import { HttpMethod } from '@auth0/auth0-angular';
       ...env.auth,
       httpInterceptor: {
         allowedList: [
-          `${env.dev.serverUrl}/*`
+          {
+            uri:`${env.dev.serverUrl}/*`,
+          }
         ]
       }
     }),
