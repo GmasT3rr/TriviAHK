@@ -1,3 +1,4 @@
+import { SocketService } from './../../socket/socket.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,7 +10,9 @@ export class PrincipalComponent implements OnInit {
   partidas: any;
 
 
-  constructor() { }
+  constructor(
+    private socketService: SocketService
+  ) { }
 
   ngOnInit(): void {
     this.cargarEjemplo();
