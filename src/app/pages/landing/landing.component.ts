@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-landing',
@@ -15,7 +16,7 @@ export class LandingComponent implements OnInit {
 }
   loginForm: FormGroup;
 
-  constructor(private rt:Router,private auth: AuthService) {
+  constructor(private rt:Router,private userService:UserService) {
     this.loginForm = this.createFormGroup();
    }
 
@@ -23,14 +24,18 @@ export class LandingComponent implements OnInit {
     this.getUsers()
    }
 
-   login(){
-    this.auth.loginWithRedirect()
+   //METODO LOGIN AUTH0
+   loginAuth(){
+    this.userService.login();
+    // this.rt.navigateByUrl('main/home')
    }
 
    //METODO SIGNUP AUTH0
-   signup(){
-    this.auth.loginWithRedirect({ screen_hint: 'signup' });
-   }
+   signupAuth(){
+    this.userService.signup()
+  }
+
+
 
  //Creacion de formato del formulario de "login"
  createFormGroup(){

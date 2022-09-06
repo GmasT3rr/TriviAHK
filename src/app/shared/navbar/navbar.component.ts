@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +13,7 @@ export class NavbarComponent implements OnInit {
 
   public show:boolean = true
 
-  constructor(private rt:ActivatedRoute, public auth: AuthService,
-    @Inject(DOCUMENT) private doc: Document,) {
+  constructor(private rt:ActivatedRoute,private userService:UserService) {
 
   }
 
@@ -26,8 +26,8 @@ export class NavbarComponent implements OnInit {
   }
 
   //METODO LOGOUT AUTH0
-  logout(){
-    this.auth.logout({ returnTo: this.doc.location.origin });
+  logoutAuth(){
+    this.userService.logout();
   }
 
 }
