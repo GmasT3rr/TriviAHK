@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from './guards/authentication.guard';
-import { LandingComponent } from './pages/landing/landing.component';
+import { LandingComponent } from './public/landing/landing.component';
 
 
 

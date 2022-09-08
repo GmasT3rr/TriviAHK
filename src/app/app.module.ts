@@ -7,11 +7,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { LandingComponent } from './public/landing/landing.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LandingComponent,
 
   ],
   imports: [

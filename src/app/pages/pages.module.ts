@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
-import { LandingComponent } from './landing/landing.component';
+import { CrearQuizComponent } from './crear-quiz/crear-quiz.component';
 
 
 
@@ -14,7 +14,7 @@ import { LandingComponent } from './landing/landing.component';
 @NgModule({
   declarations: [
     HomeComponent,
-    LandingComponent,
+    CrearQuizComponent,
 
   ],
   imports: [

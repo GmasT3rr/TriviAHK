@@ -7,11 +7,21 @@ import { environment as env } from '../../environments/environment';
   providedIn: 'root'
 })
 export class PartidasService {
+  private server = "http://localhost:3000/"
+
   constructor(private http: HttpClient) {
   }
 
-  getPartidas(){
-    return this.http.get(`${env.dev.serverUrl}/partidas`);
-    
+  
+  // getPartidas(){
+  //   return this.http.get(`${env.dev.serverUrl}/partidas`);
+  // }
+
+
+  //Get partidas con json-server
+
+  getQuizzes():any{
+  return this.http.get(`${this.server}quizzes`)
   }
+
 }

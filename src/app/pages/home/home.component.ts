@@ -17,78 +17,6 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, private http: HttpClient, private partidaService:PartidasService) {
     this.offset = 0
     this.limit = 4
-    this.quizes =[{
-      "id": "1",
-      "title": "Cuestionario numero 1",
-      "description": "Esta es una bree descripcion del ceustionario",
-      "preguntas": "10",
-      "participantes": "25",
-      "ratio": "80%"
-   },
-   {
-      "id": "2",
-      "title": "Cuestionario numero 2",
-      "description": "Esta es una bree descripcion del ceustionario",
-      "preguntas": "10",
-      "participantes": "25",
-      "ratio": "80%"
-   },
-   {
-      "id": "3",
-      "title": "Cuestionario numero 3",
-      "description": "Esta es una bree descripcion del ceustionario",
-      "preguntas": "10",
-      "participantes": "25",
-      "ratio": "80%"
-   },
-   {
-      "id": "4",
-      "title": "Cuestionario numero 4",
-      "description": "Esta es una bree descripcion del ceustionario",
-      "preguntas": "10",
-      "participantes": "25",
-      "ratio": "80%"
-   },
-   {
-    "id": "5",
-    "title": "Cuestionario numero 5",
-    "description": "Esta es una bree descripcion del ceustionario",
-    "preguntas": "99",
-    "participantes": "12",
-    "ratio": "50%"
-   },
-   {
-    "id": "6",
-    "title": "Cuestionario numero 6",
-    "description": "Esta es una bree descripcion del ceustionario",
-    "preguntas": "10",
-    "participantes": "25",
-    "ratio": "80%"
-   },
-   {
-    "id": "7",
-    "title": "Cuestionario numero 7",
-    "description": "Esta es una bree descripcion del ceustionario",
-    "preguntas": "10",
-    "participantes": "25",
-    "ratio": "80%"
-   },
-   {
-    "id": "8",
-    "title": "Cuestionario numero 8",
-    "description": "Esta es una bree descripcion del ceustionario",
-    "preguntas": "10",
-    "participantes": "25",
-    "ratio": "80%"
-   },
-   {
-      "id": "9",
-      "title": "Cuestionario numero 9",
-      "description": "Esta es una bree descripcion del ceustionario",
-      "preguntas": "22",
-      "participantes": "35",
-      "ratio": "70%"
-   }]
   }
 
 
@@ -109,6 +37,10 @@ export class HomeComponent implements OnInit {
 //   }
 
  ngOnInit(): void {
+  this.partidaService.getQuizzes().subscribe((quizes:any)=>{
+    this.quizes = quizes
+  })
+
   // this.getPartidas()
 
 

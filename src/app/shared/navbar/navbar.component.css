@@ -25,6 +25,7 @@ input:focus {
 }
 
 .navbar-brand {
+    margin: 0px;
     justify-content: center;
     text-align: center;
     display: flex;
