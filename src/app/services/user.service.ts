@@ -15,7 +15,7 @@ export class UserService {
   
   signup(){
      this.authService.loginWithRedirect({ screen_hint: 'signup' });
-    }
+  }
     
   logout(){
     this.authService.logout({ returnTo: this.doc.location.origin });
