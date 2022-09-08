@@ -14,10 +14,20 @@ export class NavbarComponent implements OnInit {
   public show:boolean = true
 
   constructor(private rt:ActivatedRoute,private userService:UserService) {
-
   }
 
   ngOnInit(): void {
+    this.getUserInfo();
+    this.checkRoute()
+  }
+
+  //METODO LOGOUT AUTH0
+  logoutAuth(){
+    this.userService.logout();
+  }
+
+  //Verfificar en que ruta esta el usuario para mostrar su imagen o no
+  private checkRoute(){
     const path = this.rt.snapshot.pathFromRoot[1].routeConfig?.path
     console.log(path);
     if(path === 'user'){
@@ -25,9 +35,13 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  //METODO LOGOUT AUTH0
-  logoutAuth(){
-    this.userService.logout();
+
+  //Obtener info de usuario
+  public user:any
+  private getUserInfo(){
+    this.userService.getUserInfo().subscribe((data) => {
+    this.user = data
+  })
   }
 
 }

@@ -1,9 +1,11 @@
 <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
-        <img src="https://i.pinimg.com/736x/1c/b3/77/1cb37778107856d56e05d378db46eda9.jpg" alt="">
+        <!-- <img src="https://i.pinimg.com/736x/1c/b3/77/1cb37778107856d56e05d378db46eda9.jpg" alt=""> -->
+        <img [src]=user.picture alt="">
+
     </div>
     <div class="userData">
-        <p>DOGGOBOSS <br>#9602496</p>
+        <p>{{user.name}} <br># {{user.nickname}}</p>
     </div>
 
     <div class="offcanvas-body">

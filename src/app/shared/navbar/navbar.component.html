@@ -7,10 +7,10 @@
             </div>
         </button>
 
-        <img *ngIf="show" src="https://i.pinimg.com/736x/1c/b3/77/1cb37778107856d56e05d378db46eda9.jpg" alt="" class="d-inline-block">
-        <div *ngIf="!show">
+        <img *ngIf="show" [src]=user.picture alt="" class="d-inline-block" data-bs-toggle="offcanvas" href="#offcanvasExample">
+        <!-- <div *ngIf="!show">
             <img src="https://educaciontech.com/wp-content/uploads/2021/01/kahootapplogobetter.png" alt="" class="d-inline-block">
-        </div>
+        </div> -->
 
     </a>
     <div class="marca" routerLink="/main/home" type="button">

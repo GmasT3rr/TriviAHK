@@ -20,11 +20,12 @@ export class UserService {
   logout(){
     this.authService.logout({ returnTo: this.doc.location.origin });
   }
-  getLoginInfo(){
-    return  this.authService.idTokenClaims$.subscribe((claims) => console.log(claims));
+  getUserInfo(){
+    return  this.authService.idTokenClaims$;
   }
 
   isAuthenticated(){
     return this.authService.isAuthenticated$
   }
+  
 }

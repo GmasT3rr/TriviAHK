@@ -17,13 +17,13 @@
         <div class="col-md-4 text-end">
             <div class="profile-info text-end mt-2 mb-2">
                 <div class="text-center mb-2">
-                    <img src="https://i.pinimg.com/736x/1c/b3/77/1cb37778107856d56e05d378db46eda9.jpg" alt="" class="d-inline-block" id="profile-img">
+                    <img [src]="user.picture" alt="" class="d-inline-block" id="profile-img">
                 </div>
                 <div class="text-center">
-                    <span>Nombre de usuario</span>
+                    <span>{{user.name}}</span>
                 </div>
                 <div class="text-center">
-                    <span>Codigo de usuario</span>
+                    <span>{{user.nickname}}</span>
                 </div>
             </div>
         </div>
@@ -34,9 +34,9 @@
             <div class="ordenar-quiz">
                 <h5 clas>Odenar por:</h5>
                 <ul>
-                    <li class="btn"><i class="bi bi-circle-fill"></i>Mas reciente</li>
-                    <li class="btn"><i class="bi bi-circle-fill"></i>Mas respondido</li>
-                    <li class="btn"><i class="bi bi-circle-fill"></i>Mas antiguo</li>
+                    <li (click)="quizes=sortMostRecently" class="btn"><i class="bi bi-circle-fill"></i>Mas reciente</li>
+                    <li (click)="quizes=sortMoreAnswered" class="btn"><i class="bi bi-circle-fill"></i>Mas respondido</li>
+                    <li (click)="quizes=sortLeastRecently" class="btn"><i class="bi bi-circle-fill"></i>Mas antiguo</li>
                 </ul>
             </div>
         </div>
@@ -45,7 +45,7 @@
 
     <div class="d-flex flex-row-reverse quizzes">
         <div class="col-sm-7">
-            <div class="mb-5 mt-5 " *ngFor="let quiz of quizes | slice:x:y; let i=index">
+            <div class="mb-5 mt-5 " *ngFor="let quiz of quizes | slice:x:y   let i=index">
                 <div class="row justify-content-between">
                     <div class="card-quiz-border col-3 " [ngStyle]="{backgroundColor:getColor(i)}">
                     </div>
