@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PartidasService } from '../../services/partidas.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { QuizFormComponent } from '../quiz-form/quiz-form.component';
 
 @Component({
   selector: 'app-crear-quiz',
@@ -9,56 +17,81 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./crear-quiz.component.css']
 })
 export class CrearQuizComponent implements OnInit {
+  @ViewChild('infoDePreguntas', { read: ViewContainerRef })
+  container!: ViewContainerRef;
 
+  public preguntas: any[] = [];
+  public quizes: any[] = [];
+  currentID: any;
+  referenciaAPreguntas: any[] = [];
+  // quizesForm: FormGroup;
 
-  constructor(private rt: ActivatedRoute, private partidaService:PartidasService) { 
-    this.quizesForm = this.createQuizesForm()
+  constructor(
+    private rt: ActivatedRoute,
+    private partidaService: PartidasService,
+    public componentFactoryResolver: ComponentFactoryResolver
+  ) {
+    // this.quizesForm = this.createQuizesForm();
   }
 
-  currentID:any
+  agregarPreguntaForm(form: any) {
+    this.preguntas.push(form);
+    console.log('FORMULARIO ENTRANTE "PARENT(CREAR-QUIZ)"', form);
+  }
+  verPreguntas() {
+    console.log('Array de preguntas', this.preguntas);
+  }
+
   ngOnInit(): void {
-    const path = this.rt.snapshot.pathFromRoot[2].params
+    const path = this.rt.snapshot.pathFromRoot[2].params;
     console.log(path);
-    this.currentID = path
+    this.currentID = path;
     console.log(this.currentID.id);
-
-  this.getQuizes()
+    this.getQuizes();
   }
 
-  public quizes:any[] = []
-  getQuizes(){
-    this.partidaService.getQuizzes().subscribe((quizes:any)=>{
-      this.quizes = quizes
-    })
+  component: any;
+  componentFactory: any;
+
+  agregarPreg() {
+    //crea creador de componente
+    this.componentFactory =
+      this.componentFactoryResolver.resolveComponentFactory(QuizFormComponent);
+    //El container crea el componente con el creador
+    this.component = this.container.createComponent(this.componentFactory);
+    // Pushear el componente al array
+    this.referenciaAPreguntas.push(this.component);
   }
 
-  quizesForm: FormGroup
-  createQuizesForm(){
-    return new FormGroup({
-      descripcion  :new FormControl(''),
-      orden  :new FormControl(''),
-      tiempo  :new FormControl(''),
-      puntos  :new FormControl(''),
-    })
+  getQuizes() {
+    this.partidaService.getQuizzes().subscribe((quizes: any) => {
+      this.quizes = quizes;
+    });
   }
 
-    inputDePreguntas:any[]=[1]
-    agregarUnaPregunta(){
-      this.inputDePreguntas.push(+1)
-    }
-    eliminarUnaPregunta(){
-      this.inputDePreguntas.pop()
-    }
+  // createQuizesForm() {
+  //   return new FormGroup({
+  //     descripcion: new FormControl(''),
+  //     orden: new FormControl(''),
+  //     tiempo: new FormControl(''),
+  //     puntos: new FormControl('')
+  //   });
+  // }
 
+  // inputDePreguntas:any[]=[1]
+  // agregarUnaPregunta(){
+  //   this.inputDePreguntas.push(+1)
+  // }
+  // eliminarUnaPregunta(){
+  //   this.inputDePreguntas.pop()
+  // }
 
-    verValorDelForm(){
-      console.log("Pregunta actual",this.quizesForm.value);
-    }
+  // verValorDelForm() {
+  //   console.log('Pregunta actual', this.quizesForm.value);
+  // }
 
-    public preguntas:any[] = []
-    agregarPreguntasAlArray(){
-      this.preguntas.push(this.quizesForm.value)
-      console.log("Array de preguntas",this.preguntas);
-
-    }
+  // agregarPreguntasAlArray() {
+  //   this.preguntas.push(this.quizesForm.value);
+  //   console.log('Array de preguntas', this.preguntas);
+  // }
 }

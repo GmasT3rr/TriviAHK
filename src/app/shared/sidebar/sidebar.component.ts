@@ -7,17 +7,17 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor(private userService:UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.getUserInfo()
+    this.getUserInfo();
   }
-  
-  public user:any
-  private getUserInfo(){
-    this.userService.getUserInfo().subscribe((data) => {
-    this.user = data
-  })
+
+  public user: any;
+  private getUserInfo() {
+    this.userService.getUserInfo().subscribe(data => {
+      this.user = data;
+      // console.log(this.user);
+    });
   }
 }

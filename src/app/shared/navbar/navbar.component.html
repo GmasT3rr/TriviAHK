@@ -1,43 +1,64 @@
-<nav class="navbar navbar-expand-lg ">
-    <a class="navbar-brand">
-        <button class="menu" data-bs-toggle="offcanvas" href="#offcanvasExample">
-            <div class="row">
-                <span> Menu</span>
-                <i class="bi bi-menu-down" ></i>
-            </div>
-        </button>
-
-        <img *ngIf="show" [src]=user.picture alt="" class="d-inline-block" data-bs-toggle="offcanvas" href="#offcanvasExample">
-        <!-- <div *ngIf="!show">
-            <img src="https://educaciontech.com/wp-content/uploads/2021/01/kahootapplogobetter.png" alt="" class="d-inline-block">
-        </div> -->
-
-    </a>
-    <div class="marca" routerLink="/main/home" type="button">
-        BRAND_NAME_HERE
-    </div>
-    <button class="navbar-toggler desplegable" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="navbar-toggler-icon bi bi-arrow-bar-down"></i>
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand">
+    <button
+      class="menu"
+      data-bs-toggle="offcanvas"
+      href="#offcanvasExample">
+      <div class="row">
+        <span> Menu</span>
+        <i class="bi bi-menu-down"></i>
+      </div>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto ">
+    <img
+      *ngIf="show"
+      [src]="user?.picture"
+      alt=""
+      class="d-inline-block"
+      data-bs-toggle="offcanvas"
+      href="#offcanvasExample" />
+    <!-- <div *ngIf="!show">
+            <img src="https://educaciontech.com/wp-content/uploads/2021/01/kahootapplogobetter.png" alt="" class="d-inline-block">
+        </div> -->
+  </a>
+  <div
+    class="marca"
+    routerLink="/main/home"
+    type="button">
+    BRAND_NAME_HERE
+  </div>
+  <button
+    class="navbar-toggler desplegable"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
+    <i class="navbar-toggler-icon bi bi-arrow-bar-down"></i>
+  </button>
 
-        </ul>
+  <div
+    class="collapse navbar-collapse"
+    id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto"></ul>
 
-        <!-- <form class="form-inline my-2 my-lg-0 ">
+    <!-- <form class="form-inline my-2 my-lg-0 ">
             <input class="form-control  buscarInput" type="search " placeholder="Buscar " aria-label="Buscar ">
             <button class="btn btn-outline-success buscarButton" type="submit ">Buscar</button>
         </form> -->
 
+    <button
+      class="btn notification"
+      type="button ">
+      <i class="bi bi-bell-fill"></i>
+    </button>
 
-        <button class="btn notification" type="button ">
-                    <i class="bi bi-bell-fill "></i>
-                </button>
-
-        <button class="btn btn-danger logout" type="button " (click)="logoutAuth()">
-                  <i class="bi bi-box-arrow-left "></i>
-              </button>
-
-    </div>
+    <button
+      class="btn btn-danger logout"
+      type="button "
+      (click)="logoutAuth()">
+      <i class="bi bi-box-arrow-left"></i>
+    </button>
+  </div>
 </nav>

@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
 import { CrearQuizComponent } from './crear-quiz/crear-quiz.component';
+import { QuizFormComponent } from './quiz-form/quiz-form.component';
 
 
 
@@ -15,6 +16,7 @@ import { CrearQuizComponent } from './crear-quiz/crear-quiz.component';
   declarations: [
     HomeComponent,
     CrearQuizComponent,
+    QuizFormComponent,
 
   ],
   imports: [

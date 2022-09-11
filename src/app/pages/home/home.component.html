@@ -6,7 +6,9 @@
             <div class="card card-crear">
                 <div class="card-body btn">
                     <div class="boton-crear" routerLink="/main/crear">
-                        <p class="card-text"><i class="bi bi-plus-circle-fill"></i> CREAR</p>
+                        <p class="card-text">
+                            <i class="bi bi-plus-circle-fill"></i> CREAR
+                        </p>
                     </div>
                 </div>
             </div>
@@ -15,50 +17,53 @@
             <div class="card card-ingresar">
                 <div class="card-body btn">
                     <div class="boton-ingresar">
-                        <p class="card-text"><i class="bi bi-lightning-fill"></i>INGRESAR CODIGO</p>
+                        <p class="card-text">
+                            <i class="bi bi-lightning-fill"></i>INGRESAR CODIGO
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<hr class="separation mt-5">
+<hr class="separation mt-5" />
 
 <div class="container">
     <div class="row">
         <div class="actividades">
-            <p> Actividades Recientes</p>
-            <hr class="separationAvtivities">
+            <p>Actividades Recientes</p>
+            <hr class="separationAvtivities" />
         </div>
     </div>
 
     <div class="row">
-
-        <div class="col-xl-3 mb-3 mt-3 " *ngFor="let quiz of quizes | slice:offset:limit; let i=index">
-            <div class="card card-top" [ngStyle]="{backgroundColor:getColor(i)}">
-            </div>
+        <div class="col-xl-3 mb-3 mt-3" *ngFor="let quiz of quizes | slice: offset:limit; let i = index">
+            <div class="card card-top" [ngStyle]="{ backgroundColor: getColor(i) }"></div>
             <div class="card-quiz-outside">
                 <div class="card card-quiz">
-                    <h3>{{quiz.title}}</h3>
+                    <h3>{{ quiz.title }}</h3>
                     <!-- <p style="color: red;">{{i}}</p> -->
-                    <p *ngIf="quiz.description; else noDescp">{{quiz.description | slice:0:50}}...</p>
-                    <ng-template #noDescp> Sin descripcion
-                    </ng-template>
-                    <p class="icons-quiz"><i class="bi bi-person"></i>{{quiz.participantes}}<i class="bi bi-question-circle"></i>{{quiz.preguntas}}<i class="bi bi-bookmark-star"></i>{{quiz.ratio}}</p>
+                    <p *ngIf="quiz.description; else noDescp">
+                        {{ quiz.description | slice: 0:50 }}...
+                    </p>
+                    <ng-template #noDescp> Sin descripcion </ng-template>
+                    <p class="icons-quiz">
+                        <i class="bi bi-person"></i>{{ quiz.participantes }}
+                        <i class="bi bi-question-circle"></i>{{ quiz.preguntasTotales }}
+                        <i class="bi bi-bookmark-star"></i>{{ quiz.ratio }}
+                    </p>
                 </div>
             </div>
-
         </div>
     </div>
     <div class="row text-center justify-content-between mt-4">
-        <div (click)="prevQuiz() " class="btn btn-prev col-3 ">
-            <i class="bi bi-arrow-left "></i>
+        <div (click)="prevQuiz()" class="btn btn-prev col-3">
+            <i class="bi bi-arrow-left"></i>
             <span>Prev</span>
         </div>
-        <div (click)="nextQuiz() " class="btn btn-next col-3 ">
+        <div (click)="nextQuiz()" class="btn btn-next col-3">
             <span>Next</span>
-            <i class="bi bi-arrow-right "></i>
+            <i class="bi bi-arrow-right"></i>
         </div>
     </div>
-
 </div>

@@ -1,0 +1,27 @@
+<div class="card mt-3 mb-3">
+    <form [formGroup]="quizesForm" class="mt-3 mb-3 mr-3 ml-3">
+        <h4>Pregunta número:</h4>
+
+        <div class="row text-center">
+            <div class="col-12">
+                <input style="width: 100%" class="mb-5" id="descripcion" placeholder="Pregunta" type="text" formControlName="descripcion" />
+            </div>
+            <div class="col-4">
+                Orden
+                <input class="mb-5" id="orden" type="text" placeholder="Orden" formControlName="orden" />
+            </div>
+            <div class="col-4">
+                Tiempo
+                <input class="mb-5" id="tiempo" type="text" placeholder="Tiempo" formControlName="tiempo" />
+            </div>
+            <div class="col-4">
+                Puntos
+                <input class="mb-5" id="puntos" type="text" placeholder="Puntos" formControlName="puntos" />
+            </div>
+        </div>
+    </form>
+
+    <div class="text-right mb-3 mr-3" (click)="sendPreguntaForm()">
+        <div class="btn btn-success">Enviar datos de la pregunta</div>
+    </div>
+</div>
