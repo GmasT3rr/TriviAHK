@@ -18,6 +18,28 @@ export class SocketService {
       alert(mensajeNuevo);
     });
 
-    this.socket.emit('trivia:unir', {user_id: 5, trivia_id: 1, partida: 85784});
+  }
+
+  // como disparar el evento sin que 
+  public unirse() {
+    this.socket!.emit('partida:unir', {usuarioID: 1, partidaID: 1});
+    this.socket!.once('partida:status-union', (partida: any) => {
+      console.log(partida);
+      // esta bien hacer esto
+    });
+    this.socket!.on('partida:unido', (mensaje:any) => {
+      console.log(mensaje);
+    });
+  }
+
+  public salirse() {
+    this.socket!.emit('partida:salir', {sesionID: 18});
+    this.socket!.once('partida:status-salida', (p: any) => {
+      console.log(p);
+    })
+    // this.socket?.off('partida:status-salida');
+    this.socket!.on('partida:salido', (p: any) => {
+      console.log(p);
+    })
   }
 }
