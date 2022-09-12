@@ -1,6 +1,7 @@
 import {
   Component,
   ComponentFactoryResolver,
+  ComponentRef,
   Input,
   OnInit,
   ViewChild,
@@ -20,27 +21,24 @@ export class CrearQuizComponent implements OnInit {
   @ViewChild('infoDePreguntas', { read: ViewContainerRef })
   container!: ViewContainerRef;
 
-  public preguntas: any[] = [];
+  private currentID: any;
   public quizes: any[] = [];
-  currentID: any;
-  referenciaAPreguntas: any[] = [];
-  // quizesForm: FormGroup;
+  referenciaAPreguntas = Array<ComponentRef<QuizFormComponent>>();
+  child_unique_key: number = 0;
 
   constructor(
     private rt: ActivatedRoute,
     private partidaService: PartidasService,
     public componentFactoryResolver: ComponentFactoryResolver
-  ) {
-    // this.quizesForm = this.createQuizesForm();
-  }
+  ) {}
 
-  agregarPreguntaForm(form: any) {
-    this.preguntas.push(form);
-    console.log('FORMULARIO ENTRANTE "PARENT(CREAR-QUIZ)"', form);
-  }
-  verPreguntas() {
-    console.log('Array de preguntas', this.preguntas);
-  }
+  // agregarPreguntaForm(form: any) {
+  //   this.preguntas.push(form);
+  //   console.log('FORMULARIO ENTRANTE "PARENT(CREAR-QUIZ)"', form);
+  // }
+  // verPreguntas() {
+  //   console.log('Array de preguntas', this.preguntas);
+  // }
 
   ngOnInit(): void {
     const path = this.rt.snapshot.pathFromRoot[2].params;
@@ -50,48 +48,51 @@ export class CrearQuizComponent implements OnInit {
     this.getQuizes();
   }
 
-  component: any;
-  componentFactory: any;
-
-  agregarPreg() {
-    //crea creador de componente
-    this.componentFactory =
-      this.componentFactoryResolver.resolveComponentFactory(QuizFormComponent);
-    //El container crea el componente con el creador
-    this.component = this.container.createComponent(this.componentFactory);
-    // Pushear el componente al array
-    this.referenciaAPreguntas.push(this.component);
-  }
-
   getQuizes() {
     this.partidaService.getQuizzes().subscribe((quizes: any) => {
       this.quizes = quizes;
     });
   }
+  component: any;
+  componentFactory: any;
 
-  // createQuizesForm() {
-  //   return new FormGroup({
-  //     descripcion: new FormControl(''),
-  //     orden: new FormControl(''),
-  //     tiempo: new FormControl(''),
-  //     puntos: new FormControl('')
-  //   });
-  // }
+  createComponent() {
+    //crea creador de componente
+    this.componentFactory =
+      this.componentFactoryResolver.resolveComponentFactory(QuizFormComponent);
+    //El container crea el componente con el creador
+    this.component = this.container.createComponent(this.componentFactory);
 
-  // inputDePreguntas:any[]=[1]
-  // agregarUnaPregunta(){
-  //   this.inputDePreguntas.push(+1)
-  // }
-  // eliminarUnaPregunta(){
-  //   this.inputDePreguntas.pop()
-  // }
+    let childComponent = this.component.instance;
+    childComponent.unique_key = ++this.child_unique_key;
+    childComponent.parentRef = this;
+    // Pushear el componente al array
+    this.referenciaAPreguntas.push(this.component);
+  }
 
-  // verValorDelForm() {
-  //   console.log('Pregunta actual', this.quizesForm.value);
-  // }
+  remove(key: number) {
+    if (this.container.length < 1) return;
 
-  // agregarPreguntasAlArray() {
-  //   this.preguntas.push(this.quizesForm.value);
-  //   console.log('Array de preguntas', this.preguntas);
-  // }
+    let componentRef = this.referenciaAPreguntas.filter(
+      x => x.instance.unique_key == key
+    )[0];
+
+    let vcrIndex: number = this.container.indexOf(componentRef as any);
+
+    // removing component from container
+    this.container.remove(vcrIndex);
+
+    // removing component from the list
+    this.referenciaAPreguntas = this.referenciaAPreguntas.filter(
+      x => x.instance.unique_key !== key
+    );
+  }
+
+  guardarQuizz() {
+    let todasLasPreguntas: any = [];
+    this.referenciaAPreguntas.forEach(c => {
+      todasLasPreguntas.push(c.instance.getValores());
+    });
+    console.log(todasLasPreguntas);
+  }
 }
