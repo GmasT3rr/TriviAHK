@@ -10,22 +10,24 @@ import { CrearQuizComponent } from '../crear-quiz/crear-quiz.component';
 export class QuizFormComponent implements OnInit {
   quizesForm: FormGroup;
 
-  public unique_key!: number;
+  public uniqueId!: number;
   public parentRef!: CrearQuizComponent;
 
   constructor() {
     this.quizesForm = this.createQuizesForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.quizesForm.get('id')?.setValue(this.uniqueId);
+  }
 
   getValores() {
     return this.quizesForm.value;
   }
 
   eliminarComponente() {
-    console.log(this.unique_key);
-    this.parentRef.remove(this.unique_key);
+    console.log('ID a eliminar', this.uniqueId);
+    this.parentRef.removeComponent(this.uniqueId);
   }
 
   createQuizesForm() {
@@ -33,7 +35,8 @@ export class QuizFormComponent implements OnInit {
       descripcion: new FormControl(''),
       orden: new FormControl(''),
       tiempo: new FormControl(''),
-      puntos: new FormControl('')
+      puntos: new FormControl(''),
+      id: new FormControl('')
     });
   }
 }

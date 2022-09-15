@@ -2,14 +2,11 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef,
-  Input,
   OnInit,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { PartidasService } from '../../services/partidas.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { QuizFormComponent } from '../quiz-form/quiz-form.component';
 
 @Component({
@@ -18,33 +15,19 @@ import { QuizFormComponent } from '../quiz-form/quiz-form.component';
   styleUrls: ['./crear-quiz.component.css']
 })
 export class CrearQuizComponent implements OnInit {
-  @ViewChild('infoDePreguntas', { read: ViewContainerRef })
-  container!: ViewContainerRef;
+  @ViewChild('referenciaAPreguntas', { read: ViewContainerRef })
+  VCR!: ViewContainerRef;
 
-  private currentID: any;
-  public quizes: any[] = [];
   referenciaAPreguntas = Array<ComponentRef<QuizFormComponent>>();
-  child_unique_key: number = 0;
+  childUniqueId: number = 0;
+  public quizes: any[] = [];
 
   constructor(
-    private rt: ActivatedRoute,
     private partidaService: PartidasService,
-    public componentFactoryResolver: ComponentFactoryResolver
+    private CFR: ComponentFactoryResolver
   ) {}
 
-  // agregarPreguntaForm(form: any) {
-  //   this.preguntas.push(form);
-  //   console.log('FORMULARIO ENTRANTE "PARENT(CREAR-QUIZ)"', form);
-  // }
-  // verPreguntas() {
-  //   console.log('Array de preguntas', this.preguntas);
-  // }
-
   ngOnInit(): void {
-    const path = this.rt.snapshot.pathFromRoot[2].params;
-    console.log(path);
-    this.currentID = path;
-    console.log(this.currentID.id);
     this.getQuizes();
   }
 
@@ -53,38 +36,33 @@ export class CrearQuizComponent implements OnInit {
       this.quizes = quizes;
     });
   }
-  component: any;
-  componentFactory: any;
 
   createComponent() {
-    //crea creador de componente
-    this.componentFactory =
-      this.componentFactoryResolver.resolveComponentFactory(QuizFormComponent);
-    //El container crea el componente con el creador
-    this.component = this.container.createComponent(this.componentFactory);
+    const component: any = this.VCR.createComponent(QuizFormComponent);
 
-    let childComponent = this.component.instance;
-    childComponent.unique_key = ++this.child_unique_key;
+    let childComponent = component.instance;
+    childComponent.uniqueId = ++this.childUniqueId;
     childComponent.parentRef = this;
+
     // Pushear el componente al array
-    this.referenciaAPreguntas.push(this.component);
+    this.referenciaAPreguntas.push(component);
   }
 
-  remove(key: number) {
-    if (this.container.length < 1) return;
+  removeComponent(key: number) {
+    if (this.VCR.length < 1) return;
 
     let componentRef = this.referenciaAPreguntas.filter(
-      x => x.instance.unique_key == key
+      x => x.instance.uniqueId == key
     )[0];
 
-    let vcrIndex: number = this.container.indexOf(componentRef as any);
+    let vcrIndex: number = this.VCR.indexOf(componentRef.hostView);
 
     // removing component from container
-    this.container.remove(vcrIndex);
+    this.VCR.remove(vcrIndex);
 
     // removing component from the list
     this.referenciaAPreguntas = this.referenciaAPreguntas.filter(
-      x => x.instance.unique_key !== key
+      x => x.instance.uniqueId !== key
     );
   }
 
