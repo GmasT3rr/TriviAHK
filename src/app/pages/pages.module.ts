@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
+import { LobbyComponent } from './lobby/lobby.component';
 
 
 
@@ -15,6 +16,7 @@ import { LandingComponent } from './landing/landing.component';
   declarations: [
     HomeComponent,
     LandingComponent,
+    LobbyComponent,
 
   ],
   imports: [

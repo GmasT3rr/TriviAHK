@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,30 +10,27 @@ import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { HttpMethod } from '@auth0/auth0-angular';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    SharedModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
         allowedList: [
           {
-            uri:`${env.dev.serverUrl}/*`,
-          }
-        ]
-      }
+            uri: `${env.dev.serverUrl}/*`,
+          },
+        ],
+      },
     }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
