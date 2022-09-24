@@ -44,27 +44,44 @@
             ],
             "preguntas": [{
                     "id": "0",
-                    "descripcion": "cuando nacio san martin",
-                    "respuesta": "respuesta preg1",
-                    "puntos": "10"
+                    "descripcion": "¿cuando nacio San Martin?",
+                    "respuestas": [
+                        { "respuesta": "SM nacio en 2002", "isCorrect": true, "puntos": "80" },
+                        { "respuesta": "SM nacio en 550 A.C", "isCorrect": false, "puntos": "0" },
+                        { "respuesta": "SM nacio en 2000", "isCorrect": false, "puntos": "0" },
+                        { "respuesta": "SM nacio en 2007", "isCorrect": false, "puntos": "0" }
+                    ]
+
                 },
                 {
                     "id": "1",
-                    "descripcion": "cuando nacio Rosas",
-                    "respuesta": "respuesta preg2",
-                    "puntos": "40"
+                    "descripcion": "¿Cuando nacio Rosas?",
+                    "respuestas": [
+                        { "respuesta": "Rosas nacio en 2002", "isCorrect": false, "puntos": "0" },
+                        { "respuesta": "Rosas nacio en ni idea", "isCorrect": false, "puntos": "0" },
+                        { "respuesta": "Rosas nacio en 1990", "isCorrect": false, "puntos": "50" },
+                        { "respuesta": "Rosas nacio en 3500", "isCorrect": true, "puntos": "0" }
+                    ]
                 },
                 {
                     "id": "2",
-                    "descripcion": "cuando nacio Belgrano",
-                    "respuesta": "respuesta preg3",
-                    "puntos": "20"
+                    "descripcion": "¿Cuando nacio Belgrano?",
+                    "respuestas": [
+                        { "respuesta": "Es un equipo de fuchibol", "isCorrect": false, "puntos": "0" },
+                        { "respuesta": "No sé", "isCorrect": false, "puntos": "0" },
+                        { "respuesta": "Ninguna es correcta", "isCorrect": false, "puntos": "0" },
+                        { "respuesta": "GOOOOOOOOOOOOOOOL!!1", "isCorrect": true, "puntos": "100" }
+                    ]
                 },
                 {
                     "id": "3",
-                    "descripcion": "cuando nacio el diegote",
-                    "respuesta": "respuesta preg4",
-                    "puntos": "30"
+                    "descripcion": "¿cuando nacio el diegote?",
+                    "respuestas": [
+                        { "respuesta": "No sé", "isCorrect": false, "puntos": "0" },
+                        { "respuesta": "Fácil, 1810", "isCorrect": false, "puntos": "0" },
+                        { "respuesta": "30/8/1960", "isCorrect": true, "puntos": "60" },
+                        { "respuesta": "FaFaFa", "isCorrect": false, "puntos": "0" }
+                    ]
                 }
             ]
         },
@@ -91,25 +108,45 @@
             "preguntas": [{
                     "id": "0",
                     "descripcion": "cuando nacio san martin",
-                    "respuesta": "respuesta preg1",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "10"
                 },
                 {
                     "id": "1",
                     "descripcion": "cuando nacio Rosas",
-                    "respuesta": "respuesta preg2",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "40"
                 },
                 {
                     "id": "2",
                     "descripcion": "cuando nacio Belgrano",
-                    "respuesta": "respuesta preg3",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "20"
                 },
                 {
                     "id": "3",
                     "descripcion": "cuando nacio el diegote",
-                    "respuesta": "respuesta preg4",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "30"
                 }
             ]
@@ -138,25 +175,45 @@
             "preguntas": [{
                     "id": "0",
                     "descripcion": "cuando nacio san martin",
-                    "respuesta": "respuesta preg1",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "10"
                 },
                 {
                     "id": "1",
                     "descripcion": "cuando nacio Rosas",
-                    "respuesta": "respuesta preg2",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "40"
                 },
                 {
                     "id": "2",
                     "descripcion": "cuando nacio Belgrano",
-                    "respuesta": "respuesta preg3",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "20"
                 },
                 {
                     "id": "3",
                     "descripcion": "cuando nacio el diegote",
-                    "respuesta": "respuesta preg4",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "30"
                 }
             ]
@@ -185,25 +242,45 @@
             "preguntas": [{
                     "id": "0",
                     "descripcion": "cuando nacio san martin",
-                    "respuesta": "respuesta preg1",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "10"
                 },
                 {
                     "id": "1",
                     "descripcion": "cuando nacio Rosas",
-                    "respuesta": "respuesta preg2",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "40"
                 },
                 {
                     "id": "2",
                     "descripcion": "cuando nacio Belgrano",
-                    "respuesta": "respuesta preg3",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "20"
                 },
                 {
                     "id": "3",
                     "descripcion": "cuando nacio el diegote",
-                    "respuesta": "respuesta preg4",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "30"
                 }
             ]
@@ -232,25 +309,45 @@
             "preguntas": [{
                     "id": "0",
                     "descripcion": "cuando nacio san martin",
-                    "respuesta": "respuesta preg1",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "10"
                 },
                 {
                     "id": "1",
                     "descripcion": "cuando nacio Rosas",
-                    "respuesta": "respuesta preg2",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "40"
                 },
                 {
                     "id": "2",
                     "descripcion": "cuando nacio Belgrano",
-                    "respuesta": "respuesta preg3",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "20"
                 },
                 {
                     "id": "3",
                     "descripcion": "cuando nacio el diegote",
-                    "respuesta": "respuesta preg4",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "30"
                 }
             ]
@@ -279,25 +376,45 @@
             "preguntas": [{
                     "id": "0",
                     "descripcion": "cuando nacio san martin",
-                    "respuesta": "respuesta preg1",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "10"
                 },
                 {
                     "id": "1",
                     "descripcion": "cuando nacio Rosas",
-                    "respuesta": "respuesta preg2",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "40"
                 },
                 {
                     "id": "2",
                     "descripcion": "cuando nacio Belgrano",
-                    "respuesta": "respuesta preg3",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "20"
                 },
                 {
                     "id": "3",
                     "descripcion": "cuando nacio el diegote",
-                    "respuesta": "respuesta preg4",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "30"
                 }
             ]
@@ -326,25 +443,45 @@
             "preguntas": [{
                     "id": "0",
                     "descripcion": "cuando nacio san martin",
-                    "respuesta": "respuesta preg1",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "10"
                 },
                 {
                     "id": "1",
                     "descripcion": "cuando nacio Rosas",
-                    "respuesta": "respuesta preg2",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "40"
                 },
                 {
                     "id": "2",
                     "descripcion": "cuando nacio Belgrano",
-                    "respuesta": "respuesta preg3",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "20"
                 },
                 {
                     "id": "3",
                     "descripcion": "cuando nacio el diegote",
-                    "respuesta": "respuesta preg4",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "30"
                 }
             ]
@@ -373,25 +510,45 @@
             "preguntas": [{
                     "id": "0",
                     "descripcion": "cuando nacio san martin",
-                    "respuesta": "respuesta preg1",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "10"
                 },
                 {
                     "id": "1",
                     "descripcion": "cuando nacio Rosas",
-                    "respuesta": "respuesta preg2",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "40"
                 },
                 {
                     "id": "2",
                     "descripcion": "cuando nacio Belgrano",
-                    "respuesta": "respuesta preg3",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "20"
                 },
                 {
                     "id": "3",
                     "descripcion": "cuando nacio el diegote",
-                    "respuesta": "respuesta preg4",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "30"
                 }
             ]
@@ -420,25 +577,45 @@
             "preguntas": [{
                     "id": "0",
                     "descripcion": "cuando nacio san martin",
-                    "respuesta": "respuesta preg1",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "10"
                 },
                 {
                     "id": "1",
                     "descripcion": "cuando nacio Rosas",
-                    "respuesta": "respuesta preg2",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "40"
                 },
                 {
                     "id": "2",
                     "descripcion": "cuando nacio Belgrano",
-                    "respuesta": "respuesta preg3",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "20"
                 },
                 {
                     "id": "3",
                     "descripcion": "cuando nacio el diegote",
-                    "respuesta": "respuesta preg4",
+                    "respuestas": [
+                        { "respuesta": "resp1", "isCorrect": true },
+                        { "respuesta": "resp2", "isCorrect": false },
+                        { "respuesta": "resp3", "isCorrect": false },
+                        { "respuesta": "resp4", "isCorrect": false }
+                    ],
                     "puntos": "30"
                 }
             ]

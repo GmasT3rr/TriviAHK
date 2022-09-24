@@ -7,6 +7,8 @@ import { environment as env } from '../../environments/environment';
 })
 export class PartidasService {
   private server = 'http://localhost:3000/';
+  timer!: any;
+  counter: number = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -20,7 +22,7 @@ export class PartidasService {
     return this.http.get(`${this.server}quizzes`);
   }
 
-  getOneQuiz(id: any) {
+  async getOneQuiz(id: any) {
     return this.http.get(`${this.server}quizzes/${id}`);
   }
 }

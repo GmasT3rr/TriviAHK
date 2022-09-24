@@ -32,15 +32,15 @@ export class QuizInfoComponent implements OnInit {
     this.currentID = id;
   }
 
-  getQuiz(id: any) {
-    this.partidaService.getOneQuiz(id).subscribe((quiz: any) => {
+  async getQuiz(id: any) {
+    (await this.partidaService.getOneQuiz(id)).subscribe((quiz: any) => {
       this.quizz = quiz;
       // console.log('QUIZZ INFO', this.quizz);
     });
   }
 
-  getPreguntas(id: any) {
-    this.partidaService.getOneQuiz(id).subscribe((quiz: any) => {
+  async getPreguntas(id: any) {
+    (await this.partidaService.getOneQuiz(id)).subscribe((quiz: any) => {
       quiz.preguntas.forEach((pregunta: any) => {
         this.preguntas.push(pregunta);
         // console.log('FOR EACH de QUIZZ.PREGUNTAS', pregunta);
@@ -48,14 +48,14 @@ export class QuizInfoComponent implements OnInit {
     });
   }
 
-  getQuizzesVinculadas(id: any) {
-    this.partidaService.getOneQuiz(id).subscribe((quiz: any) => {
-      quiz.vinculadas.forEach((quiz: any) => {
-        this.partidaService
-          .getOneQuiz(quiz.id)
-          .subscribe((quizVinculada: any) => {
+  async getQuizzesVinculadas(id: any) {
+    (await this.partidaService.getOneQuiz(id)).subscribe((quiz: any) => {
+      quiz.vinculadas.forEach(async (quiz: any) => {
+        (await this.partidaService.getOneQuiz(quiz.id)).subscribe(
+          (quizVinculada: any) => {
             this.vinculadas.push(quizVinculada);
-          });
+          }
+        );
       });
     });
   }
