@@ -10,38 +10,36 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  public show: boolean = true;
 
-  public show:boolean = true
-
-  constructor(private rt:ActivatedRoute,private userService:UserService) {
-  }
+  constructor(private rt: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit(): void {
     this.getUserInfo();
-    this.checkRoute()
+    this.checkRoute();
   }
 
   //METODO LOGOUT AUTH0
-  logoutAuth(){
+  logoutAuth() {
     this.userService.logout();
   }
 
   //Verfificar en que ruta esta el usuario para mostrar su imagen o no
-  private checkRoute(){
-    const path = this.rt.snapshot.pathFromRoot[1].routeConfig?.path
+  private checkRoute() {
+    const path = this.rt.snapshot.pathFromRoot[1].routeConfig?.path;
     console.log(path);
-    if(path === 'user'){
-      this.show = false
+    if (path === 'user') {
+      this.show = false;
     }
   }
 
-
   //Obtener info de usuario
-  public user:any
-  private getUserInfo(){
-    this.userService.getUserInfo().subscribe((data) => {
-    this.user = data
-  })
+  public user: any;
+  private getUserInfo() {
+    setTimeout(() => {
+      this.userService.getUserInfo().subscribe(data => {
+        this.user = data;
+      });
+    }, 1000);
   }
-
 }

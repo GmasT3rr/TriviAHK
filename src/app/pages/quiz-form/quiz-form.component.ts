@@ -32,7 +32,7 @@ export class QuizFormComponent implements OnInit {
 
   createQuizesForm() {
     return new FormGroup({
-      descripcion: new FormControl(''),
+      pregunta: new FormControl(''),
       orden: new FormControl(''),
       tiempo: new FormControl(''),
       puntos: new FormControl(''),

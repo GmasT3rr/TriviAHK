@@ -14,18 +14,19 @@
         <div class="col-11">
             <div class="mb-5 mt-5">
                 <div class="row justify-content-between">
-                    <!-- <div class="card-quiz-border col-3 " style="background-color:#1A0537 ; ">
-                    </div> -->
+                    <div class="col text-left">
+                        <h3>
+                            Descripcion
+                            <i class="bi bi-pen" style="color: #ff3078"></i>
+                        </h3>
+                    </div>
                     <div class="class card-quiz-outside col-12" type="button">
                         <div class="card-quiz col-12">
-                            <div class="row">
-                                <div class="col float-left">
-                                    <h3>
-                                        Descripcion
-                                        <i class="bi bi-pen" style="color: #ff3078"></i>
-                                        <div class="hr-description"></div>
-                                    </h3>
-                                    <input class="mb-5" type="text" placeholder="descripcion" style="width: 100%" />
+                            <div [formGroup]="descForm">
+                                <div class="row">
+                                    <div class="col float-left">
+                                        <input formControlName="descripcion" class="mb-5" type="text" placeholder="descripcion" style="width: 100%" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

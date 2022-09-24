@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { PartidasService } from '../../services/partidas.service';
 import { QuizFormComponent } from '../quiz-form/quiz-form.component';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-quiz',
@@ -21,11 +22,14 @@ export class CrearQuizComponent implements OnInit {
   referenciaAPreguntas = Array<ComponentRef<QuizFormComponent>>();
   childUniqueId: number = 0;
   public quizes: any[] = [];
+  public descForm!: FormGroup;
 
   constructor(
     private partidaService: PartidasService,
     private CFR: ComponentFactoryResolver
-  ) {}
+  ) {
+    this.createForm();
+  }
 
   ngOnInit(): void {
     this.getQuizes();
@@ -34,6 +38,12 @@ export class CrearQuizComponent implements OnInit {
   getQuizes() {
     this.partidaService.getQuizzes().subscribe((quizes: any) => {
       this.quizes = quizes;
+    });
+  }
+
+  createForm() {
+    this.descForm = new FormGroup({
+      descripcion: new FormControl('')
     });
   }
 
@@ -67,10 +77,11 @@ export class CrearQuizComponent implements OnInit {
   }
 
   guardarQuizz() {
-    let todasLasPreguntas: any = [];
+    let todasLasPreguntas: any[] = [];
     this.referenciaAPreguntas.forEach(c => {
       todasLasPreguntas.push(c.instance.getValores());
     });
-    console.log(todasLasPreguntas);
+    const preguntasYDescripcion = todasLasPreguntas.concat(this.descForm.value);
+    console.log('preguntasYDescripcion', preguntasYDescripcion);
   }
 }
