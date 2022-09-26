@@ -1,6 +1,14 @@
 <div>
-  <button (click)="unirse()">Unirse</button>
+  <button (click)="iniciarPartida()">Iniciar partida</button>
+  <br>
+  <input type="number" #usuario>
+  <button (click)="unirse(usuario.value)">Unirse</button>
   <button (click)="salirse()">salirse</button>
+  <br>
+  <button (click)="mostrarSiguientePregunta()">Siguiente pregunta</button>
+  
+  <p>{{trivia}}</p>
+
 </div>
 
 <div>

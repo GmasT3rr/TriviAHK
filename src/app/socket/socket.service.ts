@@ -20,11 +20,15 @@ export class SocketService {
 
   }
 
-  sesion = 0;
+  public iniciarPartida() {
+    this.socket?.emit('partida:iniciar');
+  }
 
+  sesion = 0;
+  trivia: any;
   // como disparar el evento sin que 
-  public unirse() {
-    this.socket!.emit('partida:unir', {usuarioID: 1, partidaID: 1});
+  public unirse(usuarioID: string) {
+    this.socket!.emit('partida:unir', {usuarioID, partidaID: 1});
     this.socket!.once('partida:status-union', (partida: any) => {
       console.log(partida);
       // esta bien hacer esto
@@ -54,26 +58,44 @@ export class SocketService {
     //         "id": 26
     //     },
     //     "status": 200
+    this.socket!.on('partida:salido', (p: any) => {
+      console.log(p);
+    })
     this.socket?.on('partida:trivia', (t) => {
       console.log(t);
+      this.trivia = t;
+    })
+
+    this.socket?.on('partida:iniciada-status', p => {
+      console.log(p);
+    })
+
+    this.socket?.on('partida:mostrar-pregunta', r => {
+      console.log(r);
+    })
+
+    this.socket?.on('partida:termina-tiempo', r => {
+      console.log(r);
     })
   }
 
   public salirse() {
-    const sesionID = {sesionID: this.sesion || 33}
+    const sesionID = {sesionID: this.sesion || 104}
     this.socket!.emit('partida:salir', sesionID);
     this.socket!.once('partida:status-salida', (p: any) => {
       console.log(p);
     })
     // this.socket?.off('partida:status-salida');
-    this.socket!.on('partida:salido', (p: any) => {
-      console.log(p);
-    })
+
     // "error": false,
     // "result": {
     //     "msg": "Has salido de la sesion"
     // },
     // "status": 200
+  }
+
+  public mostrarSiguientePregunta(){
+    this.socket!.emit('partida:siguiente-pregunta')
   }
 
   public responder(){
@@ -84,14 +106,6 @@ export class SocketService {
     // this.socket!.once('partida:status-respuesta', (p: any) => {
     //   console.log(p);
     // })
-  }
-
-  public iniciarPartida(){
-
-  }
-
-  public mostrarPregunta(){
-    
   }
 
   public mostrarResultados() {

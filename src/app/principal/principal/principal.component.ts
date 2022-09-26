@@ -9,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class PrincipalComponent implements OnInit {
 
   partidas: any;
-
+  usuarioID: number = 0;
+  public trivia: any;
 
   constructor(
-    private socketService: SocketService
+    public socketService: SocketService
   ) { }
 
   ngOnInit(): void {
@@ -26,12 +27,21 @@ export class PrincipalComponent implements OnInit {
     this.partidas.push({id: "3", cantSesiones: "10", cantPreguntas: "15", promedioAciertos: "12"});
   }
 
-  public unirse() {
-    this.socketService.unirse();
+  iniciarPartida(){
+    this.socketService.iniciarPartida();
+  }
+
+  public unirse(usuarioID: string) {
+    this.socketService.unirse(usuarioID);
+    this.trivia = this.socketService.trivia;
   }
 
   salirse() {
     this.socketService.salirse();
+  }
+
+  mostrarSiguientePregunta() {
+    this.socketService.mostrarSiguientePregunta();
   }
 
 }
