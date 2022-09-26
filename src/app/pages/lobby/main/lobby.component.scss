@@ -1,0 +1,24 @@
+.lobby-data{
+  text-align: center;
+  color: white;
+  .data__pin{
+    small{
+      font-size: 45px;
+      font-weight: 100;
+    }
+    b{
+      font-size: 65px;
+    }
+  }
+  .data__usuarios{
+    p{
+      font-size: 65px;
+    }
+    fa-icon{
+      font-size: 45px
+    }
+  }
+  .data__usuarios, .data__pin{
+    margin: 50px 120px 0px 120px ;
+}
+}

@@ -1,4 +1,4 @@
-import { LobbyComponent } from './lobby/lobby.component';
+import { LobbyComponent } from './lobby/main/lobby.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
