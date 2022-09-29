@@ -2,8 +2,18 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
 export const environment = {
-  production: false
+  production: false,
+  auth: {
+    domain: 'desa-trivias-ahk.us.auth0.com',
+    clientId: 'iNiAunbi7ulp9sllI4z5VbKqyhprWwG9',
+    redirectUri: window.location.origin,
+    audiece: 'http://localhost:3000'
+  },
+  dev: {
+    serverUrl: 'http://localhost:3000'
+  }
 };
 
 /*

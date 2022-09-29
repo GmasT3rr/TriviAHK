@@ -1,0 +1,130 @@
+.bgr {
+    background: url("src/assets/login-bg.jpeg") !important;
+    /* Center the image */
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+::placeholder {
+    color: #6C757D;
+    opacity: 1;
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+input {
+    background-color: white;
+}
+
+.formulario {
+    justify-content: center;
+    margin: auto;
+    padding-top: 25vh;
+    padding-bottom: 15vh;
+}
+
+.imgText {
+    color: #C29FFA;
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+}
+
+.descText {
+    color: #E9ECEF;
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.email p,
+.password p,
+.remember label {
+    color: #A98EDA;
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.noACC {
+    margin-top: 1vh;
+    color: #A98EDA;
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.loginBTN button {
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    height: 3vh 3vh;
+    background-color: #D63384;
+    color: white;
+}
+
+.alert-danger {
+    color: red;
+    width: 100%;
+}
+
+@media screen and (max-width: 430px) {
+    .formulario {
+        width: 75%;
+    }
+    .imgText {
+        color: #C29FFA;
+        font-family: 'Abel';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 28px;
+    }
+    .descText {
+        color: #E9ECEF;
+        font-family: 'Abel';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+    }
+    .email p,
+    .password p,
+    .remember label {
+        color: #A98EDA;
+        font-family: 'Abel';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+    }
+    .noACC {
+        margin-top: 1vh;
+        color: #A98EDA;
+        font-family: 'Abel';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .loginBTN button {
+        font-family: 'Abel';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        text-align: center;
+        height: 3vh 3vh;
+        background-color: #D63384;
+        color: white;
+    }
+}

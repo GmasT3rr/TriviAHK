@@ -1,0 +1,22 @@
+import { LobbyModule } from './lobby/lobby.module';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { PagesRoutingModule } from './pages-routing.module';
+import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { HomeComponent } from './home/home.component';
+import { LandingComponent } from './landing/landing.component';
+
+@NgModule({
+  declarations: [HomeComponent, LandingComponent],
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+    LobbyModule,
+  ],
+})
+export class PagesModule {}
