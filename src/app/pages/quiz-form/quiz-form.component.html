@@ -1,0 +1,27 @@
+<div class="card mt-3 mb-3">
+    <form [formGroup]="quizesForm" class="mt-3 mb-3 mr-3 ml-3">
+        <h4>Pregunta número:{{ uniqueId }}</h4>
+
+        <div class="row text-center">
+            <div class="col-12">
+                <input style="width: 100%" class="mb-5" id="pregunta" placeholder="Pregunta" type="text" formControlName="pregunta" />
+            </div>
+            <div class="col-4">
+                Orden
+                <input class="mb-5" id="orden" type="text" placeholder="Orden" formControlName="orden" />
+            </div>
+            <div class="col-4">
+                Tiempo
+                <input class="mb-5" id="tiempo" type="text" placeholder="Tiempo" formControlName="tiempo" />
+            </div>
+            <div class="col-4">
+                Puntos
+                <input class="mb-5" id="puntos" type="text" placeholder="Puntos" formControlName="puntos" />
+            </div>
+        </div>
+    </form>
+
+    <div class="text-right mb-3 mr-3" (click)="eliminarComponente()">
+        <div class="btn btn-danger">Remover pregunta</div>
+    </div>
+</div>

@@ -19,13 +19,13 @@ import { QuizInfoComponent } from './quiz-info/quiz-info.component';
     PasswordComponent,
     SettingsComponent,
     QuizzesComponent,
-    QuizInfoComponent
+    QuizInfoComponent,
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
     
   ]
 })

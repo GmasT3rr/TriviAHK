@@ -1,136 +1,145 @@
 
 <div class="container">
     <div class="row id-title">
-        <div class="col-md-3  mt-5">
-            <div class="edit-profile ">
+        <div class="col-md-3 mt-5">
+            <div class="edit-profile">
                 <div class="text-left">
-                    <span><h1>Quizz ID: {{quizes[currentID.id-1].id}}</h1></span>
-                </div>
-                <div class="text-left">
-                    <div class="hr mt-2 col-md-8"></div>
-                </div>
-            </div>
-
+                    <span><h1>Quizz ID: {{ quizz?.id }}</h1></span
+          >
         </div>
-        <div class="edit-profile col-md-9 mt-5">
-            <div class="text-left">
-                <span><h1>Titulo: {{quizes[currentID.id-1].title}}</h1></span>
-            </div>
+        <div class="text-left">
+          <div class="hr mt-2 col-md-8"></div>
         </div>
+      </div>
     </div>
+    <div class="edit-profile col-md-9 mt-5">
+      <div class="text-left">
+        <span
+          ><h1>Titulo: {{ quizz?.title }}</h1></span
+        >
+      </div>
+    </div>
+  </div>
 
-    <div class="row">
-        <div class="col-1 mt-5 mb-5" style="background-color: #671073; border-radius: 15px ;">
+  <div class="row">
+    <div
+      class="col-1 mt-5 mb-5"
+      style="background-color: #671073; border-radius: 15px"></div>
+    <div class="col-11">
+      <div class="mb-5 mt-5">
+        <div class="row justify-content-between">
+          <!-- <div class="card-quiz-border col-3 " style="background-color:#1A0537 ; ">
+                    </div> -->
+          <div
+            class="class card-quiz-outside col-12"
+            type="button">
+            <div class="card-quiz col-12">
+              <div class="row">
+                <div class="col-6 float-left">
+                  <h3>
+                    Descripcion
+                    <div class="hr-description"></div>
+                  </h3>
+                </div>
+                <div class="col-6 text-end">
+                  <h3>
+                    <div class="">
+                      Edit
+                      <i
+                        class="bi bi-pen"
+                        style="color: #ff3078"></i>
+                    </div>
+                  </h3>
+                </div>
+                <div class="col">
+                  <p *ngIf="quizz?.description; else noDescp">
+                    {{ quizz?.description | slice: 0:50 }}...
+                  </p>
+                  <ng-template #noDescp> Sin descripcion </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-11">
-
-            <div class="mb-5 mt-5 ">
-                <div class="row justify-content-between">
-                    <!-- <div class="card-quiz-border col-3 " style="background-color:#1A0537 ; ">
+      </div>
+      <div class="mb-5 mt-5">
+        <div class="row justify-content-between">
+          <!-- <div class="card-quiz-border col-3 " style="background-color:#1A0537 ; ">
                     </div> -->
-                    <div class="class card-quiz-outside col-12" type="button">
-                        <div class="card-quiz col-12">
-                            <div class="row">
-                                <div class="col-6 float-left">
-                                    <h3> Descripcion
-                                        <div class="hr-description"></div>
-                                    </h3>
-                                </div>
-                                <div class="col-6 text-end">
-                                    <h3>
-                                        <div class="">
-                                            Edit
-                                            <i class="bi bi-pen" style="color: #FF3078; "></i>
-                                        </div>
-                                    </h3>
-                                </div>
-                                <div class="col">
-                                    <p *ngIf="quizes[currentID.id-1].description; else noDescp">{{quizes[currentID.id-1].description | slice:0:50}}... </p>
-                                    <ng-template #noDescp> Sin descripcion
-                                    </ng-template>
-                                </div>
-
-
-                            </div>
-
-                        </div>
-                    </div>
+          <div
+            class="class card-quiz-outside col-12"
+            type="button">
+            <div class="card-quiz col-12">
+              <div class="row">
+                <div class="col-6 float-left">
+                  <h3>
+                    Preguntas
+                    <div class="hr-description"></div>
+                  </h3>
                 </div>
-            </div>
-            <div class="mb-5 mt-5 ">
-                <div class="row justify-content-between">
-                    <!-- <div class="card-quiz-border col-3 " style="background-color:#1A0537 ; ">
-                    </div> -->
-                    <div class="class card-quiz-outside col-12" type="button">
-                        <div class="card-quiz col-12">
-                            <div class="row">
-                                <div class="col-6 float-left">
-                                    <h3> Preguntas
-                                        <div class="hr-description"></div>
-                                    </h3>
-                                </div>
-                                <div class="col-6 text-end">
-                                    <h3>
-                                        <div class="">
-                                            Edit
-                                            <i class="bi bi-pen" style="color: #FF3078; "></i>
-                                        </div>
-                                    </h3>
-                                </div>
-                                <div class="text-center ">
-                                    <div class="d-flex justify-content-center" *ngFor="let pregunta of quizes[currentID.id-1].preguntasInfo ">
-                                        <span class="card col-8 mt-3 mb-4" style="    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
-                                        ">
-                                            {{pregunta}}
-                                        </span>
-                                    </div>
-
-                                </div>
-
-
-
-                            </div>
-
-                        </div>
+                <div class="col-6 text-end">
+                  <h3>
+                    <div class="">
+                      Edit
+                      <i
+                        class="bi bi-pen"
+                        style="color: #ff3078"></i>
                     </div>
+                  </h3>
                 </div>
-            </div>
-            <div class="mb-5 mt-5 ">
-                <div class="row justify-content-between">
-
-                    <div class="col-12" type="button">
-                        <div class="card-quiz col-12">
-                            <div class="row">
-                                <div class="col-6 float-left">
-                                    <h3> Quizzes vinculadas
-                                        <div class="hr-description"></div>
-                                    </h3>
-                                </div>
-
-                                <div class="mb-5 mt-5 " *ngFor="let quiz of quizes | slice:0:3; let i=index">
-                                    <div class="row justify-content-between">
-                                        <div class="card-quiz-border col-3 " style="background-color:#671073 ; opacity: 0.5;">
-                                        </div>
-                                        <div class="card-quiz col-9" type="button" [routerLink]="['/user/quizzes', quiz.id]">
-                                            <div class="col-12">
-                                                <h3>{{quiz.title}}</h3>
-                                                <p *ngIf="quiz.description; else noDescp">{{quiz.description | slice:0:50}}...</p>
-                                                <ng-template #noDescp> Sin descripcion
-                                                </ng-template>
-                                                <p class="icons-quiz"><i class="bi bi-person"></i>{{quiz.participantes}}<i class="bi bi-question-circle"></i>{{quiz.preguntas}}<i class="bi bi-bookmark-star"></i>{{quiz.ratio}}</p>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                <div
+                  class="text-center"
+                  *ngFor="let pregunta of preguntas; let i = index">
+                  <div class="d-flex justify-content-center">
+                    <span
+                      class="card col-8 mt-3 mb-4"
+                      style="box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2)">
+                      {{ pregunta.descripcion }}
+                    </span>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
+<div class="mb-5 mt-5">
+    <div class="row justify-content-between">
+        <div class="col-12" type="button">
+            <div class="card-quiz col-12">
+                <div class="row">
+                    <div class="col-6 float-left">
+                        <h3>
+                            Quizzes vinculadas
+                            <div class="hr-description"></div>
+                        </h3>
+                    </div>
+
+                    <div class="mb-5 mt-5" *ngFor="let quizz of vinculadas; let i = index">
+                        <div class="row justify-content-between">
+                            <div class="card-quiz-border col-3" style="background-color: #671073; opacity: 0.5"></div>
+                            <div class="card-quiz col-9" type="button" [routerLink]="['/user/quizzes', quizz.id]">
+                                <div class="col-12">
+                                    <h3>{{ quizz.title }}</h3>
+                                    <p *ngIf="quizz.description; else noDescp">
+                                        {{ quizz.description | slice: 0:50 }}...
+                                    </p>
+                                    <ng-template #noDescp> Sin descripcion </ng-template>
+                                    <p class="icons-quiz">
+                                        <i class="bi bi-person"></i>{{ quizz.participantes }}
+                                        <i class="bi bi-question-circle"></i
+                          >{{ quizz.preguntasTotales
+                          }}<i class="bi bi-bookmark-star"></i>{{ quizz.ratio }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 </div>

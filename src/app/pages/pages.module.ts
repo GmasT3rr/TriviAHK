@@ -5,12 +5,18 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { LandingComponent } from 'app/public/landing/landing.component';
 import { HomeComponent } from './home/home.component';
-import { LandingComponent } from './landing/landing.component';
+import { CrearQuizComponent } from './crear-quiz/crear-quiz.component';
+import { QuizFormComponent } from './quiz-form/quiz-form.component';
 
 @NgModule({
-  declarations: [HomeComponent, LandingComponent],
+  declarations: [
+    HomeComponent,
+    CrearQuizComponent,
+    QuizFormComponent,
+    LandingComponent
+  ],
   imports: [
     CommonModule,
     PagesRoutingModule,

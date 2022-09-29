@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { SocketService } from 'app/socket/socket.service';
+import { PartidasService } from 'app/services/partidas.service';
 import { environment as env } from '../../../environments/environment';
 
 @Component({
@@ -10,15 +11,15 @@ import { environment as env } from '../../../environments/environment';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public x:number
-  public y:number
+  public offset:number
+  public limit:number
   public quizes:any[] = []
 
   partidas: any;
 
-  constructor(private authService: AuthService, private http: HttpClient, private socketService: SocketService) {
-    this.x = 0
-    this.y = 4
+  constructor(private authService: AuthService, private http: HttpClient, private socketService: SocketService, private partidaService:PartidasService) {
+    this.offset = 0
+    this.limit = 4
     this.quizes =[{
       "id": "1",
       "title": "Cuestionario numero 1",
@@ -91,31 +92,55 @@ export class HomeComponent implements OnInit {
       "participantes": "25",
       "ratio": "80%"
    }]
+
   }
 
 
+  // Crear un servicio el cual va a tener la responsabilidad de llamar a nuestro back (partidas.service)
+  // Inyectar en partida.service el objeto http
+  // Creamos los metodos para poder llamar al los endpoints del back
+  // Inyectar este servicio en este componente (home.commponent)
+  // En el ngOnInit deberiamos llamar al servicio y traernos todas las partidas
+  // En la maqueta deberiamos mostrar todas las partidas obtenidas desde el back
+
+
+// private getPartidas(){
+//     this.partidaService.getPartidas().subscribe((partidas:any)=>
+//     {this.quizes = partidas}
+//     )
+//   }
+
  ngOnInit(): void {
-  this.cargarEjemplo();
+  this.cargarEjemplo;
+  this.partidaService.getQuizzes().subscribe((quizes:any)=>{
+    this.quizes = quizes
+  })
+
+  // this.getPartidas()
+
   //Metodo para obtener info del login
-  this.authService.idTokenClaims$.subscribe((claims) => console.log(claims));
-  this.http.get(`${env.dev.serverUrl}/trivias`).subscribe(result => console.log('api ',result));
+  // this.authService.idTokenClaims$.subscribe((claims) => console.log(claims));
+  //TODO
+  /*
+  Access to XMLHttpRequest at 'http://localhost:3000/trivias' from origin 'http://localhost:4200' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+  */
+   this.http.get(`${env.dev.serverUrl}/trivias`).subscribe(result => console.log('api ',result));
  }
 
 
  nextQuiz(){
-   if(this.x >= this.quizes.length-4){
+   if(this.offset >= this.quizes.length-4){
       null;
    }else{
-     this.x +=4;
-     this.y +=4;
-
+     this.offset +=4;
+     this.limit +=4;
    }
  }
  prevQuiz(){
-   if(this.x <=0){
+   if(this.offset <=0){
   }else{
-   this.x -=4;
-   this.y -=4;
+   this.offset -=4;
+   this.limit -=4;
   }
  }
 

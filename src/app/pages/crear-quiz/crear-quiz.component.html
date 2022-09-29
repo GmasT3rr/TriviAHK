@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<div class="container">
+    <div class="row id-title">
+        <div class="edit-profile col mt-5">
+            <div class="text-center">
+                <span><h1>Creacion de Quiz</h1></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1 mt-5 mb-5" style="background-color: #671073; border-radius: 15px"></div>
+        <div class="col-11">
+            <div class="mb-5 mt-5">
+                <div class="row justify-content-between">
+                    <div class="col text-left">
+                        <h3>
+                            Descripcion
+                            <i class="bi bi-pen" style="color: #ff3078"></i>
+                        </h3>
+                    </div>
+                    <div class="class card-quiz-outside col-12" type="button">
+                        <div class="card-quiz col-12">
+                            <div [formGroup]="descForm">
+                                <div class="row">
+                                    <div class="col float-left">
+                                        <input formControlName="descripcion" class="mb-5" type="text" placeholder="descripcion" style="width: 100%" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-5 mt-5">
+                <div class="row mb-5 nt-5">
+                    <div class="col text-left">
+                        <h3>
+                            Secuencia de preguntas
+                            <i class="bi bi-pen" style="color: #ff3078"></i>
+                        </h3>
+                    </div>
+
+                    <div class="col text-right">
+                        <h3 (click)="createComponent()">
+                            Añadir pregunta / crear componente
+                            <i class="bi bi-plus-circle" style="color: #ff3078"></i>
+                        </h3>
+                    </div>
+                </div>
+                <div>
+                    <ng-template #referenciaAPreguntas></ng-template>
+                </div>
+                <div class=""></div>
+                <div class="text-center mb-3 mr-3" (click)="guardarQuizz()">
+                    <div class="btn btn-success">Guardar preguntas</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
