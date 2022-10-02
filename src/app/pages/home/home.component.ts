@@ -4,6 +4,8 @@ import { AuthService } from '@auth0/auth0-angular';
 import { SocketService } from 'app/socket/socket.service';
 import { PartidasService } from 'app/services/partidas.service';
 import { environment as env } from '../../../environments/environment';
+import { TriviasService } from 'app/services/trivias.service';
+import { Trivia } from 'app/interfaces/Trivias.interface';
 
 @Component({
   selector: 'app-home',
@@ -11,90 +13,97 @@ import { environment as env } from '../../../environments/environment';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public offset:number
-  public limit:number
-  public quizes:any[] = []
+  public offset: number;
+  public limit: number;
+  public quizes: any[] = [];
 
   partidas: any;
+  public trivias!: Trivia[];
 
-  constructor(private authService: AuthService, private http: HttpClient, private socketService: SocketService, private partidaService:PartidasService) {
-    this.offset = 0
-    this.limit = 4
-    this.quizes =[{
-      "id": "1",
-      "title": "Cuestionario numero 1",
-      "description": "Esta es una bree descripcion del ceustionario",
-      "preguntas": "10",
-      "participantes": "25",
-      "ratio": "80%"
-   },
-   {
-      "id": "2",
-      "title": "Cuestionario numero 2",
-      "description": "Esta es una bree descripcion del ceustionario",
-      "preguntas": "10",
-      "participantes": "25",
-      "ratio": "80%"
-   },
-   {
-      "id": "3",
-      "title": "Cuestionario numero 3",
-      "description": "Esta es una bree descripcion del ceustionario",
-      "preguntas": "10",
-      "participantes": "25",
-      "ratio": "80%"
-   },
-   {
-      "id": "4",
-      "title": "Cuestionario numero 4",
-      "description": "Esta es una bree descripcion del ceustionario",
-      "preguntas": "10",
-      "participantes": "25",
-      "ratio": "80%"
-   },
-   {
-    "id": "5",
-    "title": "Cuestionario numero 5",
-    "description": "Esta es una bree descripcion del ceustionario",
-    "preguntas": "10",
-    "participantes": "25",
-    "ratio": "80%"
-   },
-   {
-    "id": "6",
-    "title": "Cuestionario numero 6",
-    "description": "Esta es una bree descripcion del ceustionario",
-    "preguntas": "10",
-    "participantes": "25",
-    "ratio": "80%"
-   },
-   {
-    "id": "7",
-    "title": "Cuestionario numero 7",
-    "description": "Esta es una bree descripcion del ceustionario",
-    "preguntas": "10",
-    "participantes": "25",
-    "ratio": "80%"
-   },
-   {
-    "id": "8",
-    "title": "Cuestionario numero 8",
-    "description": "Esta es una bree descripcion del ceustionario",
-    "preguntas": "10",
-    "participantes": "25",
-    "ratio": "80%"
-   },
-   {
-      "id": "9",
-      "title": "Cuestionario numero 9",
-      "description": "Esta es una bree descripcion del ceustionario",
-      "preguntas": "10",
-      "participantes": "25",
-      "ratio": "80%"
-   }]
-
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient,
+    private socketService: SocketService,
+    private partidaService: PartidasService,
+    private triviasService: TriviasService
+  ) {
+    this.offset = 0;
+    this.limit = 4;
+    this.quizes = [
+      {
+        id: '1',
+        title: 'Cuestionario numero 1',
+        description: 'Esta es una bree descripcion del ceustionario',
+        preguntas: '10',
+        participantes: '25',
+        ratio: '80%'
+      },
+      {
+        id: '2',
+        title: 'Cuestionario numero 2',
+        description: 'Esta es una bree descripcion del ceustionario',
+        preguntas: '10',
+        participantes: '25',
+        ratio: '80%'
+      },
+      {
+        id: '3',
+        title: 'Cuestionario numero 3',
+        description: 'Esta es una bree descripcion del ceustionario',
+        preguntas: '10',
+        participantes: '25',
+        ratio: '80%'
+      },
+      {
+        id: '4',
+        title: 'Cuestionario numero 4',
+        description: 'Esta es una bree descripcion del ceustionario',
+        preguntas: '10',
+        participantes: '25',
+        ratio: '80%'
+      },
+      {
+        id: '5',
+        title: 'Cuestionario numero 5',
+        description: 'Esta es una bree descripcion del ceustionario',
+        preguntas: '10',
+        participantes: '25',
+        ratio: '80%'
+      },
+      {
+        id: '6',
+        title: 'Cuestionario numero 6',
+        description: 'Esta es una bree descripcion del ceustionario',
+        preguntas: '10',
+        participantes: '25',
+        ratio: '80%'
+      },
+      {
+        id: '7',
+        title: 'Cuestionario numero 7',
+        description: 'Esta es una bree descripcion del ceustionario',
+        preguntas: '10',
+        participantes: '25',
+        ratio: '80%'
+      },
+      {
+        id: '8',
+        title: 'Cuestionario numero 8',
+        description: 'Esta es una bree descripcion del ceustionario',
+        preguntas: '10',
+        participantes: '25',
+        ratio: '80%'
+      },
+      {
+        id: '9',
+        title: 'Cuestionario numero 9',
+        description: 'Esta es una bree descripcion del ceustionario',
+        preguntas: '10',
+        participantes: '25',
+        ratio: '80%'
+      }
+    ];
   }
-
 
   // Crear un servicio el cual va a tener la responsabilidad de llamar a nuestro back (partidas.service)
   // Inyectar en partida.service el objeto http
@@ -103,70 +112,86 @@ export class HomeComponent implements OnInit {
   // En el ngOnInit deberiamos llamar al servicio y traernos todas las partidas
   // En la maqueta deberiamos mostrar todas las partidas obtenidas desde el back
 
+  // private getPartidas(){
+  //     this.partidaService.getPartidas().subscribe((partidas:any)=>
+  //     {this.quizes = partidas}
+  //     )
+  //   }
 
-// private getPartidas(){
-//     this.partidaService.getPartidas().subscribe((partidas:any)=>
-//     {this.quizes = partidas}
-//     )
-//   }
+  ngOnInit(): void {
+    this.cargarEjemplo;
+    this.partidaService.getQuizzes().subscribe((quizes: any) => {
+      this.quizes = quizes;
+    });
+    this.triviasService.getTrivias().subscribe((res: any) => {
+      // console.log(res.body);
+      this.trivias = res.body;
+    });
+    // this.getPartidas()
 
- ngOnInit(): void {
-  this.cargarEjemplo;
-  this.partidaService.getQuizzes().subscribe((quizes:any)=>{
-    this.quizes = quizes
-  })
-
-  // this.getPartidas()
-
-  //Metodo para obtener info del login
-  // this.authService.idTokenClaims$.subscribe((claims) => console.log(claims));
-  //TODO
-  /*
-  Access to XMLHttpRequest at 'http://localhost:3000/trivias' from origin 'http://localhost:4200' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-  */
-   this.http.get(`${env.dev.serverUrl}/trivias`).subscribe(result => console.log('api ',result));
- }
-
-
- nextQuiz(){
-   if(this.offset >= this.quizes.length-4){
-      null;
-   }else{
-     this.offset +=4;
-     this.limit +=4;
-   }
- }
- prevQuiz(){
-   if(this.offset <=0){
-  }else{
-   this.offset -=4;
-   this.limit -=4;
+    //Metodo para obtener info del login
+    // this.authService.idTokenClaims$.subscribe((claims) => console.log(claims));
   }
- }
 
- public getColor(index :number) : string {
-   switch( index) {
-     case 0 : return "#1A0537"
-     case 1 : return "#A36CD9"
-     case 2 : return "#FF3078"
-     case 3 : return "#671073"
-     default: return "#abc"
-   }
- }
+  nextQuiz() {
+    if (this.offset >= this.quizes.length - 4) {
+      null;
+    } else {
+      this.offset += 4;
+      this.limit += 4;
+    }
+  }
+  prevQuiz() {
+    if (this.offset <= 0) {
+    } else {
+      this.offset -= 4;
+      this.limit -= 4;
+    }
+  }
 
- //SOCKETS
- private cargarEjemplo(){
-  this.partidas = [];
-  this.partidas.push({id: "1", cantSesiones: "15", cantPreguntas: "10", promedioAciertos: "78"});
-  this.partidas.push({id: "2", cantSesiones: "17", cantPreguntas: "5", promedioAciertos: "90"});
-  this.partidas.push({id: "3", cantSesiones: "10", cantPreguntas: "15", promedioAciertos: "12"});
-}
+  public getColor(index: number): string {
+    switch (index) {
+      case 0:
+        return '#1A0537';
+      case 1:
+        return '#A36CD9';
+      case 2:
+        return '#FF3078';
+      case 3:
+        return '#671073';
+      default:
+        return '#abc';
+    }
+  }
 
-public unirse() {
-  this.socketService.unirse();
-}
+  //SOCKETS
+  private cargarEjemplo() {
+    this.partidas = [];
+    this.partidas.push({
+      id: '1',
+      cantSesiones: '15',
+      cantPreguntas: '10',
+      promedioAciertos: '78'
+    });
+    this.partidas.push({
+      id: '2',
+      cantSesiones: '17',
+      cantPreguntas: '5',
+      promedioAciertos: '90'
+    });
+    this.partidas.push({
+      id: '3',
+      cantSesiones: '10',
+      cantPreguntas: '15',
+      promedioAciertos: '12'
+    });
+  }
 
-salirse() {
-  this.socketService.salirse();
-}
+  public unirse() {
+    this.socketService.unirse();
+  }
+
+  salirse() {
+    this.socketService.salirse();
+  }
 }

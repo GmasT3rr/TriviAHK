@@ -15,14 +15,14 @@ export class SocketService {
     this.socket = io("http://localhost:3000/juego");
 
     this.socket.on("mensaje", (mensajeNuevo: string) => {
-      alert(mensajeNuevo);
+      // alert(mensajeNuevo);
     });
 
   }
 
   sesion = 0;
 
-  // como disparar el evento sin que 
+  // como disparar el evento sin que
   public unirse() {
     this.socket!.emit('partida:unir', {usuarioID: 1, partidaID: 1});
     this.socket!.once('partida:status-union', (partida: any) => {
@@ -91,7 +91,7 @@ export class SocketService {
   }
 
   public mostrarPregunta(){
-    
+
   }
 
   public mostrarResultados() {

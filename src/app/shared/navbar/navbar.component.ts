@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
 
   //Verfificar en que ruta esta el usuario para mostrar su imagen o no
   private checkRoute() {
-    const path = this.rt.snapshot.pathFromRoot[1].routeConfig?.path;
+    const path = this.rt.snapshot.pathFromRoot[1]?.routeConfig?.path;
     console.log(path);
     if (path === 'user') {
       this.show = false;
