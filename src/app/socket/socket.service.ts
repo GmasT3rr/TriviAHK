@@ -34,6 +34,7 @@ export class SocketService {
       // esta bien hacer esto
       this.sesion = partida.id;
       // SI ACA HACES ALGO QUE TIRE UN ERROR, NOSE PQ PERO SE VUELVE A CONECTAR A SOCKETS
+      // edit: y si no sabes vos menos yo pa
     });
     this.socket!.on('partida:unido', (mensaje:any) => {
       console.log(mensaje);
