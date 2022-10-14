@@ -9,11 +9,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'landing', component: LandingComponent },
   { path: 'lobby', component: LobbyComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'home' },
   {path:'crear', component: CrearQuizComponent},
-
-
-  {path: '**', pathMatch:'full', redirectTo:'home'},
+  { path: '**', pathMatch: 'full', redirectTo: 'home' }
 
 ];
 

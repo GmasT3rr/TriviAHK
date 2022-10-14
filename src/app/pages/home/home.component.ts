@@ -19,11 +19,13 @@ export class HomeComponent implements OnInit {
 
   partidas: any;
   public trivias!: Trivia[];
+  usuarioID: number = 0;
+  public trivia: any;
 
   constructor(
     private authService: AuthService,
     private http: HttpClient,
-    private socketService: SocketService,
+    public socketService: SocketService,
     private partidaService: PartidasService,
     private triviasService: TriviasService
   ) {
@@ -120,9 +122,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarEjemplo;
-    this.partidaService.getQuizzes().subscribe((quizes: any) => {
-      this.quizes = quizes;
-    });
+    // this.partidaService.getQuizzes().subscribe((quizes: any) => {
+    //   this.quizes = quizes;
+    // });
     this.triviasService.getTrivias().subscribe((res: any) => {
       // console.log(res.body);
       this.trivias = res.body;
@@ -187,11 +189,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public unirse() {
-    this.socketService.unirse();
+  iniciarPartida() {
+    this.socketService.iniciarPartida();
+  }
+
+  public unirse(usuarioID: string) {
+    this.socketService.unirse(usuarioID);
+    this.trivia = this.socketService.trivia;
   }
 
   salirse() {
     this.socketService.salirse();
+  }
+
+  mostrarSiguientePregunta() {
+    this.socketService.mostrarSiguientePregunta();
   }
 }

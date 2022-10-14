@@ -7,20 +7,33 @@ import { environment as env } from '../../environments/environment';
   providedIn: 'root'
 })
 export class TriviasService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getTrivias(){
-    const res = this.http.get(`${env.dev.serverUrl}/trivias`)
+  getTrivias() {
+    const res = this.http.get(`${env.dev.serverUrl}/trivias`);
     return res.pipe(
-      tap((res) => {
-        of(res)
+      tap(res => {
+        of(res);
       }),
-      catchError((err) => {
-        return throwError(() => err)
+      catchError(err => {
+        return throwError(() => err);
       })
-    )
+    );
   }
 
-
+  crearTriviaConPreguntasOpciones(bodyTrivias: string) {
+    const res = this.http.post(
+      `${env.dev.serverUrl}/trivias/conPreguntas`,
+      bodyTrivias
+    );
+    return res.pipe(
+      tap(res => {
+        of(res);
+      }),
+      catchError(err => {
+        console.log(err.error);
+        return throwError(() => err);
+      })
+    );
+  }
 }

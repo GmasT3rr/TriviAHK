@@ -8,7 +8,14 @@ import {
 } from '@angular/core';
 import { PartidasService } from '../../services/partidas.service';
 import { QuizFormComponent } from '../quiz-form/quiz-form.component';
-import { FormGroup, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+  FormArray
+} from '@angular/forms';
+import { TriviasService } from 'app/services/trivias.service';
 
 @Component({
   selector: 'app-crear-quiz',
@@ -16,72 +23,67 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./crear-quiz.component.css']
 })
 export class CrearQuizComponent implements OnInit {
-  @ViewChild('referenciaAPreguntas', { read: ViewContainerRef })
-  VCR!: ViewContainerRef;
-
-  referenciaAPreguntas = Array<ComponentRef<QuizFormComponent>>();
-  childUniqueId: number = 0;
-  public quizes: any[] = [];
-  public descForm!: FormGroup;
-
   constructor(
-    private partidaService: PartidasService,
-    private CFR: ComponentFactoryResolver
-  ) {
-    this.createForm();
-  }
+    private _triviasService: TriviasService,
+    private fb: FormBuilder
+  ) {}
+
+  tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
+  esCorrecta = ['true', 'false'];
+
+  triviaForm!: FormGroup;
 
   ngOnInit(): void {
-    this.getQuizes();
-  }
-
-  getQuizes() {
-    this.partidaService.getQuizzes().subscribe((quizes: any) => {
-      this.quizes = quizes;
+    this.triviaForm = this.fb.group({
+      nombre: [, [Validators.required]],
+      descripcion: [, [Validators.required]],
+      preguntas: this.fb.array([])
     });
   }
 
-  createForm() {
-    this.descForm = new FormGroup({
-      descripcion: new FormControl('')
+  preguntas(): FormArray {
+    return this.triviaForm.get('preguntas') as FormArray;
+  }
+
+  newPregunta(): FormGroup {
+    return this.fb.group({
+      leyenda: ['', [Validators.required]],
+      tipoDePregunta: ['', [Validators.required]],
+      opciones: this.fb.array([])
     });
   }
 
-  createComponent() {
-    const component: any = this.VCR.createComponent(QuizFormComponent);
-
-    let childComponent = component.instance;
-    childComponent.uniqueId = ++this.childUniqueId;
-    childComponent.parentRef = this;
-
-    // Pushear el componente al array
-    this.referenciaAPreguntas.push(component);
+  agregarPregunta() {
+    this.preguntas().push(this.newPregunta());
   }
 
-  removeComponent(key: number) {
-    if (this.VCR.length < 1) return;
-
-    let componentRef = this.referenciaAPreguntas.filter(
-      x => x.instance.uniqueId == key
-    )[0];
-
-    let vcrIndex: number = this.VCR.indexOf(componentRef.hostView);
-
-    // removing component from container
-    this.VCR.remove(vcrIndex);
-
-    // removing component from the list
-    this.referenciaAPreguntas = this.referenciaAPreguntas.filter(
-      x => x.instance.uniqueId !== key
-    );
+  eliminarPregunta(indexPreg: number) {
+    this.preguntas().removeAt(indexPreg);
   }
 
-  guardarQuizz() {
-    let todasLasPreguntas: any[] = [];
-    this.referenciaAPreguntas.forEach(c => {
-      todasLasPreguntas.push(c.instance.getValores());
+  opciones(indexPreg: number): FormArray {
+    return this.preguntas().at(indexPreg).get('opciones') as FormArray;
+  }
+
+  newOpcion(): FormGroup {
+    return this.fb.group({
+      descripcion: [, [Validators.required]],
+      esCorrecta: [, [Validators.required]]
     });
-    const preguntasYDescripcion = todasLasPreguntas.concat(this.descForm.value);
-    console.log('preguntasYDescripcion', preguntasYDescripcion);
+  }
+
+  agregarOpcion(indexPreg: number) {
+    this.opciones(indexPreg).push(this.newOpcion());
+    // console.log(this.opciones(indexPreg));
+  }
+
+  eliminarOpcion(indexPreg: number, indexOpc: number) {
+    this.opciones(indexPreg).removeAt(indexOpc);
+  }
+
+  crearTrivia() {
+    this._triviasService
+      .crearTriviaConPreguntasOpciones(this.triviaForm.value)
+      .subscribe(console.log);
   }
 }

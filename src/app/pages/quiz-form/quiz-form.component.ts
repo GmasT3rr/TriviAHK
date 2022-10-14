@@ -27,10 +27,17 @@ export class QuizFormComponent implements OnInit {
 
   eliminarComponente() {
     console.log('ID a eliminar', this.uniqueId);
-    this.parentRef.removeComponent(this.uniqueId);
+    //this.parentRef.removeComponent(this.uniqueId);
   }
 
   createQuizesForm() {
+    // return new FormGroup({
+    //   pregunta: new FormControl(''),
+    //   orden: new FormControl(''),
+    //   tiempo: new FormControl(''),
+    //   puntos: new FormControl(''),
+    //   id: new FormControl('')
+    // });
     return new FormGroup({
       pregunta: new FormControl(''),
       orden: new FormControl(''),

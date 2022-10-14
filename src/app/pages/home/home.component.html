@@ -1,7 +1,16 @@
 <div class="container">
   <div>
-    <button (click)="unirse()">Unirse</button>
+    <button (click)="iniciarPartida()">Iniciar partida</button>
+    <br />
+    <input
+      type="number"
+      #usuario />
+    <button (click)="unirse(usuario.value)">Unirse</button>
     <button (click)="salirse()">salirse</button>
+    <br />
+    <button (click)="mostrarSiguientePregunta()">Siguiente pregunta</button>
+
+    <p>{{ trivia }}</p>
   </div>
   <div class="row cards">
     <div class="col-sm-6">
@@ -72,15 +81,14 @@
         [ngStyle]="{ backgroundColor: getColor(i) }"></div>
       <div class="card-quiz-outside">
         <div class="card card-quiz">
-          <h3>{{ trivia._nombre }} | Id: {{trivia.id}}</h3>
+          <h3>{{ trivia._nombre }} | Id: {{ trivia.id }}</h3>
           <h4>{{ trivia._fechaCreacion | date }}</h4>
-          <h5>{{ trivia._creadoPor?._nombre}}</h5>
+          <h5>{{ trivia._creadoPor?._nombre }}</h5>
           <p *ngIf="trivia._descripcion; else noDescp">
             {{ trivia._descripcion | slice: 0:50 }}...
           </p>
           <ng-template #noDescp> Sin descripcion </ng-template>
           <!-- <p style="color: red;">{{i}}</p> -->
-
         </div>
       </div>
     </div>
