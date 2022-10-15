@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { AuthenticationGuard } from './guards/authentication.guard';
+import { LobbyComponent } from './pages/lobby/main/lobby.component';
 import { LandingComponent } from './public/landing/landing.component';
 
 const routes: Routes = [
@@ -21,6 +22,8 @@ const routes: Routes = [
     path: 'landing',
     component: LandingComponent
   },
+
+  { path: 'lobby',component:LobbyComponent },
 
   { path: '**', pathMatch: 'full', redirectTo: 'landing' }
 ];

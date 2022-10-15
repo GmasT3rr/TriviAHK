@@ -31,80 +31,6 @@ export class HomeComponent implements OnInit {
   ) {
     this.offset = 0;
     this.limit = 4;
-    this.quizes = [
-      {
-        id: '1',
-        title: 'Cuestionario numero 1',
-        description: 'Esta es una bree descripcion del ceustionario',
-        preguntas: '10',
-        participantes: '25',
-        ratio: '80%'
-      },
-      {
-        id: '2',
-        title: 'Cuestionario numero 2',
-        description: 'Esta es una bree descripcion del ceustionario',
-        preguntas: '10',
-        participantes: '25',
-        ratio: '80%'
-      },
-      {
-        id: '3',
-        title: 'Cuestionario numero 3',
-        description: 'Esta es una bree descripcion del ceustionario',
-        preguntas: '10',
-        participantes: '25',
-        ratio: '80%'
-      },
-      {
-        id: '4',
-        title: 'Cuestionario numero 4',
-        description: 'Esta es una bree descripcion del ceustionario',
-        preguntas: '10',
-        participantes: '25',
-        ratio: '80%'
-      },
-      {
-        id: '5',
-        title: 'Cuestionario numero 5',
-        description: 'Esta es una bree descripcion del ceustionario',
-        preguntas: '10',
-        participantes: '25',
-        ratio: '80%'
-      },
-      {
-        id: '6',
-        title: 'Cuestionario numero 6',
-        description: 'Esta es una bree descripcion del ceustionario',
-        preguntas: '10',
-        participantes: '25',
-        ratio: '80%'
-      },
-      {
-        id: '7',
-        title: 'Cuestionario numero 7',
-        description: 'Esta es una bree descripcion del ceustionario',
-        preguntas: '10',
-        participantes: '25',
-        ratio: '80%'
-      },
-      {
-        id: '8',
-        title: 'Cuestionario numero 8',
-        description: 'Esta es una bree descripcion del ceustionario',
-        preguntas: '10',
-        participantes: '25',
-        ratio: '80%'
-      },
-      {
-        id: '9',
-        title: 'Cuestionario numero 9',
-        description: 'Esta es una bree descripcion del ceustionario',
-        preguntas: '10',
-        participantes: '25',
-        ratio: '80%'
-      }
-    ];
   }
 
   // Crear un servicio el cual va a tener la responsabilidad de llamar a nuestro back (partidas.service)
@@ -192,6 +118,7 @@ export class HomeComponent implements OnInit {
   iniciarPartida() {
     this.socketService.iniciarPartida();
   }
+
 
   public unirse(usuarioID: string) {
     this.socketService.unirse(usuarioID);
