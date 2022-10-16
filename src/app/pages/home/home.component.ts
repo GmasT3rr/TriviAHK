@@ -47,7 +47,6 @@ export class HomeComponent implements OnInit {
   //   }
 
   ngOnInit(): void {
-    this.cargarEjemplo;
     // this.partidaService.getQuizzes().subscribe((quizes: any) => {
     //   this.quizes = quizes;
     // });
@@ -62,7 +61,7 @@ export class HomeComponent implements OnInit {
   }
 
   nextQuiz() {
-    if (this.offset >= this.quizes.length - 4) {
+    if (this.offset >= this.trivias.length - 4) {
       null;
     } else {
       this.offset += 4;
@@ -80,40 +79,19 @@ export class HomeComponent implements OnInit {
   public getColor(index: number): string {
     switch (index) {
       case 0:
-        return '#1A0537';
+        return '#FF5C95';
       case 1:
-        return '#A36CD9';
+        return '#50FFB5';
       case 2:
-        return '#FF3078';
+        return '#FFEB33';
       case 3:
-        return '#671073';
+        return '#69E2FF';
       default:
-        return '#abc';
+        return '#FCFCFC';
     }
   }
 
   //SOCKETS
-  private cargarEjemplo() {
-    this.partidas = [];
-    this.partidas.push({
-      id: '1',
-      cantSesiones: '15',
-      cantPreguntas: '10',
-      promedioAciertos: '78'
-    });
-    this.partidas.push({
-      id: '2',
-      cantSesiones: '17',
-      cantPreguntas: '5',
-      promedioAciertos: '90'
-    });
-    this.partidas.push({
-      id: '3',
-      cantSesiones: '10',
-      cantPreguntas: '15',
-      promedioAciertos: '12'
-    });
-  }
 
   iniciarPartida() {
     this.socketService.iniciarPartida();

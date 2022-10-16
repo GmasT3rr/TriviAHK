@@ -1,17 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { AuthenticationGuard } from './guards/authentication.guard';
 import { LobbyComponent } from './pages/lobby/main/lobby.component';
 import { LandingComponent } from './public/landing/landing.component';
 
 const routes: Routes = [
-  {
-    path: 'user',
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
-    canActivate: [AuthGuard]
-  },
-
   {
     path: 'main',
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),

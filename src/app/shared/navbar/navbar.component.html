@@ -1,32 +1,22 @@
-<nav class="navbar navbar-expand-lg">
+<!-- <nav class="navbar navbar-expand-lg">
   <a class="navbar-brand">
-    <button
-      class="menu"
-      data-bs-toggle="offcanvas"
-      href="#offcanvasExample">
-      <div class="row">
-        <span> Menu</span>
-        <i class="bi bi-menu-down"></i>
-      </div>
-    </button>
-
     <img
       *ngIf="show"
       [src]="user?.picture"
       alt=""
       class="d-inline-block"
-      data-bs-toggle="offcanvas"
       href="#offcanvasExample" />
-    <!-- <div *ngIf="!show">
-            <img src="https://educaciontech.com/wp-content/uploads/2021/01/kahootapplogobetter.png" alt="" class="d-inline-block">
-        </div> -->
+
   </a>
-  <div
-    class="marca"
-    routerLink="/main/home"
-    type="button">
-    BRAND_NAME_HERE
-  </div>
+  <a class="navbar-brand">
+    <img
+      *ngIf="show"
+      [src]="logo"
+      alt=""
+      class="d-inline-block"
+     />
+
+  </a>
   <button
     class="navbar-toggler desplegable"
     type="button"
@@ -43,10 +33,7 @@
     id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto"></ul>
 
-    <!-- <form class="form-inline my-2 my-lg-0 ">
-            <input class="form-control  buscarInput" type="search " placeholder="Buscar " aria-label="Buscar ">
-            <button class="btn btn-outline-success buscarButton" type="submit ">Buscar</button>
-        </form> -->
+
 
     <button
       class="btn notification"
@@ -60,5 +47,29 @@
       (click)="logoutAuth()">
       <i class="bi bi-box-arrow-left"></i>
     </button>
+  </div>
+</nav> -->
+<nav class="navbar navbar-expand-lg" style="background-color:rgba(113, 97, 239, 1) ;">
+  <div class="container-fluid">
+      <button class="navbar-toggler" type="button" style="background-color: #FCFCFC ;"
+       data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+       aria-controls="navbarNavAltMarkup"
+       aria-expanded="false"
+       aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" ></span>
+        </button>
+    <a class="navbar-brand" routerLink="/home"><img [src]="logo" alt="triviahk" style="border-radius: 15px; "></a>
+    <a class="navbar-brand"><img [src]="user?.picture" alt="user" style="border-radius: 15px; height: 70px;"></a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav text-center">
+        <a class="nav-link" routerLink="/home">Ruta 1</a>
+        <a class="nav-link" routerLink="/home">Ruta 2</a>
+        <a class="nav-link" routerLink="/home">Ruta 3</a>
+        <a class="nav-link" routerLink="/home">Ruta 4</a>
+      </div>
+    </div>
+    <!-- <a class="navbar-brand btn" (click)="logoutAuth()">Sign Out</a> -->
+    <a class="navbar-brand btn " style="background-color: rgba(253, 153, 155, 1); color: #FCFCFC;">Sign Out</a>
+
   </div>
 </nav>

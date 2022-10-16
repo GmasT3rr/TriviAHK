@@ -1,7 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
-import { DOCUMENT } from '@angular/common';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -11,7 +9,7 @@ import { UserService } from '../../services/user.service';
 })
 export class NavbarComponent implements OnInit {
   public show: boolean = true;
-
+  public logo = "assets/logo-temporal.jpeg"
   constructor(private rt: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit(): void {
@@ -35,11 +33,9 @@ export class NavbarComponent implements OnInit {
 
   //Obtener info de usuario
   public user: any;
-  private getUserInfo() {
-    setTimeout(() => {
+  async getUserInfo() {
       this.userService.getUserInfo().subscribe(data => {
         this.user = data;
       });
-    }, 1000);
   }
 }
