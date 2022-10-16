@@ -89,6 +89,18 @@ export class HomeComponent implements OnInit {
       default:
         return '#FCFCFC';
     }
+    // switch (index) {
+    //   case 0:
+    //     return '#FFB1B5';
+    //   case 1:
+    //     return '#4A51C9';
+    //   case 2:
+    //     return '#FD999B';
+    //   case 3:
+    //     return '#7161EF';
+    //   default:
+    //     return '#FCFCFC';
+    // }
   }
 
   //SOCKETS
