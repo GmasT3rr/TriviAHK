@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CrearQuizComponent } from './crear-quiz/crear-quiz.component';
-import { LandingComponent } from 'app/public/landing/landing.component';
+import { LoadingPageComponent } from 'app/public/loading-page/loading-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'landing', component: LandingComponent },
+  { path: 'loading', component: LoadingPageComponent },
   { path: 'lobby', component: LobbyComponent },
   {path:'crear', component: CrearQuizComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'home' }

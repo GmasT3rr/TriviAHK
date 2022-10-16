@@ -1,55 +1,5 @@
-<!-- <nav class="navbar navbar-expand-lg">
-  <a class="navbar-brand">
-    <img
-      *ngIf="show"
-      [src]="user?.picture"
-      alt=""
-      class="d-inline-block"
-      href="#offcanvasExample" />
 
-  </a>
-  <a class="navbar-brand">
-    <img
-      *ngIf="show"
-      [src]="logo"
-      alt=""
-      class="d-inline-block"
-     />
-
-  </a>
-  <button
-    class="navbar-toggler desplegable"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation">
-    <i class="navbar-toggler-icon bi bi-arrow-bar-down"></i>
-  </button>
-
-  <div
-    class="collapse navbar-collapse"
-    id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto"></ul>
-
-
-
-    <button
-      class="btn notification"
-      type="button ">
-      <i class="bi bi-bell-fill"></i>
-    </button>
-
-    <button
-      class="btn btn-danger logout"
-      type="button "
-      (click)="logoutAuth()">
-      <i class="bi bi-box-arrow-left"></i>
-    </button>
-  </div>
-</nav> -->
-<nav class="navbar navbar-expand-lg" style="background-color:rgba(113, 97, 239, 1) ;">
+<nav [hidden]="!loggedIn" class="navbar navbar-expand-lg" style="background-color:rgba(113, 97, 239, 1) ;">
   <div class="container-fluid">
       <button class="navbar-toggler" type="button" style="background-color: #FCFCFC ;"
        data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -69,7 +19,9 @@
       </div>
     </div>
     <!-- <a class="navbar-brand btn" (click)="logoutAuth()">Sign Out</a> -->
-    <a class="navbar-brand btn " style="background-color: rgba(253, 153, 155, 1); color: #FCFCFC;">Sign Out</a>
+    <a class="navbar-brand btn "
+    (click)="logoutAuth()"
+    style="background-color: rgba(253, 153, 155, 1); color: #FCFCFC;">Sign Out</a>
 
   </div>
 </nav>

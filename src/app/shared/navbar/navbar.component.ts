@@ -8,13 +8,13 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  public show: boolean = true;
+  public loggedIn: boolean = true;
   public logo = "assets/logo-temporal.jpeg"
   constructor(private rt: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit(): void {
     this.getUserInfo();
-    this.checkRoute();
+    this.isLoggedIn()
   }
 
   //METODO LOGOUT AUTH0
@@ -22,14 +22,14 @@ export class NavbarComponent implements OnInit {
     this.userService.logout();
   }
 
-  //Verfificar en que ruta esta el usuario para mostrar su imagen o no
-  private checkRoute() {
-    const path = this.rt.snapshot.pathFromRoot[1]?.routeConfig?.path;
-    console.log(path);
-    if (path === 'user') {
-      this.show = false;
-    }
+  isLoggedIn(){
+    this.userService.isAuthenticated().subscribe((res:any)=>{
+      this.loggedIn = res
+      console.log(this.loggedIn)
+
+    })
   }
+
 
   //Obtener info de usuario
   public user: any;

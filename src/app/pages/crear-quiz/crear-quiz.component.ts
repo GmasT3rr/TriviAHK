@@ -1,13 +1,7 @@
 import {
   Component,
-  ComponentFactoryResolver,
-  ComponentRef,
   OnInit,
-  ViewChild,
-  ViewContainerRef
 } from '@angular/core';
-import { PartidasService } from '../../services/partidas.service';
-import { QuizFormComponent } from '../quiz-form/quiz-form.component';
 import {
   FormGroup,
   FormControl,
