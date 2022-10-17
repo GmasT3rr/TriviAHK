@@ -1,173 +1,130 @@
-
 .cards {
-    margin-top: 100px;
-    font-family: 'Shojumaru';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 150%;
-    /* or 45px */
-    display: flex;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.15em;
+  margin-top: 100px;
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 150%;
+  /* or 45px */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.15em;
 }
 
-.card-crear {
-    color: white;
-    text-align: center;
-    background-color: #CC0246;
-    opacity: 70%;
-    border: 5px solid #E2D9F3;
-    border-radius: 20px;
-}
-
-.card-crear div i {
-    color: #F1AEB5;
-}
-
-.card-ingresar {
-    color: white;
-    text-align: center;
-    background: #95056E;
-    border: 5px solid #000000;
-    border-radius: 20px;
-}
-
-.card-ingresar div i {
-    color: #212529;
-}
-
-.crearButton {
-    background-color: rgba(113, 97, 239, 1);
-    color: white;
-    border: solid 2px black;
-    padding: 10px;
-}
-.crearButton:hover {
-  border: solid 2px black;
-  background-color: rgba(113, 97, 239, .5);
-}
-
-.ingresarButton {
-  background-color: rgba(255, 177, 181, 1);
+.homeBtns {
+  text-align: center;
+  background-color: #fd999b;
   color: white;
-  border: solid 2px black;
-  padding: 10px;
-}
-.ingresarButton:hover {
-  border: solid 2px black;
-  background-color: rgba(255, 177, 181, .5);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
 }
 
+.homeBtns:hover {
+  background-color: rgba(253, 153, 155, 0.5);
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+}
 
-.separation {
-    margin: auto;
-    background: red;
-    border-radius: 50px;
-    width: auto;
-    height: 6px;
-    width: 80%;
+i {
+  font-style: inherit;
+  font-weight: bold;
+  font-size: 24px;
 }
 
 .card-quiz {
-    padding-top: 30px;
-    margin: 3px;
-    background-color: white;
-    text-align: center;
-    clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0 100%);
+  padding-top: 30px;
+  margin: 3px;
+  background-color: white;
+  text-align: center;
+  clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0 100%);
 }
 
 .card-quiz-outside {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    background-color: black;
-    clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0 100%);
-    border-radius: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background-color: #d2d2d2;
+  clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0 100%);
+  border-radius: 10px;
 }
 
 .card-top {
-    text-align: center;
-    height: 100px;
-    clip-path: polygon(0 0, 100% 0%, 100% 35%, 0 90%);
-    border-radius: 15px;
-    margin-bottom: -50px;
+  text-align: center;
+  height: 100px;
+  clip-path: polygon(0 0, 100% 0%, 100% 35%, 0 90%);
+  border-radius: 15px;
+  margin-bottom: -50px;
 }
 
 .card-quiz h3 {
-    font-family: 'Abel';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    color: #212529;
-    margin-bottom: 60px;
-    margin-top: 30px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  color: #212529;
+  margin-bottom: 60px;
+  margin-top: 30px;
 }
 
 .card-quiz p {
-    font-family: 'Abel';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    color: #212529;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  color: #212529;
 }
 
-
-.btn-prev, .btn-next {
-    color: white;
-    background: rgba(113, 97, 239, 1);
-    border: solid 2px black;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-
+.btn-prev,
+.btn-next {
+  color: white;
+  background: rgba(113, 97, 239, 1);
+  border: 2px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
 }
-.btn-prev:hover, .btn-next:hover {
-  background: rgba(113, 97, 239, .5);
-  border: solid 2px black;
+.btn-prev:hover,
+.btn-next:hover {
+  background: rgba(113, 97, 239, 0.5);
+  border: 2px;
 }
-
-
 
 .actividades p {
-    margin-top: 30px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
+  margin-top: 30px;
+
+  font-weight: 700;
+  font-size: 30px;
 }
 
 .actividades hr {
-    display: flex;
-    width: 10%;
-    align-items: flex-start;
-    background: #7161EF;
-    border-radius: 30px;
-    height: 6px;
-    opacity: 1;
+  display: flex;
+  width: 10%;
+  align-items: flex-start;
+  background: #7b61ff;
+  border-radius: 30px;
+  height: 10px;
+  opacity: 1;
 }
 
-@media screen and (max-width:1024px) {
-    .cards {
-        margin-top: 50px;
-        font-size: 24px;
-    }
-    .boton-crear .card-text {
-        font-size: 22px;
-    }
-    .boton-ingresar .card-text {
-        font-size: 22px;
-    }
+@media screen and (max-width: 1024px) {
+  .cards {
+    margin-top: 50px;
+    font-size: 24px;
+  }
+  .boton-crear .card-text {
+    font-size: 22px;
+  }
+  .boton-ingresar .card-text {
+    font-size: 22px;
+  }
 }
 
-@media screen and (min-width:1024px) {
-    .cards {
-        margin-top: 50px;
-        font-size: 24px;
-    }
-    .boton-crear .card-text {
-        font-size: 22px;
-    }
-    .boton-ingresar .card-text {
-        font-size: 22px;
-    }
+@media screen and (min-width: 1024px) {
+  .cards {
+    margin-top: 50px;
+    font-size: 24px;
+  }
+  .boton-crear .card-text {
+    font-size: 22px;
+  }
+  .boton-ingresar .card-text {
+    font-size: 22px;
+  }
 }

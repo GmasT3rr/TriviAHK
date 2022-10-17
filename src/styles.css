@@ -1,14 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import '~bootstrap-icons/font/bootstrap-icons.css';
 html {
-    overflow: auto;
+  overflow: auto;
 }
 
 body {
-    padding-right: 0 !important;
+  font-family: 'Montserrat', sans-serif;
+  padding-right: 0 !important;
 }
-
 
 /* ::-webkit-scrollbar {
     display: none;

@@ -9,13 +9,15 @@ import { LoadingPageComponent } from 'app/public/loading-page/loading-page.compo
 import { HomeComponent } from './home/home.component';
 import { CrearQuizComponent } from './crear-quiz/crear-quiz.component';
 import { CrearPartidaComponent } from './crear-partida/crear-partida.component';
+import { MisTriviasComponent } from './mis-trivias/mis-trivias.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     CrearQuizComponent,
     LoadingPageComponent,
-    CrearPartidaComponent
+    CrearPartidaComponent,
+    MisTriviasComponent
   ],
   imports: [
     CommonModule,

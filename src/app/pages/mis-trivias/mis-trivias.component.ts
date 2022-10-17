@@ -6,27 +6,23 @@ import { PartidasService } from 'app/services/partidas.service';
 import { environment as env } from '../../../environments/environment';
 import { TriviasService } from 'app/services/trivias.service';
 import { Trivia } from 'app/interfaces/Trivias.interface';
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-mis-trivias',
+  templateUrl: './mis-trivias.component.html',
+  styleUrls: ['./mis-trivias.component.css']
 })
-export class HomeComponent implements OnInit {
+export class MisTriviasComponent implements OnInit {
   public offset: number;
   public limit: number;
   public quizes: any[] = [];
 
-  
+  partidas: any;
   public trivias!: Trivia[];
   usuarioID: number = 0;
   public trivia: any;
 
   constructor(
-    private authService: AuthService,
-    private http: HttpClient,
     public socketService: SocketService,
-    private _partidaService: PartidasService,
     private triviasService: TriviasService
   ) {
     this.offset = 0;
@@ -34,10 +30,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+;
     this.triviasService.getTriviasDelUsuario().subscribe((res: any) => {
-      // console.log(res.body);
       this.trivias = res.body;
     });
+
+
   }
 
   nextQuiz() {
@@ -56,37 +54,4 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // public getColor(index: number): string {
-  //    switch (index) {
-  //      case 0:
-  //        return '#FFB1B5';
-  //      case 1:
-  //        return '#4A51C9';
-  //      case 2:
-  //        return '#FD999B';
-  //      case 3:
-  //        return '#7161EF';
-  //      default:
-  //        return '#FCFCFC';
-  //    }
-  // }
-
-  //SOCKETS
-
-  iniciarPartida() {
-    this.socketService.iniciarPartida();
-  }
-
-  public unirse(usuarioID: string, partidaID: string) {
-    this.socketService.unirse(Number(usuarioID), Number(partidaID));
-    this.trivia = this.socketService.trivia;
-  }
-
-  salirse() {
-    this.socketService.salirse();
-  }
-
-  mostrarSiguientePregunta() {
-    this.socketService.mostrarSiguientePregunta();
-  }
 }
