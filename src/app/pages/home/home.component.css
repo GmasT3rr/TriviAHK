@@ -13,31 +13,6 @@
     letter-spacing: 0.15em;
 }
 
-.card-crear {
-    color: white;
-    text-align: center;
-    background-color: #CC0246;
-    opacity: 70%;
-    border: 5px solid #E2D9F3;
-    border-radius: 20px;
-}
-
-.card-crear div i {
-    color: #F1AEB5;
-}
-
-.card-ingresar {
-    color: white;
-    text-align: center;
-    background: #95056E;
-    border: 5px solid #000000;
-    border-radius: 20px;
-}
-
-.card-ingresar div i {
-    color: #212529;
-}
-
 .homeBtns {
   text-align: center;
     background-color: #FD999B;
