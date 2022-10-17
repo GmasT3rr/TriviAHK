@@ -76,32 +76,20 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  public getColor(index: number): string {
-    switch (index) {
-      case 0:
-        return '#FF5C95';
-      case 1:
-        return '#50FFB5';
-      case 2:
-        return '#FFEB33';
-      case 3:
-        return '#69E2FF';
-      default:
-        return '#FCFCFC';
-    }
-    // switch (index) {
-    //   case 0:
-    //     return '#FFB1B5';
-    //   case 1:
-    //     return '#4A51C9';
-    //   case 2:
-    //     return '#FD999B';
-    //   case 3:
-    //     return '#7161EF';
-    //   default:
-    //     return '#FCFCFC';
-    // }
-  }
+  // public getColor(index: number): string {
+  //    switch (index) {
+  //      case 0:
+  //        return '#FFB1B5';
+  //      case 1:
+  //        return '#4A51C9';
+  //      case 2:
+  //        return '#FD999B';
+  //      case 3:
+  //        return '#7161EF';
+  //      default:
+  //        return '#FCFCFC';
+  //    }
+  // }
 
   //SOCKETS
 

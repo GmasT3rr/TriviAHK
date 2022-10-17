@@ -38,37 +38,28 @@
     color: #212529;
 }
 
-.crearButton {
-    background-color: rgba(113, 97, 239, 1);
+.homeBtns {
+  text-align: center;
+    background-color: #FD999B;
     color: white;
-    border: solid 2px black;
-    padding: 10px;
-}
-.crearButton:hover {
-  border: solid 2px black;
-  background-color: rgba(113, 97, 239, .5);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 5px 5px rgba(0, 0, 0, .5);
 }
 
-.ingresarButton {
-  background-color: rgba(255, 177, 181, 1);
-  color: white;
-  border: solid 2px black;
-  padding: 10px;
+.homeBtns:hover {
+  background-color: rgba(253, 153, 155, .5);
+  box-shadow: 10px 10px rgba(0, 0, 0, .5);
+
 }
-.ingresarButton:hover {
-  border: solid 2px black;
-  background-color: rgba(255, 177, 181, .5);
+
+i{
+  font-style: inherit;
+  font-size: 24px;
 }
 
 
-.separation {
-    margin: auto;
-    background: red;
-    border-radius: 50px;
-    width: auto;
-    height: 6px;
-    width: 80%;
-}
+
 
 .card-quiz {
     padding-top: 30px;
@@ -140,9 +131,9 @@
     display: flex;
     width: 10%;
     align-items: flex-start;
-    background: #7161EF;
+    background: #7B61FF;
     border-radius: 30px;
-    height: 6px;
+    height: 10px;
     opacity: 1;
 }
 
