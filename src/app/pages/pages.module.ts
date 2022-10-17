@@ -8,12 +8,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingPageComponent } from 'app/public/loading-page/loading-page.component';
 import { HomeComponent } from './home/home.component';
 import { CrearQuizComponent } from './crear-quiz/crear-quiz.component';
+import { CrearPartidaComponent } from './crear-partida/crear-partida.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     CrearQuizComponent,
-    LoadingPageComponent
+    LoadingPageComponent,
+    CrearPartidaComponent
   ],
   imports: [
     CommonModule,

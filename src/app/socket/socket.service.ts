@@ -27,8 +27,8 @@ export class SocketService {
   sesion = 0;
   trivia: any;
   // como disparar el evento sin que
-  public unirse(usuarioID: string) {
-    this.socket!.emit('partida:unir', {usuarioID, partidaID: 1});
+  public unirse(usuarioID: number, partidaID: number) {
+    this.socket!.emit('partida:unir', {usuarioID, partidaID});
     this.socket!.once('partida:status-union', (partida: any) => {
       console.log(partida);
       // esta bien hacer esto

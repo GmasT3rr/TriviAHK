@@ -21,6 +21,18 @@ export class TriviasService {
     );
   }
 
+  getTriviasDelUsuario() {
+    const res = this.http.get(`${env.dev.serverUrl}/trivias/usuario`);
+    return res.pipe(
+      tap(res => {
+        of(res);
+      }),
+      catchError(err => {
+        return throwError(() => err);
+      })
+    );
+  }
+
   crearTriviaConPreguntasOpciones(bodyTrivias: string) {
     const res = this.http.post(
       `${env.dev.serverUrl}/trivias/conPreguntas`,
