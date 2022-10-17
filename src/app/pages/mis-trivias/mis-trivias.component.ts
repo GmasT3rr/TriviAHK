@@ -7,11 +7,11 @@ import { environment as env } from '../../../environments/environment';
 import { TriviasService } from 'app/services/trivias.service';
 import { Trivia } from 'app/interfaces/Trivias.interface';
 @Component({
-  selector: 'app-my-quizes',
-  templateUrl: './my-quizes.component.html',
-  styleUrls: ['./my-quizes.component.css']
+  selector: 'app-mis-trivias',
+  templateUrl: './mis-trivias.component.html',
+  styleUrls: ['./mis-trivias.component.css']
 })
-export class MyQuizesComponent implements OnInit {
+export class MisTriviasComponent implements OnInit {
   public offset: number;
   public limit: number;
   public quizes: any[] = [];
