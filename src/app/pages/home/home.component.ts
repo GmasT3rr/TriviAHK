@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public limit: number;
   public quizes: any[] = [];
 
-  partidas: any;
+  
   public trivias!: Trivia[];
   usuarioID: number = 0;
   public trivia: any;
@@ -26,38 +26,18 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private http: HttpClient,
     public socketService: SocketService,
-    private partidaService: PartidasService,
+    private _partidaService: PartidasService,
     private triviasService: TriviasService
   ) {
     this.offset = 0;
     this.limit = 4;
   }
 
-  // Crear un servicio el cual va a tener la responsabilidad de llamar a nuestro back (partidas.service)
-  // Inyectar en partida.service el objeto http
-  // Creamos los metodos para poder llamar al los endpoints del back
-  // Inyectar este servicio en este componente (home.commponent)
-  // En el ngOnInit deberiamos llamar al servicio y traernos todas las partidas
-  // En la maqueta deberiamos mostrar todas las partidas obtenidas desde el back
-
-  // private getPartidas(){
-  //     this.partidaService.getPartidas().subscribe((partidas:any)=>
-  //     {this.quizes = partidas}
-  //     )
-  //   }
-
   ngOnInit(): void {
-    // this.partidaService.getQuizzes().subscribe((quizes: any) => {
-    //   this.quizes = quizes;
-    // });
-    this.triviasService.getTrivias().subscribe((res: any) => {
+    this.triviasService.getTriviasDelUsuario().subscribe((res: any) => {
       // console.log(res.body);
       this.trivias = res.body;
     });
-    // this.getPartidas()
-
-    //Metodo para obtener info del login
-    // this.authService.idTokenClaims$.subscribe((claims) => console.log(claims));
   }
 
   nextQuiz() {
@@ -97,9 +77,8 @@ export class HomeComponent implements OnInit {
     this.socketService.iniciarPartida();
   }
 
-
-  public unirse(usuarioID: string) {
-    this.socketService.unirse(usuarioID);
+  public unirse(usuarioID: string, partidaID: string) {
+    this.socketService.unirse(Number(usuarioID), Number(partidaID));
     this.trivia = this.socketService.trivia;
   }
 

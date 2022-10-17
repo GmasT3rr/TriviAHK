@@ -1,26 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../environments/environment';
+import { catchError, of, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PartidasService {
-  private server = 'http://localhost:3000/';
-
   constructor(private http: HttpClient) {}
 
-  // getPartidas(){
-  //   return this.http.get(`${env.dev.serverUrl}/partidas`);
-  // }
-
-  //Get partidas con json-server
-
-  getQuizzes(): any {
-    return this.http.get(`${this.server}quizzes`);
+  crearPartida(idTrivia: number) {
+    const res = this.http.post(
+      `${env.dev.serverUrl}/partida/crear/${idTrivia}`,
+      ''
+    );
+    return res.pipe(
+      tap(res => {
+        of(res);
+      }),
+      catchError(err => {
+        return throwError(() => err);
+      })
+    );
   }
 
-  getOneQuiz(id: any) {
-    return this.http.get(`${this.server}quizzes/${id}`);
+  getPartidas() {
+    const res = this.http.get(
+      `${env.dev.serverUrl}/partida/obtenerPartidas/usuario`
+    );
+    return res.pipe(
+      tap(res => {
+        of(res);
+      }),
+      catchError(err => {
+        return throwError(() => err);
+      })
+    );
   }
 }

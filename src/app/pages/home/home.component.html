@@ -4,13 +4,18 @@
       <br />
       <input
         type="number"
-        #usuario />
-      <button (click)="unirse(usuario.value)">Unirse</button>
+        #usuario
+        placeholder="Id del usuario" />
+      <input
+        type="number"
+        #partida
+        placeholder="Id de partida" />
+      <button (click)="unirse(usuario.value, partida.value)">Unirse</button>
       <button (click)="salirse()">salirse</button>
       <br />
       <button (click)="mostrarSiguientePregunta()">Siguiente pregunta</button>
 
-      <p>{{ trivia }}</p>
+      <p>{{ trivia | json }}</p>
     </div>
   </div> -->
 
@@ -32,7 +37,7 @@
               </i>
         </div>
         </div>
-        <div class="col-sm-8 btn" style="border: none;">
+        <div class="col-sm-8 btn mt-2" style="border: none;">
             <div class="homeBtns">
               <i class="bi bi-door-open" >
                   Ingresar
