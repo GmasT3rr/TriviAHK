@@ -9,10 +9,10 @@ import { catchError, of, tap, throwError } from 'rxjs';
 export class PartidasService {
   constructor(private http: HttpClient) {}
 
-  crearPartida(idTrivia: number) {
+  crearPartida(idTrivia: number, segundosEntrePreguntas: number) {
     const res = this.http.post(
       `${env.dev.serverUrl}/partida/crear/${idTrivia}`,
-      ''
+      {segundosEntrePreguntas}
     );
     return res.pipe(
       tap(res => {

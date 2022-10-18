@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { SocketService } from 'app/socket/socket.service';
 import { PartidasService } from 'app/services/partidas.service';
 import { environment as env } from '../../../environments/environment';
 import { TriviasService } from 'app/services/trivias.service';
 import { Trivia } from 'app/interfaces/Trivias.interface';
+import { ModalMisTriviasComponent } from 'app/shared/components/modal-mis-trivias/modal-mis-trivias.component';
 @Component({
   selector: 'app-mis-trivias',
   templateUrl: './mis-trivias.component.html',
@@ -21,21 +22,21 @@ export class MisTriviasComponent implements OnInit {
   usuarioID: number = 0;
   public trivia: any;
 
+  modalPorAbrir!: string;
+
   constructor(
     public socketService: SocketService,
-    private triviasService: TriviasService
+    private triviasService: TriviasService,
+    private _partidas: PartidasService
   ) {
     this.offset = 0;
     this.limit = 4;
   }
 
   ngOnInit(): void {
-;
     this.triviasService.getTriviasDelUsuario().subscribe((res: any) => {
       this.trivias = res.body;
     });
-
-
   }
 
   nextQuiz() {
@@ -54,4 +55,10 @@ export class MisTriviasComponent implements OnInit {
     }
   }
 
+  //Metodo para cambiar el input que le pasamos al modal
+  //referente si es el modal para editar o jugar la trivia
+  openModalMisTrivias(modalPorAbrir: string) {
+    if (modalPorAbrir == 'editar') return this.modalPorAbrir = 'editar';
+    return this.modalPorAbrir = 'jugar';
+  }
 }

@@ -28,10 +28,10 @@ export class CrearPartidaComponent implements OnInit {
 
   crearPartida(index: number) {
     const idTrivia = this.triviasDelUsuario[index].id;
-    this._partidaService.crearPartida(idTrivia).subscribe((res: any) => {
-      const partida = res.body;
-      this._socketsService.unirse(partida._usuarioHost.id, partida.id);
-      this.router.navigateByUrl(`/main/lobby/${partida.id}`)
-    });
+    // this._partidaService.crearPartida(idTrivia).subscribe((res: any) => {
+    //   const partida = res.body;
+    //   this._socketsService.unirse(partida._usuarioHost.id, partida.id);
+    //   this.router.navigateByUrl(`/main/lobby/${partida.id}`)
+    // });
   }
 }
