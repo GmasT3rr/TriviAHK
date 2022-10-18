@@ -6,11 +6,16 @@ import { CrearQuizComponent } from './crear-quiz/crear-quiz.component';
 import { LoadingPageComponent } from 'app/public/loading-page/loading-page.component';
 import { CrearPartidaComponent } from './crear-partida/crear-partida.component';
 import { MisTriviasComponent } from './mis-trivias/mis-trivias.component';
+import { LobbyGuard } from 'app/guards/lobby.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'loading', component: LoadingPageComponent },
-  { path: 'lobby/:id', component: LobbyComponent },
+  {
+    path: 'lobby/:id',
+    component: LobbyComponent,
+    canActivate: [LobbyGuard]
+  },
   { path: 'crear', component: CrearQuizComponent },
   { path: 'crearPartida', component: CrearPartidaComponent },
   { path: 'mis-trivias', component: MisTriviasComponent },

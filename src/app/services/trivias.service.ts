@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, of, tap, throwError } from 'rxjs';
+import { catchError, lastValueFrom, of, tap, throwError } from 'rxjs';
 import { environment as env } from '../../environments/environment';
 
 @Injectable({
@@ -47,5 +47,16 @@ export class TriviasService {
         return throwError(() => err);
       })
     );
+  }
+
+  obtenerSesionDelUsuario() {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${env.dev.serverUrl}/partida/obtenerSesion/usuario`)
+        .toPromise()
+        .then((res: any) => {
+          resolve(res.body.id);
+        });
+    });
   }
 }
