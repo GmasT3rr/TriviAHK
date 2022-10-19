@@ -23,11 +23,11 @@
           <input type="text" class="form-control" formControlName="descripcionEditar" placeholder="Descripcion: {{trivia?._descripcion }}"/>
         </div>
 
-        <button class="btn col-md-6 mt-3 p-2" (click)="verPreguntasEditar()"
+        <button *ngIf="!mostrarPreguntas" class="btn col-md-12 mt-3 p-2" (click)="verPreguntasEditar()"
         style="background-color:#FD999B; color: white;" >
         Ver preguntas
         </button>
-        <button class="btn col-md-6 mt-3 p-2" (click)="ocultarPreguntasEditar()"
+        <button *ngIf="mostrarPreguntas" class="btn col-md-12 mt-3 p-2" (click)="ocultarPreguntasEditar()"
         style="background-color:#7161EF; color: white;" >
         Ocultar preguntas
         </button>
