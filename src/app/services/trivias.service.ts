@@ -49,6 +49,13 @@ export class TriviasService {
     );
   }
 
+  async actualizarOpciones(){
+  }
+  async actualizarPreguntas(){
+
+  }
+
+
   obtenerSesionDelUsuario() {
     return new Promise((resolve, reject) => {
       this.http

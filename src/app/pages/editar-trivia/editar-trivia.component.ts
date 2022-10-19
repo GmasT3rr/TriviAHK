@@ -13,7 +13,7 @@ export class EditarTriviaComponent implements OnInit {
 
   private idTrivia:any
   public trivia!: any;
-  public editarTriviaForm!:FormGroup;
+  public triviaForm!:FormGroup;
   public mostrarPreguntas = false
 
 
@@ -45,72 +45,107 @@ export class EditarTriviaComponent implements OnInit {
       unaTrivia.forEach(element => {
         this.trivia = element
       });
+      this.setInfoDeTrivia()
+      // this.setOpcionesDeLasPreguntas()
       console.log('Esta trivia',this.trivia)
+
     });
   }
 
   // Formulario para EDITAR la trivia con preguntas y opciones
   createEditarTriviaForm(){
-    this.editarTriviaForm = this.fb.group({
-      nombreEditar: [, [Validators.required]],
-      descripcionEditar: [, [Validators.required]],
-      preguntasEditar: this.fb.array([])
+    this.triviaForm = this.fb.group({
+      nombre: ['', [Validators.required]],
+      descripcion: ['', [Validators.required]],
+      preguntas: this.fb.array([])
     });
   }
-  preguntasEditar(): FormArray {
-    return this.editarTriviaForm.get('preguntasEditar') as FormArray;
+  setInfoDeTrivia(){
+    this.triviaForm.patchValue({
+      nombre:this.trivia._nombre,
+      descripcion:this.trivia._descripcion
+    })
+    this.trivia._preguntas.forEach((e:any,index:any) => {
+      this.preguntas().push(this.preguntasDeLaTrivia(e._leyenda,e.tipoDePregunta,false));
+      // console.log(index)
+      const arrayOpciones = e._opciones
+      arrayOpciones.forEach((opc:any) => {
+        this.opciones(index).push(this.opcionesDeLaTrivia(opc._descripcion,opc._esCorrecta));
+      });
+    });
+    console.log(this.preguntas().getRawValue())
   }
 
-  newPreguntaEditar(): FormGroup {
+  preguntasDeLaTrivia(leyenda:string,tipo:string,visible:boolean): FormGroup {
+      return this.fb.group({
+        leyenda: [leyenda, [Validators.required]],
+        tipoDePregunta: [tipo, [Validators.required]],
+        visible: [visible],
+        opciones: this.fb.array([])
+      });
+  }
+  opcionesDeLaTrivia(descripcion:string,esCorrecta:string): FormGroup {
     return this.fb.group({
-      leyendaEditar: ['', [Validators.required]],
-      tipoDePreguntaEditar: ['', [Validators.required]],
-      opcionesEditar: this.fb.array([])
+      descripcion: [descripcion, [Validators.required]],
+      esCorrecta: [esCorrecta, [Validators.required]]
     });
   }
 
-  opcionesEditar(indexPreg: number): FormArray {
-    return this.preguntasEditar().at(indexPreg).get('opcionesEditar') as FormArray;
+
+  preguntas(): FormArray {
+    return this.triviaForm.get('preguntas') as FormArray;
   }
 
-  newOpcionEditar(): FormGroup {
+  newPregunta(): FormGroup {
     return this.fb.group({
-      descripcionEditar: [, [Validators.required]],
-      esCorrectaEditar: [, [Validators.required]]
+      leyenda: ['', [Validators.required]],
+      tipoDePregunta: ['', [Validators.required]],
+      opciones: this.fb.array([])
     });
   }
 
- // Metodos para manipular las preg y opciones dentro del fromulario dinamico
 
- verPreguntasEditar() {
-  for(let i=0; i<this.trivia._preguntas.length; i++){
-    this.preguntasEditar().push(this.newPreguntaEditar());
-    console.log(i)
-  }
-  this.mostrarPreguntas = true
-}
 
-ocultarPreguntasEditar() {
-    this.preguntasEditar().clear();
-    this.mostrarPreguntas = false
+
+  agregarPregunta() {
+    this.preguntas().push(this.newPregunta());
+    console.log(this.preguntas().getRawValue())
+
   }
 
-agregarOpcionEditar(indexPreg: number) {
-  this.opcionesEditar(indexPreg).push(this.newOpcionEditar());
-  // console.log(this.opciones(indexPreg));
-}
+  eliminarPregunta(indexPreg: number) {
+    this.preguntas().removeAt(indexPreg);
+  }
 
-eliminarOpcionEditar(indexPreg: number, indexOpc: number) {
-  this.opcionesEditar(indexPreg).removeAt(indexOpc);
-}
+  opciones(indexPreg: number): FormArray {
+    return this.preguntas().at(indexPreg).get('opciones') as FormArray;
+  }
+
+  newOpcion(): FormGroup {
+    return this.fb.group({
+      descripcion: [, [Validators.required]],
+      esCorrecta: [, [Validators.required]]
+    });
+  }
+
+  agregarOpcion(indexPreg: number) {
+    this.opciones(indexPreg).push(this.newOpcion());
+    // console.log(this.opciones(indexPreg));
+  }
+
+  eliminarOpcion(indexPreg: number, indexOpc: number) {
+    this.opciones(indexPreg).removeAt(indexOpc);
+  }
 
 
-
+  cambiarVisibilidad(pregunta:any){
+    pregunta.value.visible = !pregunta.value.visible;
+  }
 
   editarTrivia() {
     // this._triviasService
     //   .crearTriviaConPreguntasOpciones(this.triviaForm.value)
     //   .subscribe(console.log);
-    console.log(this.editarTriviaForm.value)
+    console.log(this.triviaForm.value)
   }
 }

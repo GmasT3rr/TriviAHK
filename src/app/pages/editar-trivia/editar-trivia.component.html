@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row d-flex justify-content-center">
         <!-- Titulo de la página -->
@@ -6,95 +7,118 @@
           <hr />
         </div>
   </div>
-
-
-  <div class="row d-flex justify-content-center">
-    <!-- <div class="col-2 mt-5" style="background-color: rgba(113, 97, 239, 1); border-radius: 15px;"></div> -->
-    <div class="col-8 mt-5 mb-5">
-      <!-- Form para titulo y descripcion -->
-      <form [formGroup]="editarTriviaForm" class="text-center">
-        <div class="mt-2 mb-2">
-          <div class="my-4 text-left">
-            <h4 style="font-weight: bold">{{trivia?._nombre }}</h4>
-          </div>
-          <input type="text" class="form-control" formControlName="nombreEditar" placeholder="Nombre: {{trivia?._nombre }}"/>
-        </div>
-        <div class="mt-2 mb-2">
-          <input type="text" class="form-control" formControlName="descripcionEditar" placeholder="Descripcion: {{trivia?._descripcion }}"/>
-        </div>
-
-        <button *ngIf="!mostrarPreguntas" class="btn col-md-12 mt-3 p-2" (click)="verPreguntasEditar()"
-        style="background-color:#FD999B; color: white;" >
-        Ver preguntas
-        </button>
-        <button *ngIf="mostrarPreguntas" class="btn col-md-12 mt-3 p-2" (click)="ocultarPreguntasEditar()"
-        style="background-color:#7161EF; color: white;" >
-        Ocultar preguntas
-        </button>
-
-        <div [hidden]="preguntasEditar().controls.length == 0"  *ngFor="let preg of trivia._preguntas" class="my-4" >
-          <div class="my-4 text-left">
-            <h4 style="font-weight: bold;">Pregunta: {{preg._leyenda}}</h4>
-          </div>
-
-          <div  class="row d-flex justify-content-between" >
-            <div class="col-md-6">
-              <input type="text" class="form-control"placeholder="Leyenda:{{preg._leyenda}}"/>
+    <div class="row d-flex justify-content-center">
+      <div class="col-8 mt-5 mb-5">
+        <form [formGroup]="triviaForm" class="text-center">
+          <div class="mt-2 mb-2">
+            <div class="my-4 text-left">
+              <h4 style="font-weight: bold">{{trivia?._nombre }}</h4>
             </div>
-
-            <div class="col-md-6">
-              <!-- <input type="text" class="form-control"  placeholder="Tipo: {{preg.tipoDePregunta}}"/> -->
-              <select  class="form-select" >
-                <option  selected disabled value=""> Tipo: {{preg.tipoDePregunta}}</option>
-                <option *ngFor="let tipo of tipoDePregunta">{{ tipo }}</option>
-              </select>
-            </div>
+            <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre: {{trivia?._nombre }}"/>
           </div>
-
-        <div class="my-3 text-left">
-          <h4 style="font-weight: bold;">Opciones:</h4>
-        </div>
-          <div *ngFor="let opcion of preg._opciones" >
-          <div class="my-3 text-left">
-            <h6 style="font-weight: bold;">{{opcion._descripcion}}</h6>
+          <div class="mt-2 mb-2">
+            <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion: {{trivia?._descripcion }}"/>
           </div>
-           <div class="row d-flex justify-content-between" >
-                <div class="col-md-6">
-                  <input type="text" class="form-control"  placeholder="Descripcion: {{opcion._descripcion}}"/>
+          <!-- Boton para añadir pregunta -->
+          <button class="btn col-12 mt-3 p-2" (click)="agregarPregunta()"
+          style="background-color:#FD999B; color: white;" >
+          Agregar Pregunta
+          </button>
+
+          <div [hidden]="preguntas().controls.length == 0" formArrayName="preguntas">
+            <div *ngFor="let pregunta of preguntas().controls; let indexPreg = index">
+              <button class="btn col-md-5 mt-3 p-2" (click)="cambiarVisibilidad(pregunta)"
+              style="background-color:#7161EF; color: white; font-size: 18px;" >
+              Mostrar/Ocultar
+              Pregunta N°{{ indexPreg + 1 }}
+              </button>
+              <div [formGroupName]="indexPreg" [hidden]="pregunta.value.visible">
+                 <div class="mb-3 mt-3">
+                  <h4 style="font-weight: bold;">Pregunta N°{{ indexPreg + 1 }}</h4>
                 </div>
-                <div class="col-md-6">
-                  <select  class="form-select" >
-                    <option disabled selected> Es correcta: {{opcion._esCorrecta}}</option>
-                    <option value="true">Correcta</option>
-                    <option value="false">Incorrecta</option>
+                <div class="mt-2 mb-2">
+                  <input type="text" class="form-control" formControlName="leyenda" placeholder="Leyenda"/>
+                </div>
+                <div class="mt-3 mb-2">
+                  <select formControlName="tipoDePregunta" class="form-select">
+                    <option  disabled value=""> Seleccione el tipo de pregunta</option>
+                    <option *ngFor="let tipo of tipoDePregunta">{{ tipo }}</option>
                   </select>
                 </div>
+
+                <div class="row d-flex justify-content-center mt-4">
+                  <div class="row d-flex justify-content-between  align-items-center">
+                    <!-- Boton para añadir una opcion a la pregunta -->
+                  <div class="col-sm-9 btn my1 p-2" (click)="agregarOpcion(indexPreg)"
+                  style="background-color: #FD999B; color: white;">
+                  Agregar Opción
+                  </div>
+                  <!-- Boton para eliminar pregunta -->
+                  <div class="col-sm-2 btn my-1 p-2" (click)="eliminarPregunta(indexPreg)"
+                  style="background-color: #FF5C95; color: white;">
+                  <i class="bi bi-trash3"></i>
+                  </div>
+                  </div>
               </div>
+
+                <!-- <div class="text-center mt-2 mb-2">
+                  <h5 *ngIf="opciones(indexPreg).controls.length == 0"><strong>No hay opciones</strong></h5>
+                </div> -->
+
+                <!-- Form para opciones de las preguntas del quiz-->
+                <div formArrayName="opciones">
+                  <div *ngFor="
+                  let opcion of opciones(indexPreg).controls;
+                  let indexOpc = index">
+                  <div class="mb-3 mt-5">
+                    <h4 style="font-weight: bold;">Opción N°{{ indexOpc + 1 }}</h4>
+                  </div>
+
+                  <div class="row d-flex justify-content-center mt-4">
+                      <div [formGroupName]="indexOpc" class="col-12">
+                        <div class="mt-2 mb-2 ">
+                          <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion"/>
+                        </div>
+                         <div class="mt-3 mb-2 ">
+                          <select formControlName="esCorrecta" class="form-select">
+                            <option disabled selected> Seleccione si es correcta o no</option>
+                            <option value="true">Correcta</option>
+                            <option value="false">Incorrecta</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row d-flex justify-content-end">
+                        <!-- Boton para eliminar opcion -->
+                      <div class="col-sm-2 btn my-1 p-2" (click)="eliminarOpcion(indexPreg, indexOpc)"
+                      style="background-color: #FF5C95; color: white;">
+                      <i class="bi bi-trash3"></i>
+                      </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="mt-3 mb-2" style="background-color: rgba(253, 153, 155, 1); height: 2px;"></div> -->
+
+            </div>
           </div>
 
+          <!-- Boton para crear trivia-->
+          <button class="btn col-6 mt-5 mb-4 p-2" (click)="editarTrivia()" [disabled]="triviaForm.invalid"
+          style="background-color: #7161EF;color: white;"
+          >
+            Editar y Guardar Trivia
+          </button>
+        </form>
 
-        </div>
-
-        <!-- Boton para crear trivia-->
-        <button class="btn col-6 mt-5 mb-4 p-2" (click)="editarTrivia()"
-        style="background-color: #7161EF;color: white;"
-        >
-          VER DATOS
-        </button>
-
-
-        <button class="btn col-6 mt-5 mb-4 p-2" (click)="editarTrivia()" [disabled]="editarTriviaForm.invalid"
-        style="background-color: #7161EF;color: white;"
-        >
-          Editar y Guardar Trivia
-        </button>
-      </form>
-
-      <!-- VISUALIZACION DE TODOS LOS DATOS-->
-      <!-- <pre>{{ triviaForm.value | json }}</pre> -->
+        <!-- VISUALIZACION DE TODOS LOS DATOS-->
+        <pre>{{ triviaForm.value | json }}</pre>
+      </div>
     </div>
   </div>
-</div>
+
 
 
 
