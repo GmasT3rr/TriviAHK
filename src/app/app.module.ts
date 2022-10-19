@@ -15,6 +15,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { HttpMethod } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

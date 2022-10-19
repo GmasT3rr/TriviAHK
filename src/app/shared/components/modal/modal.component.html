@@ -1,0 +1,65 @@
+<div
+  class="modal fade"
+  id="modalGeneral"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div
+      *ngIf="modalPorAbrir == 'ingresarPartida'"
+      class="modal-content">
+      <div class="modal-header">
+        <h1
+          class="modal-title fs-5"
+          id="exampleModalLabel">
+          Ingresar a partida
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="ingresarPartidaForm">
+          <label
+            class="form-label"
+            for=""
+            >Código</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name=""
+            id=""
+            formControlName="codigo" />
+          <div
+            class="alert alert-danger mt-2"
+            role="alert"
+            *ngIf="
+              ingresarPartidaForm.controls['codigo'].errors &&
+              ingresarPartidaForm.controls['codigo'].touched
+            ">
+            Este campo presenta errores
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          #btnModalCerrar>
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-modal-accion"
+          [disabled]="ingresarPartidaForm.invalid"
+          (click)="ingresarPartida()">
+          Ingresar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

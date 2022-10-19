@@ -49,6 +49,17 @@ export class TriviasService {
     );
   }
 
+  obtenerPartidaDelUsuario() {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${env.dev.serverUrl}/partida/obtenerPartidas/usuario`)
+        .toPromise()
+        .then((res: any) => {
+          resolve(res.body[0].id);
+        });
+    });
+  }
+
   obtenerSesionDelUsuario() {
     return new Promise((resolve, reject) => {
       this.http
