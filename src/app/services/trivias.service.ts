@@ -21,7 +21,7 @@ export class TriviasService {
     );
   }
 
-  getTriviasDelUsuario() {
+  async getTriviasDelUsuario() {
     const res = this.http.get(`${env.dev.serverUrl}/trivias/usuario`);
     return res.pipe(
       tap(res => {

@@ -20,8 +20,8 @@ export class CrearPartidaComponent implements OnInit {
 
   public triviasDelUsuario!: Trivia[];
 
-  ngOnInit(): void {
-    this._triviasService.getTriviasDelUsuario().subscribe((res: any) => {
+  async ngOnInit() {
+    (await this._triviasService.getTriviasDelUsuario()).subscribe((res: any) => {
       this.triviasDelUsuario = res.body;
     });
   }

@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public limit: number;
   public quizes: any[] = [];
 
-  
+
   public trivias!: Trivia[];
   usuarioID: number = 0;
   public trivia: any;
@@ -33,8 +33,8 @@ export class HomeComponent implements OnInit {
     this.limit = 4;
   }
 
-  ngOnInit(): void {
-    this.triviasService.getTriviasDelUsuario().subscribe((res: any) => {
+  async ngOnInit() {
+    (await this.triviasService.getTriviasDelUsuario()).subscribe((res: any) => {
       // console.log(res.body);
       this.trivias = res.body;
     });
