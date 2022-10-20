@@ -12,8 +12,8 @@ import {
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
-import { HttpMethod } from '@auth0/auth0-angular';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +23,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     HttpClientJsonpModule,
     SharedModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar:true,
+      progressAnimation:'decreasing',
+      timeOut:3000
+    }),
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {

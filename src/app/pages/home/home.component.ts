@@ -6,6 +6,7 @@ import { PartidasService } from 'app/services/partidas.service';
 import { environment as env } from '../../../environments/environment';
 import { TriviasService } from 'app/services/trivias.service';
 import { Trivia } from 'app/interfaces/Trivias.interface';
+import { ToastService } from 'app/services/toast.service';
 
 @Component({
   selector: 'app-home',
@@ -13,21 +14,22 @@ import { Trivia } from 'app/interfaces/Trivias.interface';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public offset: number;
-  public limit: number;
+  public offset: number = 0;
+  public limit: number = 0;
   public quizes: any[] = [];
-
-
   public trivias!: Trivia[];
   usuarioID: number = 0;
   public trivia: any;
+
+
 
   constructor(
     private authService: AuthService,
     private http: HttpClient,
     public socketService: SocketService,
     private _partidaService: PartidasService,
-    private triviasService: TriviasService
+    private triviasService: TriviasService,
+    private toastService:ToastService
   ) {
     this.offset = 0;
     this.limit = 4;
@@ -41,6 +43,7 @@ export class HomeComponent implements OnInit {
   }
 
   nextQuiz() {
+    // || this.limit === 8
     if (this.offset >= this.trivias.length - 4) {
       null;
     } else {
@@ -89,4 +92,7 @@ export class HomeComponent implements OnInit {
   mostrarSiguientePregunta() {
     this.socketService.mostrarSiguientePregunta();
   }
+
+
+
 }

@@ -9,6 +9,8 @@ import {
   Validators,
   FormArray
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastService } from 'app/services/toast.service';
 import { TriviasService } from 'app/services/trivias.service';
 
 @Component({
@@ -17,9 +19,17 @@ import { TriviasService } from 'app/services/trivias.service';
   styleUrls: ['./crear-quiz.component.css']
 })
 export class CrearQuizComponent implements OnInit {
+
+  private toastMsg:string = ''
+  private toastTitle:string = ''
+
+
+
   constructor(
-    private _triviasService: TriviasService,
-    private fb: FormBuilder
+    private toastService: ToastService,
+    private fb: FormBuilder,
+    private router:Router,
+    private _triviasService:TriviasService
   ) {}
 
   tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
@@ -33,6 +43,7 @@ export class CrearQuizComponent implements OnInit {
       descripcion: [, [Validators.required]],
       preguntas: this.fb.array([])
     });
+    this.agregarPregunta()
   }
 
   preguntas(): FormArray {
@@ -67,7 +78,11 @@ export class CrearQuizComponent implements OnInit {
   }
 
   agregarOpcion(indexPreg: number) {
-    this.opciones(indexPreg).push(this.newOpcion());
+    if(this.opciones(indexPreg).length === 6){
+      this.toastService.showError('El maximo es de 6 opciones','Eror')
+    }else{
+      this.opciones(indexPreg).push(this.newOpcion());
+    }
     // console.log(this.opciones(indexPreg));
   }
 
@@ -79,5 +94,14 @@ export class CrearQuizComponent implements OnInit {
     this._triviasService
       .crearTriviaConPreguntasOpciones(this.triviaForm.value)
       .subscribe(console.log);
+    this.showToast()
   }
+
+  showToast(){
+    this.toastTitle = 'Trivia creada con exito'
+    this.toastMsg = 'Puede verla en su perfil'
+    this.toastService.showSuccess(this.toastMsg,this.toastTitle)
+    this.router.navigateByUrl('/main/mis-trivias')
+  }
+
 }

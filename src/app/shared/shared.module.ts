@@ -7,13 +7,16 @@ import { ModalMisTriviasComponent } from './components/modal-mis-trivias/modal-m
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
+
+
 @NgModule({
   declarations: [NavbarComponent, ModalMisTriviasComponent],
   imports: [
     CommonModule,
     SharedRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+
   ],
   exports: [NavbarComponent, ModalMisTriviasComponent]
 })
