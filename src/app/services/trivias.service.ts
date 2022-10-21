@@ -33,7 +33,7 @@ export class TriviasService {
     );
   }
 
-  crearTriviaConPreguntasOpciones(bodyTrivias: string) {
+  async crearTriviaConPreguntasOpciones(bodyTrivias: string) {
     const res = this.http.post(
       `${env.dev.serverUrl}/trivias/conPreguntas`,
       bodyTrivias
@@ -43,8 +43,8 @@ export class TriviasService {
         of(res);
       }),
       catchError(err => {
-        console.log(err.error);
-        return throwError(() => err.error.body.errors);
+        // console.log(err.error);
+        return throwError(() => err.error);
       })
     );
   }

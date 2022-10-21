@@ -20,11 +20,6 @@ import { TriviasService } from 'app/services/trivias.service';
 })
 export class CrearQuizComponent implements OnInit {
 
-  private toastMsg:string = ''
-  private toastTitle:string = ''
-
-
-
   constructor(
     private toastService: ToastService,
     private fb: FormBuilder,
@@ -90,28 +85,42 @@ export class CrearQuizComponent implements OnInit {
     this.opciones(indexPreg).removeAt(indexOpc);
   }
 
-  crearTrivia() {
-    this._triviasService
-      .crearTriviaConPreguntasOpciones(this.triviaForm.value).subscribe({
+  async crearTrivia() {
+    (await this._triviasService
+      .crearTriviaConPreguntasOpciones(this.triviaForm.value)).subscribe({
         next:(()=>{
           console.log
+          const title = 'Trivia creada con exito'
+          const msg = 'Puede verla en su perfil'
+          this.toastService.showSuccess(msg,title)
+          this.router.navigateByUrl('main/mis-trivias')
         }),
         error:((err:any)=>{
-          const errores:any[] =[]
-          err.forEach((e:any) => {
+          let arrayErrores:any[] = []
+          let errorToast:any = ''
+          if(err.body.errors){
+            err.body.errors.forEach((e:any) => {
+              arrayErrores.push(e.msg)
+            });
+            errorToast = arrayErrores.join(' y ')
+          }else {
+            errorToast = err.body
+          }if(err.body.code){
+            switch (err.body.code) {
+              case 'ER_WARN_DATA_TRUNCATED':
+                  errorToast = 'Debe completar todos los datos'
+                break;
+              default:
+                break;
+            }
+            // errorToast = err.body.code
 
-          });
-          console.log('catch',err)
+          }
+          this.toastService.showError(errorToast,'Error')
+          console.log('err en toasterror ->',errorToast)
         })
-        });
-    this.showToast()
+     });
   }
 
-  showToast(){
-    this.toastTitle = 'Trivia creada con exito'
-    this.toastMsg = 'Puede verla en su perfil'
-    this.toastService.showSuccess(this.toastMsg,this.toastTitle)
-    // this.router.navigateByUrl('/main/mis-trivias')
-  }
 
 }
