@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Trivia } from 'app/interfaces/Trivias.interface';
+import { ToastService } from 'app/services/toast.service';
 import { TriviasService } from 'app/services/trivias.service';
 
 @Component({
@@ -25,7 +26,8 @@ export class EditarTriviaComponent implements OnInit {
     private activatedRoute:ActivatedRoute,
     private triviasService:TriviasService,
     private _triviasService: TriviasService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastService:ToastService
   ) {
 
   }
@@ -147,5 +149,6 @@ export class EditarTriviaComponent implements OnInit {
     //   .crearTriviaConPreguntasOpciones(this.triviaForm.value)
     //   .subscribe(console.log);
     console.log(this.triviaForm.value)
+    this.toastService.showSuccess('','Trivia creada con exito')
   }
 }
