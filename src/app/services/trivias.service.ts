@@ -49,20 +49,17 @@ export class TriviasService {
     );
   }
 
-  async actualizarOpciones(){
-  }
-  async actualizarPreguntas(){
+  async actualizarOpciones() {}
+  async actualizarPreguntas() {}
 
-  }
-
-
-  obtenerSesionDelUsuario() {
+  obtenerPartidasDelUsuario() {
     return new Promise((resolve, reject) => {
       this.http
-        .get(`${env.dev.serverUrl}/partida/obtenerSesion/usuario`)
+        .get(`${env.dev.serverUrl}/partida/obtenerPartidas/usuario`)
         .toPromise()
         .then((res: any) => {
-          resolve(res.body.id);
+          // console.log(res.body[0].id);
+          resolve(res.body[0].id);
         });
     });
   }
