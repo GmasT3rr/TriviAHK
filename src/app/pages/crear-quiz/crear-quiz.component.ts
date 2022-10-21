@@ -28,7 +28,6 @@ export class CrearQuizComponent implements OnInit {
   ) {}
 
   tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
-  esCorrecta = ['true', 'false'];
 
   triviaForm!: FormGroup;
 
@@ -67,7 +66,7 @@ export class CrearQuizComponent implements OnInit {
 
   newOpcion(): FormGroup {
     return this.fb.group({
-      descripcion: [, [Validators.required]],
+      descripcion: ['', [Validators.required]],
       esCorrecta: [, [Validators.required]]
     });
   }
@@ -117,7 +116,7 @@ export class CrearQuizComponent implements OnInit {
 
           }
           this.toastService.showError(errorToast,'Error')
-          console.log('err en toasterror ->',errorToast)
+          // console.log('err en toasterror ->',errorToast)
         })
      });
   }
