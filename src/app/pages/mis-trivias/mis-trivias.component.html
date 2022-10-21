@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="misPartidas col-9 mt-5 ml-5">
+    <div class="misPartidas col-md-9 mt-5 ml-5">
       <h2 style="font-weight: bold">Mis trivias</h2>
       <hr />
     </div>
-    <div class="misPartidas col-9 mt-3 mb-3 ml-5">
+    <div class="misPartidas col-md-9 mt-3 mb-3 ml-5">
       <div class="dropdown">
         <button
           class="btn dropdown-toggle"
@@ -34,13 +34,13 @@
         </div>
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-md-8">
       <div
         class="mb-3 mt-3"
         *ngFor="let trivia of trivias | slice: offset:limit; let i = index">
         <div class="row d-flex">
           <div
-            class="col-2 card justify-content-center"
+            class="col-md-2 card justify-content-center"
             style="background-color: #4a51c9">
             <!-- Parte de color de la izquierda -->
             <div class="row d-flex">
@@ -68,9 +68,9 @@
               </div>
             </div>
           </div>
-          <div class="col-10 card">
+          <div class="col-md-10 card">
             <div class="row d-flex">
-              <div class="col-8">
+              <div class="col-md-8">
                 <div class="d-flex flex-row m-2">
                   <h4>{{ trivia._nombre }}</h4>
                   <svg
@@ -104,7 +104,7 @@
                 </p>
                 <ng-template #noDescp> Sin descripcion </ng-template>
               </div>
-              <div class="col-4 text-center">
+              <div class="col-md-4 text-center">
                 <h4>Estrellitas de rating</h4>
                 <p>Id: {{ trivia.id }}</p>
                 <p>{{ trivia._fechaCreacion | date }}</p>
@@ -116,7 +116,7 @@
       </div>
     </div>
 
-    <div class="col-8">
+    <div class="col-md-8">
       <div class="d-flex justify-content-between mt-4 mb-5">
         <div
           (click)="prevQuiz()"
