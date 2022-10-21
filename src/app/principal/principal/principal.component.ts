@@ -10,7 +10,7 @@ export class PrincipalComponent implements OnInit {
 
   partidas: any;
   usuarioID: number = 0;
-  public trivia: any;
+  trivia: any;
 
   constructor(
     public socketService: SocketService
@@ -42,6 +42,14 @@ export class PrincipalComponent implements OnInit {
 
   mostrarSiguientePregunta() {
     this.socketService.mostrarSiguientePregunta();
+  }
+
+  responder() {
+    this.socketService.responder();
+  }
+
+  finalizar() {
+    this.socketService.finalizarPartida();
   }
 
 }

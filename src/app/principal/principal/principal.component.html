@@ -6,8 +6,12 @@
   <button (click)="salirse()">salirse</button>
   <br>
   <button (click)="mostrarSiguientePregunta()">Siguiente pregunta</button>
-  
-  <p>{{trivia}}</p>
+  <br>
+  <button (click)="responder()">responder</button>
+  <p>{{trivia | json}}</p>
+
+  <br>
+  <button (click)="finalizar()">Finalizar Partida</button>
 
 </div>
 
