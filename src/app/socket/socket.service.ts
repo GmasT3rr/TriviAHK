@@ -15,7 +15,7 @@ export class SocketService {
     this.socket = io("http://localhost:3000/juego");
 
     this.socket.on("mensaje", (mensajeNuevo: string) => {
-      alert(mensajeNuevo);
+      //alert(mensajeNuevo);
     });
 
     this.socket.on('partida:status-union', (partida: any) => {

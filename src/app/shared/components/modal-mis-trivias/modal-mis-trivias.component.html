@@ -1,0 +1,175 @@
+<div
+  class="modal fade"
+  id="misTriviasModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1
+          class="modal-title fs-5"
+          id="exampleModalLabel"
+          *ngIf="modalPorAbrir == 'jugar'">
+          Jugar Trivia: {{ trivia._nombre }}
+        </h1>
+        <h1
+          class="modal-title fs-5"
+          id="exampleModalLabel"
+          *ngIf="modalPorAbrir == 'editar'">
+          Editar Trivia: {{ trivia._nombre }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div
+        class="modal-body d-flex justify-content-center row"
+        *ngIf="modalPorAbrir == 'jugar'">
+        <div
+          class="card"
+          style="width: 18rem">
+          <div class="card-header">Detalles de la trivia</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Nombre: {{ trivia._nombre }}</li>
+            <li class="list-group-item">
+              Descripción: {{ trivia._descripcion }}
+            </li>
+            <li class="list-group-item">
+              Preguntas:
+              <div
+                *ngFor="let pregunta of trivia._preguntas; let i = index"
+                class="card">
+                <li class="list-group-item">
+                  Pregunta: {{ pregunta._leyenda }}
+                </li>
+                <li class="list-group-item">
+                  Tipo: {{ pregunta.tipoDePregunta }}
+                </li>
+                <li class="list-group-item">
+                  Opciones:
+                  <div
+                    class="list-group-item"
+                    *ngFor="let opcion of pregunta._opciones; let index = index"
+                    class="card my-2">
+                    <li class="list-group-item">Opción: {{ index }}</li>
+                    <li class="list-group-item">
+                      Descripción: {{ opcion._descripcion }}
+                    </li>
+                    <li class="list-group-item">
+                      Es Correcta: {{ opcion._esCorrecta }}
+                    </li>
+                  </div>
+                </li>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <form [formGroup]="crearForm">
+          <div class="list-group list-group-flush mt-5 px-5">
+            <label for="tiempoPartida">Tiempo entre Preguntas:</label>
+            <input
+              type="number"
+              min="5"
+              name="tiempoPartida"
+              formControlName="segundosEntrePreguntas"
+              id="tiempoPartida"
+              placeholder="En segundos..." />
+            <div
+              class="alert alert-danger mt-2"
+              role="alert"
+              *ngIf="
+                crearForm.controls['segundosEntrePreguntas'].errors &&
+                crearForm.controls['segundosEntrePreguntas'].touched
+              ">
+              Este campo presenta errores
+            </div>
+          </div>
+        </form>
+      </div>
+      <div
+        class="modal-body d-flex justify-content-center row px-5"
+        *ngIf="modalPorAbrir == 'editar'">
+        <h5>Nombre</h5>
+        <input
+          type="text"
+          name=""
+          id=""
+          [(ngModel)]="trivia._nombre" />
+        <h5 class="mt-3">Descripción</h5>
+        <input
+          type="text"
+          name=""
+          id=""
+          [(ngModel)]="trivia._descripcion" />
+        <h5 class="mt-3">Preguntas:</h5>
+        <ng-container
+          *ngFor="let pregunta of trivia._preguntas; let index = index">
+          <div class="card">
+            <h5 class="mt-3">Pregunta: {{ index }}</h5>
+            <h6>Descripción</h6>
+            <input
+              type="text"
+              name=""
+              id=""
+              [(ngModel)]="pregunta._leyenda" />
+            <h6 class="mt-3">Tipo de pregunta</h6>
+            <select [(ngModel)]="pregunta.tipoDePregunta">
+              <option
+                *ngFor="let tipo of tiposDePreguntas"
+                [value]="tipo">
+                {{ tipo }}
+              </option>
+            </select>
+            <h5 class="mt-3">Opciones</h5>
+            <ng-container
+              *ngFor="let opcion of pregunta._opciones; let index = index">
+              <div class="card px-5 my-2 py-2">
+                <h6>Opcion: {{ index }}</h6>
+                <h6>Descripción</h6>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  [(ngModel)]="opcion._descripcion" />
+                <h6>Es corecta:</h6>
+                <select [(ngModel)]="opcion._esCorrecta">
+                  <option
+                    *ngFor="let valor of esCorrecta"
+                    [value]="valor">
+                    {{ valor }}
+                  </option>
+                </select>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          #btnModalCerrar>
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-modal-misTrivias"
+          *ngIf="modalPorAbrir == 'jugar'"
+          [disabled]="crearForm.invalid"
+          (click)="crearPartida()">
+          Crear
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary btn-modal-misTrivias"
+          *ngIf="modalPorAbrir == 'editar'">
+          Editar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

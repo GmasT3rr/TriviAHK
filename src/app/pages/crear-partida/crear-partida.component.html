@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <!-- Titulo de la página -->
+    <div class="text-center mt-5">
+      <span><h1>Crear Partida:</h1></span>
+    </div>
+    <div class="container">
+      <h2>Seleccione una trivia:</h2>
+
+      <div class="container d-flex row flex-wrap justify-content-center">
+        <ng-container
+          *ngFor="let trivia of triviasDelUsuario; let index = index">
+          <div
+            class="card m-3"
+            style="width: 18rem; cursor: pointer">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ trivia._nombre }} | {{trivia.id}}
+              </h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                {{ trivia._descripcion }}
+              </h6>
+              <p class="card-text" *ngIf="trivia._preguntas.length > 0">
+                {{trivia._preguntas | json}}
+              </p>
+              <button
+                class="btn btn-success"
+                (click)="crearPartida(index)">
+                Crear Partida
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.bgr {
+  /* background: url("../../../assets/login-bg.jpeg") !important; */
+  background-color:rgba(113, 97, 239, 1) !important;
+  /* Center the image */
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
+}
+.loading-icon{
+  color: white;
+  position: absolute;
+  top: 40%;
+}
+.loading-text{
+  color: white;
+  position: absolute;
+  top: 40%;
+}

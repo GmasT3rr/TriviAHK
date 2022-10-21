@@ -1,0 +1,9 @@
+.btn-modal-misTrivias {
+  background-color: #fd999b;
+  color: white;
+}
+
+.btn-modal-misTrivias:hover {
+  background-color: #da888a;
+  color: white;
+}
