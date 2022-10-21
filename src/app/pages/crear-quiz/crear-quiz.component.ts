@@ -92,8 +92,18 @@ export class CrearQuizComponent implements OnInit {
 
   crearTrivia() {
     this._triviasService
-      .crearTriviaConPreguntasOpciones(this.triviaForm.value)
-      .subscribe(console.log);
+      .crearTriviaConPreguntasOpciones(this.triviaForm.value).subscribe({
+        next:(()=>{
+          console.log
+        }),
+        error:((err:any)=>{
+          const errores:any[] =[]
+          err.forEach((e:any) => {
+
+          });
+          console.log('catch',err)
+        })
+        });
     this.showToast()
   }
 
@@ -101,7 +111,7 @@ export class CrearQuizComponent implements OnInit {
     this.toastTitle = 'Trivia creada con exito'
     this.toastMsg = 'Puede verla en su perfil'
     this.toastService.showSuccess(this.toastMsg,this.toastTitle)
-    this.router.navigateByUrl('/main/mis-trivias')
+    // this.router.navigateByUrl('/main/mis-trivias')
   }
 
 }

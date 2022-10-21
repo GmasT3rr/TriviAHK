@@ -44,7 +44,7 @@ export class TriviasService {
       }),
       catchError(err => {
         console.log(err.error);
-        return throwError(() => err);
+        return throwError(() => err.error.body.errors);
       })
     );
   }

@@ -149,6 +149,6 @@ export class EditarTriviaComponent implements OnInit {
     //   .crearTriviaConPreguntasOpciones(this.triviaForm.value)
     //   .subscribe(console.log);
     console.log(this.triviaForm.value)
-    this.toastService.showSuccess('','Trivia creada con exito')
+    this.toastService.showSuccess('','Trivia editada con exito')
   }
 }
