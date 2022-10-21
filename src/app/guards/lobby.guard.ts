@@ -30,7 +30,7 @@ export class LobbyGuard implements CanActivate {
     const urlLobby: string[] = state.url.split('/');
     // console.log(urlLobby[urlLobby.length - 1]);
     const idLobbyNumber = Number(urlLobby[urlLobby.length - 1]);
-    return this._triviasService.obtenerPartidasDelUsuario().then(res => {
+    return this._triviasService.obtenerPartidaDelUsuario().then(res => {
       // console.log(res);
       if (res == idLobbyNumber) return true;
       // console.log('canACtivate');

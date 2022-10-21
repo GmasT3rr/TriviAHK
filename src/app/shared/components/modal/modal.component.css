@@ -1,0 +1,9 @@
+.btn-modal-accion {
+  background-color: #fd999b;
+  color: white;
+}
+
+.btn-modal-accion:hover {
+  background-color: #da888a;
+  color: white;
+}
