@@ -6,18 +6,27 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { ModalMisTriviasComponent } from './components/modal-mis-trivias/modal-mis-trivias.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-
-
+import { ModalComponent } from './components/modal/modal.component';
+import { EsHostDirective } from './directives/es-host.directive';
 
 @NgModule({
-  declarations: [NavbarComponent, ModalMisTriviasComponent],
+  declarations: [
+    NavbarComponent,
+    ModalMisTriviasComponent,
+    ModalComponent,
+    EsHostDirective
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     ReactiveFormsModule,
-    FormsModule,
-
+    FormsModule
   ],
-  exports: [NavbarComponent, ModalMisTriviasComponent]
+  exports: [
+    NavbarComponent,
+    ModalMisTriviasComponent,
+    ModalComponent,
+    EsHostDirective
+  ]
 })
 export class SharedModule {}

@@ -12,7 +12,7 @@ export class PartidasService {
   crearPartida(idTrivia: number, segundosEntrePreguntas: number) {
     const res = this.http.post(
       `${env.dev.serverUrl}/partida/crear/${idTrivia}`,
-      {segundosEntrePreguntas}
+      { segundosEntrePreguntas }
     );
     return res.pipe(
       tap(res => {
@@ -36,5 +36,20 @@ export class PartidasService {
         return throwError(() => err);
       })
     );
+  }
+
+  obtenerPartida(idPartida: any) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${env.dev.serverUrl}/partida/${idPartida}`)
+        .toPromise()
+        .then((res: any) => {
+          // console.log(res.body[0].id);
+          resolve(res.body);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   }
 }
