@@ -6,6 +6,7 @@ import {
   RouterStateSnapshot,
   UrlTree
 } from '@angular/router';
+import { PartidasService } from 'app/services/partidas.service';
 import { TriviasService } from 'app/services/trivias.service';
 import { Observable } from 'rxjs';
 
@@ -14,7 +15,7 @@ import { Observable } from 'rxjs';
 })
 export class LobbyGuard implements CanActivate {
   constructor(
-    private _triviasService: TriviasService,
+    private _partidasService: PartidasService,
     private router: Router
   ) {}
 
@@ -26,16 +27,30 @@ export class LobbyGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    // console.log(state.url);
-    const urlLobby: string[] = state.url.split('/');
-    // console.log(urlLobby[urlLobby.length - 1]);
-    const idLobbyNumber = Number(urlLobby[urlLobby.length - 1]);
-    return this._triviasService.obtenerPartidaDelUsuario().then(res => {
-      // console.log(res);
-      if (res == idLobbyNumber) return true;
-      // console.log('canACtivate');
+    const urlLobby = state.url.split('/');
+    //Expresión Regex para ver si son todos números
+    let sampleRegEx: RegExp = /^[0-9]*$/;
+    //Si lo que va a hacer el idTrivia es erroneo Ejemplo:(asdasd)
+    //retorna a main/home
+    if (sampleRegEx.test(urlLobby[urlLobby.length - 1]) == false) {
       this.router.navigateByUrl('/main/home');
       return false;
-    });
+    }
+    const idLobbyNumber = Number(urlLobby[urlLobby.length - 1]);
+    return this._partidasService
+      .obtenerPartida(idLobbyNumber)
+      .then((res: any) => {
+        // console.log(res);
+        if (res.id == idLobbyNumber) return true;
+        // console.log('canACtivate');
+        this.router.navigateByUrl('/main/home');
+        return false;
+      })
+      .catch(error => {
+        // console.log(error);
+        //Si tenemos algun error del server nos manda al main/home
+        this.router.navigateByUrl('/main/home');
+        return false;
+      });
   }
 }
