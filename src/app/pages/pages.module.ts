@@ -19,7 +19,7 @@ import { EditarTriviaComponent } from './editar-trivia/editar-trivia.component';
     LoadingPageComponent,
     CrearPartidaComponent,
     MisTriviasComponent,
-    EditarTriviaComponent
+    EditarTriviaComponent,
   ],
   imports: [
     CommonModule,

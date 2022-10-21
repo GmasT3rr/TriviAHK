@@ -38,7 +38,6 @@ export class MisTriviasComponent implements OnInit {
   async ngOnInit() {
     (await this.triviasService.getTriviasDelUsuario()).subscribe((res: any) => {
       this.trivias = res.body;
-      console.log(this.trivias)
     });
   }
 

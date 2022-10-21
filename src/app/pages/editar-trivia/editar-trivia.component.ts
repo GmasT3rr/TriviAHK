@@ -75,7 +75,6 @@ export class EditarTriviaComponent implements OnInit {
         this.opciones(index).push(this.opcionesDeLaTrivia(opc._descripcion,opc._esCorrecta));
       });
     });
-    console.log(this.preguntas().getRawValue())
   }
 
   preguntasDeLaTrivia(leyenda:string,tipo:string,visible:boolean): FormGroup {
@@ -111,8 +110,6 @@ export class EditarTriviaComponent implements OnInit {
 
   agregarPregunta() {
     this.preguntas().push(this.newPregunta());
-    console.log(this.preguntas().getRawValue())
-
   }
 
   eliminarPregunta(indexPreg: number) {
@@ -149,7 +146,6 @@ export class EditarTriviaComponent implements OnInit {
     (await this._triviasService
       .actualizarTrivia(this.triviaForm.value,this.idTrivia)).subscribe({
         next:(()=>{
-          console.log
           const title = 'Trivia editada con exito'
           const msg = 'Puede verla en su perfil'
           this.toastService.showSuccess(msg,title)

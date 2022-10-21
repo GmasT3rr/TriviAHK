@@ -66,6 +66,20 @@ export class TriviasService {
     );
   }
 
+  async eliminarTriviaPermanente(id:any){
+    const res = this.http.delete(
+      `${env.dev.serverUrl}/trivias/eliminarPermanente/${id}`
+    );
+    return res.pipe(
+      tap(res => {
+        of(res);
+      }),
+      catchError(err => {
+        // console.log(err.error);
+        return throwError(() => err.error);
+      })
+    );
+  }
 
   obtenerPartidasDelUsuario() {
     return new Promise((resolve, reject) => {
