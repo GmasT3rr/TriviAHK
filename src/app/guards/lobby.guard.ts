@@ -33,7 +33,7 @@ export class LobbyGuard implements CanActivate {
     return this._triviasService.obtenerPartidaDelUsuario().then(res => {
       // console.log(res);
       if (res == idLobbyNumber) return true;
-      console.log('canACtivate');
+      // console.log('canACtivate');
       this.router.navigateByUrl('/main/home');
       return false;
     });

@@ -21,7 +21,7 @@ export class TriviasService {
     );
   }
 
-  getTriviasDelUsuario() {
+  async getTriviasDelUsuario() {
     const res = this.http.get(`${env.dev.serverUrl}/trivias/usuario`);
     return res.pipe(
       tap(res => {
@@ -63,10 +63,11 @@ export class TriviasService {
   obtenerSesionDelUsuario() {
     return new Promise((resolve, reject) => {
       this.http
-        .get(`${env.dev.serverUrl}/partida/obtenerSesion/usuario`)
+        .get(`${env.dev.serverUrl}/partida/obtenerPartidas/usuario`)
         .toPromise()
         .then((res: any) => {
-          resolve(res.body.id);
+          // console.log(res.body[0].id);
+          resolve(res.body[0].id);
         });
     });
   }

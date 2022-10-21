@@ -8,13 +8,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
 
+
+
 @NgModule({
   declarations: [NavbarComponent, ModalMisTriviasComponent, ModalComponent],
   imports: [
     CommonModule,
     SharedRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+
   ],
   exports: [NavbarComponent, ModalMisTriviasComponent, ModalComponent]
 })
