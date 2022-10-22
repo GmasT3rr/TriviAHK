@@ -30,7 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true,
       progressBar:true,
       progressAnimation:'decreasing',
-      timeOut:3000
+      timeOut:4000
     }),
     AuthModule.forRoot({
       ...env.auth,

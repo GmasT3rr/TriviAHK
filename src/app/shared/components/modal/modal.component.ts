@@ -31,6 +31,7 @@ export class ModalComponent implements OnInit {
     this._userService.getIdUser().subscribe((res: any) => {
       const idUser = res.body;
       this._partidasSevice.getPartidas().subscribe((res: any) => {
+        //Si no tiene partidas el usuario
         if (res.body.length == 0) {
           this._socketsService.unirse(
             idUser,
@@ -41,6 +42,7 @@ export class ModalComponent implements OnInit {
             `/main/lobby/${this.ingresarPartidaForm.value['codigo']}`
           );
         }
+        //Si la partida que encontro 
         if (res.body[0].id == this.ingresarPartidaForm.value['codigo']) {
           this.btnModalCerrar.nativeElement.click();
           this.router.navigateByUrl(

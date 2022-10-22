@@ -1,10 +1,19 @@
-import { Directive } from '@angular/core';
+import {
+  Directive,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef
+} from '@angular/core';
 
 @Directive({
   selector: '[appEsHost]'
 })
-export class EsHostDirective {
-
-  constructor() { console.log('hola');}
-
+export class EsHostDirective implements OnInit {
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef
+  ) {}
+  ngOnInit(): void {
+    this.viewContainer.createEmbeddedView(this.templateRef);
+  }
 }

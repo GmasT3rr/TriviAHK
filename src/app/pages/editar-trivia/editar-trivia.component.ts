@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Trivia } from 'app/interfaces/Trivias.interface';
 import { ToastService } from 'app/services/toast.service';
 import { TriviasService } from 'app/services/trivias.service';
@@ -20,14 +20,14 @@ export class EditarTriviaComponent implements OnInit {
 
 
   tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
-  esCorrecta = ['true', 'false'];
 
   constructor(
     private activatedRoute:ActivatedRoute,
     private triviasService:TriviasService,
     private _triviasService: TriviasService,
     private fb: FormBuilder,
-    private toastService:ToastService
+    private toastService:ToastService,
+    private router:Router
   ) {
 
   }
@@ -75,14 +75,13 @@ export class EditarTriviaComponent implements OnInit {
         this.opciones(index).push(this.opcionesDeLaTrivia(opc._descripcion,opc._esCorrecta));
       });
     });
-    console.log(this.preguntas().getRawValue())
   }
 
   preguntasDeLaTrivia(leyenda:string,tipo:string,visible:boolean): FormGroup {
       return this.fb.group({
         leyenda: [leyenda, [Validators.required]],
         tipoDePregunta: [tipo, [Validators.required]],
-        visible: [visible],
+        // visible: [visible],
         opciones: this.fb.array([])
       });
   }
@@ -111,8 +110,6 @@ export class EditarTriviaComponent implements OnInit {
 
   agregarPregunta() {
     this.preguntas().push(this.newPregunta());
-    console.log(this.preguntas().getRawValue())
-
   }
 
   eliminarPregunta(indexPreg: number) {
@@ -140,15 +137,43 @@ export class EditarTriviaComponent implements OnInit {
   }
 
 
-  cambiarVisibilidad(pregunta:any){
-    pregunta.value.visible = !pregunta.value.visible;
-  }
+  // cambiarVisibilidad(pregunta:any){
+  //   pregunta.value.visible = !pregunta.value.visible;
+  // }
 
-  editarTrivia() {
-    // this._triviasService
-    //   .crearTriviaConPreguntasOpciones(this.triviaForm.value)
-    //   .subscribe(console.log);
-    console.log(this.triviaForm.value)
-    this.toastService.showSuccess('','Trivia creada con exito')
+
+  async editarTrivia() {
+    (await this._triviasService
+      .actualizarTrivia(this.triviaForm.value,this.idTrivia)).subscribe({
+        next:(()=>{
+          const title = 'Trivia editada con exito'
+          const msg = 'Puede verla en su perfil'
+          this.toastService.showSuccess(msg,title)
+          this.router.navigateByUrl('main/mis-trivias')
+        }),
+        error:((err:any)=>{
+           let arrayErrores:any[] = []
+           let errorToast:any = ''
+           if(err.body.errors){
+             err.body.errors.forEach((e:any) => {
+               arrayErrores.push(e.msg)
+             });
+             errorToast = arrayErrores.join(' y ')
+           }else {
+             errorToast = err.body
+           }if(err.body.code){
+             switch (err.body.code) {
+               case 'ER_WARN_DATA_TRUNCATED':
+                   errorToast = 'Debe completar todos los datos'
+                 break;
+               default:
+                 break;
+             }
+             // errorToast = err.body.code
+           }
+           this.toastService.showError(errorToast,'Error')
+           console.log('err en toasterror ->',errorToast)
+        })
+     });
   }
 }
