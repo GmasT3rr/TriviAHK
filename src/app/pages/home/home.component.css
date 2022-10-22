@@ -128,3 +128,25 @@ i {
     font-size: 22px;
   }
 }
+
+
+/*
+-----------
+*/
+
+.wave:hover span{
+  display: inline-block;
+  animation: wave-anim 2.5s;
+  animation-iteration-count: infinite;
+  animation-delay: calc(0.1s * var(--item));
+}
+@keyframes wave-anim{
+  0%,
+  40%,
+  100%{
+    transform: translateY(0);
+  }
+  20%{
+    transform: translateY(-20px);
+  }
+}
