@@ -1,29 +1,35 @@
-.lobby-data{
+.lobby-data {
   text-align: center;
   color: white;
-  .data__pin{
-    small{
+  .data__pin {
+    small {
       font-size: 45px;
       font-weight: 100;
     }
-    b{
+    b {
       font-size: 65px;
     }
   }
-  .data__usuarios{
-    p{
+  .data__usuarios {
+    p {
       font-size: 65px;
     }
-    fa-icon{
-      font-size: 45px
+    fa-icon {
+      font-size: 45px;
     }
   }
-  .data__usuarios, .data__pin, .data__host{
-    margin: 50px 120px 0px 120px ;
-}
+  .data__usuarios,
+  .data__pin {
+    margin: 50px 120px 0px 120px;
+  }
 }
 
-
+.data__host, .data__player {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
 
 .btn_iniciar_partida {
   background-color: #fd999b;
@@ -32,5 +38,14 @@
 
 .btn_iniciar_partida:hover {
   background-color: #da888a;
+  color: white;
+}
+.btn_finalizar_lobby, .btn_salirse {
+  background-color: #fc1a1e;
+  color: white;
+}
+
+.btn_finalizar_lobby:hover, .btn_salirse:hover {
+  background-color: #c73b3d;
   color: white;
 }

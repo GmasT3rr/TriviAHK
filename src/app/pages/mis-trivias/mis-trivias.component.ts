@@ -29,7 +29,7 @@ export class MisTriviasComponent implements OnInit {
     public socketService: SocketService,
     private triviasService: TriviasService,
     private _partidas: PartidasService,
-    private router:Router
+    private router: Router
   ) {
     this.offset = 0;
     this.limit = 4;
@@ -57,10 +57,7 @@ export class MisTriviasComponent implements OnInit {
     }
   }
 
-  WIP(){
-    alert('WORK IN PROGRESS, NOT DONE YET')
-  }
-  irEditarTrivia(id:any){
-    this.router.navigateByUrl(`/main/editar-trivia/${id}`)
+  irEditarTrivia(id: any) {
+    this.router.navigateByUrl(`/main/editar-trivia/${id}`);
   }
 }

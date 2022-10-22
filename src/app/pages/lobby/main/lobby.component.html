@@ -17,7 +17,7 @@
           [icon]="faUsers"
           class="data__usuarios--icon"></fa-icon>
         <br />
-        <p>9</p>
+        <p>{{conteoUsuarios}}</p>
       </div>
       <div class="data__pin">
         <small>Codigo de la sala</small>
@@ -30,10 +30,26 @@
         renderContentUser: false
       -->
       <div
-        *esHost="{idPartida,renderContentUser: false}"
+        *esHost="{idPartida,renderContentUser: true}; sino esUsuario"
         class="data__host">
         <button class="btn btn_iniciar_partida">Iniciar partida</button>
+        <button
+          class="btn btn_finalizar_lobby"
+          (click)="finalizarLobby()">
+          Finalizar lobby
+        </button>
       </div>
+      <ng-template #esUsuario class="data__player">
+        <div class="data__player">
+          <button
+          class="btn btn_salirse"
+          (click)="salirseLobby()">
+          Salirse lobby
+        </button>
+        </div>
+
+      </ng-template>
+
     </div>
     <div class="usuarios-container row">
       <div

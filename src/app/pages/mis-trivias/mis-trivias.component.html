@@ -38,6 +38,7 @@
       <div
         class="mb-3 mt-3"
         *ngFor="let trivia of trivias | slice: offset:limit; let i = index">
+        <app-modal [modalPorAbrir]="'iniciarPartida'" [idTrivia]="trivia.id"></app-modal>
         <div class="row d-flex">
           <div
             class="col-md-2 card justify-content-center"
@@ -47,8 +48,8 @@
               <div
                 class="text-center"
                 style="cursor: pointer"
-                (click)="WIP()"
-                >
+                data-bs-toggle="modal"
+                data-bs-target="#modalGeneral">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="50"
@@ -68,6 +69,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-10 card">
             <div class="row d-flex">
               <div class="col-md-8">
