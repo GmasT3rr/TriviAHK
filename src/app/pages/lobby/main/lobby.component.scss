@@ -18,7 +18,19 @@
       font-size: 45px
     }
   }
-  .data__usuarios, .data__pin{
+  .data__usuarios, .data__pin, .data__host{
     margin: 50px 120px 0px 120px ;
 }
+}
+
+
+
+.btn_iniciar_partida {
+  background-color: #fd999b;
+  color: white;
+}
+
+.btn_iniciar_partida:hover {
+  background-color: #da888a;
+  color: white;
 }

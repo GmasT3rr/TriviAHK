@@ -1,23 +1,46 @@
-<div class="lobby container mx-auto">
-  <div *appEsHost>asdasd</div>
-  <div class="lobby-data bg-primary d-flex justify-content-center px-5">
-    <div class="data__usuarios">
-      <fa-icon [icon]="faUsers" class="data__usuarios--icon"></fa-icon>
-      <br />
-      <p>9</p>
+<div style="background-color: #7161ef; min-height: 854px">
+  <div class="lobby container mx-auto">
+    <!--
+      Manera de usar ng template para mostrar contenido exclusivo
+      para el creador o el usuario
+    -->
+    <!-- <div *esHost="{idPartida, renderContentUser:true}; sino esUsuario">
+      Sos creador
     </div>
-    <div class="data__pin">
-      <small>Codigo de la sala</small>
-      <br />
-      <b>50273</b>
+    <ng-template #esUsuario>
+      <div>Sos player</div>
+    </ng-template> -->
+
+    <div class="lobby-data d-flex justify-content-center px-5">
+      <div class="data__usuarios">
+        <fa-icon
+          [icon]="faUsers"
+          class="data__usuarios--icon"></fa-icon>
+        <br />
+        <p>9</p>
+      </div>
+      <div class="data__pin">
+        <small>Codigo de la sala</small>
+        <br />
+        <b>{{ idPartida }}</b>
+      </div>
+      <!--
+        Si queremos renderizar unicamente lo del creador
+        y no definir el ng template para el user mandar
+        renderContentUser: false
+      -->
+      <div
+        *esHost="{idPartida,renderContentUser: false}"
+        class="data__host">
+        <button class="btn btn_iniciar_partida">Iniciar partida</button>
+      </div>
     </div>
-  </div>
-  <div class="usuarios-container row">
-    <div
-      class="col-4 my-3"
-      *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]"
-    >
-      <app-user-card></app-user-card>
+    <div class="usuarios-container row">
+      <div
+        class="col-4 my-3"
+        *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]">
+        <app-user-card></app-user-card>
+      </div>
     </div>
   </div>
 </div>
