@@ -1,4 +1,3 @@
-import { LobbyModule } from './lobby/lobby.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -28,7 +27,6 @@ import { InfoTriviaComponent } from './info-trivia/info-trivia.component';
     PagesRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    LobbyModule,
   ],
 })
 export class PagesModule {}
