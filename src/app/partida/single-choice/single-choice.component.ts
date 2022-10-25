@@ -27,5 +27,4 @@ export class SingleChoiceComponent implements OnInit {
             "background-color": "#FFFFFF"
           };      }
   }
-
 }
