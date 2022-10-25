@@ -1,6 +1,6 @@
 
 <!-- Modal -->
-<div class="modal fade" id="borrar-trivia-modal" tabindex="-1" aria-labelledby="borrar-trivia-modal-Label" aria-hidden="true">
+<!-- <div class="modal fade" id="borrar-trivia-modal" tabindex="-1" aria-labelledby="borrar-trivia-modal-Label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -23,6 +23,25 @@
         (click)="borrarTrivia()"
         >Si, estoy seguro</button>
       </div>
+    </div>
+  </div>
+</div> -->
+<div class="modal fade" id="borrar-trivia-modal" tabindex="-1" aria-labelledby="borrar-trivia-modal-Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #FFB1B5;border-radius: 25px;">
+      <div class="modal-body text-center p-5" style="color: white;">
+        <h5 class="modal-title" id="borrar-trivia-modal-Label"
+        style="font-weight: bold;"
+        >¿Esta seguro que desea eliminar esta Trivia?</h5>
+        <button type="button" class="btn col-12 mt-3" data-dismiss="modal"
+        style="background-color: #FD999B; color: white;"
+        >No, me arrepentí</button>
+        <button type="button" class="btn col-12 mt-3" data-dismiss="modal"
+        style="background-color: #7161EF; color: white;"
+        (click)="borrarTrivia()"
+        >Si, estoy seguro</button>
+      </div>
+
     </div>
   </div>
 </div>

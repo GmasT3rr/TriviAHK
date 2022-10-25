@@ -11,6 +11,7 @@ import { CrearQuizComponent } from './crear-quiz/crear-quiz.component';
 import { CrearPartidaComponent } from './crear-partida/crear-partida.component';
 import { MisTriviasComponent } from './mis-trivias/mis-trivias.component';
 import { EditarTriviaComponent } from './editar-trivia/editar-trivia.component';
+import { InfoTriviaComponent } from './info-trivia/info-trivia.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { EditarTriviaComponent } from './editar-trivia/editar-trivia.component';
     CrearPartidaComponent,
     MisTriviasComponent,
     EditarTriviaComponent,
+    InfoTriviaComponent,
   ],
   imports: [
     CommonModule,

@@ -8,6 +8,7 @@ import { CrearPartidaComponent } from './crear-partida/crear-partida.component';
 import { MisTriviasComponent } from './mis-trivias/mis-trivias.component';
 import { LobbyGuard } from 'app/guards/lobby.guard';
 import { EditarTriviaComponent } from './editar-trivia/editar-trivia.component';
+import { InfoTriviaComponent } from './info-trivia/info-trivia.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: 'crear-trivia', component: CrearQuizComponent },
   { path: 'crearPartida', component: CrearPartidaComponent },
   { path: 'mis-trivias', component: MisTriviasComponent },
+  { path: 'info-trivia/:id', component: InfoTriviaComponent },
+
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 

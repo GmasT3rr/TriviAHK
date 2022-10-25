@@ -60,4 +60,7 @@ export class MisTriviasComponent implements OnInit {
   irEditarTrivia(id: any) {
     this.router.navigateByUrl(`/main/editar-trivia/${id}`);
   }
+  irVerTrivia(id: any) {
+    this.router.navigateByUrl(`/main/info-trivia/${id}`);
+  }
 }
