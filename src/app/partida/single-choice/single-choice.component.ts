@@ -22,14 +22,6 @@ export class SingleChoiceComponent implements OnInit {
           return {
             "background-color": "#50FFB5"
           };
-        case 2:
-          return {
-            "background-color": "#FFEB33"
-          };
-        case 3:
-          return {
-            "background-color": "#69E2FF"
-          };
         default:
           return {
             "background-color": "#FFFFFF"
