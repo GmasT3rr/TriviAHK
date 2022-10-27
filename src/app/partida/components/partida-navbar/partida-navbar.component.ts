@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-partida-navbar',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./partida-navbar.component.css']
 })
 export class PartidaNavbarComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor() { }
+  esLobby: boolean = false;
 
   ngOnInit(): void {
+    let ruta = this.router.url.split('/');
+    let res = ruta.find((valor: string) => valor == 'lobby');
+    if (res == 'lobby') {
+      this.esLobby = true;
+    }
+    // console.log(res);
   }
-
 }
