@@ -33,7 +33,7 @@ export class CrearQuizComponent implements OnInit {
 
   ngOnInit(): void {
     this.triviaForm = this.fb.group({
-      nombre: [, [Validators.required]],
+      nombre: [, [Validators.required,Validators.maxLength(25)]],
       descripcion: [, [Validators.required]],
       preguntas: this.fb.array([])
     });
