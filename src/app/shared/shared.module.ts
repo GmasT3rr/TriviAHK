@@ -8,13 +8,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
 import { EsHostDirective } from './directives/es-host.directive';
+import { ModalBorrarTriviaComponent } from './components/modal-borrar-trivia/modal-borrar-trivia.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     ModalMisTriviasComponent,
     ModalComponent,
-    EsHostDirective
+    EsHostDirective,
+    ModalBorrarTriviaComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { EsHostDirective } from './directives/es-host.directive';
     NavbarComponent,
     ModalMisTriviasComponent,
     ModalComponent,
-    EsHostDirective
+    EsHostDirective,
+    ModalBorrarTriviaComponent
   ]
 })
 export class SharedModule {}

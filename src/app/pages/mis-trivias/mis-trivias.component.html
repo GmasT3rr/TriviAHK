@@ -1,10 +1,11 @@
+<app-modal-borrar-trivia></app-modal-borrar-trivia>
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="misPartidas col-9 mt-5 ml-5">
+    <div class="misPartidas col-md-9 mt-5 ml-5">
       <h2 style="font-weight: bold">Mis trivias</h2>
       <hr />
     </div>
-    <div class="misPartidas col-9 mt-3 mb-3 ml-5">
+    <div class="misPartidas col-md-9 mt-3 mb-3 ml-5">
       <div class="dropdown">
         <button
           class="btn dropdown-toggle"
@@ -34,21 +35,22 @@
         </div>
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-md-8">
       <div
         class="mb-3 mt-3"
         *ngFor="let trivia of trivias | slice: offset:limit; let i = index">
+        <app-modal [modalPorAbrir]="'iniciarPartida'" [idTrivia]="trivia.id"></app-modal>
         <div class="row d-flex">
           <div
-            class="col-2 card justify-content-center"
+            class="col-md-2 card justify-content-center"
             style="background-color: #4a51c9">
             <!-- Parte de color de la izquierda -->
             <div class="row d-flex">
               <div
                 class="text-center"
                 style="cursor: pointer"
-                (click)="WIP()"
-                >
+                data-bs-toggle="modal"
+                data-bs-target="#modalGeneral">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="50"
@@ -68,18 +70,22 @@
               </div>
             </div>
           </div>
-          <div class="col-10 card">
+
+          <div class="col-md-10 card">
             <div class="row d-flex">
-              <div class="col-8">
+              <div class="col-md-8">
                 <div class="d-flex flex-row m-2">
-                  <h4>{{ trivia._nombre }}</h4>
+                  <h4
+                  style="cursor: pointer;"
+                  (click)="irVerTrivia(trivia.id)"
+                  >{{ trivia._nombre }}</h4>
                   <svg
-                    class="ms-2"
+                    class="ms-3"
                     style="cursor: pointer"
                     (click)="irEditarTrivia(trivia.id)"
                     xmlns="http://www.w3.org/2000/svg"
-                    width="25"
-                    height="25"
+                    width="28"
+                    height="28"
                     viewBox="0 0 20 20"
                     fill="none">
                     <g clip-path="url(#clip0_3050_442177)">
@@ -96,15 +102,26 @@
                       </clipPath>
                     </defs>
                   </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                  style="cursor: pointer"
+                  data-toggle="modal" data-target="#borrar-trivia-modal"
+                  width="28"
+                  height="28"
+                  fill="none"
+                  class="bi bi-trash3 ms-3"
+                  viewBox="0 0 16 16">
+                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"
+                    fill="#FD999B"/>
+                  </svg>
                 </div>
+                  <hr />
 
-                <hr />
                 <p *ngIf="trivia._descripcion; else noDescp">
                   {{ trivia._descripcion | slice: 0:50 }}
                 </p>
                 <ng-template #noDescp> Sin descripcion </ng-template>
               </div>
-              <div class="col-4 text-center">
+              <div class="col-md-4 text-center">
                 <h4>Estrellitas de rating</h4>
                 <p>Id: {{ trivia.id }}</p>
                 <p>{{ trivia._fechaCreacion | date }}</p>
@@ -116,7 +133,7 @@
       </div>
     </div>
 
-    <div class="col-8">
+    <div class="col-md-8">
       <div class="d-flex justify-content-between mt-4 mb-5">
         <div
           (click)="prevQuiz()"

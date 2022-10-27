@@ -29,7 +29,7 @@ export class MisTriviasComponent implements OnInit {
     public socketService: SocketService,
     private triviasService: TriviasService,
     private _partidas: PartidasService,
-    private router:Router
+    private router: Router
   ) {
     this.offset = 0;
     this.limit = 4;
@@ -38,7 +38,6 @@ export class MisTriviasComponent implements OnInit {
   async ngOnInit() {
     (await this.triviasService.getTriviasDelUsuario()).subscribe((res: any) => {
       this.trivias = res.body;
-      console.log(this.trivias)
     });
   }
 
@@ -58,10 +57,10 @@ export class MisTriviasComponent implements OnInit {
     }
   }
 
-  WIP(){
-    alert('WORK IN PROGRESS, NOT DONE YET')
+  irEditarTrivia(id: any) {
+    this.router.navigateByUrl(`/main/editar-trivia/${id}`);
   }
-  irEditarTrivia(id:any){
-    this.router.navigateByUrl(`/main/editar-trivia/${id}`)
+  irVerTrivia(id: any) {
+    this.router.navigateByUrl(`/main/info-trivia/${id}`);
   }
 }

@@ -1,4 +1,4 @@
-
+<app-modal-borrar-trivia></app-modal-borrar-trivia>
 <div class="container">
   <div class="row d-flex justify-content-center">
         <!-- Titulo de la página -->
@@ -10,15 +10,43 @@
     <div class="row d-flex justify-content-center">
       <div class="col-8 mt-5 mb-5">
         <form [formGroup]="triviaForm" class="text-center">
-          <div class="mt-2 mb-2">
-            <div class="my-4 text-left">
+          <div class="row d-flex justify-content-center mt-4">
+            <div class="row d-flex justify-content-between  align-items-center">
+              <!-- Boton para añadir una opcion a la pregunta -->
+            <div class="col-sm-9 text-left my1 p-2">
               <h4 style="font-weight: bold">{{trivia?._nombre }}</h4>
+             </div>
+            <!-- Boton para eliminar pregunta -->
+            <div class="col-sm-2 btn my-1 p-2"
+            data-toggle="modal" data-target="#borrar-trivia-modal"
+            style="background-color: #FF5C95; color: white;">
+            <i class="bi bi-trash3"></i>
             </div>
+            </div>
+        </div>
+          <div class="mt-2 mb-2">
+            <!-- <div class="my-4 text-left">
+              <h4 style="font-weight: bold">{{trivia?._nombre }}</h4>
+            </div> -->
             <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre: {{trivia?._nombre }}"/>
           </div>
+          <div *ngIf="
+          triviaForm.get('nombre')?.errors &&
+          triviaForm.get('nombre')?.touched"
+        class="alert alert-danger mt-1"
+        role="alert">
+        <small>Es requerido un nombre</small>
+      </div>
           <div class="mt-2 mb-2">
             <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion: {{trivia?._descripcion }}"/>
           </div>
+          <div *ngIf="
+          triviaForm.get('descripcion')?.errors &&
+          triviaForm.get('descripcion')?.touched"
+        class="alert alert-danger mt-1"
+        role="alert">
+        <small>Es requerida una descripcion</small>
+      </div>
           <!-- Boton para añadir pregunta -->
           <button class="btn col-12 mt-3 p-2" (click)="agregarPregunta()"
           style="background-color:#FD999B; color: white;" >
@@ -27,11 +55,11 @@
 
           <div [hidden]="preguntas().controls.length == 0" formArrayName="preguntas">
             <div *ngFor="let pregunta of preguntas().controls; let indexPreg = index">
-              <button class="btn col-md-5 mt-3 p-2" (click)="cambiarVisibilidad(pregunta)"
+              <!-- <button class="btn col-md-5 mt-3 p-2" (click)="cambiarVisibilidad(pregunta)"
               style="background-color:#7161EF; color: white; font-size: 18px;" >
               Mostrar/Ocultar
               Pregunta N°{{ indexPreg + 1 }}
-              </button>
+              </button> -->
               <div [formGroupName]="indexPreg" [hidden]="pregunta.value.visible">
                  <div class="mb-3 mt-3">
                   <h4 style="font-weight: bold;">Pregunta N°{{ indexPreg + 1 }}</h4>
@@ -39,12 +67,26 @@
                 <div class="mt-2 mb-2">
                   <input type="text" class="form-control" formControlName="leyenda" placeholder="Leyenda"/>
                 </div>
+                <div *ngIf="
+                pregunta.get('leyenda')?.errors &&
+                pregunta.get('leyenda')?.touched"
+              class="alert alert-danger mt-1"
+              role="alert">
+              <small>Es requerida una leyenda</small>
+            </div>
                 <div class="mt-3 mb-2">
                   <select formControlName="tipoDePregunta" class="form-select">
                     <option  disabled value=""> Seleccione el tipo de pregunta</option>
                     <option *ngFor="let tipo of tipoDePregunta">{{ tipo }}</option>
                   </select>
                 </div>
+                <div *ngIf="
+                pregunta.get('tipoDePregunta')?.errors &&
+                pregunta.get('tipoDePregunta')?.touched"
+              class="alert alert-danger mt-1"
+              role="alert">
+              <small>Debe seleccionar el tipo de pregunta</small>
+            </div>
 
                 <div class="row d-flex justify-content-center mt-4">
                   <div class="row d-flex justify-content-between  align-items-center">
@@ -79,13 +121,27 @@
                         <div class="mt-2 mb-2 ">
                           <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion"/>
                         </div>
+                        <div *ngIf="
+                        opcion.get('descripcion')?.errors &&
+                        opcion.get('descripcion')?.touched"
+                      class="alert alert-danger mt-1"
+                      role="alert">
+                      <small>Es requerida una descripcion</small>
+                    </div>
                          <div class="mt-3 mb-2 ">
                           <select formControlName="esCorrecta" class="form-select">
                             <option disabled selected> Seleccione si es correcta o no</option>
-                            <option value="true">Correcta</option>
-                            <option value="false">Incorrecta</option>
+                            <option [ngValue]="true">Correcta</option>
+                            <option [ngValue]="false">Incorrecta</option>
                           </select>
                         </div>
+                        <div *ngIf="
+                        opcion.get('esCorrecta')?.errors &&
+                        opcion.get('esCorrecta')?.touched"
+                      class="alert alert-danger mt-1"
+                      role="alert">
+                      <small>Debe seleccionar si es correcta</small>
+                    </div>
                       </div>
                       <div class="row d-flex justify-content-end">
                         <!-- Boton para eliminar opcion -->

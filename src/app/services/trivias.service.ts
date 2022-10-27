@@ -33,7 +33,7 @@ export class TriviasService {
     );
   }
 
-  crearTriviaConPreguntasOpciones(bodyTrivias: string) {
+  async crearTriviaConPreguntasOpciones(bodyTrivias: string) {
     const res = this.http.post(
       `${env.dev.serverUrl}/trivias/conPreguntas`,
       bodyTrivias
@@ -43,8 +43,8 @@ export class TriviasService {
         of(res);
       }),
       catchError(err => {
-        console.log(err.error);
-        return throwError(() => err);
+        // console.log(err.error);
+        return throwError(() => err.error);
       })
     );
   }
@@ -58,6 +58,38 @@ export class TriviasService {
           resolve(res.body[0].id);
         });
     });
+  }
+  
+  async actualizarTrivia(bodyTrivias:string,id:any){
+    //Lo que hace en realidad es borrar la trivia anterior y crear una nueva
+    const res = this.http.put(
+      `${env.dev.serverUrl}/trivias/editarTriviaCompleta/${id}`,
+      bodyTrivias
+    );
+    return res.pipe(
+      tap(res => {
+        of(res);
+      }),
+      catchError(err => {
+        // console.log(err.error);
+        return throwError(() => err.error);
+      })
+    );
+  }
+
+  async eliminarTriviaPermanente(id:any){
+    const res = this.http.delete(
+      `${env.dev.serverUrl}/trivias/eliminarPermanente/${id}`
+    );
+    return res.pipe(
+      tap(res => {
+        of(res);
+      }),
+      catchError(err => {
+        // console.log(err.error);
+        return throwError(() => err.error);
+      })
+    );
   }
 
   obtenerSesionDelUsuario() {

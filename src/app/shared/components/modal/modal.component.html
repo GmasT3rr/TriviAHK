@@ -61,5 +61,63 @@
         </button>
       </div>
     </div>
+    <div
+      *ngIf="modalPorAbrir == 'iniciarPartida'"
+      class="modal-content">
+      <div class="modal-header">
+        <h1
+          class="modal-title fs-5"
+          id="exampleModalLabel">
+          Ingresar tiempo entre preguntas
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="ingresarTiempoEntrePartida">
+          <label
+            class="form-label"
+            for=""
+            >Tiempo</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            placeholder="En segundos..."
+            min="5"
+            name=""
+            id=""
+            formControlName="tiempo" />
+          <div
+            class="alert alert-danger mt-2"
+            role="alert"
+            *ngIf="
+            ingresarTiempoEntrePartida.controls['tiempo'].errors &&
+            ingresarTiempoEntrePartida.controls['tiempo'].touched
+            ">
+            Este campo presenta errores
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          #btnModalCerrar>
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-modal-accion"
+          [disabled]="ingresarTiempoEntrePartida.invalid"
+          (click)="crearPartida()">
+          Crear Partida
+        </button>
+      </div>
+    </div>
   </div>
 </div>

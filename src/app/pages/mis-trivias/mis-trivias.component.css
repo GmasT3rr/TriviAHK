@@ -18,6 +18,10 @@ hr {
 background: rgba(113, 97, 239, .5);
 }
 
+h4:hover{
+  color: #FD999B;
+}
+
 @media screen and (max-width:1024px) {
   .cards {
       margin-top: 50px;

@@ -23,7 +23,7 @@ export class PartidasService {
       })
     );
   }
-
+  //Partidas creadas por el usuario
   getPartidas() {
     const res = this.http.get(
       `${env.dev.serverUrl}/partida/obtenerPartidas/usuario`

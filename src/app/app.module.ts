@@ -14,6 +14,7 @@ import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { LobbyModule } from './partida/lobby.module';
 
 
 @NgModule({
@@ -25,12 +26,13 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientJsonpModule,
     SharedModule,
     BrowserAnimationsModule,
+    LobbyModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       preventDuplicates: true,
       progressBar:true,
       progressAnimation:'decreasing',
-      timeOut:3000
+      timeOut:4000
     }),
     AuthModule.forRoot({
       ...env.auth,
