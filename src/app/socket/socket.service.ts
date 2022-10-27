@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
-  private socket?: Socket;
+  public socket?: Socket;
+  public trivia = new Subject<any>();
+  public pregunta = new Subject<any>();
+  public terminaTiempo = new Subject<any>();
 
   constructor() {
-    this.iniciar();
+    // this.iniciar();
   }
+
 
   public iniciar() {
     this.socket = io("http://localhost:3000/juego");
@@ -25,6 +30,7 @@ export class SocketService {
       // SI ACA HACES ALGO QUE TIRE UN ERROR, NOSE PQ PERO SE VUELVE A CONECTAR A SOCKETs
     });
     this.socket.on('partida:unido', (mensaje:any) => {
+      // TODO: este evento trae los usuarios conectados
       console.log(mensaje);
     });
     //     "error": false,
@@ -50,9 +56,10 @@ export class SocketService {
     this.socket.on('partida:salido', (p: any) => {
       console.log(p);
     })
+
+    // Trae la trivia en juego
     this.socket.on('partida:trivia', (t) => {
-      console.log(t);
-      this.trivia = t;
+      this.trivia.next(t);
     })
 
     this.socket.on('partida:iniciada-status', p => {
@@ -60,11 +67,11 @@ export class SocketService {
     })
 
     this.socket.on('partida:mostrar-pregunta', r => {
-      console.log(r);
+      this.pregunta.next(r);
     })
 
     this.socket.on('partida:termina-tiempo', r => {
-      console.log(r);
+      this.terminaTiempo.next(r);
     })
 
     this.socket.on('partida:respondio', r => {
@@ -85,7 +92,6 @@ export class SocketService {
   }
 
   sesion = 0;
-  trivia: any;
   // como disparar el evento sin que
   public unirse(usuarioID: number, partidaID: number ) {
     this.socket!.emit('partida:unir', {usuarioID, partidaID});

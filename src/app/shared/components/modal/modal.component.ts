@@ -55,7 +55,7 @@ export class ModalComponent implements OnInit {
                 );
                 this.btnModalCerrar.nativeElement.click();
                 this.router.navigateByUrl(
-                  `/main/lobby/${this.ingresarPartidaForm.value['codigo']}`
+                  `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
                 );
               }
               // this._socketsService.unirse(
@@ -65,7 +65,7 @@ export class ModalComponent implements OnInit {
               //Si ya esta unido en alguna
               this.btnModalCerrar.nativeElement.click();
               this.router.navigateByUrl(
-                `/main/lobby/${this.ingresarPartidaForm.value['codigo']}`
+                `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
               );
             });
             return;
@@ -100,7 +100,7 @@ export class ModalComponent implements OnInit {
 
           //Clickeamos el btn con data-bs-dismiss="modal" para cerrar el modal
           this.btnModalCerrar.nativeElement.click();
-          this.router.navigateByUrl(`/main/lobby/${partida.id}`);
+          this.router.navigateByUrl(`/partida/lobby/${partida.id}`);
           this.toastService.showSuccess(
             `Unido a la partida ${partida.id}`,
             'Felicidades'

@@ -33,7 +33,7 @@
       <div
         *esHost="{idPartida,renderContentUser: true}; sino esUsuario"
         class="data__host">
-        <button class="btn btn_iniciar_partida">Iniciar partida</button>
+        <button class="btn btn_iniciar_partida" (click)="iniciarPartida()" >Iniciar partida</button>
         <button
           class="btn btn_finalizar_lobby"
           (click)="finalizarLobby()">

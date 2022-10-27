@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SocketService } from 'app/socket/socket.service';
 
 @Component({
   selector: 'app-single-choice',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleChoiceComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _socketsService: SocketService) { }
 
   ngOnInit(): void {
+    this._socketsService.pregunta.subscribe(pregunta => {
+      console.log('componente ', pregunta);
+    })
   }
 
   getColor(indice:any){
@@ -26,5 +30,9 @@ export class SingleChoiceComponent implements OnInit {
           return {
             "background-color": "#FFFFFF"
           };      }
+  }
+
+  mostrarSiguientePreg() {
+    this._socketsService.mostrarSiguientePregunta();
   }
 }

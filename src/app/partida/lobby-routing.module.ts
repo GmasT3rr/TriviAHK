@@ -14,7 +14,7 @@ const routes: Routes = [
   //   canActivate: [LobbyGuard]
   // },
   {
-    path: 'lobby',
+    path: 'lobby/:id',
     component: LobbyComponent,
   },
   {
