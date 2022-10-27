@@ -1,19 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component,OnDestroy, OnInit,  } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { SocketService } from 'app/socket/socket.service';
 import { PartidasService } from 'app/services/partidas.service';
-import { environment as env } from '../../../environments/environment';
 import { TriviasService } from 'app/services/trivias.service';
 import { Trivia } from 'app/interfaces/Trivias.interface';
 import { ToastService } from 'app/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,OnDestroy {
+
+
   public offset: number = 0;
   public limit: number = 0;
   public quizes: any[] = [];
@@ -29,7 +31,8 @@ export class HomeComponent implements OnInit {
     public socketService: SocketService,
     private _partidaService: PartidasService,
     private triviasService: TriviasService,
-    private toastService:ToastService
+    private toastService:ToastService,
+    private router:Router,
   ) {
     this.offset = 0;
     this.limit = 4;
@@ -40,6 +43,8 @@ export class HomeComponent implements OnInit {
       // console.log(res.body);
       this.trivias = res.body;
     });
+  }
+  ngOnDestroy() {
   }
 
   nextQuiz() {
@@ -75,6 +80,9 @@ export class HomeComponent implements OnInit {
   // }
 
   //SOCKETS
+  irVerTrivia(id: any) {
+    this.router.navigateByUrl(`/main/info-trivia/${id}`);
+  }
 
   iniciarPartida() {
     this.socketService.iniciarPartida();

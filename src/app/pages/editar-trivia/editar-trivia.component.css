@@ -18,6 +18,9 @@ hr {
 background: rgba(113, 97, 239, .5);
 }
 
+input, select{
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+}
 @media screen and (max-width:1024px) {
   .cards {
       margin-top: 50px;

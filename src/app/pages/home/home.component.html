@@ -112,7 +112,9 @@
         style="background-color: #4a51c9"></div>
       <!-- <div class="card card-top"
         [ngStyle]="{ backgroundColor: getColor(i) }"></div> -->
-      <div class="card-quiz-outside">
+      <div class="card-quiz-outside"
+      (click)="irVerTrivia(trivia.id)"
+      style="cursor: pointer;">
         <div class="card card-quiz">
           <h3>{{ trivia._nombre }}</h3>
           <h4>Id: {{ trivia.id }}</h4>
