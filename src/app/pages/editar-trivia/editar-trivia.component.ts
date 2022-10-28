@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Trivia } from 'app/interfaces/Trivias.interface';
 import { ToastService } from 'app/services/toast.service';
 import { TriviasService } from 'app/services/trivias.service';
+import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
+
 
 @Component({
   selector: 'app-editar-trivia',
   templateUrl: './editar-trivia.component.html',
-  styleUrls: ['./editar-trivia.component.css']
+  styleUrls: ['./editar-trivia.component.css'],
+  animations:[
+    onLoadAnimation
+  ]
 })
 export class EditarTriviaComponent implements OnInit {
 

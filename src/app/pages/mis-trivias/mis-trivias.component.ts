@@ -5,21 +5,25 @@ import { TriviasService } from 'app/services/trivias.service';
 import { Trivia } from 'app/interfaces/Trivias.interface';
 import { Router } from '@angular/router';
 import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
+import { flipAnimation } from 'app/shared/animations/flip.component';
 
 @Component({
   selector: 'app-mis-trivias',
   templateUrl: './mis-trivias.component.html',
   styleUrls: ['./mis-trivias.component.css'],
   animations:[
-    onLoadAnimation
+    onLoadAnimation,
+    flipAnimation
   ]
 })
 export class MisTriviasComponent implements OnInit {
   public offset: number;
   public limit: number;
   public quizes: any[] = [];
-
   public trivias!: Trivia[];
+  public rotateOrdenar = "inactive"
+  public filtrarPor:string = ""
+
 
   usuarioID: number = 0;
   partidas: any;
@@ -39,7 +43,6 @@ export class MisTriviasComponent implements OnInit {
     this.getTrivias()
   }
 
-  public filtrarPor:string = "antiguas"
 
 
   async getTrivias(){
@@ -58,18 +61,22 @@ export class MisTriviasComponent implements OnInit {
             new Date(b._fechaCreacion).getTime() + new Date(a._fechaCreacion).getTime()
           )
         break
-
-
         default:
           break;
       }
     });
   }
 
+  toggleFlip() {
+    this.rotateOrdenar = (this.rotateOrdenar == 'inactive') ? 'active' : 'inactive';
+    console.log(this.rotateOrdenar);
+
+  }
+
   aplicarFiltro(filtro:string){
     this.filtrarPor = filtro
     this.trivias = []
-    this.getTrivias()
+    this.getTrivias();
   }
 
   nextQuiz() {
