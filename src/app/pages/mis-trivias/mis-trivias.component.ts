@@ -1,17 +1,18 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
 import { SocketService } from 'app/socket/socket.service';
 import { PartidasService } from 'app/services/partidas.service';
-import { environment as env } from '../../../environments/environment';
 import { TriviasService } from 'app/services/trivias.service';
 import { Trivia } from 'app/interfaces/Trivias.interface';
-import { ModalMisTriviasComponent } from 'app/shared/components/modal-mis-trivias/modal-mis-trivias.component';
 import { Router } from '@angular/router';
+import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
+
 @Component({
   selector: 'app-mis-trivias',
   templateUrl: './mis-trivias.component.html',
-  styleUrls: ['./mis-trivias.component.css']
+  styleUrls: ['./mis-trivias.component.css'],
+  animations:[
+    onLoadAnimation
+  ]
 })
 export class MisTriviasComponent implements OnInit {
   public offset: number;
@@ -19,7 +20,6 @@ export class MisTriviasComponent implements OnInit {
   public quizes: any[] = [];
 
   public trivias!: Trivia[];
-  public trivia: any;
 
   usuarioID: number = 0;
   partidas: any;
@@ -35,10 +35,41 @@ export class MisTriviasComponent implements OnInit {
     this.limit = 4;
   }
 
-  async ngOnInit() {
+   ngOnInit() {
+    this.getTrivias()
+  }
+
+  public filtrarPor:string = "antiguas"
+
+
+  async getTrivias(){
     (await this.triviasService.getTriviasDelUsuario()).subscribe((res: any) => {
-      this.trivias = res.body;
+      switch (this.filtrarPor) {
+        case "":
+          this.trivias = res.body
+          break;
+        case "recientes":
+          this.trivias  = res.body.sort((a:Trivia,b:Trivia)=>
+            new Date(b._fechaCreacion).getTime() - new Date(a._fechaCreacion).getTime()
+          )
+        break;
+        case "antiguas":
+          this.trivias  = res.body.sort((a:Trivia,b:Trivia)=>
+            new Date(b._fechaCreacion).getTime() + new Date(a._fechaCreacion).getTime()
+          )
+        break
+
+
+        default:
+          break;
+      }
     });
+  }
+
+  aplicarFiltro(filtro:string){
+    this.filtrarPor = filtro
+    this.trivias = []
+    this.getTrivias()
   }
 
   nextQuiz() {

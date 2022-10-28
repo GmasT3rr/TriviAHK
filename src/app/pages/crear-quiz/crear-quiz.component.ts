@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import {
   FormGroup,
-  FormControl,
   FormBuilder,
   Validators,
   FormArray
@@ -12,11 +11,16 @@ import {
 import { Router } from '@angular/router';
 import { ToastService } from 'app/services/toast.service';
 import { TriviasService } from 'app/services/trivias.service';
+import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
+
 
 @Component({
   selector: 'app-crear-quiz',
   templateUrl: './crear-quiz.component.html',
-  styleUrls: ['./crear-quiz.component.css']
+  styleUrls: ['./crear-quiz.component.css'],
+  animations:[
+    onLoadAnimation
+  ]
 })
 export class CrearQuizComponent implements OnInit {
 
