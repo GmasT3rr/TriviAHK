@@ -1,5 +1,6 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
-import { Component,OnDestroy, OnInit,  } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { SocketService } from 'app/socket/socket.service';
 import { PartidasService } from 'app/services/partidas.service';
@@ -11,11 +12,31 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('showOpciones', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(
+          '500ms',
+          style({
+            opacity: 1
+          })
+        )
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate(
+          '500ms',
+          style({
+            opacity: 0
+          })
+        )
+      ])
+    ])
+  ]
 })
-export class HomeComponent implements OnInit,OnDestroy {
-
-
+export class HomeComponent implements OnInit, OnDestroy {
   public offset: number = 0;
   public limit: number = 0;
   public quizes: any[] = [];
@@ -23,16 +44,14 @@ export class HomeComponent implements OnInit,OnDestroy {
   usuarioID: number = 0;
   public trivia: any;
 
-
-
   constructor(
     private authService: AuthService,
     private http: HttpClient,
     public socketService: SocketService,
     private _partidaService: PartidasService,
     private triviasService: TriviasService,
-    private toastService:ToastService,
-    private router:Router,
+    private toastService: ToastService,
+    private router: Router
   ) {
     this.offset = 0;
     this.limit = 4;
@@ -44,8 +63,7 @@ export class HomeComponent implements OnInit,OnDestroy {
       this.trivias = res.body;
     });
   }
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 
   nextQuiz() {
     // || this.limit === 8
@@ -100,7 +118,4 @@ export class HomeComponent implements OnInit,OnDestroy {
   mostrarSiguientePregunta() {
     this.socketService.mostrarSiguientePregunta();
   }
-
-
-
 }
