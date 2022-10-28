@@ -13,6 +13,8 @@
 }
 
 .homeBtns {
+  height: auto;
+  word-break: break-all;
   text-align: center;
   background-color: #fd999b;
   color: white;
