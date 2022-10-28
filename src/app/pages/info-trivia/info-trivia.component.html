@@ -51,12 +51,13 @@
                   <span
                     class="col-2 text-right arrow-down align-self-center"
                     (click)="toggleFlip(pregunta)"
-                    [@flipAnimation]="pregunta?.flip">
+                    [@flipAnimation]="pregunta?.flip"
+                    data-toggle="collapse"
+                    [attr.href]="'#collapseExample'+pregunta.id"
+                    >
                     <i
                       class="bi bi-caret-down-fill"
                       style="color: #4a51c9"
-                      data-toggle="collapse"
-                      [attr.href]="'#collapseExample'+pregunta.id"
                       ></i>
                   </span>
 
