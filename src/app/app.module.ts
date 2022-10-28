@@ -4,12 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClientJsonpModule,
+  HttpClientModule,
+  HTTP_INTERCEPTORS
+} from '@angular/common/http';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
-import { HttpMethod } from '@auth0/auth0-angular';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { LobbyModule } from './partida/lobby.module';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,21 +23,31 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     SharedModule,
+    BrowserAnimationsModule,
+    LobbyModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar:true,
+      progressAnimation:'decreasing',
+      timeOut:4000
+    }),
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
         allowedList: [
           {
-            uri: `${env.dev.serverUrl}/*`,
-          },
-        ],
-      },
-    }),
+            uri: `${env.dev.serverUrl}/*`
+          }
+        ]
+      }
+    })
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

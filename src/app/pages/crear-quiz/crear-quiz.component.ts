@@ -9,6 +9,8 @@ import {
   Validators,
   FormArray
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastService } from 'app/services/toast.service';
 import { TriviasService } from 'app/services/trivias.service';
 
 @Component({
@@ -17,22 +19,25 @@ import { TriviasService } from 'app/services/trivias.service';
   styleUrls: ['./crear-quiz.component.css']
 })
 export class CrearQuizComponent implements OnInit {
+
   constructor(
-    private _triviasService: TriviasService,
-    private fb: FormBuilder
+    private toastService: ToastService,
+    private fb: FormBuilder,
+    private router:Router,
+    private _triviasService:TriviasService
   ) {}
 
   tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
-  esCorrecta = ['true', 'false'];
 
   triviaForm!: FormGroup;
 
   ngOnInit(): void {
     this.triviaForm = this.fb.group({
-      nombre: [, [Validators.required]],
+      nombre: [, [Validators.required,Validators.maxLength(25)]],
       descripcion: [, [Validators.required]],
       preguntas: this.fb.array([])
     });
+    this.agregarPregunta()
   }
 
   preguntas(): FormArray {
@@ -61,13 +66,17 @@ export class CrearQuizComponent implements OnInit {
 
   newOpcion(): FormGroup {
     return this.fb.group({
-      descripcion: [, [Validators.required]],
+      descripcion: ['', [Validators.required]],
       esCorrecta: [, [Validators.required]]
     });
   }
 
   agregarOpcion(indexPreg: number) {
-    this.opciones(indexPreg).push(this.newOpcion());
+    if(this.opciones(indexPreg).length === 6){
+      this.toastService.showError('El maximo es de 6 opciones','Eror')
+    }else{
+      this.opciones(indexPreg).push(this.newOpcion());
+    }
     // console.log(this.opciones(indexPreg));
   }
 
@@ -75,9 +84,42 @@ export class CrearQuizComponent implements OnInit {
     this.opciones(indexPreg).removeAt(indexOpc);
   }
 
-  crearTrivia() {
-    this._triviasService
-      .crearTriviaConPreguntasOpciones(this.triviaForm.value)
-      .subscribe(console.log);
+  async crearTrivia() {
+    (await this._triviasService
+      .crearTriviaConPreguntasOpciones(this.triviaForm.value)).subscribe({
+        next:(()=>{
+          console.log
+          const title = 'Trivia creada con exito'
+          const msg = 'Puede verla en su perfil'
+          this.toastService.showSuccess(msg,title)
+          this.router.navigateByUrl('main/mis-trivias')
+        }),
+        error:((err:any)=>{
+          let arrayErrores:any[] = []
+          let errorToast:any = ''
+          if(err.body.errors){
+            err.body.errors.forEach((e:any) => {
+              arrayErrores.push(e.msg)
+            });
+            errorToast = arrayErrores.join(' y ')
+          }else {
+            errorToast = err.body
+          }if(err.body.code){
+            switch (err.body.code) {
+              case 'ER_WARN_DATA_TRUNCATED':
+                  errorToast = 'Debe completar todos los datos'
+                break;
+              default:
+                break;
+            }
+            // errorToast = err.body.code
+
+          }
+          this.toastService.showError(errorToast,'Error')
+          // console.log('err en toasterror ->',errorToast)
+        })
+     });
   }
+
+
 }

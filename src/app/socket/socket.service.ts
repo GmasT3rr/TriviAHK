@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
-  private socket?: Socket;
+  public socket?: Socket;
+  public trivia = new Subject<any>();
+  public pregunta = new Subject<any>();
+  public terminaTiempo = new Subject<any>();
 
   constructor() {
-    this.iniciar();
+    // this.iniciar();
   }
+
 
   public iniciar() {
     this.socket = io("http://localhost:3000/juego");
@@ -18,25 +23,14 @@ export class SocketService {
       //alert(mensajeNuevo);
     });
 
-  }
-
-  public iniciarPartida() {
-    this.socket?.emit('partida:iniciar');
-  }
-
-  sesion = 0;
-  trivia: any;
-  // como disparar el evento sin que
-  public unirse(usuarioID: number, partidaID: number) {
-    this.socket!.emit('partida:unir', {usuarioID, partidaID});
-    this.socket!.once('partida:status-union', (partida: any) => {
+    this.socket.on('partida:status-union', (partida: any) => {
       console.log(partida);
       // esta bien hacer esto
       this.sesion = partida.id;
-      // SI ACA HACES ALGO QUE TIRE UN ERROR, NOSE PQ PERO SE VUELVE A CONECTAR A SOCKETS
-      // edit: y si no sabes vos menos yo pa
+      // SI ACA HACES ALGO QUE TIRE UN ERROR, NOSE PQ PERO SE VUELVE A CONECTAR A SOCKETs
     });
-    this.socket!.on('partida:unido', (mensaje:any) => {
+    this.socket.on('partida:unido', (mensaje:any) => {
+      // TODO: este evento trae los usuarios conectados
       console.log(mensaje);
     });
     //     "error": false,
@@ -59,25 +53,49 @@ export class SocketService {
     //         "id": 26
     //     },
     //     "status": 200
-    this.socket!.on('partida:salido', (p: any) => {
-      console.log(p);
-    })
-    this.socket?.on('partida:trivia', (t) => {
-      console.log(t);
-      this.trivia = t;
-    })
-
-    this.socket?.on('partida:iniciada-status', p => {
+    this.socket.on('partida:salido', (p: any) => {
       console.log(p);
     })
 
-    this.socket?.on('partida:mostrar-pregunta', r => {
+    // Trae la trivia en juego
+    this.socket.on('partida:trivia', (t) => {
+      this.trivia.next(t);
+    })
+
+    this.socket.on('partida:iniciada-status', p => {
+      console.log(p);
+    })
+
+    this.socket.on('partida:mostrar-pregunta', r => {
+      this.pregunta.next(r);
+    })
+
+    this.socket.on('partida:termina-tiempo', r => {
+      this.terminaTiempo.next(r);
+    })
+
+    this.socket.on('partida:respondio', r => {
       console.log(r);
     })
 
-    this.socket?.on('partida:termina-tiempo', r => {
+    this.socket.on('partida:resultados', r => {
       console.log(r);
     })
+
+    this.socket.on('partida:terminada', r => {
+      console.log(r);
+    })
+  }
+
+  public iniciarPartida() {
+    this.socket?.emit('partida:iniciar');
+  }
+
+  sesion = 0;
+  // como disparar el evento sin que
+  public unirse(usuarioID: number, partidaID: number ) {
+    this.socket!.emit('partida:unir', {usuarioID, partidaID});
+
   }
 
   public salirse() {
@@ -100,6 +118,18 @@ export class SocketService {
   }
 
   public responder(){
+    const opciones = {
+      opciones: [
+        {
+          id: 3,
+        },
+        {
+          id: 4,
+        }
+      ],
+      tiempoEnSegundos: 20,
+    }
+    this.socket!.emit('partida:responder', opciones)
     // const respuestas = {
     //   opcion: [1]
     // }
@@ -111,5 +141,9 @@ export class SocketService {
 
   public mostrarResultados() {
 
+  }
+
+  public finalizarPartida() {
+    this.socket?.emit('partida:finalizar');
   }
 }

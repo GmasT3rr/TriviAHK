@@ -39,7 +39,9 @@
             </li>
             <li class="list-group-item">
               Preguntas:
-              <div *ngFor="let pregunta of trivia._preguntas; let i = index">
+              <div
+                *ngFor="let pregunta of trivia._preguntas; let i = index"
+                class="card">
                 <li class="list-group-item">
                   Pregunta: {{ pregunta._leyenda }}
                 </li>
@@ -50,7 +52,9 @@
                   Opciones:
                   <div
                     class="list-group-item"
-                    *ngFor="let opcion of pregunta._opciones">
+                    *ngFor="let opcion of pregunta._opciones; let index = index"
+                    class="card my-2">
+                    <li class="list-group-item">Opción: {{ index }}</li>
                     <li class="list-group-item">
                       Descripción: {{ opcion._descripcion }}
                     </li>

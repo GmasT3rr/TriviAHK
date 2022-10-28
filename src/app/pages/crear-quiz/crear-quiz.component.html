@@ -1,20 +1,18 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
         <!-- Titulo de la página -->
-        <div class="text-center mt-5">
-          <span><h1>Crear nueva quiz:</h1></span>
+        <div class="misPartidas col-9 mt-5 ml-5">
+          <h2 style="font-weight: bold">Crear Trivia</h2>
+          <hr />
         </div>
   </div>
     <div class="row d-flex justify-content-center">
       <!-- <div class="col-2 mt-5" style="background-color: rgba(113, 97, 239, 1); border-radius: 15px;"></div> -->
-      <div class="col-10 mt-5 mb-5">
+      <div class="col-8 mt-5 mb-5">
         <!-- Form para titulo y descripcion -->
-        <form [formGroup]="triviaForm" class="card p-3 text-center"
-        style="background-color: white; border: solid 1px black;"
-        >
-          <h3 >Trivia</h3>
+        <form [formGroup]="triviaForm" class="text-center">
           <div class="mt-2 mb-2">
-            <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre"/>
+            <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre de Trivia"/>
             <div *ngIf="
                 triviaForm.controls['nombre'].errors &&
                 triviaForm.controls['nombre'].touched"
@@ -24,102 +22,122 @@
             </div>
           </div>
           <div class="mt-2 mb-2">
-            <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion"/>
+            <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion de Trivia"/>
             <div *ngIf="
                 triviaForm.controls['descripcion'].errors &&
                 triviaForm.controls['descripcion'].touched "
-              class="alert alert-danger mt-1 "
-              role="alert">
+              class="alert alert-danger my-2 "
+             role="alert">
               <small>Es requerido la descripción</small>
             </div>
           </div>
 
 
           <!-- Boton para añadir pregunta -->
-          <button class="btn mt-3" (click)="agregarPregunta()"
-          style="background-color: rgba(113, 97, 239, 1); color: white;border: solid 1px #69E2FF;"
-          >
-            Agregar Pregunta
+          <button class="btn col-12 mt-3 p-2" (click)="agregarPregunta()"
+          style="background-color:#FD999B; color: white;" >
+          Agregar Pregunta
           </button>
 
           <!-- Form para preguntas del quiz-->
-          <div class="text-center mt-3 ">
+          <!-- <div class="text-center mt-3 ">
             <h5 *ngIf="preguntas().controls.length == 0"><strong>No hay preguntas</strong></h5>
-          </div>
-          <div [hidden]="preguntas().controls.length == 0" formArrayName="preguntas"
-          class="card p-2"
-          style="background-color: white; border: none;border-left: 3px solid rgba(253, 153, 155, 1);border-right: 3px solid rgba(253, 153, 155, 1); border-radius: 0px;"
-
-          >
+          </div> -->
+          <div [hidden]="preguntas().controls.length == 0" formArrayName="preguntas">
             <div *ngFor="let pregunta of preguntas().controls; let indexPreg = index">
-              <div class="mb-3 mt-1" style="background-color: rgba(253, 153, 155, 1); height: 2px;"></div>
-
               <div [formGroupName]="indexPreg">
-                <div class="mb-3">
-                  <h3>Pregunta {{ indexPreg + 1 }}</h3>
+                <div class="mb-3 mt-5">
+                  <h4 style="font-weight: bold;">Pregunta N°{{ indexPreg + 1 }}</h4>
                 </div>
                 <div class="mt-2 mb-2">
                   <input type="text" class="form-control" formControlName="leyenda" placeholder="Leyenda"/>
                 </div>
+                <div *ngIf="
+                pregunta.get('leyenda')?.errors &&
+                pregunta.get('leyenda')?.touched"
+              class="alert alert-danger mt-1"
+              role="alert">
+              <small>Es requerida una leyenda</small>
+            </div>
                 <div class="mt-3 mb-2">
                   <select formControlName="tipoDePregunta" class="form-select">
                     <option  disabled value=""> Seleccione el tipo de pregunta</option>
                     <option *ngFor="let tipo of tipoDePregunta">{{ tipo }}</option>
                   </select>
                 </div>
+                <div *ngIf="
+                pregunta.get('tipoDePregunta')?.errors &&
+                pregunta.get('tipoDePregunta')?.touched"
+              class="alert alert-danger mt-1"
+              role="alert">
+              <small>Debe seleccionar un tipo de pregunta</small>
+            </div>
 
-                <div class="d-flex justify-content-between mt-4">
-                  <!-- Boton para añadir una opcion a la pregunta -->
-                  <button class="btn" (click)="agregarOpcion(indexPreg)"
-                  style="background-color: rgba(113, 97, 239, 1); color: white;border: solid 1px #69E2FF;"
-                  >
+                <div class="row d-flex justify-content-center mt-4">
+                  <div class="row d-flex justify-content-between  align-items-center">
+                    <!-- Boton para añadir una opcion a la pregunta -->
+                  <div class="col-sm-9 btn my1 p-2" (click)="agregarOpcion(indexPreg)"
+                  style="background-color: #FD999B; color: white;">
                   Agregar Opción
-                </button>
-                <!-- Boton para eliminar pregunta -->
-                <button class="btn" (click)="eliminarPregunta(indexPreg)"
-                style="background-color: rgba(253, 153, 155, 1); color: white;border: solid 1px rgba(255, 92, 149, .5);"
-                >
-                  Eliminar Pregunta
-                </button>
+                  </div>
+                  <!-- Boton para eliminar pregunta -->
+                  <div class="col-sm-2 btn my-1 p-2" (click)="eliminarPregunta(indexPreg)"
+                  style="background-color: #FF5C95; color: white;">
+                  <i class="bi bi-trash3"></i>
+                  </div>
+                  </div>
               </div>
 
-                <div class="text-center mt-2 mb-2">
+                <!-- <div class="text-center mt-2 mb-2">
                   <h5 *ngIf="opciones(indexPreg).controls.length == 0"><strong>No hay opciones</strong></h5>
-                </div>
+                </div> -->
 
                 <!-- Form para opciones de las preguntas del quiz-->
                 <div formArrayName="opciones">
-                  <div class="card"
-                  style="background-color: white; border: none;"
+                  <div *ngFor="
+                  let opcion of opciones(indexPreg).controls;
+                  let indexOpc = index">
+                  <div class="mb-3 mt-5">
+                    <h4 style="font-weight: bold;">Opción N°{{ indexOpc + 1 }}</h4>
+                  </div>
 
-                  *ngFor="
-                      let opcion of opciones(indexPreg).controls;
-                      let indexOpc = index">
-                      <div class="mt-2 mb-2">
-                        <h3>Opción {{ indexOpc + 1 }}</h3>
-                      </div>
-                    <div [formGroupName]="indexOpc">
-                      <div class="mt-2 mb-2 ">
-                        <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion"/>
-                      </div>
-                      <div class="mt-3 mb-2">
-                        <select formControlName="esCorrecta" class="form-select">
-                          <option disabled selected> Seleccione si es correcta o no</option>
-                          <option value="true">Correcta</option>
-                          <option value="false">Incorrecta</option>
-                        </select>
-                      </div>
-
-                      <!-- Boton para eliminar opcion-->
-                      <div class="d-flex flex-row-reverse">
-                        <button class="btn mt-2 mb-4" (click)="eliminarOpcion(indexPreg, indexOpc)"
-                        style="background-color: rgba(253, 153, 155, 1); color: white;border: solid 1px rgba(255, 92, 149, .5);"
-                        >
-                          Eliminar Opción
-                        </button>
-                      </div>
-
+                  <div class="row d-flex justify-content-center mt-4">
+                      <div [formGroupName]="indexOpc" class="col-12">
+                        <div class="mt-2 mb-2 ">
+                          <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion"/>
+                        </div>
+                        <div *ngIf="
+                        opcion.get('descripcion')?.errors &&
+                        opcion.get('descripcion')?.touched"
+                      class="alert alert-danger mt-1"
+                      role="alert">
+                      <small>Es requerida una descripcion</small>
                     </div>
+                         <div class="mt-3 mb-2 ">
+                          <select formControlName="esCorrecta" class="form-select">
+                            <option disabled selected> Seleccione si es correcta o no</option>
+                            <option [ngValue]="true">Correcta</option>
+                            <option [ngValue]="false">Incorrecta</option>
+                          </select>
+                        </div>
+                        <div *ngIf="
+                        opcion.get('esCorrecta')?.errors &&
+                        opcion.get('esCorrecta')?.touched"
+                      class="alert alert-danger mt-1"
+                      role="alert">
+                      <small>Debe seleccionar si es correcta</small>
+                    </div>
+                      </div>
+                      <div class="row d-flex justify-content-end">
+                        <!-- Boton para eliminar opcion -->
+                      <div class="col-sm-2 btn my-1 p-2" (click)="eliminarOpcion(indexPreg, indexOpc)"
+                      style="background-color: #FF5C95; color: white;">
+                      <i class="bi bi-trash3"></i>
+                      </div>
+                      </div>
+                    </div>
+
+
                   </div>
                 </div>
               </div>
@@ -129,10 +147,10 @@
           </div>
 
           <!-- Boton para crear trivia-->
-          <button class="btn mt-4 mb-4" (click)="crearTrivia()" [disabled]="triviaForm.invalid"
-          style="background-color: #FF5C95;color: white; border: solid 1px rgba(253, 153, 155, 1);"
+          <button class="btn col-6 mt-5 mb-4 p-2" (click)="crearTrivia()" [disabled]="triviaForm.invalid"
+          style="background-color: #7161EF;color: white;"
           >
-            Crear trivia
+            Crear Trivia
           </button>
         </form>
 

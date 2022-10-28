@@ -1,0 +1,26 @@
+<app-partida-navbar></app-partida-navbar>
+<div class="bg">
+  <div class="container">
+    <div class="row d-flex justify-content-center mt-5 mb-5">
+      <div class="col-md-8 p-5 card mt-5">
+        <div class="card-body text-center">
+          <h3>Pregunta N°</h3>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center mt-5">
+      <div
+      class="col-md-5"
+      *ngFor="let opc of [1,2,3,4]; let i=index"
+      >
+        <div class="p-5 card mt-5"
+        [ngStyle]="getColor(i)"
+        style="color: white;">
+          <div class=" card-body text-center" >
+            <h3>Opcion N°</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

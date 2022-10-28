@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-
+import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -9,12 +9,34 @@ import { UserService } from '../../services/user.service';
 })
 export class NavbarComponent implements OnInit {
   public loggedIn: boolean = true;
+  public user: any;
   public logo = "assets/logo-temporal.jpeg"
-  constructor(private rt: ActivatedRoute, private userService: UserService) {}
+  public estaEnPartida = true
+
+  constructor(private userService: UserService,private router: Router) {
+
+  }
 
   ngOnInit(): void {
     this.getUserInfo();
-    this.isLoggedIn()
+    this.isLoggedIn();
+    this.usuarioEstáEnPartida()
+  }
+
+  usuarioEstáEnPartida(){
+    this.router.events.pipe(
+      filter((event:any) => event instanceof NavigationEnd)).
+      subscribe((x:any) =>{
+        const inGame = x.url.includes('/partida')
+        if(inGame){
+          // console.log('ingame')
+          this.estaEnPartida = true
+        }
+        else{
+          // console.log('not in game')
+          this.estaEnPartida = false
+        }
+      })
   }
 
   //METODO LOGOUT AUTH0
@@ -25,14 +47,11 @@ export class NavbarComponent implements OnInit {
   isLoggedIn(){
     this.userService.isAuthenticated().subscribe((res:any)=>{
       this.loggedIn = res
-      console.log(this.loggedIn)
-
     })
   }
 
 
   //Obtener info de usuario
-  public user: any;
   async getUserInfo() {
       this.userService.getUserInfo().subscribe(data => {
         this.user = data;

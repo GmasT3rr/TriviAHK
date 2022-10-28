@@ -1,0 +1,18 @@
+hr {
+  display: flex;
+  width: 10%;
+  align-items: flex-start;
+  background: #7B61FF;
+  border-radius: 30px;
+  height: 10px;
+  opacity: 1;
+}
+
+input, select{
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+}
+.alert{
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+
+}
+
