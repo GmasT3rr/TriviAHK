@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public unirse(usuarioID: string, partidaID: string) {
     this.socketService.unirse(Number(usuarioID), Number(partidaID));
-    this.trivia = this.socketService.trivia;
+    this.trivia = this.socketService._trivia;
   }
 
   salirse() {
