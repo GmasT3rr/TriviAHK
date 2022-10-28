@@ -48,7 +48,7 @@ export class LobbyComponent implements OnInit {
     this._socketsService.socket?.on('partida:trivia', t => {
       console.log('trivia del component: ', t); // TODO: preguntarle a eze si se puede hacer esto
     })
-    this._socketsService._trivia.subscribe((t:any) => {
+    this._socketsService.trivia.subscribe((t:any) => {
       this.trivia = t;
     });
 

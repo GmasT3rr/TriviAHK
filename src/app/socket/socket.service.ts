@@ -7,21 +7,16 @@ import { io, Socket } from 'socket.io-client';
 })
 export class SocketService {
   public socket?: Socket;
-  public _trivia: any;
-  public _pregunta = new Subject<any>();
+  public trivia = new Subject<any>();
+  public pregunta = new Subject<any>();
   private _sesiones = new Subject<any>();
-  public _terminaTiempo = new Subject<any>();
+  public terminaTiempo = new Subject<any>();
   public sesionId!: number;
 
   public get sesiones() {
     return this._sesiones as Observable<any>;
   }
-  public get pregunta(){
-    return this._pregunta as Observable<any>;
-  }
-  public get terminaTiempo(){
-    return this._terminaTiempo as Observable<any>;
-  }
+
 
   constructor() {
     // this.iniciar();
@@ -67,7 +62,7 @@ export class SocketService {
 
     // Trae la trivia en juego
     this.socket.on('partida:trivia', t => {
-      this._trivia.next(t);
+      this.trivia.next(t);
     });
 
     this.socket.on('partida:iniciada-status', p => {
@@ -75,11 +70,11 @@ export class SocketService {
     });
 
     this.socket.on('partida:mostrar-pregunta', r => {
-      this._pregunta.next(r);
+      this.pregunta.next(r);
     });
 
     this.socket.on('partida:termina-tiempo', r => {
-      this._terminaTiempo.next(r);
+      this.terminaTiempo.next(r);
     });
 
     this.socket.on('partida:respondio', r => {
