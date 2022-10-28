@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 
 @Injectable({
@@ -9,11 +9,18 @@ export class SocketService {
   public socket?: Socket;
   public trivia = new Subject<any>();
   public pregunta = new Subject<any>();
+  private _sesiones = new Subject<any>();
   public terminaTiempo = new Subject<any>();
+  public sesionId!: number
+
+  public get sesiones() {
+    return this._sesiones as Observable<any>;
+  }
 
   constructor() {
     // this.iniciar();
   }
+
 
 
   public iniciar() {
@@ -26,13 +33,10 @@ export class SocketService {
     this.socket.on('partida:status-union', (partida: any) => {
       console.log(partida);
       // esta bien hacer esto
-      this.sesion = partida.id;
+      this.sesionId = partida.id;
       // SI ACA HACES ALGO QUE TIRE UN ERROR, NOSE PQ PERO SE VUELVE A CONECTAR A SOCKETs
     });
-    this.socket.on('partida:unido', (mensaje:any) => {
-      // TODO: este evento trae los usuarios conectados
-      console.log(mensaje);
-    });
+
     //     "error": false,
     //     "result": {
     //         "_usuario": {
@@ -85,21 +89,25 @@ export class SocketService {
     this.socket.on('partida:terminada', r => {
       console.log(r);
     })
+
+    this.socket.on('partida:sesiones-conectadas', r => {
+      console.log(r);
+      this._sesiones.next(r)
+    })
   }
 
   public iniciarPartida() {
     this.socket?.emit('partida:iniciar');
   }
 
-  sesion = 0;
   // como disparar el evento sin que
   public unirse(usuarioID: number, partidaID: number ) {
     this.socket!.emit('partida:unir', {usuarioID, partidaID});
 
   }
 
-  public salirse() {
-    const sesionID = {sesionID: this.sesion || 104}
+  public salirse(idSesion:number = this.sesionId) {
+    const sesionID = {sesionID: idSesion }
     this.socket!.emit('partida:salir', sesionID);
     this.socket!.once('partida:status-salida', (p: any) => {
       console.log(p);
