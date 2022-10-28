@@ -8,32 +8,14 @@ import { TriviasService } from 'app/services/trivias.service';
 import { Trivia } from 'app/interfaces/Trivias.interface';
 import { ToastService } from 'app/services/toast.service';
 import { Router } from '@angular/router';
+import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations: [
-    trigger('showOpciones', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate(
-          '500ms',
-          style({
-            opacity: 1
-          })
-        )
-      ]),
-      transition(':leave', [
-        style({ opacity: 1 }),
-        animate(
-          '500ms',
-          style({
-            opacity: 0
-          })
-        )
-      ])
-    ])
+    onLoadAnimation
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {

@@ -1,46 +1,19 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Trivia } from 'app/interfaces/Trivias.interface';
 import { ToastService } from 'app/services/toast.service';
 import { TriviasService } from 'app/services/trivias.service';
+import { flipAnimation } from 'app/shared/animations/flip.component';
+import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
 
 @Component({
   selector: 'app-info-trivia',
   templateUrl: './info-trivia.component.html',
   styleUrls: ['./info-trivia.component.css'],
   animations: [
-    trigger('flipState', [
-      state('active', style({
-        transform: 'rotateX(180deg)'
-      })),
-      state('inactive', style({
-        transform: 'rotateY(0)'
-      })),
-      transition('active => inactive', animate('500ms ease-out')),
-      transition('inactive => active', animate('500ms ease-in'))
-    ]),
-    trigger("showOpciones", [
-      transition(":enter", [
-          style({opacity: 0 }),
-          animate(
-              "500ms",
-              style({
-                  opacity: 1
-              })
-          ),
-      ]),
-      transition(":leave", [
-          style({opacity: 1 }),
-          animate(
-              "500ms",
-              style({
-                  opacity: 0
-              })
-          ),
-      ]),
-  ]),
+    flipAnimation,
+    onLoadAnimation
   ]
 })
 export class InfoTriviaComponent implements OnInit {

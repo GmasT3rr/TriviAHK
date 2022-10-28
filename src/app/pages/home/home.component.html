@@ -1,25 +1,6 @@
-<!-- <div class="row d-flex justify-content-center mt-5">
-    <div class="col-6 text-center">
-      <button (click)="iniciarPartida()">Iniciar partida</button>
-      <br />
-      <input
-        type="number"
-        #usuario
-        placeholder="Id del usuario" />
-      <input
-        type="number"
-        #partida
-        placeholder="Id de partida" />
-      <button (click)="unirse(usuario.value, partida.value)">Unirse</button>
-      <button (click)="salirse()">salirse</button>
-      <br />
-      <button (click)="mostrarSiguientePregunta()">Siguiente pregunta</button>
 
-      <p>{{ trivia | json }}</p>
-    </div>
-  </div> -->
 <div
-  [@showOpciones]
+[@onLoadAnimation]
   style="background-color: #ffb1b5"
   class="pt-2 pb-5">
   <div class="container">
@@ -130,7 +111,7 @@
 
       <div
         class="card text-center mb-3"
-        [@showOpciones]
+        [@onLoadAnimation]
         *ngIf="trivia"
         (click)="irVerTrivia(trivia.id)"
         style="cursor: pointer">
