@@ -8,10 +8,7 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./loading-page.component.css']
 })
 export class LoadingPageComponent implements OnInit {
-
-
-  constructor(private rt: Router, private userService: UserService) {
-  }
+  constructor(private rt: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.isAuthenticated();
@@ -20,8 +17,9 @@ export class LoadingPageComponent implements OnInit {
   async isAuthenticated() {
     const estaAutenticado = await this.userService.isAuthenticated();
     if (estaAutenticado) {
-      this.rt.navigateByUrl('/main/home');
+      setTimeout(() => {
+        this.rt.navigateByUrl('/main/home');
+      }, 500);
     }
   }
-
 }
