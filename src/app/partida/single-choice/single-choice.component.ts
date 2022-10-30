@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
 import { SocketService } from 'app/socket/socket.service';
 
 @Component({
   selector: 'app-single-choice',
   templateUrl: './single-choice.component.html',
-  styleUrls: ['./single-choice.component.css']
+  styleUrls: ['./single-choice.component.css'],
+  animations:[
+    onLoadAnimation
+  ]
 })
 export class SingleChoiceComponent implements OnInit {
 

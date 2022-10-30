@@ -1,5 +1,5 @@
 <app-partida-navbar></app-partida-navbar>
-<div class="bg pb-5">
+<div class="bg" [@onLoadAnimation]>
   <div class="container">
     <div class="row d-flex justify-content-center">
       <div class="col-md-8 p-5 card mt-5">
@@ -17,7 +17,7 @@
         [ngStyle]="getColor(i)"
         style="color: white;">
           <div class=" card-body text-center" >
-            <h3>Opcion N°</h3>
+            <h3>Opcion N°{{i+1}}</h3>
           </div>
         </div>
       </div>

@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
 
 @Component({
   selector: 'app-multiple-choice',
   templateUrl: './multiple-choice.component.html',
-  styleUrls: ['./multiple-choice.component.css']
+  styleUrls: ['./multiple-choice.component.css'],
+  animations:[
+    onLoadAnimation
+  ]
 })
 export class MultipleChoiceComponent implements OnInit {
 

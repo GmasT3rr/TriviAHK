@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'app/services/user.service';
+import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
 import { SocketService } from 'app/socket/socket.service';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lobby',
   templateUrl: './lobby.component.html',
-  styleUrls: ['./lobby.component.scss']
+  styleUrls: ['./lobby.component.scss'],
+  animations:[
+    onLoadAnimation
+  ]
 })
 export class LobbyComponent implements OnInit {
   constructor(

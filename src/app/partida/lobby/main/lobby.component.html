@@ -1,5 +1,5 @@
 <app-partida-navbar></app-partida-navbar>
-<div style="background-color: #4A51C9; min-height: 854px">
+<div style="background-color: #4A51C9; min-height: 854px" [@onLoadAnimation]>
   <div *ngIf="sesiones$ | async as sesiones" class="lobby container mx-auto">
     <!--
       Manera de usar ng template para mostrar contenido exclusivo
