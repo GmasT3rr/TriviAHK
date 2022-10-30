@@ -4,6 +4,7 @@ import { LobbyGuard } from 'app/guards/lobby.guard';
 import { LobbyComponent } from './lobby/main/lobby.component';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
+import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
   //   component: LobbyComponent,
   //   canActivate: [LobbyGuard]
   // },
+  {
+    path: 'todas-las-rutas',
+    component: TodasLasRutasComponent,
+  },
   {
     path: 'lobby/:id',
     component: LobbyComponent,
@@ -25,8 +30,9 @@ const routes: Routes = [
     path: 'multiple-choice',
     component: MultipleChoiceComponent,
   },
+  { path: '**', pathMatch: 'full', redirectTo: 'todas-las-rutas' }
 
-  { path: '**', pathMatch: 'full', redirectTo: 'lobby' }
+  // { path: '**', pathMatch: 'full', redirectTo: 'lobby' }
   // { path: '**', pathMatch: 'full', redirectTo: 'lobby/:id' }
 ];
 

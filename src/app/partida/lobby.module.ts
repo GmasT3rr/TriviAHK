@@ -8,9 +8,10 @@ import { LobbyRoutingModule } from './lobby-routing.module';
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { PartidaNavbarComponent } from './components/partida-navbar/partida-navbar.component';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
+import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
 
 @NgModule({
-  declarations: [UserCardComponent, LobbyComponent,SingleChoiceComponent, PartidaNavbarComponent, MultipleChoiceComponent],
+  declarations: [UserCardComponent, LobbyComponent,SingleChoiceComponent, PartidaNavbarComponent, MultipleChoiceComponent, TodasLasRutasComponent],
   imports: [CommonModule, FontAwesomeModule, SharedModule,LobbyRoutingModule],
 })
 export class LobbyModule {}
