@@ -9,9 +9,26 @@ import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { PartidaNavbarComponent } from './components/partida-navbar/partida-navbar.component';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
 import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
+import { PodioComponent } from './podio/podio.component';
+// Necesitamos angular 14+ para usar esto
+// import { NgParticlesModule } from 'ng-particles';
+
 
 @NgModule({
-  declarations: [UserCardComponent, LobbyComponent,SingleChoiceComponent, PartidaNavbarComponent, MultipleChoiceComponent, TodasLasRutasComponent],
-  imports: [CommonModule, FontAwesomeModule, SharedModule,LobbyRoutingModule],
+  declarations: [
+    UserCardComponent,
+    LobbyComponent,
+    SingleChoiceComponent,
+    PartidaNavbarComponent,
+    MultipleChoiceComponent,
+    TodasLasRutasComponent,
+    PodioComponent,
+  ],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    SharedModule,
+    LobbyRoutingModule,
+  ]
 })
 export class LobbyModule {}

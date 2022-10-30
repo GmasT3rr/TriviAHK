@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LobbyModule } from './partida/lobby.module';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

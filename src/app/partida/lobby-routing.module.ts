@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LobbyGuard } from 'app/guards/lobby.guard';
 import { LobbyComponent } from './lobby/main/lobby.component';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
+import { PodioComponent } from './podio/podio.component';
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
 
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'multiple-choice',
     component: MultipleChoiceComponent,
   },
+  {
+    path: 'podio',
+    component: PodioComponent,
+  },
+
   { path: '**', pathMatch: 'full', redirectTo: 'todas-las-rutas' }
 
   // { path: '**', pathMatch: 'full', redirectTo: 'lobby' }

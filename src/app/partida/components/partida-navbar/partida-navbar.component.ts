@@ -10,13 +10,18 @@ export class PartidaNavbarComponent implements OnInit {
   constructor(private router: Router) {}
 
   esLobby: boolean = false;
+  esPodio:boolean = false
 
   ngOnInit(): void {
     let ruta = this.router.url.split('/');
-    let res = ruta.find((valor: string) => valor == 'lobby');
-    if (res == 'lobby') {
+    let enLobby = ruta.find((valor: string) => valor == 'lobby');
+    if (enLobby == 'lobby') {
       this.esLobby = true;
     }
-    // console.log(res);
+    let enPodio = ruta.find((valor:string)=>valor == 'podio')
+    if (enPodio == 'podio') {
+      this.esPodio = true;
+    }
+
   }
 }

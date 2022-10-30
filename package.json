@@ -30,6 +30,7 @@
     "firebase": "^9.9.3",
     "jquery": "^3.6.0",
     "json-server": "^0.17.0",
+    "ng-particles": "^3.3.3",
     "ngx-toastr": "^14.3.0",
     "popper.js": "^1.16.1",
     "rxjs": "~7.4.0",
@@ -39,6 +40,7 @@
     "sweetalert2": "^11.4.23",
     "swiper": "^8.2.6",
     "tslib": "^2.3.0",
+    "tsparticles-engine": "^2.3.3",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
