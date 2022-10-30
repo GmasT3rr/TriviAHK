@@ -1,0 +1,84 @@
+.bg {
+  background-color: #4a51c9 !important;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  position: fixed;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.usuario {
+  font-weight: bold;
+}
+.imagen_primer_lugar {
+  width: 100px;
+  height: 100px;
+}
+.imagen_segundo_lugar,
+.imagen_tercer_lugar {
+  text-align: center;
+  width: 90px;
+  height: 80px;
+}
+
+.columna_podio {
+  width: 200px;
+}
+
+.ranking_podio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  align-items: flex-end;
+  padding-bottom: 20vh;
+  margin: 0 10px 0 10px;
+  border-radius: 20px;
+}
+.primero .usuario {
+  margin-top: 45vh;
+  text-align: center;
+}
+.segundo .usuario {
+  margin-top: 25vh;
+  text-align: center;
+}
+.tercero .usuario {
+  margin-top: 10vh;
+  text-align: center;
+}
+
+.primero {
+  min-height: 70vh;
+  background: #fd999b;
+  color: white;
+}
+
+.segundo {
+  min-height: 55vh;
+  background: #fcfcfc;
+  color: black;
+}
+
+.tercero {
+  min-height: 40vh;
+  background: #fcfcfc;
+  color: black;
+}
+
+@media screen and (max-width: 758px) {
+  .imagen_primer_lugar {
+    width: 75px;
+    height: 75px;
+  }
+
+  .ranking_podio {
+    padding-bottom: 20vh;
+    margin: 0;
+    border-radius: 20px;
+  }
+}

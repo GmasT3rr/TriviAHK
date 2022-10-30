@@ -1,0 +1,49 @@
+<app-partida-navbar></app-partida-navbar>
+<!-- Necesitamos angular 14+ para usar esto -->
+<!-- <Particles id="tsparticles" [options]="options"></Particles> -->
+<div class="bg" >
+  <div class="container" >
+    <div class="columna_podio" [@onGrowAnimation]="{value:':enter',params:{time:'1250ms'}}">
+      <div class="ranking_podio segundo">
+        <div class="row d-flex text-center">
+          <div class="text-center">
+            <img class="imagen_segundo_lugar" src="assets\segundo-lugar.png" alt="segundo-lugar">
+          </div>
+          <div class="puntaje">Puntaje</div>
+          <div class="usuario">Rama</div>
+        </div>
+      </div>
+    </div>
+    <div class="columna_podio" [@onGrowAnimation]="{value:':enter',params:{time:'1750ms'}}">
+      <div class="text-center">
+        <img class="imagen_primer_lugar" src="assets\primer-lugar.png" alt="primer-lugar">
+      </div>
+      <div class="ranking_podio primero">
+        <div class="row d-flex text-center">
+          <div class="puntaje">Puntaje</div>
+          <div class="usuario">Messi</div>
+        </div>
+      </div>
+    </div>
+    <div class="columna_podio" [@onGrowAnimation]="{value:':enter',params:{time:'750ms'}}">
+      <div class="ranking_podio tercero">
+        <div class="row d-flex text-center">
+          <div class="text-center">
+            <img class="imagen_tercer_lugar" src="assets\tercer-lugar.png" alt="tercer-lugar">
+          </div>
+          <div class="puntaje">Puntaje</div>
+          <div class="usuario">Sam</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="btn btn-primary" >
+  <i class="bi bi-door-open">
+    Finalizar
+  </i>
+</div> -->
+
+
+
