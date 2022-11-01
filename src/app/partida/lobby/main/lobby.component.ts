@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import { UserService } from 'app/services/user.service';
+import { UserService } from 'app/core/services/user.service';
+import { SocketService } from 'app/core/socket/socket.service';
 import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
-import { SocketService } from 'app/socket/socket.service';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lobby',
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.scss'],
-  animations:[
-    onLoadAnimation
-  ]
+  animations: [onLoadAnimation]
 })
 export class LobbyComponent implements OnInit {
   constructor(
@@ -22,10 +20,10 @@ export class LobbyComponent implements OnInit {
   ) {}
   faUsers = faUsers;
   idPartida: number = 0;
-  conteoUsuarios: number = 0
+  conteoUsuarios: number = 0;
   trivia: any;
-  sesiones$!: Observable<any>
-  sesionId: number = 0
+  sesiones$!: Observable<any>;
+  sesionId: number = 0;
 
   ngOnInit(): void {
     this._socketsService.iniciar();
@@ -42,7 +40,7 @@ export class LobbyComponent implements OnInit {
       this._socketsService.mostrarSiguientePregunta();
       // momentaneo
       this.router.navigateByUrl('/partida/single-choice');
-    })
+    });
     this.sesiones$ = this._socketsService.sesiones;
   }
 
@@ -51,14 +49,14 @@ export class LobbyComponent implements OnInit {
 
     this._socketsService.socket?.on('partida:trivia', t => {
       console.log('trivia del component: ', t); // TODO: preguntarle a eze si se puede hacer esto
-    })
-    this._socketsService.trivia.subscribe((t:any) => {
+    });
+    this._socketsService.trivia.subscribe((t: any) => {
       this.trivia = t;
     });
 
     this._socketsService.pregunta.subscribe(preg => {
       this.trivia[preg];
-    })
+    });
   }
 
   finalizarLobby() {
@@ -67,7 +65,6 @@ export class LobbyComponent implements OnInit {
     this.router.navigateByUrl('/main/home');
   }
   salirseLobby() {
-
     this._socketsService.salirse();
     this.router.navigateByUrl('/main/home');
   }

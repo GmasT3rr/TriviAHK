@@ -1,10 +1,10 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PartidasService } from 'app/services/partidas.service';
-import { ToastService } from 'app/services/toast.service';
-import { UserService } from 'app/services/user.service';
-import { SocketService } from 'app/socket/socket.service';
+import { ToastService } from 'app/core/services/toast.service';
+import { UserService } from 'app/core/services/user.service';
+import { SocketService } from 'app/core/socket/socket.service';
+import { PartidasService } from 'app/trivias/services/partidas.service';
 
 @Component({
   selector: 'app-modal',

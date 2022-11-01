@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, lastValueFrom, of, tap, throwError } from 'rxjs';
-import { environment as env } from '../../environments/environment';
+import { environment as env } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -59,8 +59,8 @@ export class TriviasService {
         });
     });
   }
-  
-  async actualizarTrivia(bodyTrivias:string,id:any){
+
+  async actualizarTrivia(bodyTrivias: string, id: any) {
     //Lo que hace en realidad es borrar la trivia anterior y crear una nueva
     const res = this.http.put(
       `${env.dev.serverUrl}/trivias/editarTriviaCompleta/${id}`,
@@ -77,7 +77,7 @@ export class TriviasService {
     );
   }
 
-  async eliminarTriviaPermanente(id:any){
+  async eliminarTriviaPermanente(id: any) {
     const res = this.http.delete(
       `${env.dev.serverUrl}/trivias/eliminarPermanente/${id}`
     );

@@ -1,11 +1,10 @@
 <nav
   *ngIf="!estaEnPartida"
-  class="navbar navbar-expand-lg"
-  style="background-color: #4a51c9">
+  class="navbar navbar-expand-lg">
   <div class="container">
     <a
       class="navbar-brand"
-      routerLink="/home">
+      routerLink="/main/home">
       <svg
         width="160"
         height="60"
@@ -51,32 +50,32 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            routerLinkActive="active"
             routerLink="/main/mis-trivias"
+            routerLinkActive="active"
             >Mis Trivias</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            routerLinkActive="active"
             routerLink="/home"
+            routerLinkActive="active"
             >Mis Partidas</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            routerLinkActive="active"
             routerLink="/main/crear-trivia"
+            routerLinkActive="active"
             >Crear Trivia</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
+            routerLink="/partida"
             routerLinkActive="active"
-            routerLink="/partida/"
             ><strong>Rutas de partida</strong></a
           >
         </li>
@@ -104,7 +103,6 @@
           </a>
         </li>
       </ul>
-      <div></div>
     </div>
   </div>
 </nav>

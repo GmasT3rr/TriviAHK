@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { CrearQuizComponent } from './crear-quiz/crear-quiz.component';
-import { LoadingPageComponent } from 'app/public/loading-page/loading-page.component';
-import { CrearPartidaComponent } from './crear-partida/crear-partida.component';
-import { MisTriviasComponent } from './mis-trivias/mis-trivias.component';
-import { EditarTriviaComponent } from './editar-trivia/editar-trivia.component';
-import { InfoTriviaComponent } from './info-trivia/info-trivia.component';
+import { LoadingPageComponent } from 'app/shared/components/loading-page/loading-page.component';
+import { CrearPartidaComponent } from './pages/crear-partida/crear-partida.component';
+import { CrearQuizComponent } from './pages/crear-quiz/crear-quiz.component';
+import { EditarTriviaComponent } from './pages/editar-trivia/editar-trivia.component';
+import { HomeComponent } from './pages/home/home.component';
+import { InfoTriviaComponent } from './pages/info-trivia/info-trivia.component';
+import { MisTriviasComponent } from './pages/mis-trivias/mis-trivias.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PagesRoutingModule {}
+export class TriviasRoutingModule {}

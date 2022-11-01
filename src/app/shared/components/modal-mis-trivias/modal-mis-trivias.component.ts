@@ -1,9 +1,9 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TipoDePregunta, Trivia } from 'app/interfaces/Trivias.interface';
-import { PartidasService } from 'app/services/partidas.service';
-import { SocketService } from 'app/socket/socket.service';
+import { SocketService } from 'app/core/socket/socket.service';
+import { Trivia } from 'app/trivias/interfaces/Trivias.interface';
+import { PartidasService } from 'app/trivias/services/partidas.service';
 
 @Component({
   selector: 'app-modal-mis-trivias',
@@ -18,8 +18,6 @@ export class ModalMisTriviasComponent implements OnInit {
     private router: Router
   ) {}
 
-
-
   @Input() trivia!: Trivia;
   @Input() modalPorAbrir!: string;
   @ViewChild('btnModalCerrar') btnModalCerrar!: ElementRef;
@@ -30,7 +28,6 @@ export class ModalMisTriviasComponent implements OnInit {
   crearForm: FormGroup = this.fb.group({
     segundosEntrePreguntas: ['', [Validators.required, Validators.min(5)]]
   });
-
 
   ngOnInit(): void {}
 

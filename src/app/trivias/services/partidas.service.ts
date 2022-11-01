@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment as env } from '../../environments/environment';
+import { environment as env } from '../../../environments/environment';
 import { catchError, of, tap, throwError } from 'rxjs';
 
 @Injectable({

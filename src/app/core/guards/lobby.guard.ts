@@ -6,8 +6,7 @@ import {
   RouterStateSnapshot,
   UrlTree
 } from '@angular/router';
-import { PartidasService } from 'app/services/partidas.service';
-import { TriviasService } from 'app/services/trivias.service';
+import { PartidasService } from 'app/trivias/services/partidas.service';
 import { Observable } from 'rxjs';
 
 @Injectable({

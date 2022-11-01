@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { environment as env } from '../../environments/environment';
+import { environment as env } from '../../../environments/environment';
 import { catchError, of, tap, throwError } from 'rxjs';
 
 @Injectable({

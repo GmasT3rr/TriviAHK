@@ -2,21 +2,20 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { SocketService } from 'app/socket/socket.service';
-import { PartidasService } from 'app/services/partidas.service';
-import { TriviasService } from 'app/services/trivias.service';
-import { Trivia } from 'app/interfaces/Trivias.interface';
-import { ToastService } from 'app/services/toast.service';
+
 import { Router } from '@angular/router';
 import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
+import { Trivia } from 'app/trivias/interfaces/Trivias.interface';
+import { SocketService } from 'app/core/socket/socket.service';
+import { PartidasService } from 'app/trivias/services/partidas.service';
+import { TriviasService } from 'app/trivias/services/trivias.service';
+import { ToastService } from 'app/core/services/toast.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  animations: [
-    onLoadAnimation
-  ]
+  animations: [onLoadAnimation]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public offset: number = 0;
