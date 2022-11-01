@@ -18,7 +18,7 @@ export class CrearTriviaComponent implements OnInit {
   obungaAppears(){
     setTimeout(() => {
       this.obunga = true
-    }, 5000);
+    }, 15000);
   }
 
   constructor(
