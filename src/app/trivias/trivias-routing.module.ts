@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoadingPageComponent } from 'app/shared/components/loading-page/loading-page.component';
 import { CrearPartidaComponent } from './pages/crear-partida/crear-partida.component';
-import { CrearQuizComponent } from './pages/crear-quiz/crear-quiz.component';
+import { CrearTriviaComponent } from './pages/crear-trivia/crear-trivia.component';
 import { EditarTriviaComponent } from './pages/editar-trivia/editar-trivia.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InfoTriviaComponent } from './pages/info-trivia/info-trivia.component';
@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'loading', component: LoadingPageComponent },
   { path: 'editar-trivia/:id', component: EditarTriviaComponent },
-  { path: 'crear-trivia', component: CrearQuizComponent },
+  { path: 'crear-trivia', component: CrearTriviaComponent },
   { path: 'crearPartida', component: CrearPartidaComponent },
   { path: 'mis-trivias', component: MisTriviasComponent },
   { path: 'info-trivia/:id', component: InfoTriviaComponent },

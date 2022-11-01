@@ -3,18 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { TriviasRoutingModule } from './trivias-routing.module';
 import { HomeComponent } from './pages/home/home.component';
-import { CrearQuizComponent } from './pages/crear-quiz/crear-quiz.component';
+import { CrearTriviaComponent } from './pages/crear-trivia/crear-trivia.component';
 import { CrearPartidaComponent } from './pages/crear-partida/crear-partida.component';
 import { MisTriviasComponent } from './pages/mis-trivias/mis-trivias.component';
 import { EditarTriviaComponent } from './pages/editar-trivia/editar-trivia.component';
 import { InfoTriviaComponent } from './pages/info-trivia/info-trivia.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CrearQuizComponent,
+    CrearTriviaComponent,
     CrearPartidaComponent,
     MisTriviasComponent,
     EditarTriviaComponent,
@@ -24,7 +24,8 @@ import { SharedModule } from 'app/shared/shared.module';
     CommonModule,
     TriviasRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class TriviasModule {}

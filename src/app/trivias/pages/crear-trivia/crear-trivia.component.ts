@@ -6,12 +6,12 @@ import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
 import { TriviasService } from 'app/trivias/services/trivias.service';
 
 @Component({
-  selector: 'app-crear-quiz',
-  templateUrl: './crear-quiz.component.html',
-  styleUrls: ['./crear-quiz.component.css'],
+  selector: 'app-crear-trivia',
+  templateUrl: './crear-trivia.component.html',
+  styleUrls: ['./crear-trivia.component.css'],
   animations: [onLoadAnimation]
 })
-export class CrearQuizComponent implements OnInit {
+export class CrearTriviaComponent implements OnInit {
 
   // BORRAR
   obunga=false
