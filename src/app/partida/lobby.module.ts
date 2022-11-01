@@ -1,5 +1,4 @@
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LobbyComponent } from './lobby/main/lobby.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'app/shared/shared.module';
@@ -10,25 +9,20 @@ import { PartidaNavbarComponent } from './components/partida-navbar/partida-navb
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
 import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
 import { PodioComponent } from './podio/podio.component';
+import { LobbyComponent } from './lobby/main/lobby.component';
 // Necesitamos angular 14+ para usar esto
 // import { NgParticlesModule } from 'ng-particles';
-
 
 @NgModule({
   declarations: [
     UserCardComponent,
-    LobbyComponent,
     SingleChoiceComponent,
     PartidaNavbarComponent,
     MultipleChoiceComponent,
     TodasLasRutasComponent,
     PodioComponent,
+    LobbyComponent
   ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    SharedModule,
-    LobbyRoutingModule,
-  ]
+  imports: [CommonModule, FontAwesomeModule, SharedModule, LobbyRoutingModule]
 })
 export class LobbyModule {}

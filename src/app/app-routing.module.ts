@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { LoadingPageComponent } from './public/loading-page/loading-page.component';
-import { LobbyModule } from './partida/lobby.module';
+import { LoadingPageComponent } from './shared/components/loading-page/loading-page.component';
 
 const routes: Routes = [
   {
     path: 'main',
-    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
+    loadChildren: () =>
+      import('./trivias/trivias.module').then(m => m.TriviasModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'partida',
-    loadChildren: () => import('./partida/lobby.module').then(m => m.LobbyModule),
+    loadChildren: () =>
+      import('./partida/lobby.module').then(m => m.LobbyModule),
     canActivate: [AuthGuard]
   },
   {
