@@ -20,16 +20,31 @@ import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
   styleUrls: ['./crear-quiz.component.css'],
   animations:[
     onLoadAnimation
+
   ]
 })
 export class CrearQuizComponent implements OnInit {
+
+
+    // BORRAR
+  obunga=false
+  obungaAppears(){
+    setTimeout(() => {
+      this.obunga = true
+    }, 5000);
+  }
+
+
+
 
   constructor(
     private toastService: ToastService,
     private fb: FormBuilder,
     private router:Router,
     private _triviasService:TriviasService
-  ) {}
+  ) {
+    this.obungaAppears()
+  }
 
   tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
 

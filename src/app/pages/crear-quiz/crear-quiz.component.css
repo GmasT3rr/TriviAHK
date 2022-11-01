@@ -13,6 +13,40 @@ input, select{
 }
 .alert{
   box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
-
 }
 
+.float__addpregunta{
+  display: flex;
+  justify-content: right;
+  align-items: flex-end;
+  width: 10%;
+  position: fixed;
+  top: 0;
+  left: 30px;
+  bottom: 30px;
+}
+
+
+/* BORRAR */
+
+.__obunga img{
+  width: 200px;
+  height: 200px;
+  margin-bottom: -60px;
+  left: 0;
+}
+
+.__obunga {
+  transition: all 500ms;
+  animation: wave-anim 2s;
+  animation-iteration-count: infinite;
+}
+@keyframes wave-anim{
+  0%,20%,40%,100%{
+    transform: translateY(0);
+  }
+  20%{
+    transform: translateY(-20px);
+  }
+
+}

@@ -1,4 +1,4 @@
-<div class="container" [@onLoadAnimation]>
+<div class="container" [@onLoadAnimation] *ngIf="!obunga">
   <div class="row d-flex justify-content-center">
         <!-- Titulo de la página -->
         <div class="misPartidas col-9 mt-5 ml-5">
@@ -43,8 +43,8 @@
           <!-- <div class="text-center mt-3 ">
             <h5 *ngIf="preguntas().controls.length == 0"><strong>No hay preguntas</strong></h5>
           </div> -->
-          <div [hidden]="preguntas().controls.length == 0" formArrayName="preguntas">
-            <div *ngFor="let pregunta of preguntas().controls; let indexPreg = index">
+          <div   [hidden]="preguntas().controls.length == 0" formArrayName="preguntas">
+            <div *ngFor="let pregunta of preguntas().controls; let indexPreg = index" [@onLoadAnimation]>
               <div [formGroupName]="indexPreg">
                 <div class="mb-3 mt-5">
                   <h4 style="font-weight: bold;">Pregunta N°{{ indexPreg + 1 }}</h4>
@@ -93,8 +93,9 @@
                 </div> -->
 
                 <!-- Form para opciones de las preguntas del quiz-->
-                <div formArrayName="opciones">
-                  <div *ngFor="
+                <div formArrayName="opciones"  >
+                  <div [@onLoadAnimation]
+                  *ngFor="
                   let opcion of opciones(indexPreg).controls;
                   let indexOpc = index">
                   <div class="mb-3 mt-5">
@@ -156,6 +157,21 @@
 
         <!-- VISUALIZACION DE TODOS LOS DATOS-->
         <!-- <pre>{{ triviaForm.value | json }}</pre> -->
+      </div>
+    </div>
+  </div>
+
+  <!--  BORRAR -->
+  <div [@onLoadAnimation] class="float__addpregunta" *ngIf="preguntas().controls.length >= 1">
+    <div  class="row d-flex justify-content-center" >
+      <div *ngIf="obunga" class="col text-center __obunga">
+        <img src="assets\Obunga.webp" alt="obunga" >
+      </div>
+      <div *ngIf="!obunga" class="col text-center">
+        <button class="btn col-12 p-2" (click)="agregarPregunta()"
+        style="background-color:#FD999B; color: white;" >
+        Agregar Pregunta
+        </button>
       </div>
     </div>
   </div>
