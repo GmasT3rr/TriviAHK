@@ -1,6 +1,6 @@
 <app-partida-navbar></app-partida-navbar>
 <div style="background-color: #7161ef; min-height: 854px">
-  <div class="lobby container mx-auto">
+  <div *ngIf="sesiones$ | async as sesiones" class="lobby container mx-auto">
     <!--
       Manera de usar ng template para mostrar contenido exclusivo
       para el creador o el usuario
@@ -18,7 +18,7 @@
           [icon]="faUsers"
           class="data__usuarios--icon"></fa-icon>
         <br />
-        <p>{{ conteoUsuarios }}</p>
+        <p>{{ sesiones.length }}</p>
       </div>
       <div class="data__pin">
         <small>Codigo de la sala</small>
@@ -55,8 +55,8 @@
     <div class="usuarios-container row">
       <div
         class="col-4 my-3"
-        *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]">
-        <app-user-card></app-user-card>
+        *ngFor="let sesion of sesiones">
+        <app-user-card [sesion]="sesion"></app-user-card>
       </div>
     </div>
   </div>

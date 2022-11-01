@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'app/services/user.service';
 import { SocketService } from 'app/socket/socket.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lobby',
@@ -19,10 +20,11 @@ export class LobbyComponent implements OnInit {
   idPartida: number = 0;
   conteoUsuarios: number = 0
   trivia: any;
+  sesiones$!: Observable<any>
+  sesionId: number = 0
 
   ngOnInit(): void {
     this._socketsService.iniciar();
-    console.log('oninit');
     const urlLobby = this.router.url.split('/');
     this.idPartida = Number(urlLobby[urlLobby.length - 1]);
     // TODO: uid en localstorage
@@ -37,6 +39,7 @@ export class LobbyComponent implements OnInit {
       // momentaneo
       this.router.navigateByUrl('/partida/single-choice');
     })
+    this.sesiones$ = this._socketsService.sesiones;
   }
 
   unirse(usuarioID: number, partidaID: number) {
@@ -45,7 +48,7 @@ export class LobbyComponent implements OnInit {
     this._socketsService.socket?.on('partida:trivia', t => {
       console.log('trivia del component: ', t); // TODO: preguntarle a eze si se puede hacer esto
     })
-    this._socketsService.trivia.subscribe(t => {
+    this._socketsService.trivia.subscribe((t:any) => {
       this.trivia = t;
     });
 
@@ -60,6 +63,7 @@ export class LobbyComponent implements OnInit {
     this.router.navigateByUrl('/main/home');
   }
   salirseLobby() {
+
     this._socketsService.salirse();
     this.router.navigateByUrl('/main/home');
   }

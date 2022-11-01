@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 
 @Injectable({
@@ -9,30 +9,33 @@ export class SocketService {
   public socket?: Socket;
   public trivia = new Subject<any>();
   public pregunta = new Subject<any>();
+  private _sesiones = new Subject<any>();
   public terminaTiempo = new Subject<any>();
+  public sesionId!: number;
+
+  public get sesiones() {
+    return this._sesiones as Observable<any>;
+  }
+
 
   constructor() {
     // this.iniciar();
   }
 
-
   public iniciar() {
-    this.socket = io("http://localhost:3000/juego");
+    this.socket = io('http://localhost:3000/juego');
 
-    this.socket.on("mensaje", (mensajeNuevo: string) => {
+    this.socket.on('mensaje', (mensajeNuevo: string) => {
       //alert(mensajeNuevo);
     });
 
     this.socket.on('partida:status-union', (partida: any) => {
       console.log(partida);
       // esta bien hacer esto
-      this.sesion = partida.id;
+      this.sesionId = partida.id;
       // SI ACA HACES ALGO QUE TIRE UN ERROR, NOSE PQ PERO SE VUELVE A CONECTAR A SOCKETs
     });
-    this.socket.on('partida:unido', (mensaje:any) => {
-      // TODO: este evento trae los usuarios conectados
-      console.log(mensaje);
-    });
+
     //     "error": false,
     //     "result": {
     //         "_usuario": {
@@ -55,55 +58,58 @@ export class SocketService {
     //     "status": 200
     this.socket.on('partida:salido', (p: any) => {
       console.log(p);
-    })
+    });
 
     // Trae la trivia en juego
-    this.socket.on('partida:trivia', (t) => {
+    this.socket.on('partida:trivia', t => {
       this.trivia.next(t);
-    })
+    });
 
     this.socket.on('partida:iniciada-status', p => {
       console.log(p);
-    })
+    });
 
     this.socket.on('partida:mostrar-pregunta', r => {
       this.pregunta.next(r);
-    })
+    });
 
     this.socket.on('partida:termina-tiempo', r => {
       this.terminaTiempo.next(r);
-    })
+    });
 
     this.socket.on('partida:respondio', r => {
       console.log(r);
-    })
+    });
 
     this.socket.on('partida:resultados', r => {
       console.log(r);
-    })
+    });
 
     this.socket.on('partida:terminada', r => {
       console.log(r);
-    })
+    });
+
+    this.socket.on('partida:sesiones-conectadas', r => {
+      console.log(r);
+      this._sesiones.next(r);
+    });
   }
 
   public iniciarPartida() {
     this.socket?.emit('partida:iniciar');
   }
 
-  sesion = 0;
   // como disparar el evento sin que
-  public unirse(usuarioID: number, partidaID: number ) {
-    this.socket!.emit('partida:unir', {usuarioID, partidaID});
-
+  public unirse(usuarioID: number, partidaID: number) {
+    this.socket!.emit('partida:unir', { usuarioID, partidaID });
   }
 
-  public salirse() {
-    const sesionID = {sesionID: this.sesion || 104}
+  public salirse(idSesion: number = this.sesionId) {
+    const sesionID = { sesionID: idSesion };
     this.socket!.emit('partida:salir', sesionID);
     this.socket!.once('partida:status-salida', (p: any) => {
       console.log(p);
-    })
+    });
     // this.socket?.off('partida:status-salida');
 
     // "error": false,
@@ -113,23 +119,23 @@ export class SocketService {
     // "status": 200
   }
 
-  public mostrarSiguientePregunta(){
-    this.socket!.emit('partida:siguiente-pregunta')
+  public mostrarSiguientePregunta() {
+    this.socket!.emit('partida:siguiente-pregunta');
   }
 
-  public responder(){
+  public responder() {
     const opciones = {
       opciones: [
         {
-          id: 3,
+          id: 3
         },
         {
-          id: 4,
+          id: 4
         }
       ],
-      tiempoEnSegundos: 20,
-    }
-    this.socket!.emit('partida:responder', opciones)
+      tiempoEnSegundos: 20
+    };
+    this.socket!.emit('partida:responder', opciones);
     // const respuestas = {
     //   opcion: [1]
     // }
@@ -139,9 +145,7 @@ export class SocketService {
     // })
   }
 
-  public mostrarResultados() {
-
-  }
+  public mostrarResultados() {}
 
   public finalizarPartida() {
     this.socket?.emit('partida:finalizar');
