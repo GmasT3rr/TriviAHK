@@ -10,6 +10,7 @@ import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.compo
 import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
 import { PodioComponent } from './podio/podio.component';
 import { LobbyComponent } from './lobby/main/lobby.component';
+import { RankingComponent } from './ranking/ranking.component';
 // Necesitamos angular 14+ para usar esto
 // import { NgParticlesModule } from 'ng-particles';
 
@@ -21,7 +22,8 @@ import { LobbyComponent } from './lobby/main/lobby.component';
     MultipleChoiceComponent,
     TodasLasRutasComponent,
     PodioComponent,
-    LobbyComponent
+    LobbyComponent,
+    RankingComponent
   ],
   imports: [CommonModule, FontAwesomeModule, SharedModule, LobbyRoutingModule]
 })

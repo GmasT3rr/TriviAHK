@@ -1,0 +1,25 @@
+.bg{
+  background-color: #4a51c9 !important;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+.__ranking__top{
+  text-align: center;
+  background: #FD999B;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0px 2px white;
+}
+
+.__items{
+  align-self: stretch;
+  border-radius: 10px;
+  margin-top: 5%;
+  background-color: white;
+}
+.__usuario{
+text-align: center;
+border-radius: 10px;
+
+}

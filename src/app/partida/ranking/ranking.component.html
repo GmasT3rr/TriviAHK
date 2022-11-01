@@ -1,0 +1,27 @@
+<div class="bg">
+  <div class="container">
+    <div class="row d-flex justify-content-center" [@onRankingAnimation]="users.length">
+      <div class="col-md-12 __ranking__top p-5 mt-3">
+        <div class="text-center">
+          <fa-icon [icon]="faRankingStar" [styles]="{'height':'20px', 'width':'20px'}"></fa-icon>
+          <span class="ml-5"><strong>RANKING</strong></span>
+        </div>
+      </div>
+      <div class="col-md-8 __items">
+        <div *ngFor="let users of users;let i=index" >
+          <div class="p-2 m-1  __usuario row d-flex justify-content-between" [ngStyle]="{background:getBgColor(i),color:getColor(i)}">
+            <div class="col-3">
+              N°{{i+1}}
+            </div>
+            <div class="col-3">
+               Usuario
+            </div>
+            <div class="col-3">
+               Puntos
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LobbyComponent } from './lobby/main/lobby.component';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
 import { PodioComponent } from './podio/podio.component';
+import { RankingComponent } from './ranking/ranking.component';
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
 
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'todas-las-rutas',
     component: TodasLasRutasComponent
+  },
+  {
+    path: 'ranking',
+    component: RankingComponent
   },
   {
     path: 'lobby/:id',
