@@ -1,0 +1,15 @@
+<div
+  class="homeBtns wave"
+  [routerLink]="route">
+  <i class="bi bi-plus">
+    <span
+      *ngFor="let letra of textArr; let i = index"
+      [style]="{ '--item': i }">
+      <span *ngIf="textArr[i] != ' '; else espacio">{{ letra }}</span>
+
+      <ng-template #espacio>
+        <span class="ml-2"></span>
+      </ng-template>
+    </span>
+  </i>
+</div>
