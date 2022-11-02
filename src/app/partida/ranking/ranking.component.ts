@@ -20,9 +20,20 @@ export class RankingComponent implements OnInit {
   }
 
    public getBgColor(index: number): string {
-    if(index % 2 == 0){
-      return "#FCFCFC"
-    } else return '#FD999B';
+    switch (index) {
+      case 0:
+        return '#FFC633'
+      case 1:
+        return '#BFC0C0'
+      case 2:
+        return '#CD7F32'
+      default:
+        return 'rgba(212, 213, 216, .3)'
+    }
+    // if(index % 2 == 0){
+    //   return "#FCFCFC"
+    // } else return '#FD999B';
+
    }
    public getColor(index: number): string {
     if(index % 2 == 0){
