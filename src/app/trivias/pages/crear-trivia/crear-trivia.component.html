@@ -210,7 +210,6 @@
           </div>
         </div>
 
-
         <!-- Boton para crear trivia-->
         <button
           class="btn col-6 mt-5 mb-4 p-2"
@@ -223,12 +222,14 @@
     </div>
   </div>
 </div>
-        <!-- flotante agregar pregunta -->
+<!-- flotante agregar pregunta -->
 
-<div class="container text-center">
+<div
+  class="container"
+  [@onLoadAnimation]
+  *ngIf="preguntas().controls.length >= 2">
   <div
     class="btn float__addpregunta"
-    *ngIf="preguntas().controls.length >= 2"
     (click)="toggleFlip()">
     <fa-icon
       class="__fa-icon"
