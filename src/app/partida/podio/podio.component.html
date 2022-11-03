@@ -9,8 +9,8 @@
           <div class="text-center">
             <fa-icon [icon]="faMedal" [styles]="{'height':'60px', 'width':'60px','color':'#BFC0C0'}"></fa-icon>
           </div>
-          <div class="puntaje">1600</div>
-          <div class="usuario">Rama</div>
+          <div class="puntaje">{{partidaResultadosFinales[1].puntaje}}</div>
+          <div class="usuario">{{partidaResultadosFinales[1].nombre}}</div>
         </div>
       </div>
     </div>
@@ -20,8 +20,8 @@
       </div>
       <div class="ranking_podio primero">
         <div class="row d-flex text-center">
-          <div class="puntaje">1900</div>
-          <div class="usuario">Messi</div>
+          <div class="puntaje">{{partidaResultadosFinales[0].puntaje}}</div>
+          <div class="usuario">{{partidaResultadosFinales[0].nombre}}</div>
         </div>
       </div>
     </div>
@@ -31,8 +31,8 @@
           <div class="text-center">
             <fa-icon [icon]="faMedal" [styles]="{'height':'60px', 'width':'60px','color':'#CD7F32'}"></fa-icon>
           </div>
-          <div class="puntaje">1200</div>
-          <div class="usuario">Sam</div>
+          <div class="puntaje">{{partidaResultadosFinales[2].puntaje}}</div>
+          <div class="usuario">{{partidaResultadosFinales[2].nombre}}</div>
         </div>
       </div>
     </div>

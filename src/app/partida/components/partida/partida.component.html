@@ -1,4 +1,5 @@
-<app-partida-navbar></app-partida-navbar>
+<div *ngIf="!finDePartida ">
+  <app-partida-navbar></app-partida-navbar>
 <div
   class="bg row d-flex justify-content-center"
   [@onLoadAnimation]>
@@ -8,6 +9,7 @@
     class="container d-flex justify-content-end">
     <div class="d-flex align-items-center">
       <button
+      *ngIf="inicioPartida"
         class="btn btn_iniciar_partida mt-4"
         [disabled]="!habilitarBtnPregunta"
         (click)="mostrarSiguientePreg()" >
@@ -16,11 +18,12 @@
     </div>
   </div>
 
-  <div *ngIf="habilitarBtnPregunta && inicioPartida">
+  <div *ngIf="habilitarBtnPregunta && inicioPartida && !finDePartida">
     <app-ranking
+    [partidaResultadosPrevios]="partidaResultadosPrevios"
     ></app-ranking>
   </div>
-  <div *ngIf="!habilitarBtnPregunta">
+  <div *ngIf="!habilitarBtnPregunta && !finDePartida">
     <app-pregunta
       *ngIf="tengoTriviaYOpciones"
       [pregunta]="preguntaActual._leyenda"></app-pregunta>
@@ -28,6 +31,11 @@
       *ngIf="tengoTriviaYOpciones"
       [pregunta]="preguntaActual"></app-opciones>
   </div>
+</div>
+</div>
 
-
+<div *ngIf="finDePartida ">
+  <app-podio
+  [partidaResultadosFinales]="partidaResultadosFinales"
+  ></app-podio>
 </div>

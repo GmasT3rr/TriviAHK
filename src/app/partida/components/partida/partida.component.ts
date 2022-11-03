@@ -31,6 +31,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   tengoTriviaYOpciones = false;
   habilitarBtnPregunta = true;
   paramsId:any
+  finDePartida=false
 
   getIdPartida(){
     this.activatedRoute.paramMap
@@ -43,16 +44,35 @@ export class PartidaComponent implements OnInit, OnDestroy {
   //Prueba bug que si del lobby toco btn iniciar ya tiene la trivia
   //y no va a hacer el trivia.subscribe
   triviaEnviadaLobby!: Trivia;
-
   inicioPartida:boolean=false
+  partidaResultadosPrevios=[{
+    nombre:'Rama',
+    puntaje:'1200'
+  },{
+    nombre:'Messi',
+    puntaje:'3300'
+  },{
+    nombre:'Alguien',
+    puntaje:'750'
+  }]
+  partidaResultadosFinales=[{
+    nombre:'Rama',
+    puntaje:'3000'
+  },{
+    nombre:'Messi',
+    puntaje:'5000'
+  },{
+    nombre:'Alguien',
+    puntaje:'2000'
+  }]
+
   ngOnInit(): void {
     this.getIdPartida()
-    this.mostrarSiguientePreg()
-
+    //Sin el timeout no funciona por algun motivo
     setTimeout(() => {
       this.mostrarSiguientePreg()
       this.inicioPartida = true
-    }, 100);
+    }, 500);
     //TODO Ver el tema este
     // this._socketsService.iniciar();
     // const urlLobby = this.router.url.split('/');
@@ -91,7 +111,10 @@ export class PartidaComponent implements OnInit, OnDestroy {
       //habilitamos preg
       if (this.preguntas.length > this.posicionPregSockets) {
         this.habilitarBtnPregunta = true;
-      } else this.habilitarBtnPregunta = false;
+      } else {
+        this.habilitarBtnPregunta = false
+        this.finDePartida=true
+      };
     });
     // this._socketsService.socket?.on('partida:trivia', t => {
     //   console.log('trivia del component: ', t); // TODO: preguntarle a eze si se puede hacer esto
@@ -100,22 +123,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
 
   tiempoFinalizo:boolean = false
   tiempoPreguntasSeg:any
-  getTiempo(){
-    this._socketsService._segundosEntrePreguntas$.subscribe((seg: number) => {
-      console.log('seg rec', seg);
-      // this.recibimosTiempo = true;
-      this.tiempoPreguntasSeg = seg;
-      let countdown = setInterval(() => {
-        console.log(this.tiempoPreguntasSeg);
-        this.tiempoPreguntasSeg--;
-        // console.log(this.tiempoPreguntasSeg);
-        if (this.tiempoPreguntasSeg <= 0){
-          clearInterval(countdown)
-          this.tiempoFinalizo = true
-        };
-      }, 1000);
-    });
-  }
+
 
   mostrarSiguientePreg() {
     console.log(this.preguntas.length);

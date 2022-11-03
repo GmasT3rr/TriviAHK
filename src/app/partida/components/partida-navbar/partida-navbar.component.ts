@@ -30,11 +30,10 @@ export class PartidaNavbarComponent implements OnInit {
     }
 
     this._socketsService._segundosEntrePreguntas$.subscribe((seg: number) => {
-      console.log('seg rec', seg);
       this.recibimosTiempo = true;
       this.tiempoPreguntasSeg = seg;
       let countdown = setInterval(() => {
-        console.log(this.tiempoPreguntasSeg);
+        console.log('NAVBAR',this.tiempoPreguntasSeg);
         this.tiempoPreguntasSeg--;
         // console.log(this.tiempoPreguntasSeg);
         if (this.tiempoPreguntasSeg <= 0) clearInterval(countdown);
