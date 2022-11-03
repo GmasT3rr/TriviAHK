@@ -79,7 +79,7 @@
 }
 
 @media screen and (max-width:1024px) {
-  .__descripcion div, .__usuario div{
+  .__descripcion div, .__usuario div, .__posicion{
     text-align: center !important;
   }
 }

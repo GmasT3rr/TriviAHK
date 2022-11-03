@@ -4,22 +4,18 @@ import { Router } from '@angular/router';
 import { ToastService } from 'app/core/services/toast.service';
 import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
 import { TriviasService } from 'app/trivias/services/trivias.service';
-
+import { faClipboardQuestion } from '@fortawesome/free-solid-svg-icons';
+import { flipRigthAnimation } from 'app/shared/animations/flipRight.component';
 @Component({
   selector: 'app-crear-trivia',
   templateUrl: './crear-trivia.component.html',
   styleUrls: ['./crear-trivia.component.css'],
-  animations: [onLoadAnimation]
+  animations: [
+    onLoadAnimation,
+    flipRigthAnimation
+  ]
 })
 export class CrearTriviaComponent implements OnInit {
-
-  // BORRAR
-  obunga=false
-  obungaAppears(){
-    setTimeout(() => {
-      this.obunga = true
-    }, 15000);
-  }
 
   constructor(
     private toastService: ToastService,
@@ -27,10 +23,12 @@ export class CrearTriviaComponent implements OnInit {
     private router: Router,
     private _triviasService: TriviasService
   ) {}
-
+  faClipboardQuestion=faClipboardQuestion
   tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
 
   triviaForm!: FormGroup;
+
+
 
   ngOnInit(): void {
     this.triviaForm = this.fb.group({
@@ -39,7 +37,11 @@ export class CrearTriviaComponent implements OnInit {
       preguntas: this.fb.array([])
     });
     this.agregarPregunta();
-    this.obungaAppears();
+  }
+
+  flip={status:'inactive'}
+  toggleFlip() {
+    this.flip.status = this.flip.status == 'inactive' ? 'active' : 'inactive';
   }
 
   preguntas(): FormArray {
