@@ -1,0 +1,108 @@
+<div
+  [@onLoadAnimation]
+  style="background-color: #ffb1b5"
+  class="pt-2 pb-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center cards">
+      <div
+        class="col-sm-4 btn"
+        style="border: none">
+        <app-button-home
+          [desc]="'Crear Trivia'"
+          [route]="'/main/crear-trivia'"></app-button-home>
+      </div>
+      <div
+        class="col-sm-4 btn"
+        style="border: none">
+        <app-button-home
+          [desc]="'Crear Partida'"
+          [route]="'/main/mis-trivias'"></app-button-home>
+      </div>
+      <div
+        class="col-sm-8 btn mt-2"
+        style="border: none"
+        data-bs-toggle="modal"
+        data-bs-target="#modalGeneral">
+        <app-button-home [desc]="'Ingresar'"></app-button-home>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal [modalPorAbrir]="'ingresarPartida'"></app-modal>
+
+<div class="container">
+  <div class="row">
+    <div class="actividades">
+      <p>Actividades Recientes</p>
+      <hr />
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div
+      class="col-lg-3 mb-3 mt-3"
+      *ngFor="let trivia of trivias | slice: offset:limit; let i = index">
+      <!-- <div
+        class="card bg-primary text-center"
+        [@showOpciones]
+        *ngIf="trivia"
+        (click)="irVerTrivia(trivia.id)"
+        style="cursor: pointer">
+        <div class="card-title">
+          <h3>{{ trivia._nombre }}</h3>
+        </div>
+        <div class="card-body">
+          <h4>Id: {{ trivia.id }}</h4>
+          <h4>{{ trivia._fechaCreacion | date }}</h4>
+          <h5>{{ trivia._creadoPor?._nombre }}</h5>
+          <p *ngIf="trivia._descripcion; else noDescp">
+            {{ trivia._descripcion | slice: 0:50 }}
+          </p>
+        </div>
+        <ng-template #noDescp> Sin descripcion </ng-template>
+      </div> -->
+
+      <div
+        class="card text-center mb-3"
+        [@onLoadAnimation]
+        *ngIf="trivia"
+        (click)="irVerTrivia(trivia.id)"
+        style="cursor: pointer">
+        <div class="card-header card-header-background p-2">
+          <h3 class="card-title text-white">{{ trivia._nombre }}</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-text">#{{ trivia.id }}</p>
+
+          <p *ngIf="trivia._descripcion">
+            {{ trivia._descripcion | slice: 0:50 }}
+          </p>
+          <p class="card-text">{{ trivia._creadoPor?._nombre }}</p>
+        </div>
+        <div class="card-footer border-primary bg-transparent">
+          <p class="card-text">{{ trivia._fechaCreacion | date }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center mt-4">
+    <div
+      (click)="prevQuiz()"
+      class="btn btn-prev mx-3">
+      <i
+        class="bi bi-arrow-left"
+        style="font-style: inherit"></i>
+    </div>
+    <div
+      (click)="nextQuiz()"
+      class="btn btn-next mx-3">
+      <i
+        class="bi bi-arrow-right"
+        style="font-style: inherit"></i>
+    </div>
+  </div>
+</div>

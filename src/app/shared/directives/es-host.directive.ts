@@ -5,7 +5,7 @@ import {
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
-import { PartidasService } from 'app/services/partidas.service';
+import { PartidasService } from 'app/trivias/services/partidas.service';
 
 @Directive({
   selector: '[esHost]'
