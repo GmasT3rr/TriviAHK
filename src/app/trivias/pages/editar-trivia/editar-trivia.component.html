@@ -169,14 +169,37 @@
           </button>
         </form>
 
-        <!-- VISUALIZACION DE TODOS LOS DATOS-->
-        <pre>{{ triviaForm.value | json }}</pre>
+
       </div>
     </div>
   </div>
 
 
 
+  <div
+  class="container"
+  [@onLoadAnimation]
+  *ngIf="preguntas().controls.length >= 2">
+  <div
+    class="btn float__addpregunta"
+    (click)="toggleFlip()">
+    <fa-icon
+      class="__fa-icon"
+      [icon]="faClipboardQuestion">
+    </fa-icon>
+    <span
+      type="button"
+      [@flipRigthAnimation]="flip.status">
+      <i class="ml-2 bi bi-caret-right-fill"></i>
+    </span>
+    <span
+      class="text-center"
+      [hidden]="flip.status === 'inactive'">
+      <span> | </span>
+      <span (click)="agregarPregunta()"> Agregar Pregunta </span>
+    </span>
+  </div>
+</div>
 
 
 

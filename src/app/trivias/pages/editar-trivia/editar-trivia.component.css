@@ -21,6 +21,25 @@ background: rgba(113, 97, 239, .5);
 input, select{
   box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
 }
+.float__addpregunta{
+  text-align: center;
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: #FD999B;
+  font-size: 20px;
+  color: white;
+  transition: all 300ms ease;
+}
+.float__addpregunta:hover{
+  animation: bounce-down 1.5s linear infinite;
+  background-color: #FD999B;
+  color: white;
+  opacity: .8;
+}
+
 @media screen and (max-width:1024px) {
   .cards {
       margin-top: 50px;
@@ -44,5 +63,25 @@ input, select{
   }
   .boton-ingresar .card-text {
       font-size: 22px;
+  }
+}
+
+
+@media screen and (max-width:768px) {
+  .float__addpregunta{
+    left: 15px;
+    bottom: 15px;
+  }
+}
+
+@keyframes bounce-down {
+  25% {
+       transform: translateY(-4px);
+  }
+  50%, 100% {
+       transform: translateY(0);
+  }
+  75% {
+       transform: translateY(4px);
   }
 }
