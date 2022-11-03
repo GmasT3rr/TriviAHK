@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
+import { environment as env } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class SocketService {
     return this._sesiones$ as Observable<any>;
   }
 
-  constructor() {
+  constructor(private http:HttpClient) {
     // this.iniciar();
   }
 
@@ -173,4 +175,5 @@ export class SocketService {
   public desconectar() {
     this.socket.disconnect();
   }
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'app/core/services/user.service';
 import { SocketService } from 'app/core/socket/socket.service';
 import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
@@ -15,7 +15,8 @@ export class PartidaComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private _socketsService: SocketService,
-    private _userService: UserService
+    private _userService: UserService,
+    private activatedRoute:ActivatedRoute
   ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as { trivia: Trivia };
@@ -24,18 +25,34 @@ export class PartidaComponent implements OnInit, OnDestroy {
     }
   }
 
-  idPartida: number = 0;
   preguntas: Pregunta[] = [];
   posicionPregSockets: number = 0;
   preguntaActual!: Pregunta;
   tengoTriviaYOpciones = false;
   habilitarBtnPregunta = true;
+  paramsId:any
+
+  getIdPartida(){
+    this.activatedRoute.paramMap
+      .subscribe((x:any) => {
+        this.paramsId = x.params.id;
+      }
+    );
+  }
 
   //Prueba bug que si del lobby toco btn iniciar ya tiene la trivia
   //y no va a hacer el trivia.subscribe
   triviaEnviadaLobby!: Trivia;
 
+  inicioPartida:boolean=false
   ngOnInit(): void {
+    this.getIdPartida()
+    this.mostrarSiguientePreg()
+
+    setTimeout(() => {
+      this.mostrarSiguientePreg()
+      this.inicioPartida = true
+    }, 100);
     //TODO Ver el tema este
     // this._socketsService.iniciar();
     // const urlLobby = this.router.url.split('/');
@@ -54,7 +71,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
     //   console.log('trivia del ngOnInit');
     //   this.preguntas = trivia._preguntas;
     // });
-    // console.log(this._socketsService.trivia);
+    // console.log(this._socketsService.trivia._preguntas);
     this.preguntas = this._socketsService.trivia._preguntas;
 
     //SI existe entonces
@@ -81,6 +98,25 @@ export class PartidaComponent implements OnInit, OnDestroy {
     // });
   }
 
+  tiempoFinalizo:boolean = false
+  tiempoPreguntasSeg:any
+  getTiempo(){
+    this._socketsService._segundosEntrePreguntas$.subscribe((seg: number) => {
+      console.log('seg rec', seg);
+      // this.recibimosTiempo = true;
+      this.tiempoPreguntasSeg = seg;
+      let countdown = setInterval(() => {
+        console.log(this.tiempoPreguntasSeg);
+        this.tiempoPreguntasSeg--;
+        // console.log(this.tiempoPreguntasSeg);
+        if (this.tiempoPreguntasSeg <= 0){
+          clearInterval(countdown)
+          this.tiempoFinalizo = true
+        };
+      }, 1000);
+    });
+  }
+
   mostrarSiguientePreg() {
     console.log(this.preguntas.length);
     console.log(this.posicionPregSockets + 1);
@@ -93,6 +129,6 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._socketsService.desconectar();
+    // this._socketsService.desconectar();
   }
 }
