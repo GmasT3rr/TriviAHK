@@ -4,6 +4,7 @@ import { PartidaComponent } from './components/partida/partida.component';
 import { LobbyComponent } from './lobby/main/lobby.component';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
 import { PodioComponent } from './podio/podio.component';
+import { RankingComponent } from './ranking/ranking.component';
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
 
@@ -13,14 +14,14 @@ const routes: Routes = [
   //   component: LobbyComponent,
   //   canActivate: [LobbyGuard]
   // },
-  {
-    path: ':id',
-    component: PartidaComponent,
-    pathMatch: 'full'
-  },
+
   {
     path: 'todas-las-rutas',
     component: TodasLasRutasComponent
+  },
+  {
+    path: 'ranking',
+    component: RankingComponent
   },
   {
     path: 'lobby/:id',
@@ -38,7 +39,11 @@ const routes: Routes = [
     path: 'podio',
     component: PodioComponent
   },
-
+  {
+    path: ':id',
+    component: PartidaComponent,
+    pathMatch: 'full'
+  },
   { path: '**', pathMatch: 'full', redirectTo: 'todas-las-rutas' }
 
   // { path: '**', pathMatch: 'full', redirectTo: 'lobby' }

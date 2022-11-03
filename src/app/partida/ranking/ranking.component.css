@@ -1,0 +1,85 @@
+.bg {
+  background-color: #4A51C9 !important;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+.__items {
+  align-self: stretch;
+  border-radius: 5px;
+  margin-top: 5%;
+  background-color: white;
+  animation: bounce-down 3.6s linear infinite;
+}
+.__ranking{
+  text-align: center;
+  border-radius: 5px;
+}
+.__ranking h2{
+  font-family: 'Montserrat';
+  font-style: bold;
+  font-size: 32px;
+  font-weight: 700;
+  padding: 2%;
+  text-align: center;
+  color: #6a70dd;
+  text-transform: uppercase;
+
+}
+.__usuario {
+  padding: 35px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  border-radius: 3px;
+  position: relative;
+  top: 0;
+  transition: all 300ms ease;
+  align-items: center;
+
+}
+.__usuario:hover{
+  top: -10px;
+}
+.__posicion{
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+  padding:3%
+}
+
+.__descripcion{
+  padding: 25px;
+  background-color: #7161EF;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #FCFCFC;
+}
+
+
+
+
+@keyframes bounce-down {
+   25% {
+        transform: translateY(-4px);
+   }
+   50%, 100% {
+        transform: translateY(0);
+   }
+   75% {
+        transform: translateY(4px);
+   }
+}
+
+@media screen and (max-width:1024px) {
+  .__descripcion div, .__usuario div, .__posicion{
+    text-align: center !important;
+  }
+}

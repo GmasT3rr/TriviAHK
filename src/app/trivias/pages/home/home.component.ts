@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  // NO LO BORREN QUE SIRVE DE RECUERDO XD
   // public getColor(index: number): string {
   //    switch (index) {
   //      case 0:
