@@ -137,6 +137,6 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this._socketsService.desconectar();
+   this._socketsService.desconectar();
   }
 }
