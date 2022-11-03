@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'app/core/services/user.service';
 import { SocketService } from 'app/core/socket/socket.service';
@@ -18,12 +18,14 @@ export class LobbyComponent implements OnInit {
     private _socketsService: SocketService,
     private _userService: UserService
   ) {}
+  @ViewChild('respuestUser') input!: ElementRef<HTMLInputElement>;
   faUsers = faUsers;
   idPartida: number = 0;
   conteoUsuarios: number = 0;
-  trivia: any;
   sesiones$!: Observable<any>;
   sesionId: number = 0;
+  preguntaTieneid = false;
+  preg!: number;
 
   ngOnInit(): void {
     this._socketsService.iniciar();
@@ -35,28 +37,39 @@ export class LobbyComponent implements OnInit {
       this.unirse(idUser, Number(this.idPartida));
     });
 
-    this._socketsService.socket?.on('partida:iniciada-status', mensaje => {
-      console.log('partida:iniciada status');
-      this._socketsService.mostrarSiguientePregunta();
-      // momentaneo
-      this.router.navigateByUrl('/partida/single-choice');
+    this._socketsService._routerIdPartida$.subscribe((idPartida: Number) => {
+      // console.log(this.trivia);
+      const navigationExtras: NavigationExtras = {
+        state: { trivia: this._socketsService.trivia }
+      };
+      // this.router.navigate([`/partida/${idPartida}`], navigationExtras);
+      this.router.navigate([`/partida/${idPartida}`]);
     });
+
+    // this._socketsService.socket?.on('partida:iniciada-status', mensaje => {
+    //   console.log('partida:iniciada status');
+    //   // this._socketsService.mostrarSiguientePregunta();
+    //   // momentaneo
+    //   // this.router.navigateByUrl('/partida/single-choice');
+    // });
     this.sesiones$ = this._socketsService.sesiones;
   }
 
   unirse(usuarioID: number, partidaID: number) {
     this._socketsService.unirse(usuarioID, partidaID);
 
-    this._socketsService.socket?.on('partida:trivia', t => {
-      console.log('trivia del component: ', t); // TODO: preguntarle a eze si se puede hacer esto
-    });
-    this._socketsService.trivia.subscribe((t: any) => {
-      this.trivia = t;
-    });
+    // this._socketsService.socket?.on('partida:trivia', t => {
+    //   console.log('trivia del component: ', t); // TODO: preguntarle a eze si se puede hacer esto
+    // });
+    // this._socketsService.trivia.subscribe((t: any) => {
+    //   this.trivia = t;
+    // });
 
-    this._socketsService.pregunta.subscribe(preg => {
-      this.trivia[preg];
-    });
+    // this._socketsService.pregunta.subscribe(preg => {
+    //   this.preguntaTieneid = true;
+    //   this.preg = preg;
+    //   this.trivia._preguntas[preg];
+    // });
   }
 
   finalizarLobby() {

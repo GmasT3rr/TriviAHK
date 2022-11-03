@@ -1,0 +1,24 @@
+<app-partida-navbar></app-partida-navbar>
+<div
+  class="bg row d-flex justify-content-center"
+  [@onLoadAnimation]>
+  <div
+    *esHost="{ idPartida: 31, renderContentUser: false }"
+    class="container d-flex justify-content-end">
+    <div class="d-flex align-items-center">
+      <button
+        class="btn btn_iniciar_partida mt-4"
+        [disabled]="!habilitarBtnPregunta"
+        (click)="mostrarSiguientePreg()">
+        Mostrar siguiente pregunta
+      </button>
+    </div>
+  </div>
+
+  <app-pregunta
+    *ngIf="tengoTriviaYOpciones"
+    [pregunta]="preguntaActual._leyenda"></app-pregunta>
+  <app-opciones
+    *ngIf="tengoTriviaYOpciones"
+    [pregunta]="preguntaActual"></app-opciones>
+</div>

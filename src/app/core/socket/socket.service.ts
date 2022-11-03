@@ -6,25 +6,27 @@ import { io, Socket } from 'socket.io-client';
   providedIn: 'root'
 })
 export class SocketService {
-  public socket?: Socket;
-  public trivia = new Subject<any>();
-  public pregunta = new Subject<any>();
-  private _sesiones = new Subject<any>();
-  public terminaTiempo = new Subject<any>();
+  // public socket?: Socket;
+  // public trivia = new Subject<any>();
+  public trivia: any;
+  public pregunta$ = new Subject<any>();
+  private _sesiones$ = new Subject<any>();
+  public terminaTiempo$ = new Subject<any>();
   public sesionId!: number;
+  public _routerIdPartida$ = new Subject<any>();
+  public _segundosEntrePreguntas$ = new Subject<any>();
 
   public get sesiones() {
-    return this._sesiones as Observable<any>;
+    return this._sesiones$ as Observable<any>;
   }
-
 
   constructor() {
     // this.iniciar();
   }
 
-  public iniciar() {
-    this.socket = io('http://localhost:3000/juego');
+  socket = io('http://localhost:3000/juego');
 
+  public iniciar() {
     this.socket.on('mensaje', (mensajeNuevo: string) => {
       //alert(mensajeNuevo);
     });
@@ -62,19 +64,31 @@ export class SocketService {
 
     // Trae la trivia en juego
     this.socket.on('partida:trivia', t => {
-      this.trivia.next(t);
+      // this.trivia.next(t);
+      this.trivia = t;
     });
 
     this.socket.on('partida:iniciada-status', p => {
-      console.log(p);
+      // console.log(p);
     });
 
-    this.socket.on('partida:mostrar-pregunta', r => {
-      this.pregunta.next(r);
-    });
+    this.socket.on(
+      'partida:mostrar-pregunta',
+      (obj: { numeroDePregunta: number; segundosEntrePreguntas: number }) => {
+        // console.log(
+        //   'num preg',
+        //   obj.numeroDePregunta,
+        //   'seg',
+        //   obj.segundosEntrePreguntas
+        // );
+        console.log('hola me dispare');
+        this.pregunta$.next(obj.numeroDePregunta);
+        this._segundosEntrePreguntas$.next(obj.segundosEntrePreguntas);
+      }
+    );
 
     this.socket.on('partida:termina-tiempo', r => {
-      this.terminaTiempo.next(r);
+      this.terminaTiempo$.next(r);
     });
 
     this.socket.on('partida:respondio', r => {
@@ -91,7 +105,12 @@ export class SocketService {
 
     this.socket.on('partida:sesiones-conectadas', r => {
       console.log(r);
-      this._sesiones.next(r);
+      this._sesiones$.next(r);
+    });
+
+    this.socket.on('partida:router', r => {
+      // console.log('hola router', r);
+      this._routerIdPartida$.next(r);
     });
   }
 
@@ -127,14 +146,14 @@ export class SocketService {
     const opciones = {
       opciones: [
         {
-          id: 3
+          id: 123
         },
         {
-          id: 4
+          id: 122
         }
-      ],
-      tiempoEnSegundos: 20
+      ]
     };
+
     this.socket!.emit('partida:responder', opciones);
     // const respuestas = {
     //   opcion: [1]
@@ -149,5 +168,9 @@ export class SocketService {
 
   public finalizarPartida() {
     this.socket?.emit('partida:finalizar');
+  }
+
+  public desconectar() {
+    this.socket.disconnect();
   }
 }

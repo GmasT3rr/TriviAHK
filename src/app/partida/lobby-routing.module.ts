@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PartidaComponent } from './components/partida/partida.component';
 import { LobbyComponent } from './lobby/main/lobby.component';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
 import { PodioComponent } from './podio/podio.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   //   component: LobbyComponent,
   //   canActivate: [LobbyGuard]
   // },
+
   {
     path: 'todas-las-rutas',
     component: TodasLasRutasComponent
@@ -37,7 +39,11 @@ const routes: Routes = [
     path: 'podio',
     component: PodioComponent
   },
-
+  {
+    path: ':id',
+    component: PartidaComponent,
+    pathMatch: 'full'
+  },
   { path: '**', pathMatch: 'full', redirectTo: 'todas-las-rutas' }
 
   // { path: '**', pathMatch: 'full', redirectTo: 'lobby' }
