@@ -169,4 +169,8 @@ export class SocketService {
   public finalizarPartida() {
     this.socket?.emit('partida:finalizar');
   }
+
+  public desconectar() {
+    this.socket.disconnect();
+  }
 }

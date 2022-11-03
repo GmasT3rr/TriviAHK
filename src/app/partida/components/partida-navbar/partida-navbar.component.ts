@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocketService } from 'app/core/socket/socket.service';
 import { interval, mapTo, scan, startWith, switchMapTo, takeWhile } from 'rxjs';

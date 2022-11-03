@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'app/core/services/user.service';
 import { SocketService } from 'app/core/socket/socket.service';
@@ -11,7 +11,7 @@ import { Pregunta, Trivia } from 'app/trivias/interfaces/Trivias.interface';
   styleUrls: ['./partida.component.css'],
   animations: [onLoadAnimation]
 })
-export class PartidaComponent implements OnInit {
+export class PartidaComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private _socketsService: SocketService,
@@ -54,7 +54,9 @@ export class PartidaComponent implements OnInit {
     //   console.log('trivia del ngOnInit');
     //   this.preguntas = trivia._preguntas;
     // });
+    // console.log(this._socketsService.trivia);
     this.preguntas = this._socketsService.trivia._preguntas;
+
     //SI existe entonces
     // if (this.triviaEnviadaLobby) {
     //   console.log('trivia enviada del lobby');
@@ -88,5 +90,9 @@ export class PartidaComponent implements OnInit {
       this._socketsService.mostrarSiguientePregunta();
       this.habilitarBtnPregunta = false;
     }
+  }
+
+  ngOnDestroy(): void {
+    this._socketsService.desconectar();
   }
 }
