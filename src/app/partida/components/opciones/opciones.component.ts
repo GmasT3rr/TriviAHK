@@ -22,6 +22,8 @@ export class OpcionesComponent implements OnInit {
   opciones: any[] = [];
   @Input('pregunta') preguntaActual!: Pregunta;
 
+  @Input() opcion?: any;
+
   ngOnInit(): void {
     console.log(this.preguntaActual._opciones);
     this.form = this.formGroupDir.control;

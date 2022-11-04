@@ -28,40 +28,21 @@ export class LobbyComponent implements OnInit {
   preg!: number;
 
   ngOnInit(): void {
+    this._socketsService.conectar();
     this._socketsService.iniciar();
     const urlLobby = this.router.url.split('/');
     this.idPartida = Number(urlLobby[urlLobby.length - 1]);
     const idUser = Number(localStorage.getItem('idUser'));
     this.unirse(idUser, Number(this.idPartida));
 
-    this._socketsService._routerIdPartida$.subscribe((idPartida: Number) => {
+    this._socketsService.routerIdPartida$.subscribe((idPartida: Number) => {
       this.router.navigate([`/partida/${idPartida}`]);
     });
-
-    // this._socketsService.socket?.on('partida:iniciada-status', mensaje => {
-    //   console.log('partida:iniciada status');
-    //   // this._socketsService.mostrarSiguientePregunta();
-    //   // momentaneo
-    //   // this.router.navigateByUrl('/partida/single-choice');
-    // });
     this.sesiones$ = this._socketsService.sesiones;
   }
 
   unirse(usuarioID: number, partidaID: number) {
     this._socketsService.unirse(usuarioID, partidaID);
-
-    // this._socketsService.socket?.on('partida:trivia', t => {
-    //   console.log('trivia del component: ', t); // TODO: preguntarle a eze si se puede hacer esto
-    // });
-    // this._socketsService.trivia.subscribe((t: any) => {
-    //   this.trivia = t;
-    // });
-
-    // this._socketsService.pregunta.subscribe(preg => {
-    //   this.preguntaTieneid = true;
-    //   this.preg = preg;
-    //   this.trivia._preguntas[preg];
-    // });
   }
 
   finalizarLobby() {
@@ -73,7 +54,6 @@ export class LobbyComponent implements OnInit {
     this._socketsService.salirse();
     this.router.navigateByUrl('/main/home');
   }
-
   iniciarPartida() {
     this._socketsService.iniciarPartida();
   }
