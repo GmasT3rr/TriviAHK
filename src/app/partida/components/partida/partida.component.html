@@ -1,5 +1,5 @@
 <div *ngIf="!finDePartida">
-  <app-partida-navbar></app-partida-navbar>
+  <app-partida-navbar (tiempoPreguntasSeg)="this.tiempoPreguntasSeg"></app-partida-navbar>
 
   <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario">
     <div
@@ -34,6 +34,7 @@
         *ngIf="tengoTriviaYOpciones"
         [pregunta]="preguntaActual"></app-opciones>
     </div>
+    <h1>{{this.preguntaActual | json}}</h1>
   </div>
 </ng-template>
 <div *ngIf="finDePartida">

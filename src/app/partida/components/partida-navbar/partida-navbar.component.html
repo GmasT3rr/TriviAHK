@@ -41,13 +41,13 @@
           class="nav-item"
           *ngIf="!esLobby">
           <a
-            *ngIf="!esPodio && recibimosTiempo && tiempoPreguntasSeg != 0"
+            *ngIf="!esPodio && tiempoPreguntasSeg != 0"
             class="nav-link"
             style="font-weight: bold"
             >{{ tiempoPreguntasSeg }} seg</a
           >
           <a
-            *ngIf="!esPodio && recibimosTiempo && tiempoPreguntasSeg == 0"
+            *ngIf="!esPodio && tiempoPreguntasSeg == 0"
             class="nav-link"
             style="font-weight: bold"
             >Tiempo Finalizado</a

@@ -11,6 +11,8 @@ export class OpcionesComponent implements OnInit {
 
   @Input('pregunta') preguntaActual!: Pregunta;
 
+  @Input() opcion?: any;
+
   ngOnInit(): void {
     // console.log(typeof this.preguntaActual.tipoDePregunta);
   }
