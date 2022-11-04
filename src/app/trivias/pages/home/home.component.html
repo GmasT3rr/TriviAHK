@@ -66,24 +66,26 @@
       </div> -->
 
       <div
-        class="card card-decoration-body text-center mb-3"
+        class="card card-decoration-body  mb-3"
         [@onLoadAnimation]
         *ngIf="trivia"
         (click)="irVerTrivia(trivia.id)"
         style="cursor: pointer">
-        <div class="card-header card-header-background p-2">
+        <div class="card-header card-header-background p-3">
           <h3 class="card-title text-white">{{ trivia._nombre }}</h3>
         </div>
         <div class="card-body">
-          <p class="card-text">#{{ trivia.id }}</p>
 
           <p *ngIf="trivia._descripcion">
             {{ trivia._descripcion | slice: 0:50 }}
           </p>
-          <p class="card-text">{{ trivia._creadoPor?._nombre }}</p>
+          <p style="font-size: 14px;" class="card-text text-muted">By {{ trivia._creadoPor?._nombre }}</p>
         </div>
-        <div class="card-footer border-primary bg-transparent">
-          <p class="card-text">{{ trivia._fechaCreacion | date }}</p>
+        <div class="card-footer d-flex justify-content-between">
+          <small class="text-muted">{{ trivia._fechaCreacion | date }}</small>
+          <small class="text-muted">#{{ trivia.id }}</small>
+      
+        
         </div>
       </div>
     </div>
