@@ -30,13 +30,13 @@ export class PartidaComponent implements OnInit, OnDestroy {
   preguntaActual!: Pregunta;
   tengoTriviaYOpciones = false;
   habilitarBtnPregunta = true;
-  paramsId:any
+  idPartida:any
   finDePartida=false
 
   getIdPartida(){
     this.activatedRoute.paramMap
       .subscribe((x:any) => {
-        this.paramsId = x.params.id;
+        this.idPartida = x.params.id;
       }
     );
   }
@@ -137,6 +137,6 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-   this._socketsService.desconectar();
+  //  this._socketsService.desconectar();
   }
 }

@@ -31,18 +31,10 @@ export class LobbyComponent implements OnInit {
     this._socketsService.iniciar();
     const urlLobby = this.router.url.split('/');
     this.idPartida = Number(urlLobby[urlLobby.length - 1]);
-    // TODO: uid en localstorage
-    this._userService.getIdUser().subscribe((res: any) => {
-      const idUser = res.body;
-      this.unirse(idUser, Number(this.idPartida));
-    });
+    const idUser = Number(localStorage.getItem('idUser'));
+    this.unirse(idUser, Number(this.idPartida));
 
     this._socketsService._routerIdPartida$.subscribe((idPartida: Number) => {
-      // console.log(this.trivia);
-      const navigationExtras: NavigationExtras = {
-        state: { trivia: this._socketsService.trivia }
-      };
-      // this.router.navigate([`/partida/${idPartida}`], navigationExtras);
       this.router.navigate([`/partida/${idPartida}`]);
     });
 

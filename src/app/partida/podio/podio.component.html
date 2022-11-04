@@ -1,49 +1,79 @@
 <app-partida-navbar></app-partida-navbar>
 <!-- Necesitamos angular 14+ para usar esto -->
 <!-- <Particles id="tsparticles" [options]="options"></Particles> -->
-<div class="bg" >
-  <div class="container" >
-    <div class="columna_podio" [@onGrowAnimation]="{value:':enter',params:{time:'1250ms'}}">
+<div class="bg">
+  <div class="container">
+    <div
+      class="columna_podio"
+      [@onGrowAnimation]="{ value: ':enter', params: { time: '1250ms' } }">
       <div class="ranking_podio segundo">
         <div class="row d-flex text-center">
           <div class="text-center">
-            <fa-icon [icon]="faMedal" [styles]="{'height':'60px', 'width':'60px','color':'#BFC0C0'}"></fa-icon>
+            <fa-icon
+              [icon]="faMedal"
+              [styles]="{
+                height: '60px',
+                width: '60px',
+                color: '#BFC0C0'
+              }"></fa-icon>
           </div>
-          <div class="puntaje">{{partidaResultadosFinales[1].puntaje}}</div>
-          <div class="usuario">{{partidaResultadosFinales[1].nombre}}</div>
+          <div class="puntaje">{{ partidaResultadosFinales[1].puntaje }}</div>
+          <div class="usuario">{{ partidaResultadosFinales[1].nombre }}</div>
         </div>
       </div>
     </div>
-    <div class="columna_podio" [@onGrowAnimation]="{value:':enter',params:{time:'1750ms'}}">
+    <div
+      class="columna_podio"
+      [@onGrowAnimation]="{ value: ':enter', params: { time: '1750ms' } }">
       <div class="text-center">
-        <img class="imagen_primer_lugar" src="assets\images\primer-lugar.png" alt="primer-lugar">
+        <img
+          class="imagen_primer_lugar"
+          src="assets\images\primer-lugar.png"
+          alt="primer-lugar" />
       </div>
       <div class="ranking_podio primero">
         <div class="row d-flex text-center">
-          <div class="puntaje">{{partidaResultadosFinales[0].puntaje}}</div>
-          <div class="usuario">{{partidaResultadosFinales[0].nombre}}</div>
+          <div class="puntaje">{{ partidaResultadosFinales[0].puntaje }}</div>
+          <div class="usuario">{{ partidaResultadosFinales[0].nombre }}</div>
         </div>
       </div>
     </div>
-    <div class="columna_podio" [@onGrowAnimation]="{value:':enter',params:{time:'750ms'}}">
+    <div
+      class="columna_podio"
+      [@onGrowAnimation]="{ value: ':enter', params: { time: '750ms' } }">
       <div class="ranking_podio tercero">
         <div class="row d-flex text-center">
-          <div class="text-center">
-            <fa-icon [icon]="faMedal" [styles]="{'height':'60px', 'width':'60px','color':'#CD7F32'}"></fa-icon>
+          <div
+            class="btn text-center"
+            routerLink="/main/home"
+            style="
+              background-color: #fd999b;
+              position: absolute;
+              top: 20px;
+              right: 20px;
+              color: white;
+              width: 8rem;
+              height: 2.5rem;
+            ">
+            <i
+              class="bi bi-door-open"
+              routerLink="/main/home">
+              Finalizar
+            </i>
           </div>
-          <div class="puntaje">{{partidaResultadosFinales[2].puntaje}}</div>
-          <div class="usuario">{{partidaResultadosFinales[2].nombre}}</div>
+          <div class="text-center">
+            <fa-icon
+              [icon]="faMedal"
+              [styles]="{
+                height: '60px',
+                width: '60px',
+                color: '#CD7F32'
+              }"></fa-icon>
+          </div>
+          <div class="puntaje">{{ partidaResultadosFinales[2].puntaje }}</div>
+          <div class="usuario">{{ partidaResultadosFinales[2].nombre }}</div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="btn btn-primary" >
-  <i class="bi bi-door-open">
-    Finalizar
-  </i>
-</div> -->
-
-
-
