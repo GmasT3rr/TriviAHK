@@ -17,7 +17,7 @@
         class="text-center">
         <div class="mt-2 mb-2">
           <input
-            type="text"
+            type="text" maxlength="80"
             class="form-control"
             formControlName="nombre"
             placeholder="Nombre de Trivia" />
@@ -33,7 +33,7 @@
         </div>
         <div class="mt-2 mb-2">
           <input
-            type="text"
+            type="text" maxlength="200"
             class="form-control"
             formControlName="descripcion"
             placeholder="Descripcion de Trivia" />
@@ -74,8 +74,8 @@
               </div>
               <div class="mt-2 mb-2">
                 <input
-                  type="text"
-                  class="form-control"
+                  type="text" maxlength="100"
+                  class="form-control" 
                   formControlName="leyenda"
                   placeholder="Leyenda" />
               </div>
@@ -174,11 +174,7 @@
                         <select
                           formControlName="esCorrecta"
                           class="form-select">
-                          <option
-                            disabled
-                            selected>
-                            Seleccione si es correcta o no
-                          </option>
+                          <option [ngValue]="undefined" disabled selected="selected" >Seleccione si es correcta o no</option>
                           <option [ngValue]="true">Correcta</option>
                           <option [ngValue]="false">Incorrecta</option>
                         </select>

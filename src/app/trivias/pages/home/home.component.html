@@ -66,7 +66,7 @@
       </div> -->
 
       <div
-        class="card text-center mb-3"
+        class="card card-decoration-body text-center mb-3"
         [@onLoadAnimation]
         *ngIf="trivia"
         (click)="irVerTrivia(trivia.id)"
@@ -89,10 +89,10 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-center mt-4">
-    <div
+  <div class="body-buttons-n-p d-flex justify-content-center mt-4 mb-4">
+    <div 
       (click)="prevQuiz()"
-      class="btn btn-prev mx-3">
+      class="btn btn-prev mx-3 d-flex align-items-center">
       <i
         class="bi bi-arrow-left"
         style="font-style: inherit"></i>
