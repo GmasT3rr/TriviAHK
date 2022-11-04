@@ -1,0 +1,47 @@
+
+.time-question{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 150%;
+}
+.icon-exit{
+    transform: rotate(180deg);
+    fill: #FD999B;
+    border-radius: 10px;
+}
+
+@media (max-width: 576px) {
+    .time-question{
+        font-size: 20px;
+    }
+    .icon-exit{
+        width: 32px;
+        height: 32px;
+       
+    }
+    .logo-triviahk{
+        width: 100px;
+        height: 45px;
+    }
+ 
+  }
+
+  @media (max-width: 767.98px) { 
+    .time-question{
+        font-size: 20px;
+    }
+    .icon-exit{
+        width: 32px;
+        height: 32px;
+       
+    }
+    .logo-triviahk{
+        width: 100px;
+        height: 45px;
+    }
+ 
+
+  }
+
