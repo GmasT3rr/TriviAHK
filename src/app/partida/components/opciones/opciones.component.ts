@@ -1,5 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Pregunta } from 'app/trivias/interfaces/Trivias.interface';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  FormGroupDirective
+} from '@angular/forms';
+import { Opciones, Pregunta } from 'app/trivias/interfaces/Trivias.interface';
 
 @Component({
   selector: 'app-opciones',
@@ -7,12 +13,33 @@ import { Pregunta } from 'app/trivias/interfaces/Trivias.interface';
   styleUrls: ['./opciones.component.css']
 })
 export class OpcionesComponent implements OnInit {
-  constructor() {}
-
+  constructor(
+    private fb: FormBuilder,
+    private formGroupDir: FormGroupDirective
+  ) {}
+  form!: FormGroup;
+  formArray!: FormArray;
+  opciones: any[] = [];
   @Input('pregunta') preguntaActual!: Pregunta;
 
   ngOnInit(): void {
-    // console.log(typeof this.preguntaActual.tipoDePregunta);
+    console.log(this.preguntaActual._opciones);
+    this.form = this.formGroupDir.control;
+    this.formArray = this.form.get('opciones') as FormArray;
+  }
+
+  addOpcion(opcion: Opciones, index: number) {
+    let opcionParaArray = this.fb.group({
+      id: opcion.id
+      //Ver que onda este tiempo ¿?
+      // tiempo: opcion.tiempo
+    });
+    if (opcion._fueSeleccionada) {
+      this.formArray.push(opcionParaArray);
+    } else {
+      //TODO
+      // this.formArray.removeAt(this.formArray.at(opcion));
+    }
   }
 
   getColor(indice: any) {

@@ -14,6 +14,7 @@ import { PartidaComponent } from './components/partida/partida.component';
 import { PreguntaComponent } from './components/pregunta/pregunta.component';
 import { OpcionesComponent } from './components/opciones/opciones.component';
 import { RankingComponent } from './ranking/ranking.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Necesitamos angular 14+ para usar esto
 // import { NgParticlesModule } from 'ng-particles';
 
@@ -31,6 +32,13 @@ import { RankingComponent } from './ranking/ranking.component';
     OpcionesComponent,
     RankingComponent
   ],
-  imports: [CommonModule, FontAwesomeModule, SharedModule, LobbyRoutingModule]
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    SharedModule,
+    LobbyRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
+  ]
 })
 export class LobbyModule {}

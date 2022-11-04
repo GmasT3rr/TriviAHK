@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'app/core/services/user.service';
 import { SocketService } from 'app/core/socket/socket.service';
@@ -16,7 +17,8 @@ export class PartidaComponent implements OnInit, OnDestroy {
     private router: Router,
     private _socketsService: SocketService,
     private _userService: UserService,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
   ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as { trivia: Trivia };
@@ -30,48 +32,66 @@ export class PartidaComponent implements OnInit, OnDestroy {
   preguntaActual!: Pregunta;
   tengoTriviaYOpciones = false;
   habilitarBtnPregunta = true;
-  idPartida:any
-  finDePartida=false
+  idPartida: any;
+  finDePartida = false;
 
-  getIdPartida(){
-    this.activatedRoute.paramMap
-      .subscribe((x:any) => {
-        this.idPartida = x.params.id;
-      }
-    );
+  /*
+  {
+    [
+      {id:1},
+      {id:2}
+    ]
+  }
+  */
+  form = this.fb.group({
+    opciones: this.fb.array([])
+  });
+
+  getIdPartida() {
+    this.activatedRoute.paramMap.subscribe((x: any) => {
+      this.idPartida = x.params.id;
+    });
   }
 
   //Prueba bug que si del lobby toco btn iniciar ya tiene la trivia
   //y no va a hacer el trivia.subscribe
   triviaEnviadaLobby!: Trivia;
-  inicioPartida:boolean=false
-  partidaResultadosPrevios=[{
-    nombre:'Rama',
-    puntaje:'1200'
-  },{
-    nombre:'Messi',
-    puntaje:'3300'
-  },{
-    nombre:'Alguien',
-    puntaje:'750'
-  }]
-  partidaResultadosFinales=[{
-    nombre:'Rama',
-    puntaje:'3000'
-  },{
-    nombre:'Messi',
-    puntaje:'5000'
-  },{
-    nombre:'Alguien',
-    puntaje:'2000'
-  }]
+  inicioPartida: boolean = false;
+  partidaResultadosPrevios = [
+    {
+      nombre: 'Rama',
+      puntaje: '1200'
+    },
+    {
+      nombre: 'Messi',
+      puntaje: '3300'
+    },
+    {
+      nombre: 'Alguien',
+      puntaje: '750'
+    }
+  ];
+  partidaResultadosFinales = [
+    {
+      nombre: 'Rama',
+      puntaje: '3000'
+    },
+    {
+      nombre: 'Messi',
+      puntaje: '5000'
+    },
+    {
+      nombre: 'Alguien',
+      puntaje: '2000'
+    }
+  ];
 
   ngOnInit(): void {
-    this.getIdPartida()
+    this.getIdPartida();
     //Sin el timeout no funciona por algun motivo
     setTimeout(() => {
-      this.mostrarSiguientePreg()
-      this.inicioPartida = true
+      this.mostrarSiguientePreg();
+      this.inicioPartida = true;
     }, 500);
     //TODO Ver el tema este
     // this._socketsService.iniciar();
@@ -112,18 +132,17 @@ export class PartidaComponent implements OnInit, OnDestroy {
       if (this.preguntas.length > this.posicionPregSockets) {
         this.habilitarBtnPregunta = true;
       } else {
-        this.habilitarBtnPregunta = false
-        this.finDePartida=true
-      };
+        this.habilitarBtnPregunta = false;
+        this.finDePartida = true;
+      }
     });
     // this._socketsService.socket?.on('partida:trivia', t => {
     //   console.log('trivia del component: ', t); // TODO: preguntarle a eze si se puede hacer esto
     // });
   }
 
-  tiempoFinalizo:boolean = false
-  tiempoPreguntasSeg:any
-
+  tiempoFinalizo: boolean = false;
+  tiempoPreguntasSeg: any;
 
   mostrarSiguientePreg() {
     console.log(this.preguntas.length);
@@ -137,6 +156,6 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-  //  this._socketsService.desconectar();
+    //  this._socketsService.desconectar();
   }
 }

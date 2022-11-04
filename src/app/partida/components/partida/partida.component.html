@@ -2,26 +2,24 @@
   <app-partida-navbar></app-partida-navbar>
 
   <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario">
-    <div
-    class="container d-flex justify-content-end">
-    <div class="d-flex align-items-center">
-      <div><h1>soy host</h1></div>
-      <button
-        *ngIf="inicioPartida"
-        class="btn btn_iniciar_partida mt-4"
-        [disabled]="!habilitarBtnPregunta"
-        (click)="mostrarSiguientePreg()">
-        Mostrar siguiente pregunta
-      </button>
+    <div class="container d-flex justify-content-end">
+      <div class="d-flex align-items-center">
+        <div><h1>soy host</h1></div>
+        <button
+          *ngIf="inicioPartida"
+          class="btn btn_iniciar_partida mt-4"
+          [disabled]="!habilitarBtnPregunta"
+          (click)="mostrarSiguientePreg()">
+          Mostrar siguiente pregunta
+        </button>
+      </div>
     </div>
-  </div>
   </div>
 </div>
 <ng-template #esUsuario>
   <div
     class="bg row d-flex justify-content-center"
     [@onLoadAnimation]>
-
     <div *ngIf="habilitarBtnPregunta && inicioPartida && !finDePartida">
       <app-ranking
         [partidaResultadosPrevios]="partidaResultadosPrevios"></app-ranking>
@@ -30,15 +28,21 @@
       <app-pregunta
         *ngIf="tengoTriviaYOpciones"
         [pregunta]="preguntaActual._leyenda"></app-pregunta>
-      <app-opciones
-        *ngIf="tengoTriviaYOpciones"
-        [pregunta]="preguntaActual"></app-opciones>
+      <form [formGroup]="form">
+        <app-opciones
+          *ngIf="tengoTriviaYOpciones"
+          [pregunta]="preguntaActual"
+          formArrayName="opciones"></app-opciones>
+        <pre>
+            {{ form.value | json }}
+          </pre
+        >
+      </form>
     </div>
   </div>
 </ng-template>
 <div *ngIf="finDePartida">
-  <app-podio
-    [partidaResultadosFinales]="partidaResultadosFinales"></app-podio>
+  <app-podio [partidaResultadosFinales]="partidaResultadosFinales"></app-podio>
 </div>
 
 <!--
