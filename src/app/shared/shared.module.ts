@@ -7,6 +7,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { EsHostDirective } from './directives/es-host.directive';
 import { ModalBorrarTriviaComponent } from './components/modal-borrar-trivia/modal-borrar-trivia.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EsHostDirective,
     ModalBorrarTriviaComponent
   ],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
+
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
+    FontAwesomeModule
+  ],
   exports: [
     NavbarComponent,
     ModalMisTriviasComponent,

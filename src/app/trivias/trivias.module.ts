@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TriviasRoutingModule } from './trivias-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { CrearTriviaComponent } from './pages/crear-trivia/crear-trivia.component';
@@ -12,6 +11,7 @@ import { InfoTriviaComponent } from './pages/info-trivia/info-trivia.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
 import { ButtonHomeComponent } from './components/button-home/button-home.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [

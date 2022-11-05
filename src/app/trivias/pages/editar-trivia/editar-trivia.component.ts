@@ -11,17 +11,14 @@ import { faClipboardQuestion } from '@fortawesome/free-solid-svg-icons';
   selector: 'app-editar-trivia',
   templateUrl: './editar-trivia.component.html',
   styleUrls: ['./editar-trivia.component.css'],
-  animations: [onLoadAnimation,
-    flipRigthAnimation
-  ]
+  animations: [onLoadAnimation, flipRigthAnimation]
 })
 export class EditarTriviaComponent implements OnInit {
   private idTrivia: any;
   public trivia!: any;
   public triviaForm!: FormGroup;
   public mostrarPreguntas = false;
-  faClipboardQuestion=faClipboardQuestion
-
+  faClipboardQuestion = faClipboardQuestion;
 
   tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
 
@@ -38,7 +35,7 @@ export class EditarTriviaComponent implements OnInit {
     this.createEditarTriviaForm();
   }
 
-  flip={status:'inactive'}
+  flip = { status: 'inactive' };
   toggleFlip() {
     this.flip.status = this.flip.status == 'inactive' ? 'active' : 'inactive';
   }

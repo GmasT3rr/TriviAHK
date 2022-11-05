@@ -2,6 +2,8 @@
   background-color: #4a51c9;
 }
 .navbar-nav{
+    display: flex;
+      align-items: center;
   gap: 15px;
 }
 .nav-link{
@@ -9,7 +11,16 @@
   font-weight:bold;
   transition: color 300ms;
   font-size: 1.6rem;
+}
 
+.logout{
+  color: #fafafa;
+  font-size: 3.2rem;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+.logout:hover {
+  transform: scale(.9);
 }
 a:hover{
   color: #fafafa;
