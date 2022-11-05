@@ -8,7 +8,7 @@ import { environment as env } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class SocketService {
-  public socket?: Socket;
+  private _socket?: Socket;
   // public trivia = new Subject<any>();
   public trivia: any;
   public pregunta$ = new Subject<any>();
@@ -26,14 +26,18 @@ export class SocketService {
     return this._resultados$;
   }
 
+  public get socket() {
+    return this._socket;
+  }
+
   constructor(private http:HttpClient) { }
 
   
   conectar() {
-    this.socket = io('http://localhost:3000/juego');
+    this._socket = io('http://localhost:3000/juego');
   }
 
-  public iniciar() {
+  public iniciarListeners() {
     this.socket?.on('mensaje', (mensajeNuevo: string) => {
       //alert(mensajeNuevo);
     });

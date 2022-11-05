@@ -28,12 +28,14 @@ export class LobbyComponent implements OnInit {
   preg!: number;
 
   ngOnInit(): void {
-    this._socketsService.conectar();
-    this._socketsService.iniciar();
-    const urlLobby = this.router.url.split('/');
-    this.idPartida = Number(urlLobby[urlLobby.length - 1]);
-    const idUser = Number(localStorage.getItem('idUser'));
-    this.unirse(idUser, Number(this.idPartida));
+    if(!this._socketsService.socket?.connected || !this._socketsService.socket) {
+      this._socketsService.conectar();
+      this._socketsService.iniciarListeners();
+      const urlLobby = this.router.url.split('/');
+      this.idPartida = Number(urlLobby[urlLobby.length - 1]);
+      const idUser = Number(localStorage.getItem('idUser'));
+      this.unirse(idUser, Number(this.idPartida));
+    }
 
     this._socketsService.routerIdPartida$.subscribe((idPartida: Number) => {
       this.router.navigate([`/partida/${idPartida}`]);
@@ -48,7 +50,9 @@ export class LobbyComponent implements OnInit {
   finalizarLobby() {
     //ACA HAY QUE PONER EL METODO DE SOCKETS PARA QUE SE SALGAN TODOS LOS USERS DE LA PARTIDA SI EL HOST SE FUE
     this._socketsService.finalizarPartida();
+    this._socketsService.desconectar();
     this.router.navigateByUrl('/main/home');
+    console.log(this._socketsService);
   }
   salirseLobby() {
     this._socketsService.salirse();

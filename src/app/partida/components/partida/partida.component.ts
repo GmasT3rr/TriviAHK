@@ -98,6 +98,15 @@ export class PartidaComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getIdPartida()
+    if(!this._socketsService.socket?.connected || !this._socketsService.socket) {
+      this._socketsService.conectar();
+      this._socketsService.iniciarListeners();
+
+      console.log(this._socketsService.trivia);
+
+      const idUser = Number(localStorage.getItem('idUser'));
+      this._socketsService.unirse(idUser, Number(this.idPartida));
+    }
     this.mostrarSiguientePreg()
     this.inicioPartida = true
 
@@ -134,9 +143,8 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('ondestroy');
-   this._socketsService.desconectar();
-   this.unsubscribe$.next(true);
-   this.unsubscribe$.unsubscribe();
+    this._socketsService.desconectar();
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.unsubscribe();
   }
 }

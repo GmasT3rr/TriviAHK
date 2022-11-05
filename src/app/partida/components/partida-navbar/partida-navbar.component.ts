@@ -35,13 +35,10 @@ export class PartidaNavbarComponent implements OnInit, OnDestroy {
     }
 
     this._socketsService.pregunta$
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      )
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe(pregunta => {
         this.tiempoPreguntasSeg = pregunta.segundosEntrePreguntas
         let countdown = setInterval(() => {
-        console.log('NAVBAR',this.tiempoPreguntasSeg);
         this.tiempoPreguntasSeg--;;
           if (this.tiempoPreguntasSeg <= 0) clearInterval(countdown);
         }, 1000);
