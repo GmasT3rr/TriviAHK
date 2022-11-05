@@ -3,6 +3,7 @@
 @import '~bootstrap-icons/font/bootstrap-icons.css';
 html {
   overflow: auto;
+  font-size: 62.5%;
 }
 
 body {

@@ -23,7 +23,7 @@
         style="border: none"
         data-bs-toggle="modal"
         data-bs-target="#modalGeneral">
-        <app-button-home [desc]="'Ingresar'"></app-button-home>
+        <app-button-home [desc]="'Ingresar con código'"></app-button-home>
       </div>
     </div>
   </div>
@@ -32,15 +32,10 @@
 <app-modal [modalPorAbrir]="'ingresarPartida'"></app-modal>
 
 <div class="container">
-  <div class="row">
-    <div class="actividades">
-      <p>Actividades Recientes</p>
-      <hr />
-    </div>
+  <div class="actividades">
+    <p>Actividades Recientes</p>
+    <hr />
   </div>
-</div>
-
-<div class="container">
   <div class="row d-flex justify-content-center">
     <div
       class="col-lg-3 mb-3 mt-3"
@@ -66,7 +61,7 @@
       </div> -->
 
       <div
-        class="card card-decoration-body  mb-3"
+        class="card card-decoration-body mb-3"
         [@onLoadAnimation]
         *ngIf="trivia"
         (click)="irVerTrivia(trivia.id)"
@@ -75,24 +70,25 @@
           <h3 class="card-title text-white">{{ trivia._nombre }}</h3>
         </div>
         <div class="card-body">
-
           <p *ngIf="trivia._descripcion">
             {{ trivia._descripcion | slice: 0:50 }}
           </p>
-          <p style="font-size: 14px;" class="card-text text-muted">By {{ trivia._creadoPor?._nombre }}</p>
+          <p
+            style="font-size: 14px"
+            class="card-text text-muted">
+            By {{ trivia._creadoPor?._nombre }}
+          </p>
         </div>
         <div class="card-footer d-flex justify-content-between">
           <small class="text-muted">{{ trivia._fechaCreacion | date }}</small>
           <small class="text-muted">#{{ trivia.id }}</small>
-      
-        
         </div>
       </div>
     </div>
   </div>
 
   <div class="body-buttons-n-p d-flex justify-content-center mt-4 mb-4">
-    <div 
+    <div
       (click)="prevQuiz()"
       class="btn btn-prev mx-3 d-flex align-items-center">
       <i
