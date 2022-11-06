@@ -11,13 +11,13 @@
 .button-transition {
   position: relative;
   top: 0;
-  transition: all 700ms ease-out;
+  transition: all 400ms ease-out;
 }
 
 .button-transition:hover {
   top: -20px;
   box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
-  transition: all 700ms ease-in;
+  transition: all 400ms ease-in;
 }
 
 @media screen and (max-width: 768px) {
@@ -25,4 +25,15 @@
     position: relative;
     padding-bottom: 100px;
   }
+}
+
+.selected {
+  filter: brightness(0.8);
+  top: -20px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+  transition: all 400ms ease-in;
+}
+
+.opcDesSeleccionada {
+  background-color: aquamarine;
 }

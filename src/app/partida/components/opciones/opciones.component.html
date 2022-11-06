@@ -1,3 +1,4 @@
+<!--
 <div class="row d-flex justify-content-center mt-3">
   <ng-container
     *ngIf="
@@ -62,4 +63,22 @@
       </div>
     </div>
   </ng-template>
+</div>
+-->
+<div class="row d-flex justify-content-center mt-3">
+  <div
+    class="col-md-5"
+    *ngFor="let opc of preguntaActual._opciones; let i = index">
+    <div
+      class="p-5 card mt-5 button-transition"
+      [ngClass]="{ selected: opcionesSeleccionadas.includes(opc) }"
+      [ngStyle]="getColor(i)"
+      (click)="selectOpc(opc)"
+      style="color: white">
+      <div class="card-body text-center">
+        <h3>{{ opc._descripcion }}</h3>
+      </div>
+    </div>
+  </div>
+  <pre>{{ opcionesSeleccionadas | json }}</pre>
 </div>

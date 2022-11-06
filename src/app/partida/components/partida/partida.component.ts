@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'app/core/services/user.service';
 import { SocketService } from 'app/core/socket/socket.service';
@@ -14,15 +14,13 @@ import { Subject, takeUntil } from 'rxjs';
   animations: [onLoadAnimation]
 })
 export class PartidaComponent implements OnInit, OnDestroy {
-
   unsubscribe$ = new Subject<any>();
 
   constructor(
     private router: Router,
     private _socketsService: SocketService,
     private _userService: UserService,
-    private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private activatedRoute: ActivatedRoute
   ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as { trivia: Trivia };
@@ -36,10 +34,10 @@ export class PartidaComponent implements OnInit, OnDestroy {
   preguntaActual!: Pregunta;
   tengoTriviaYOpciones = false;
   habilitarBtnPregunta = true;
-  idPartida:any
-  finDePartida=false
-  tiempoFinalizo:boolean = false
-  tiempoPreguntasSeg:any
+  idPartida: any;
+  finDePartida = false;
+  tiempoFinalizo: boolean = false;
+  tiempoPreguntasSeg: any;
 
   /*
   {
@@ -49,12 +47,9 @@ export class PartidaComponent implements OnInit, OnDestroy {
     ]
   }
   */
-  form = this.fb.group({
-    opciones: this.fb.array([])
-  });
 
-  verOpcion(preguntaActual:any){
-      console.log({preguntaActual,selecccionado:true});
+  verOpcion(preguntaActual: any) {
+    console.log({ preguntaActual, selecccionado: true });
   }
 
   getIdPartida() {
@@ -97,8 +92,11 @@ export class PartidaComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    this.getIdPartida()
-    if(!this._socketsService.socket?.connected || !this._socketsService.socket) {
+    this.getIdPartida();
+    if (
+      !this._socketsService.socket?.connected ||
+      !this._socketsService.socket
+    ) {
       this._socketsService.conectar();
       this._socketsService.iniciarListeners();
 
@@ -107,34 +105,34 @@ export class PartidaComponent implements OnInit, OnDestroy {
       const idUser = Number(localStorage.getItem('idUser'));
       this._socketsService.unirse(idUser, Number(this.idPartida));
     }
-    this.mostrarSiguientePreg()
-    this.inicioPartida = true
+    this.mostrarSiguientePreg();
+    this.inicioPartida = true;
 
     this.preguntas = this._socketsService.trivia._preguntas;
 
     this._socketsService.pregunta$
-    .pipe(takeUntil(this.unsubscribe$))
-    .subscribe((pregunta: any) => {
-      this.posicionPregSockets = pregunta.numeroDePregunta + 1;
-      this.preguntaActual = this.preguntas[pregunta.numeroDePregunta];
-      this.tiempoPreguntasSeg = pregunta.segundosEntrePreguntas;
-      this.tengoTriviaYOpciones = true;
-    });
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((pregunta: any) => {
+        this.posicionPregSockets = pregunta.numeroDePregunta + 1;
+        this.preguntaActual = this.preguntas[pregunta.numeroDePregunta];
+        this.tiempoPreguntasSeg = pregunta.segundosEntrePreguntas;
+        this.tengoTriviaYOpciones = true;
+      });
 
     this._socketsService.terminaTiempo$
-    .pipe(takeUntil(this.unsubscribe$))
-    .subscribe(() => {
-      this.habilitarBtnPregunta = true;
-      if(this.preguntas.length == this.posicionPregSockets) {
-        console.log('final');
-      }
-    });
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(() => {
+        this.habilitarBtnPregunta = true;
+        if (this.preguntas.length == this.posicionPregSockets) {
+          console.log('final');
+        }
+      });
 
     this._socketsService.resultados$
-    .pipe(takeUntil(this.unsubscribe$))
-    .subscribe(resultados => {
-      console.log('results: ', resultados);
-    });
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(resultados => {
+        console.log('results: ', resultados);
+      });
   }
 
   mostrarSiguientePreg() {

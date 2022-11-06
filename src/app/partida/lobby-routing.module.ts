@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { OpcionesComponent } from './components/opciones/opciones.component';
 import { PartidaComponent } from './components/partida/partida.component';
 import { LobbyComponent } from './lobby/main/lobby.component';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'lobby/:id',
     component: LobbyComponent
+  },
+  //ELIMINAR ES A MODO DE TEST
+  {
+    path: 'opciones',
+    component: OpcionesComponent
   },
   {
     path: 'single-choice',

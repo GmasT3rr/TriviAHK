@@ -1,5 +1,6 @@
 <div *ngIf="!finDePartida">
-  <app-partida-navbar (tiempoPreguntasSeg)="this.tiempoPreguntasSeg"></app-partida-navbar>
+  <app-partida-navbar
+    (tiempoPreguntasSeg)="(this.tiempoPreguntasSeg)"></app-partida-navbar>
 
   <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario">
     <div class="container d-flex justify-content-end">
@@ -28,19 +29,11 @@
       <app-pregunta
         *ngIf="tengoTriviaYOpciones"
         [pregunta]="preguntaActual._leyenda"></app-pregunta>
-      <form [formGroup]="form">
-        <app-opciones
-        (click)="verOpcion(preguntaActual)"
-          *ngIf="tengoTriviaYOpciones"
-          [pregunta]="preguntaActual"
-          formArrayName="opciones"></app-opciones>
-        <pre>
-            {{ form.value | json }}
-          </pre
-        >
-      </form>
+      <h3>{{ preguntaActual.tipoDePregunta }}</h3>
+      <app-opciones
+        *ngIf="tengoTriviaYOpciones"
+        [pregunta]="preguntaActual"></app-opciones>
     </div>
-    <h1>{{this.preguntaActual | json}}</h1>
   </div>
 </ng-template>
 <div *ngIf="finDePartida">
