@@ -12,7 +12,7 @@ export class SingleChoiceComponent implements OnInit {
   constructor(private _socketsService: SocketService) {}
 
   ngOnInit(): void {
-    this._socketsService.pregunta.subscribe(pregunta => {
+    this._socketsService.pregunta$.subscribe(pregunta => {
       console.log('componente ', pregunta);
     });
   }
