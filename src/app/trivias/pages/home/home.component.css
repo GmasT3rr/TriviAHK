@@ -1,3 +1,14 @@
+.trivia-descripcion{
+ text-overflow: ellipsis;
+ overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  height: 100px;
+  
+}
+
+
 .cards {
   margin-top: 100px;
   font-family: 'Montserrat', sans-serif;
@@ -12,87 +23,68 @@
   letter-spacing: 0.15em;
 }
 
-.homeBtns {
-  height: auto;
-  word-break: break-all;
-  text-align: center;
-  background-color: #fd999b;
-  color: white;
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
-  transition: all 300ms ease;
-  word-break: break-all;
+
+.card-decoration-body{
+  border: 0;
+  top: 0;
+  left: 0;
+  min-height: 300px;
+  box-shadow: 4px 8px 8px rgba(74, 81, 201, 0.16);
+  transition: top 500ms, box-shadow 1s;
+  transition-timing-function: ease;
+}
+.card-decoration-body:hover{
+  top: -10px;
+  box-shadow: 8px 16px 4px rgba(74, 81, 201, 0.16);
 }
 
-.homeBtns:hover {
-  background-color: rgba(253, 153, 155, 0.5);
-  box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
-}
+.trivia-nombre {
 
-i {
-  font-style: inherit;
-  font-weight: bold;
-  font-size: 24px;
-}
-
-.card-quiz {
-  padding-top: 30px;
-  margin: 3px;
-  background-color: white;
-  text-align: center;
-}
-
-
-.card-quiz h3 {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 25px;
-  color: #212529;
-  margin-bottom: 60px;
-  margin-top: 30px;
-}
-
-.card-quiz p {
-  font-style: normal;
-  font-weight: 400;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color:white !important;
   font-size: 22px;
-  color: #212529;
+  font-weight: 600;
+  line-height: 120%;
+
 }
 
+.body-btn-next-prev{
+  height: 7vh;
+
+}
 .btn-prev,
 .btn-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   background: rgba(113, 97, 239, 1);
   border: 2px;
   border-radius: 20px;
   width: 50px;
-  padding: 5px;
+  height: 50px;
   transition: all 300ms;
+ 
 }
 .btn-prev:hover,
 .btn-next:hover {
   background: rgba(113, 97, 239, 0.5);
-  border: 2px;
-  color: white;
+  border-width: 2px 4px 7px 2px;
+  border-style: solid;
+  border-color: rgba(113, 97, 239, 1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 }
 
 .actividades p {
   margin-top: 30px;
-
   font-weight: 700;
   font-size: 30px;
 }
 
-.actividades hr {
-  display: flex;
-  width: 10%;
-  align-items: flex-start;
-  background: #7b61ff;
-  border-radius: 30px;
-  height: 10px;
-  opacity: 1;
-}
+
 
 @media screen and (max-width: 1024px) {
   .cards {
@@ -121,23 +113,10 @@ i {
 }
 
 .card-header-background{
+  height: 100px;
   background-color: #7161ef
 }
+
 /*
 -----------
 */
-
-.wave:hover span{
-  display: inline-block;
-  animation: wave-anim 2s;
-  animation-iteration-count: infinite;
-  animation-delay: calc(0.1s * var(--item));
-}
-@keyframes wave-anim{
-  0%,20%,40%,100%{
-    transform: translateY(0);
-  }
-  20%{
-    transform: translateY(-20px);
-  }
-}

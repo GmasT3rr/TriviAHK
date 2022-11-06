@@ -1,0 +1,42 @@
+i {
+  font-style: inherit;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.wave:hover span {
+  display: inline-block;
+  animation: wave-anim 2s;
+  animation-iteration-count: infinite;
+  animation-delay: calc(0.1s * var(--item));
+}
+
+@keyframes wave-anim {
+
+  0%,
+  20%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(-5px);
+  }
+}
+.homeBtns {
+  height: auto;
+  word-break: break-all;
+  text-align: center;
+  background-color: #fd999b;
+  color: white;
+  border-radius: 15px;
+  padding: 15px;
+  transition: all 300ms ease;
+  word-break: break-all;
+}
+
+.homeBtns:hover {
+  background-color: rgba(253, 153, 155, 0.5);
+  box-shadow: 10px 10px rgba(255, 255, 255, 0.329);
+}

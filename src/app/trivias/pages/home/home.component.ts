@@ -10,6 +10,7 @@ import { SocketService } from 'app/core/socket/socket.service';
 import { PartidasService } from 'app/trivias/services/partidas.service';
 import { TriviasService } from 'app/trivias/services/trivias.service';
 import { ToastService } from 'app/core/services/toast.service';
+import { UserService } from 'app/core/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +33,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _partidaService: PartidasService,
     private triviasService: TriviasService,
     private toastService: ToastService,
-    private router: Router
+    private router: Router,
+    private userService:UserService
   ) {
     this.offset = 0;
     this.limit = 4;
@@ -43,6 +45,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       // console.log(res.body);
       this.trivias = res.body;
     });
+    this.userService.getIdUser().subscribe((res:any)=>{
+      localStorage.setItem('idUser',res.body)
+    })
   }
   ngOnDestroy() {}
 
@@ -63,6 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  // NO LO BORREN QUE SIRVE DE RECUERDO XD
   // public getColor(index: number): string {
   //    switch (index) {
   //      case 0:

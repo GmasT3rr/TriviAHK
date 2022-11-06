@@ -1,6 +1,5 @@
-
 <div
-[@onLoadAnimation]
+  [@onLoadAnimation]
   style="background-color: #ffb1b5"
   class="pt-2 pb-5">
   <div class="container">
@@ -8,66 +7,23 @@
       <div
         class="col-sm-4 btn"
         style="border: none">
-        <div
-          class="homeBtns wave"
-          routerLink="/main/crear-trivia">
-          <i class="bi bi-plus">
-            <span style="--item: 1">C</span>
-            <span style="--item: 2">r</span>
-            <span style="--item: 3">e</span>
-            <span style="--item: 4">a</span>
-            <span style="--item: 5">r</span>
-            <span class="ml-2"></span>
-            <span style="--item: 6">T</span>
-            <span style="--item: 7">r</span>
-            <span style="--item: 8">i</span>
-            <span style="--item: 9">v</span>
-            <span style="--item: 10">i</span>
-            <span style="--item: 11">a</span>
-          </i>
-        </div>
+        <app-button-home
+          [desc]="'Crear Trivia'"
+          [route]="'/main/crear-trivia'"></app-button-home>
       </div>
-
       <div
         class="col-sm-4 btn"
         style="border: none">
-        <div
-          class="homeBtns wave"
-          routerLink="/main/mis-trivias">
-          <i class="bi bi-controller">
-            <span style="--item: 1">C</span>
-            <span style="--item: 2">r</span>
-            <span style="--item: 3">e</span>
-            <span style="--item: 4">a</span>
-            <span style="--item: 5">r</span>
-            <span class="ml-2"></span>
-            <span style="--item: 6">P</span>
-            <span style="--item: 7">a</span>
-            <span style="--item: 8">r</span>
-            <span style="--item: 9">t</span>
-            <span style="--item: 10">i</span>
-            <span style="--item: 11">d</span>
-            <span style="--item: 12">a</span>
-          </i>
-        </div>
+        <app-button-home
+          [desc]="'Crear Partida'"
+          [route]="'/main/mis-trivias'"></app-button-home>
       </div>
       <div
         class="col-sm-8 btn mt-2"
         style="border: none"
         data-bs-toggle="modal"
         data-bs-target="#modalGeneral">
-        <div class="homeBtns wave">
-          <i class="bi bi-door-open">
-            <span style="--item: 1">I</span>
-            <span style="--item: 2">n</span>
-            <span style="--item: 3">g</span>
-            <span style="--item: 4">r</span>
-            <span style="--item: 5">e</span>
-            <span style="--item: 6">s</span>
-            <span style="--item: 7">a</span>
-            <span style="--item: 8">r</span>
-          </i>
-        </div>
+        <app-button-home [desc]="'Ingresar'"></app-button-home>
       </div>
     </div>
   </div>
@@ -89,54 +45,37 @@
     <div
       class="col-lg-3 mb-3 mt-3"
       *ngFor="let trivia of trivias | slice: offset:limit; let i = index">
-      <!-- <div
-        class="card bg-primary text-center"
-        [@showOpciones]
-        *ngIf="trivia"
-        (click)="irVerTrivia(trivia.id)"
-        style="cursor: pointer">
-        <div class="card-title">
-          <h3>{{ trivia._nombre }}</h3>
-        </div>
-        <div class="card-body">
-          <h4>Id: {{ trivia.id }}</h4>
-          <h4>{{ trivia._fechaCreacion | date }}</h4>
-          <h5>{{ trivia._creadoPor?._nombre }}</h5>
-          <p *ngIf="trivia._descripcion; else noDescp">
-            {{ trivia._descripcion | slice: 0:50 }}
-          </p>
-        </div>
-        <ng-template #noDescp> Sin descripcion </ng-template>
-      </div> -->
 
       <div
-        class="card text-center mb-3"
+        class="card card-decoration-body mb-3"
         [@onLoadAnimation]
         *ngIf="trivia"
         (click)="irVerTrivia(trivia.id)"
         style="cursor: pointer">
-        <div class="card-header card-header-background p-2">
-          <h3 class="card-title text-white">{{ trivia._nombre }}</h3>
+        <div class="card-header card-header-background p-3">
+          <h3 class="card-title trivia-nombre">{{ trivia._nombre }}</h3>
         </div>
         <div class="card-body">
-          <p class="card-text">#{{ trivia.id }}</p>
 
-          <p *ngIf="trivia._descripcion">
-            {{ trivia._descripcion | slice: 0:50 }}
+          <p *ngIf="trivia._descripcion" class="trivia-descripcion">
+            {{ trivia._descripcion }}
           </p>
-          <p class="card-text">{{ trivia._creadoPor?._nombre }}</p>
+          <p class="card-text text-muted">By {{ trivia._creadoPor?._nombre }}</p>
         </div>
-        <div class="card-footer border-primary bg-transparent">
-          <p class="card-text">{{ trivia._fechaCreacion | date }}</p>
+        <div class="card-footer d-flex justify-content-between">
+          <small class="text-muted">{{ trivia._fechaCreacion | date }}</small>
+          <small class="text-muted">#{{ trivia.id }}</small>
+      
+        
         </div>
       </div>
     </div>
   </div>
 
-  <div class="d-flex justify-content-center mt-4">
-    <div
+  <div class="body-btn-next-prev d-flex justify-content-center mt-4 mb-4">
+    <div 
       (click)="prevQuiz()"
-      class="btn btn-prev mx-3">
+      class="btn btn-prev mx-3 d-flex align-items-center">
       <i
         class="bi bi-arrow-left"
         style="font-style: inherit"></i>

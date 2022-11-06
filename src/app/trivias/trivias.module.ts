@@ -1,30 +1,35 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TriviasRoutingModule } from './trivias-routing.module';
 import { HomeComponent } from './pages/home/home.component';
-import { CrearQuizComponent } from './pages/crear-quiz/crear-quiz.component';
+import { CrearTriviaComponent } from './pages/crear-trivia/crear-trivia.component';
 import { CrearPartidaComponent } from './pages/crear-partida/crear-partida.component';
 import { MisTriviasComponent } from './pages/mis-trivias/mis-trivias.component';
 import { EditarTriviaComponent } from './pages/editar-trivia/editar-trivia.component';
 import { InfoTriviaComponent } from './pages/info-trivia/info-trivia.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
+import { ButtonHomeComponent } from './components/button-home/button-home.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CrearQuizComponent,
+    CrearTriviaComponent,
     CrearPartidaComponent,
     MisTriviasComponent,
     EditarTriviaComponent,
-    InfoTriviaComponent
+    InfoTriviaComponent,
+    ButtonHomeComponent
   ],
   imports: [
     CommonModule,
     TriviasRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    FontAwesomeModule
   ]
 })
 export class TriviasModule {}

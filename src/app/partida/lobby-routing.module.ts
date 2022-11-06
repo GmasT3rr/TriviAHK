@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { OpcionesComponent } from './components/opciones/opciones.component';
+import { PartidaComponent } from './components/partida/partida.component';
 import { LobbyComponent } from './lobby/main/lobby.component';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
 import { PodioComponent } from './podio/podio.component';
+import { RankingComponent } from './ranking/ranking.component';
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
 
@@ -12,13 +15,23 @@ const routes: Routes = [
   //   component: LobbyComponent,
   //   canActivate: [LobbyGuard]
   // },
+
   {
     path: 'todas-las-rutas',
     component: TodasLasRutasComponent
   },
   {
+    path: 'ranking',
+    component: RankingComponent
+  },
+  {
     path: 'lobby/:id',
     component: LobbyComponent
+  },
+  //ELIMINAR ES A MODO DE TEST
+  {
+    path: 'opciones',
+    component: OpcionesComponent
   },
   {
     path: 'single-choice',
@@ -32,7 +45,11 @@ const routes: Routes = [
     path: 'podio',
     component: PodioComponent
   },
-
+  {
+    path: ':id',
+    component: PartidaComponent,
+    pathMatch: 'full'
+  },
   { path: '**', pathMatch: 'full', redirectTo: 'todas-las-rutas' }
 
   // { path: '**', pathMatch: 'full', redirectTo: 'lobby' }

@@ -58,15 +58,17 @@ export class ModalComponent implements OnInit {
                   `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
                 );
               }
+              else{
+                this.btnModalCerrar.nativeElement.click();
+                this.router.navigateByUrl(
+                  `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
+                );
+              }
               // this._socketsService.unirse(
               //   idUser,
               //   this.ingresarPartidaForm.value['codigo']
               // );
               //Si ya esta unido en alguna
-              this.btnModalCerrar.nativeElement.click();
-              this.router.navigateByUrl(
-                `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
-              );
             });
             return;
           }

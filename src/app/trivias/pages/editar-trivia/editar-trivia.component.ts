@@ -2,20 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'app/core/services/toast.service';
+import { flipRigthAnimation } from 'app/shared/animations/flipRight.component';
 import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
 import { TriviasService } from 'app/trivias/services/trivias.service';
+import { faClipboardQuestion } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-editar-trivia',
   templateUrl: './editar-trivia.component.html',
   styleUrls: ['./editar-trivia.component.css'],
-  animations: [onLoadAnimation]
+  animations: [onLoadAnimation,
+    flipRigthAnimation
+  ]
 })
 export class EditarTriviaComponent implements OnInit {
   private idTrivia: any;
   public trivia!: any;
   public triviaForm!: FormGroup;
   public mostrarPreguntas = false;
+  faClipboardQuestion=faClipboardQuestion
+
 
   tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
 
@@ -30,6 +36,11 @@ export class EditarTriviaComponent implements OnInit {
   ngOnInit(): void {
     this.getTriviaId();
     this.createEditarTriviaForm();
+  }
+
+  flip={status:'inactive'}
+  toggleFlip() {
+    this.flip.status = this.flip.status == 'inactive' ? 'active' : 'inactive';
   }
 
   async getTriviaId() {

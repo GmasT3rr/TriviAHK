@@ -38,6 +38,7 @@ export class NavbarComponent implements OnInit {
 
   //METODO LOGOUT AUTH0
   logoutAuth() {
+    localStorage.removeItem('idUser');
     this.userService.logout();
   }
 
