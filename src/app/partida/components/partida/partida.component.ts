@@ -4,7 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'app/core/services/user.service';
 import { SocketService } from 'app/core/socket/socket.service';
 import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
-import { Pregunta, Trivia } from 'app/trivias/interfaces/Trivias.interface';
+import {
+  Opciones,
+  Pregunta,
+  Trivia
+} from 'app/trivias/interfaces/Trivias.interface';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -38,6 +42,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   finDePartida = false;
   tiempoFinalizo: boolean = false;
   tiempoPreguntasSeg: any;
+  opcionesSeleccionadas: Opciones[] = [];
 
   /*
   {
@@ -144,5 +149,14 @@ export class PartidaComponent implements OnInit, OnDestroy {
     this._socketsService.desconectar();
     this.unsubscribe$.next(true);
     this.unsubscribe$.unsubscribe();
+  }
+
+  obtenerOpcSelectDeChild(opc: Opciones[]) {
+    console.log('opciones obtenidas del child', opc);
+    this.opcionesSeleccionadas = opc;
+  }
+
+  responder() {
+    this._socketsService.responder(this.opcionesSeleccionadas);
   }
 }

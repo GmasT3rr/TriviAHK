@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Opciones } from 'app/trivias/interfaces/Trivias.interface';
 import { Observable, Subject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { environment as env } from '../../../environments/environment';
@@ -30,9 +31,8 @@ export class SocketService {
     return this._socket;
   }
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  
   conectar() {
     this._socket = io('http://localhost:3000/juego');
   }
@@ -86,7 +86,7 @@ export class SocketService {
     this.socket?.on(
       'partida:mostrar-pregunta',
       (obj: { numeroDePregunta: number; segundosEntrePreguntas: number }) => {
-        console.log('hola me dispare');
+        // console.log('hola me dispare');
         this.pregunta$.next(obj);
       }
     );
@@ -146,17 +146,23 @@ export class SocketService {
     this.socket!.emit('partida:siguiente-pregunta');
   }
 
-  public responder() {
-    const opciones = {
-      opciones: [
-        {
-          id: 123
-        },
-        {
-          id: 122
-        }
-      ]
-    };
+  public responder(opcSeleccionadas: Opciones[]) {
+    // const opciones = {
+    //   opciones: [
+    //     {
+    //       id: 123
+    //     },
+    //     {
+    //       id: 122
+    //     }
+    //   ]
+    // };
+    let opcsIds: { id: number }[] = [];
+    for (const opc of opcSeleccionadas) {
+      opcsIds.push({ id: opc.id });
+    }
+    const opciones = opcsIds;
+    // console.log(opciones);
 
     this.socket!.emit('partida:responder', opciones);
     // const respuestas = {

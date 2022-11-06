@@ -15,3 +15,10 @@
   background-color: #da888a;
   color: white;
 }
+
+.selected {
+  filter: brightness(0.8);
+  top: -20px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+  transition: all 400ms ease-in;
+}

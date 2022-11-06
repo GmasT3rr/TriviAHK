@@ -29,10 +29,17 @@
       <app-pregunta
         *ngIf="tengoTriviaYOpciones"
         [pregunta]="preguntaActual._leyenda"></app-pregunta>
-      <h3>{{ preguntaActual.tipoDePregunta }}</h3>
+      <h3>{{ preguntaActual.tipoDePregunta | json }}</h3>
       <app-opciones
         *ngIf="tengoTriviaYOpciones"
-        [pregunta]="preguntaActual"></app-opciones>
+        [pregunta]="preguntaActual"
+        (opcSeleccionadasEmit)="obtenerOpcSelectDeChild($event)"></app-opciones>
+      <button
+        class="btn btn-primary"
+        (click)="responder()"
+        [disabled]="!opcionesSeleccionadas">
+        Responder
+      </button>
     </div>
   </div>
 </ng-template>

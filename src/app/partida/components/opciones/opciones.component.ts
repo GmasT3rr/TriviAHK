@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
   FormGroup,
   FormGroupDirective
 } from '@angular/forms';
+import { SocketService } from 'app/core/socket/socket.service';
 import {
   Opciones,
   Pregunta,
@@ -17,7 +18,7 @@ import {
   styleUrls: ['./opciones.component.css']
 })
 export class OpcionesComponent implements OnInit {
-  constructor() {}
+  constructor(private _socketsService: SocketService) {}
   // form!: FormGroup;
   // formArray!: FormArray;
   opciones: any[] = [];
@@ -25,6 +26,7 @@ export class OpcionesComponent implements OnInit {
 
   @Input() opcion?: any;
   opcionesSeleccionadas: Opciones[] = [];
+  @Output() opcSeleccionadasEmit = new EventEmitter<Opciones[]>();
   errorOpcSelec = false;
 
   ngOnInit(): void {
@@ -57,6 +59,16 @@ export class OpcionesComponent implements OnInit {
     //   ]
     // };
     // console.log(this.preguntaActual);
+    this.limpiarOpciones();
+  }
+
+  limpiarOpciones() {
+    this._socketsService.socket?.on('partida:resultados', r => {
+      this.opcionesSeleccionadas = [];
+    });
+    this._socketsService.socket?.on('partida:respondio', r => {
+      this.opcionesSeleccionadas = [];
+    });
   }
 
   selectOpc(opc: Opciones) {
@@ -72,7 +84,7 @@ export class OpcionesComponent implements OnInit {
           this.opcionesSeleccionadas.length < 2
         ) {
           this.addOpcion(opc);
-          console.log('sume');
+          // console.log('sume');
           return;
         }
 
@@ -87,14 +99,14 @@ export class OpcionesComponent implements OnInit {
           this.opcionesSeleccionadas.length < 1
         ) {
           this.addOpcion(opc);
-          console.log('sume');
+          // console.log('sume');
           return;
         }
 
         break;
       case 'votacion':
-        console.log(this.opcionesSeleccionadas.length);
-        console.log(opc._fueSeleccionada);
+        // console.log(this.opcionesSeleccionadas.length);
+        // console.log(opc._fueSeleccionada);
         if (this.opcionesSeleccionadas.length >= 1) {
           this.errorOpcSelec = true;
           // alert('llegaste al limite pa');
@@ -104,7 +116,7 @@ export class OpcionesComponent implements OnInit {
           this.opcionesSeleccionadas.length < 1
         ) {
           this.addOpcion(opc);
-          console.log('sume');
+          // console.log('sume');
           return;
         }
 
@@ -112,8 +124,9 @@ export class OpcionesComponent implements OnInit {
     }
 
     if (opc._fueSeleccionada == true) {
-      console.log('remove');
-      return this.removeOpcion(opc);
+      // console.log('remove');
+      this.removeOpcion(opc);
+      return;
     }
     // if (opc._fueSeleccionada == false) {
     //   this.addOpcion(opc);
@@ -128,6 +141,7 @@ export class OpcionesComponent implements OnInit {
     let index = this.preguntaActual._opciones.indexOf(opcSelected);
     // console.log('iondex', index);
     this.preguntaActual._opciones[index]._fueSeleccionada = true;
+    this.opcSeleccionadasEmit.emit(this.opcionesSeleccionadas);
   }
 
   removeOpcion(opcSelected: Opciones) {
@@ -137,6 +151,7 @@ export class OpcionesComponent implements OnInit {
     // console.log(index);
     this.preguntaActual._opciones[index]._fueSeleccionada = false;
     this.opcionesSeleccionadas.splice(indexSel, 1);
+    this.opcSeleccionadasEmit.emit(this.opcionesSeleccionadas);
     // console.log('elimine, asi quedo ', this.opcionesSeleccionadas);
   }
 
