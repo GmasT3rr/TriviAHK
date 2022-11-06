@@ -27,10 +27,13 @@
 </ng-container>
 
 <ng-template #mostrarPregunta>
-  <div
-    class="bg row d-flex justify-content-center"
-    [@onLoadAnimation]>
-    <div *ngIf="tengoTriviaYOpciones">
+  <div *ngIf="finDePartida else pregunta">
+    <app-podio [partidaResultadosFinales]="partidaResultadosFinales"></app-podio>
+  </div>
+  <ng-template #pregunta>
+    <div
+      class="bg row d-flex justify-content-center"
+      [@onLoadAnimation]>
       <app-pregunta [pregunta]="preguntaActual._leyenda"></app-pregunta>
       <h3>{{ preguntaActual.tipoDePregunta | json }}</h3>
       <app-opciones
@@ -43,15 +46,11 @@
         Responder
       </button>
     </div>
-  </div>
+  </ng-template>
 </ng-template>
 
 <ng-template #esUsuario>
 </ng-template>
-<div *ngIf="finDePartida">
-  <app-podio [partidaResultadosFinales]="partidaResultadosFinales"></app-podio>
-</div>
-
 <!--
   <ng-template #esUsuario>
   <div

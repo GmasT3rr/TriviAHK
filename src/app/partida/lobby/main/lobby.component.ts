@@ -36,7 +36,6 @@ export class LobbyComponent implements OnInit {
       const idUser = Number(localStorage.getItem('idUser'));
       this.unirse(idUser, Number(this.idPartida));
     }
-
     this._socketsService.routerIdPartida$.subscribe((idPartida: Number) => {
       this.router.navigate([`/partida/${idPartida}`]);
     });

@@ -114,7 +114,6 @@ export class PartidaComponent implements OnInit, OnDestroy {
 
     this.preguntas = this._socketsService.trivia._preguntas;
 
-    console.log(this.preguntas);
     this._socketsService.pregunta$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((pregunta: any) => {
@@ -122,24 +121,17 @@ export class PartidaComponent implements OnInit, OnDestroy {
         this.posicionPregSockets = pregunta.numeroDePregunta + 1;
         this.preguntaActual = this.preguntas[pregunta.numeroDePregunta];
         this.tiempoPreguntasSeg = pregunta.segundosEntrePreguntas;
-        this.tengoTriviaYOpciones = true;
-
-        console.log(this.preguntaActual);
       });
 
-    this._socketsService.terminaTiempo$
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(() => {
+    this._socketsService.opcionesCorrectas$
+      .pipe(takeUntil(this.unsubscribe$)    )
+      .subscribe((opciones) => {
         this.habilitarBtnPregunta = true;
+        console.log(opciones);
         if (this.preguntas.length == this.posicionPregSockets) {
-           
+           this.habilitarBtnPregunta = false;
+           this.finDePartida = true
         }
-      });
-
-    this._socketsService.resultados$
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(resultados => {
-        console.log('results: ', resultados);
       });
   }
 

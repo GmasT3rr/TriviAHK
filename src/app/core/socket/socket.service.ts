@@ -14,7 +14,7 @@ export class SocketService {
   public trivia: any;
   public pregunta$ = new Subject<any>();
   private sesiones$ = new Subject<any>();
-  public terminaTiempo$ = new Subject<any>();
+  public opcionesCorrectas$ = new Subject<any>();
   public sesionId!: number;
   public routerIdPartida$ = new Subject<any>();
   private _resultados$ = new Subject<any[]>();
@@ -91,8 +91,8 @@ export class SocketService {
       }
     );
 
-    this.socket?.on('partida:termina-tiempo', r => {
-      this.terminaTiempo$.next(r);
+    this.socket?.on('partida:opciones-correctas', r => {
+      this.opcionesCorrectas$.next(r);
     });
 
     this.socket?.on('partida:respondio', r => {
