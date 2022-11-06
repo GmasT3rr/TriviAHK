@@ -17,7 +17,7 @@ export class SocketService {
   public terminaTiempo$ = new Subject<any>();
   public sesionId!: number;
   public routerIdPartida$ = new Subject<any>();
-  private _resultados$ = new Subject<any>();
+  private _resultados$ = new Subject<any[]>();
 
   public get sesiones() {
     return this.sesiones$ as Observable<any>;

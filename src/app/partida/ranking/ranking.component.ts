@@ -12,10 +12,11 @@ import { faRankingStar } from '@fortawesome/free-solid-svg-icons';
 })
 export class RankingComponent implements OnInit {
 
-  @Input() partidaResultadosPrevios:any
+  @Input() partidaResultadosPrevios: any;
+
   ordenarPuntaje(){
     this.partidaResultadosPrevios  = this.partidaResultadosPrevios.sort((a:any,b:any) =>{
-      return b.puntaje - a.puntaje
+      return b.puntajeTotal - a.puntajeTotal
     })
   }
 

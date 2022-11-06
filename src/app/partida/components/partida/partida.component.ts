@@ -43,6 +43,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   tiempoFinalizo: boolean = false;
   tiempoPreguntasSeg: any;
   opcionesSeleccionadas: Opciones[] = [];
+  resultados$ = this._socketsService.resultados$
 
   /*
   {
@@ -105,8 +106,6 @@ export class PartidaComponent implements OnInit, OnDestroy {
       this._socketsService.conectar();
       this._socketsService.iniciarListeners();
 
-      console.log(this._socketsService.trivia);
-
       const idUser = Number(localStorage.getItem('idUser'));
       this._socketsService.unirse(idUser, Number(this.idPartida));
     }
@@ -115,13 +114,17 @@ export class PartidaComponent implements OnInit, OnDestroy {
 
     this.preguntas = this._socketsService.trivia._preguntas;
 
+    console.log(this.preguntas);
     this._socketsService.pregunta$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((pregunta: any) => {
+        this._socketsService.resultados$.next([]);
         this.posicionPregSockets = pregunta.numeroDePregunta + 1;
         this.preguntaActual = this.preguntas[pregunta.numeroDePregunta];
         this.tiempoPreguntasSeg = pregunta.segundosEntrePreguntas;
         this.tengoTriviaYOpciones = true;
+
+        console.log(this.preguntaActual);
       });
 
     this._socketsService.terminaTiempo$
@@ -129,7 +132,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.habilitarBtnPregunta = true;
         if (this.preguntas.length == this.posicionPregSockets) {
-          console.log('final');
+           
         }
       });
 
@@ -152,7 +155,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   obtenerOpcSelectDeChild(opc: Opciones[]) {
-    console.log('opciones obtenidas del child', opc);
+    console.log('opciones obtenidas del child', opc); 
     this.opcionesSeleccionadas = opc;
   }
 

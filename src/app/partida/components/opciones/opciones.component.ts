@@ -24,7 +24,6 @@ export class OpcionesComponent implements OnInit {
   opciones: any[] = [];
   @Input('pregunta') preguntaActual!: Pregunta;
 
-  @Input() opcion?: any;
   opcionesSeleccionadas: Opciones[] = [];
   @Output() opcSeleccionadasEmit = new EventEmitter<Opciones[]>();
   errorOpcSelec = false;

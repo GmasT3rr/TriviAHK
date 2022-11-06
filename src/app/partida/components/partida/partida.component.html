@@ -17,21 +17,23 @@
     </div>
   </div>
 </div>
-<ng-template #esUsuario>
+
+<ng-container *ngIf="this.resultados$ | async as resultados">
+  <div *ngIf="resultados.length > 0 else mostrarPregunta"
+      class="bg row d-flex justify-content-center"
+      [@onLoadAnimation]>
+    <app-ranking [partidaResultadosPrevios]="resultados"></app-ranking>
+  </div>
+</ng-container>
+
+<ng-template #mostrarPregunta>
   <div
     class="bg row d-flex justify-content-center"
     [@onLoadAnimation]>
-    <div *ngIf="habilitarBtnPregunta && inicioPartida && !finDePartida">
-      <app-ranking
-        [partidaResultadosPrevios]="partidaResultadosPrevios"></app-ranking>
-    </div>
-    <div>
-      <app-pregunta
-        *ngIf="tengoTriviaYOpciones"
-        [pregunta]="preguntaActual._leyenda"></app-pregunta>
+    <div *ngIf="tengoTriviaYOpciones">
+      <app-pregunta [pregunta]="preguntaActual._leyenda"></app-pregunta>
       <h3>{{ preguntaActual.tipoDePregunta | json }}</h3>
       <app-opciones
-        *ngIf="tengoTriviaYOpciones"
         [pregunta]="preguntaActual"
         (opcSeleccionadasEmit)="obtenerOpcSelectDeChild($event)"></app-opciones>
       <button
@@ -42,6 +44,9 @@
       </button>
     </div>
   </div>
+</ng-template>
+
+<ng-template #esUsuario>
 </ng-template>
 <div *ngIf="finDePartida">
   <app-podio [partidaResultadosFinales]="partidaResultadosFinales"></app-podio>
