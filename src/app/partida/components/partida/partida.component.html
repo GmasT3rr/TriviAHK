@@ -1,5 +1,6 @@
-<app-partida-navbar
-  (tiempoPreguntasSeg)="(this.tiempoPreguntasSeg)"></app-partida-navbar>
+<div class="bg">
+  <app-partida-navbar
+    (tiempoPreguntasSeg)="(this.tiempoPreguntasSeg)"></app-partida-navbar>
 
 <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario">
   <div class="container d-flex justify-content-end">
@@ -25,13 +26,13 @@
   
   <ng-template #mostrarPregunta>
     <div *ngIf="finDePartida else pregunta">
-      <app-podio [partidaResultadosFinales]="resultados"></app-podio>
+      <app-podio *ngIf="resultados.length > 0" [resultados]="resultados"></app-podio>
     </div>
   <ng-template #pregunta>
       <div
         class="bg row d-flex justify-content-center"
         [@onLoadAnimation]>
-        <app-pregunta [pregunta]="preguntaActual._leyenda"></app-pregunta>
+        <app-pregunta [pregunta]="preguntaActual"></app-pregunta>
         <h3>{{ preguntaActual.tipoDePregunta | json }}</h3>
         <app-opciones
           [pregunta]="preguntaActual"

@@ -1,9 +1,9 @@
-<app-partida-navbar></app-partida-navbar>
 <!-- Necesitamos angular 14+ para usar esto -->
 <!-- <Particles id="tsparticles" [options]="options"></Particles> -->
 <div class="bg">
   <div class="container">
     <div
+      *ngIf="resultados.length >= 2"
       class="columna_podio"
       [@onGrowAnimation]="{ value: ':enter', params: { time: '1250ms' } }">
       <div class="ranking_podio segundo">
@@ -17,12 +17,13 @@
                 color: '#BFC0C0'
               }"></fa-icon>
           </div>
-          <div class="puntaje">{{ partidaResultadosFinales[1].puntaje }}</div>
-          <div class="usuario">{{ partidaResultadosFinales[1].nombre }}</div>
+          <div class="puntaje">{{ resultados[1].puntajeTotal }}</div>
+          <div class="usuario">{{ resultados[1].nombre }}</div>
         </div>
       </div>
     </div>
     <div
+      *ngIf="resultados.length > 0"
       class="columna_podio"
       [@onGrowAnimation]="{ value: ':enter', params: { time: '1750ms' } }">
       <div class="text-center">
@@ -33,12 +34,13 @@
       </div>
       <div class="ranking_podio primero">
         <div class="row d-flex text-center">
-          <div class="puntaje">{{ partidaResultadosFinales[0].puntaje }}</div>
-          <div class="usuario">{{ partidaResultadosFinales[0].nombre }}</div>
+          <div class="puntaje">{{ resultados[0].puntajeTotal }}</div>
+          <div class="usuario">{{ resultados[0].usuario.nombre }}</div>
         </div>
       </div>
     </div>
     <div
+      *ngIf="resultados.length >= 3"
       class="columna_podio"
       [@onGrowAnimation]="{ value: ':enter', params: { time: '750ms' } }">
       <div class="ranking_podio tercero">
@@ -70,8 +72,8 @@
                 color: '#CD7F32'
               }"></fa-icon>
           </div>
-          <div class="puntaje">{{ partidaResultadosFinales[2].puntaje }}</div>
-          <div class="usuario">{{ partidaResultadosFinales[2].nombre }}</div>
+          <div class="puntaje">{{ resultados[2].puntajeTotal }}</div>
+          <div class="usuario">{{ resultados[2].nombre }}</div>
         </div>
       </div>
     </div>

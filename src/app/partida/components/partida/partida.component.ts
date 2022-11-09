@@ -5,6 +5,10 @@ import { UserService } from 'app/core/services/user.service';
 import { SocketService } from 'app/core/socket/socket.service';
 import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
 import {
+  Resultado,
+  UsuariosPuntuacion
+} from 'app/trivias/interfaces/Resultado.interface';
+import {
   Opciones,
   Pregunta,
   Trivia
@@ -43,20 +47,8 @@ export class PartidaComponent implements OnInit, OnDestroy {
   tiempoFinalizo: boolean = false;
   tiempoPreguntasSeg: any;
   opcionesSeleccionadas: Opciones[] = [];
-  resultados$ = this._socketsService.resultados$
-
-  /*
-  {
-    [
-      {id:1},
-      {id:2}
-    ]
-  }
-  */
-
-  verOpcion(preguntaActual: any) {
-    console.log({ preguntaActual, selecccionado: true });
-  }
+  resultados$ = this._socketsService.resultados$;
+  yaRespondiste = false;
 
   getIdPartida() {
     this.activatedRoute.paramMap.subscribe((x: any) => {
@@ -70,6 +62,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   inicioPartida: boolean = false;
 
   ngOnInit(): void {
+    // console.log('buenas');
     this.getIdPartida();
     if (
       !this._socketsService.socket?.connected ||
@@ -96,14 +89,22 @@ export class PartidaComponent implements OnInit, OnDestroy {
       });
 
     this._socketsService.opcionesCorrectas$
-      .pipe(takeUntil(this.unsubscribe$)    )
-      .subscribe((opciones) => {
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(opciones => {
         this.habilitarBtnPregunta = true;
+        this.yaRespondiste = false;
         console.log(opciones);
         if (this.preguntas.length == this.posicionPregSockets) {
-           this.habilitarBtnPregunta = false;
-           this.finDePartida = true
+          // console.log('hola llegue al fin');
+          this.habilitarBtnPregunta = false;
+          this.finDePartida = true;
         }
+      });
+
+    this._socketsService.respondiste$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((respondiste: string) => {
+        this.yaRespondiste = true;
       });
   }
 
@@ -119,7 +120,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   obtenerOpcSelectDeChild(opc: Opciones[]) {
-    console.log('opciones obtenidas del child', opc); 
+    console.log('opciones obtenidas del child', opc);
     this.opcionesSeleccionadas = opc;
   }
 

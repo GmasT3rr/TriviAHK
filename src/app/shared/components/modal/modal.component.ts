@@ -49,16 +49,15 @@ export class ModalComponent implements OnInit {
                 //   idUser,
                 //   this.ingresarPartidaForm.value['codigo']
                 // );
-                this.toastService.showSuccess(
-                  'Te has unido a la partida correctamente',
-                  'Felicidades'
-                );
+                // this.toastService.showSuccess(
+                //   'Te has unido a la partida correctamente',
+                //   'Felicidades'
+                // );
                 this.btnModalCerrar.nativeElement.click();
                 this.router.navigateByUrl(
                   `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
                 );
-              }
-              else{
+              } else {
                 this.btnModalCerrar.nativeElement.click();
                 this.router.navigateByUrl(
                   `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`

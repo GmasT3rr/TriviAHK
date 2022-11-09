@@ -1,7 +1,24 @@
+
+.homeBtns {
+  height: auto;
+  word-break: break-all;
+  background-color: #fd999b;
+  color: white;
+  border-radius: 15px;
+  padding: 15px;
+  transition: all 300ms ease;
+  word-break: break-all;
+}
+
+.homeBtns:hover {
+  background-color: rgba(253, 153, 155, 0.5);
+  box-shadow: 10px 10px rgba(255, 255, 255, 0.329);
+}
+
 i {
   font-style: inherit;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 2.4rem;
 }
 
 .wave:hover span {
@@ -10,6 +27,8 @@ i {
   animation-iteration-count: infinite;
   animation-delay: calc(0.1s * var(--item));
 }
+
+
 
 @keyframes wave-anim {
 
@@ -23,20 +42,4 @@ i {
   20% {
     transform: translateY(-5px);
   }
-}
-.homeBtns {
-  height: auto;
-  word-break: break-all;
-  text-align: center;
-  background-color: #fd999b;
-  color: white;
-  border-radius: 15px;
-  padding: 15px;
-  transition: all 300ms ease;
-  word-break: break-all;
-}
-
-.homeBtns:hover {
-  background-color: rgba(253, 153, 155, 0.5);
-  box-shadow: 10px 10px rgba(255, 255, 255, 0.329);
 }

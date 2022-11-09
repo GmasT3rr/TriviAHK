@@ -3,6 +3,7 @@
 @import '~bootstrap-icons/font/bootstrap-icons.css';
 html {
   overflow: auto;
+  font-size: 62.5%;
 }
 
 body {
@@ -23,5 +24,4 @@ hr {
   border-radius: 30px;
   height: 10px;
   opacity: 1;
-  
 }

@@ -15,6 +15,7 @@ export class SocketService {
   public pregunta$ = new Subject<any>();
   private sesiones$ = new Subject<any>();
   public opcionesCorrectas$ = new Subject<any>();
+  public respondiste$ = new Subject<any>();
   public sesionId!: number;
   public routerIdPartida$ = new Subject<any>();
   private _resultados$ = new Subject<any[]>();
@@ -96,7 +97,7 @@ export class SocketService {
     });
 
     this.socket?.on('partida:respondio', r => {
-      console.log(r);
+      this.respondiste$.next(r);
     });
 
     this.socket?.on('partida:resultados', r => {
