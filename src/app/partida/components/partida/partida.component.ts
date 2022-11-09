@@ -68,34 +68,6 @@ export class PartidaComponent implements OnInit, OnDestroy {
   //y no va a hacer el trivia.subscribe
   triviaEnviadaLobby!: Trivia;
   inicioPartida: boolean = false;
-  partidaResultadosPrevios = [
-    {
-      nombre: 'Rama',
-      puntaje: '1200'
-    },
-    {
-      nombre: 'Messi',
-      puntaje: '3300'
-    },
-    {
-      nombre: 'Alguien',
-      puntaje: '750'
-    }
-  ];
-  partidaResultadosFinales = [
-    {
-      nombre: 'Rama',
-      puntaje: '3000'
-    },
-    {
-      nombre: 'Messi',
-      puntaje: '5000'
-    },
-    {
-      nombre: 'Alguien',
-      puntaje: '2000'
-    }
-  ];
 
   ngOnInit(): void {
     this.getIdPartida();
