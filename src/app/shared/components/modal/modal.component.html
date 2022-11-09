@@ -4,64 +4,62 @@
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true">
+  <!-- Primer modal por abrir -->
   <div class="modal-dialog">
     <div
+      style="background-color: #ffb1b5; border-radius: 25px"
       *ngIf="modalPorAbrir == 'ingresarPartida'"
       class="modal-content">
-      <div class="modal-header">
+      <div
+        class="modal-body text-center p-5"
+        style="color: white">
         <h1
-          class="modal-title fs-5"
-          id="exampleModalLabel">
+          class="modal-title"
+          id="exampleModalLabel"
+          style="font-weight: bold">
           Ingresar a partida
         </h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="ingresarPartidaForm">
-          <label
-            class="form-label"
-            for=""
-            >Código</label
-          >
-          <input
-            type="number"
-            class="form-control"
-            name=""
-            id=""
-            formControlName="codigo" />
-          <div
-            class="alert alert-danger mt-2"
-            role="alert"
-            *ngIf="
-              ingresarPartidaForm.controls['codigo'].errors &&
-              ingresarPartidaForm.controls['codigo'].touched
-            ">
-            Este campo presenta errores
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          #btnModalCerrar>
-          Cerrar
-        </button>
-        <button
-          type="button"
-          class="btn btn-modal-accion"
-          [disabled]="ingresarPartidaForm.invalid"
-          (click)="ingresarPartida()">
-          Ingresar
-        </button>
+        <div class="modal-body">
+          <form [formGroup]="ingresarPartidaForm">
+            <input
+              placeholder="Ingrese el código"
+              type="number"
+              class="form-control"
+              name=""
+              id=""
+              formControlName="codigo" />
+            <div
+              class="alert alert-danger mt-2"
+              role="alert"
+              *ngIf="
+                ingresarPartidaForm.controls['codigo'].errors &&
+                ingresarPartidaForm.controls['codigo'].touched
+              ">
+              Este campo presenta errores
+            </div>
+          </form>
+          <button
+            type="button"
+            class="btn col-sm-4 mt-3"
+            data-bs-dismiss="modal"
+            style="background-color: #fd999b; color: white"
+            #btnModalCerrar>
+            Cancelar y cerrar
+          </button>
+          <button
+            type="button"
+            class="btn offset-sm-4 col-sm-4 mt-3"
+            data-bs-dismiss="modal"
+            style="background-color: #7161ef; color: white"
+            [disabled]="ingresarPartidaForm.invalid"
+            (click)="ingresarPartida()">
+            Unirse a partida
+          </button>
+        </div>
       </div>
     </div>
-    <div
+    <!-- Segundo modal por abrir -->
+    <!-- <div
       *ngIf="modalPorAbrir == 'iniciarPartida'"
       class="modal-content">
       <div class="modal-header">
@@ -95,8 +93,8 @@
             class="alert alert-danger mt-2"
             role="alert"
             *ngIf="
-            ingresarTiempoEntrePartida.controls['tiempo'].errors &&
-            ingresarTiempoEntrePartida.controls['tiempo'].touched
+              ingresarTiempoEntrePartida.controls['tiempo'].errors &&
+              ingresarTiempoEntrePartida.controls['tiempo'].touched
             ">
             Este campo presenta errores
           </div>
@@ -118,6 +116,65 @@
           Crear Partida
         </button>
       </div>
+    </div> -->
+    <div
+    style="background-color: #ffb1b5; border-radius: 25px"
+    *ngIf="modalPorAbrir == 'iniciarPartida'"
+    class="modal-content">
+    <div
+      class="modal-body text-center p-5"
+      style="color: white">
+      <h1
+        class="modal-title"
+        id="exampleModalLabel"
+        style="font-weight: bold">
+        Ingrese el tiempo entre preguntas
+      </h1>
+      <div class="modal-body">
+
+        <form [formGroup]="ingresarTiempoEntrePartida">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="En segundos..."
+            min="5"
+            name=""
+            id=""
+            formControlName="tiempo" />
+          <div
+            class="alert alert-danger mt-2"
+            role="alert"
+            *ngIf="
+              ingresarTiempoEntrePartida.controls['tiempo'].errors &&
+              ingresarTiempoEntrePartida.controls['tiempo'].touched
+            ">
+            Este campo presenta errores
+          </div>
+        </form>
+
+        <button
+          type="button"
+          class="btn col-sm-4 mt-3"
+          data-bs-dismiss="modal"
+          style="background-color: #fd999b; color: white"
+          #btnModalCerrar>
+          Cancelar y cerrar
+        </button>
+        <button
+          type="button"
+          class="btn offset-sm-4 col-sm-4 mt-3"
+          data-bs-dismiss="modal"
+          style="background-color: #7161ef; color: white"
+          [disabled]="ingresarTiempoEntrePartida.invalid"
+          (click)="crearPartida()">
+          Crear partida
+        </button>
+      </div>
     </div>
+  </div>
+
+  <!-- fin -->
+
+
   </div>
 </div>
