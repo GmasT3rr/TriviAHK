@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Pregunta } from 'app/trivias/interfaces/Trivias.interface';
 
 @Component({
   selector: 'app-pregunta',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PreguntaComponent implements OnInit {
   constructor() {}
-  @Input('pregunta') leyendaPregunta!: string;
+  @Input('pregunta') pregunta!: Pregunta;
 
   ngOnInit(): void {}
 }

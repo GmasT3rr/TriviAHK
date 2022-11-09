@@ -15,6 +15,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LobbyModule } from './partida/lobby.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -44,7 +45,8 @@ import { LobbyModule } from './partida/lobby.module';
           }
         ]
       }
-    })
+    }),
+    FontAwesomeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }

@@ -1,9 +1,9 @@
-<app-partida-navbar></app-partida-navbar>
 <!-- Necesitamos angular 14+ para usar esto -->
 <!-- <Particles id="tsparticles" [options]="options"></Particles> -->
 <div class="bg">
   <div class="container">
     <div
+      *ngIf="partidaResultadosFinales.length >= 2"
       class="columna_podio"
       [@onGrowAnimation]="{ value: ':enter', params: { time: '1250ms' } }">
       <div class="ranking_podio segundo">
@@ -23,6 +23,7 @@
       </div>
     </div>
     <div
+      *ngIf="partidaResultadosFinales.length > 0"
       class="columna_podio"
       [@onGrowAnimation]="{ value: ':enter', params: { time: '1750ms' } }">
       <div class="text-center">
@@ -39,6 +40,7 @@
       </div>
     </div>
     <div
+      *ngIf="partidaResultadosFinales.length >= 3"
       class="columna_podio"
       [@onGrowAnimation]="{ value: ':enter', params: { time: '750ms' } }">
       <div class="ranking_podio tercero">

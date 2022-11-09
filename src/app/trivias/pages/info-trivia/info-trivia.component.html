@@ -69,14 +69,14 @@
                       *ngFor="let opc of trivia?._preguntas[i]._opciones">
                       <i
                         *ngIf="opc?._esCorrecta; else elseImg"
-                        class="bi bi-x-circle-fill"
-                        style="color: #058b3b">
+                        class="bi bi-x-circle-fill text-danger"
+                        >
                       </i>
                       {{ opc._descripcion }}
                       <ng-template #elseImg>
                         <i
-                          class="bi bi-check-circle-fill"
-                          style="color: #ff5c95">
+                          class="bi bi-check-circle-fill text-success"
+                          >
                         </i>
                       </ng-template>
                     </div>

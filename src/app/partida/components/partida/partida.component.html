@@ -1,11 +1,12 @@
-<div *ngIf="!finDePartida">
+<div class="bg">
   <app-partida-navbar
     (tiempoPreguntasSeg)="(this.tiempoPreguntasSeg)"></app-partida-navbar>
 
-  <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario">
-    <div class="container d-flex justify-content-end">
+  <div *esHost="{idPartida,renderContentUser: true};sino esUsuario">
+    <div
+      class="container d-flex justify-content-end"
+      *ngIf="!finDePartida">
       <div class="d-flex align-items-center">
-        <div><h1>soy host</h1></div>
         <button
           *ngIf="inicioPartida"
           class="btn btn_iniciar_partida mt-4"
@@ -15,42 +16,83 @@
         </button>
       </div>
     </div>
+    <ng-container *ngIf="this.resultados$ | async as resultados">
+      <div
+        *ngIf="resultados.length > 0 && !finDePartida; else mostrarPregunta"
+        class="row d-flex justify-content-center"
+        [@onLoadAnimation]>
+        <app-ranking [partidaResultadosPrevios]="resultados"></app-ranking>
+      </div>
+      <ng-template #mostrarPregunta>
+        <div *ngIf="finDePartida">
+          <app-podio
+            [partidaResultadosFinales]="partidaResultadosFinales"></app-podio>
+        </div>
+        <div
+          *ngIf="!finDePartida"
+          class="container">
+          <div
+            class="bg row d-flex justify-content-center"
+            [@onLoadAnimation]>
+            <app-pregunta [pregunta]="preguntaActual"></app-pregunta>
+            <!-- <div class="container">
+              <div class="d-flex justify-content-center">
+                <div class="col-md-8 p-5 card">
+                  <div class="card-body text-center">
+                    <h3>{{ preguntaActual.tipoDePregunta }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </ng-template>
+      <!-- <div *ngIf="finDePartida">
+        <app-podio [partidaResultadosFinales]="resultados"></app-podio>
+      </div> -->
+    </ng-container>
   </div>
+
+  <ng-template #esUsuario>
+    <ng-container *ngIf="this.resultados$ | async as resultados">
+      <div
+        *ngIf="resultados.length > 0 && !finDePartida; else mostrarPregunta"
+        class="row d-flex justify-content-center"
+        [@onLoadAnimation]>
+        <app-ranking [partidaResultadosPrevios]="resultados"></app-ranking>
+      </div>
+      <ng-template #mostrarPregunta>
+        <div *ngIf="finDePartida; else pregunta">
+          <app-podio
+            [partidaResultadosFinales]="partidaResultadosFinales"></app-podio>
+        </div>
+        <ng-template #pregunta>
+          <div
+            class="bg row d-flex justify-content-center"
+            [@onLoadAnimation]>
+            <div class="container">
+              <app-pregunta [pregunta]="preguntaActual"></app-pregunta>
+              <app-opciones
+                [pregunta]="preguntaActual"
+                (opcSeleccionadasEmit)="
+                  obtenerOpcSelectDeChild($event)
+                "></app-opciones>
+              <div class="d-flex justify-content-center">
+                <button
+                  class="btn btn-primary"
+                  (click)="responder()"
+                  [disabled]="!opcionesSeleccionadas || yaRespondiste">
+                  Responder
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-template>
+    </ng-container>
+  </ng-template>
 </div>
 
-<ng-container *ngIf="this.resultados$ | async as resultados">
-  <div *ngIf="resultados.length > 0 else mostrarPregunta"
-      class="bg row d-flex justify-content-center"
-      [@onLoadAnimation]>
-    <app-ranking [partidaResultadosPrevios]="resultados"></app-ranking>
-  </div>
-</ng-container>
-
-<ng-template #mostrarPregunta>
-  <div *ngIf="finDePartida else pregunta">
-    <app-podio [partidaResultadosFinales]="partidaResultadosFinales"></app-podio>
-  </div>
-  <ng-template #pregunta>
-    <div
-      class="bg row d-flex justify-content-center"
-      [@onLoadAnimation]>
-      <app-pregunta [pregunta]="preguntaActual._leyenda"></app-pregunta>
-      <h3>{{ preguntaActual.tipoDePregunta | json }}</h3>
-      <app-opciones
-        [pregunta]="preguntaActual"
-        (opcSeleccionadasEmit)="obtenerOpcSelectDeChild($event)"></app-opciones>
-      <button
-        class="btn btn-primary"
-        (click)="responder()"
-        [disabled]="!opcionesSeleccionadas">
-        Responder
-      </button>
-    </div>
-  </ng-template>
-</ng-template>
-
-<ng-template #esUsuario>
-</ng-template>
 <!--
   <ng-template #esUsuario>
   <div
