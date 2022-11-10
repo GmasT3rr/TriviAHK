@@ -49,10 +49,15 @@ export class ModalComponent implements OnInit {
                 //   idUser,
                 //   this.ingresarPartidaForm.value['codigo']
                 // );
-                this.toastService.showSuccess(
-                  'Te has unido a la partida correctamente',
-                  'Felicidades'
+                // this.toastService.showSuccess(
+                //   'Te has unido a la partida correctamente',
+                //   'Felicidades'
+                // );
+                this.btnModalCerrar.nativeElement.click();
+                this.router.navigateByUrl(
+                  `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
                 );
+              } else {
                 this.btnModalCerrar.nativeElement.click();
                 this.router.navigateByUrl(
                   `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
@@ -63,10 +68,6 @@ export class ModalComponent implements OnInit {
               //   this.ingresarPartidaForm.value['codigo']
               // );
               //Si ya esta unido en alguna
-              this.btnModalCerrar.nativeElement.click();
-              this.router.navigateByUrl(
-                `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
-              );
             });
             return;
           }

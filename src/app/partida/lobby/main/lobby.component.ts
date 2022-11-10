@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'app/core/services/user.service';
 import { SocketService } from 'app/core/socket/socket.service';
@@ -18,57 +18,45 @@ export class LobbyComponent implements OnInit {
     private _socketsService: SocketService,
     private _userService: UserService
   ) {}
+  @ViewChild('respuestUser') input!: ElementRef<HTMLInputElement>;
   faUsers = faUsers;
   idPartida: number = 0;
   conteoUsuarios: number = 0;
-  trivia: any;
   sesiones$!: Observable<any>;
   sesionId: number = 0;
+  preguntaTieneid = false;
+  preg!: number;
 
   ngOnInit(): void {
-    this._socketsService.iniciar();
-    const urlLobby = this.router.url.split('/');
-    this.idPartida = Number(urlLobby[urlLobby.length - 1]);
-    // TODO: uid en localstorage
-    this._userService.getIdUser().subscribe((res: any) => {
-      const idUser = res.body;
+    if(!this._socketsService.socket?.connected || !this._socketsService.socket) {
+      this._socketsService.conectar();
+      this._socketsService.iniciarListeners();
+      const urlLobby = this.router.url.split('/');
+      this.idPartida = Number(urlLobby[urlLobby.length - 1]);
+      const idUser = Number(localStorage.getItem('idUser'));
       this.unirse(idUser, Number(this.idPartida));
-    });
-
-    this._socketsService.socket?.on('partida:iniciada-status', mensaje => {
-      console.log('partida:iniciada status');
-      this._socketsService.mostrarSiguientePregunta();
-      // momentaneo
-      this.router.navigateByUrl('/partida/single-choice');
+    }
+    this._socketsService.routerIdPartida$.subscribe((idPartida: Number) => {
+      this.router.navigate([`/partida/${idPartida}`]);
     });
     this.sesiones$ = this._socketsService.sesiones;
   }
 
   unirse(usuarioID: number, partidaID: number) {
     this._socketsService.unirse(usuarioID, partidaID);
-
-    this._socketsService.socket?.on('partida:trivia', t => {
-      console.log('trivia del component: ', t); // TODO: preguntarle a eze si se puede hacer esto
-    });
-    this._socketsService.trivia.subscribe((t: any) => {
-      this.trivia = t;
-    });
-
-    this._socketsService.pregunta.subscribe(preg => {
-      this.trivia[preg];
-    });
   }
 
   finalizarLobby() {
     //ACA HAY QUE PONER EL METODO DE SOCKETS PARA QUE SE SALGAN TODOS LOS USERS DE LA PARTIDA SI EL HOST SE FUE
     this._socketsService.finalizarPartida();
+    this._socketsService.desconectar();
     this.router.navigateByUrl('/main/home');
+    console.log(this._socketsService);
   }
   salirseLobby() {
     this._socketsService.salirse();
     this.router.navigateByUrl('/main/home');
   }
-
   iniciarPartida() {
     this._socketsService.iniciarPartida();
   }

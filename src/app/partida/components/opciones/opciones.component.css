@@ -1,0 +1,35 @@
+.bg {
+  background-color: #4a51c9 !important;
+  /* Center the image */
+  width: 100%;
+  min-height: 100vh;
+}
+.card {
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.button-transition {
+  position: relative;
+  top: 0;
+  transition: all 400ms ease-out;
+}
+
+.button-transition:hover {
+  top: -20px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+  transition: all 400ms ease-in;
+}
+
+@media screen and (max-width: 768px) {
+  .bg {
+    position: relative;
+    padding-bottom: 100px;
+  }
+}
+
+.selected {
+  filter: brightness(0.8);
+  top: -20px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+  transition: all 400ms ease-in;
+}

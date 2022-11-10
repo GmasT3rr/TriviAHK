@@ -52,4 +52,8 @@ export class PartidasService {
         });
     });
   }
+
+  async borrarPartida(id:any) {
+    return this.http.delete(`${env.dev.serverUrl}/partida/eliminar/${id}`);
+  }
 }

@@ -1,0 +1,24 @@
+.bg {
+  /* background: url("../../../assets/login-bg.jpeg") !important; */
+  background-color: #4a51c9 !important;
+  /* Center the image */
+  width: 100%;
+  min-height: 100vh;
+}
+
+.btn_iniciar_partida {
+  background-color: #fd999b;
+  color: white;
+}
+
+.btn_iniciar_partida:hover {
+  background-color: #da888a;
+  color: white;
+}
+
+.selected {
+  filter: brightness(0.8);
+  top: -20px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+  transition: all 400ms ease-in;
+}

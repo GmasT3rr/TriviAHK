@@ -1,6 +1,6 @@
 <div class="bg">
   <div class="container">
-    <div class="row d-flex justify-content-center" [@onRankingAnimation]="users.length">
+    <div class="row d-flex justify-content-center" [@onRankingAnimation]="partidaResultadosPrevios.length">
       <div class="col-md-8 __items" >
         <div class="text-center __ranking " >
           <!-- <fa-icon class="__fa-icon" [icon]="faRankingStar"></fa-icon> -->
@@ -17,7 +17,7 @@
              Puntos
           </div>
         </div>
-        <div class="mt-4" *ngFor="let users of users;let i=index" >
+        <div class="mt-4" *ngFor="let user of partidaResultadosPrevios;let i=index" >
           <div class="m-2  __usuario row d-flex justify-content-between" >
             <div class="col-md-2" >
               <div class="__posicion" [ngStyle]="{background: getBgColor(i)}">
@@ -27,10 +27,10 @@
               </div>
             </div>
             <div class="col-md-8 text-left">
-               Rama
+               {{user.usuario.nombre}}
             </div>
             <div class="col-md-2 text-right">
-               2500
+               {{user.puntajeTotal}}
             </div>
           </div>
         </div>

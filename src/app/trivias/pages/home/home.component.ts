@@ -17,6 +17,7 @@ import {
   faKey,
   faPlus
 } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from 'app/core/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +45,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _partidaService: PartidasService,
     private triviasService: TriviasService,
     private toastService: ToastService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
     this.offset = 0;
     this.limit = 4;
@@ -54,6 +56,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     (await this.triviasService.getTriviasDelUsuario()).subscribe((res: any) => {
       // console.log(res.body);
       this.trivias = res.body;
+    });
+    this.userService.getIdUser().subscribe((res: any) => {
+      localStorage.setItem('idUser', res.body);
     });
   }
   ngOnDestroy() {}

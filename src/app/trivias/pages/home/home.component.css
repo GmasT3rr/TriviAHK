@@ -11,8 +11,9 @@
   border: 0;
   top: 0;
   left: 0;
-  box-shadow: 0px 0px 8px rgba(74, 81, 201, 0.16);
-  transition: top 0.5s, left 1s, box-shadow 1s;
+  min-height: 300px;
+  box-shadow: 4px 8px 8px rgba(74, 81, 201, 0.16);
+  transition: all 500ms;
   transition-timing-function: ease;
 }
 .card-decoration-body:hover {

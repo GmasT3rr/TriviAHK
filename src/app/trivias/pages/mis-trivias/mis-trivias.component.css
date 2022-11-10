@@ -25,15 +25,24 @@ hr {
 }
 
 .ordenarPor div {
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: #FFB1B5;
   display: block;
   color: white;
 }
 
+.__descripcion {
+  font-size: 1.5rem;
+}
+.__div_img_jugar{
+  margin-top: 50%;
+}
+.__editar_trivia{
+  margin-top: 0;
 
+}
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width:1200px) {
   .cards {
       margin-top: 50px;
       font-size: 24px;
@@ -43,6 +52,9 @@ hr {
   }
   .boton-ingresar .card-text {
       font-size: 22px;
+  }
+  .__div_img_jugar{
+    margin-top: 0;
   }
 }
 

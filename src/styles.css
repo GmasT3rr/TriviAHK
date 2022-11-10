@@ -14,3 +14,14 @@ body {
 /* ::-webkit-scrollbar {
     display: none;
 } */
+
+hr {
+  display: flex;
+  width: 10%;
+  align-items: flex-start;
+  background: #7b61ff;
+  border: 0;
+  border-radius: 30px;
+  height: 10px;
+  opacity: 1;
+}

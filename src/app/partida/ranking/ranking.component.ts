@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { onRankingAnimation } from 'app/shared/animations/ranking.component';
 import { faRankingStar } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,12 +11,22 @@ import { faRankingStar } from '@fortawesome/free-solid-svg-icons';
   ]
 })
 export class RankingComponent implements OnInit {
+
+  @Input() partidaResultadosPrevios: any;
+
+  ordenarPuntaje(){
+    this.partidaResultadosPrevios  = this.partidaResultadosPrevios.sort((a:any,b:any) =>{
+      return b.puntajeTotal - a.puntajeTotal
+    })
+  }
+
   public faRankingStar = faRankingStar
-  public users = [1,2,3,4,5,6,7,8]
 
   constructor() { }
 
   ngOnInit(): void {
+    this.ordenarPuntaje()
+    // console.log('RANKING ordenado',this.partidaResultadosPrevios);
   }
 
    public getBgColor(index: number): string {
