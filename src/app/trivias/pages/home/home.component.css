@@ -9,13 +9,12 @@
   cursor: pointer;
 }
 
-.card-header{
+.card-header {
   background-color: #7161ef;
 }
-.card-title{
+.card-title {
   font-size: 2.5rem;
   text-align: center;
-
 }
 .card-decoration-body {
   font-size: 1.6rem;
@@ -28,9 +27,6 @@
   box-shadow: 4px 8px 4px rgba(74, 81, 201, 0.16);
 }
 
-.body-buttons-n-p {
-  height: 7vh;
-}
 .btn-prev,
 .btn-next {
   display: flex;
@@ -45,8 +41,6 @@
   font-size: 2.4rem;
 }
 
-
-
 .btn-prev:hover,
 .btn-next:hover {
   background: rgba(113, 97, 239, 0.5);
@@ -57,8 +51,6 @@
   font-weight: 700;
   font-size: 3rem;
 }
-
-
 
 @media screen and (max-width: 1024px) {
   .cards {

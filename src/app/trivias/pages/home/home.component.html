@@ -6,30 +6,27 @@
     [@onLoadAnimation]
     class="row cards container mx-auto d-flex justify-content-center">
     <div
-      class="col-sm-4 btn"
+      class="col-sm-6 btn"
       style="border: none">
       <app-button-home
-        class="mx-auto"
         [desc]="'Crear Trivia'"
         [route]="'/main/crear-trivia'"
         [icon]="faCreate"></app-button-home>
     </div>
     <div
-      class="col-sm-4 btn"
+      class="col-sm-6 btn"
       style="border: none">
       <app-button-home
-        class="mx-auto"
         [desc]="'Crear Partida'"
         [route]="'/main/mis-trivias'"
         [icon]="faGamepad"></app-button-home>
     </div>
     <div
-      class="col-sm-8 btn mt-3"
+      class="col-sm-12 btn mt-3"
       style="border: none"
       data-bs-toggle="modal"
       data-bs-target="#modalGeneral">
       <app-button-home
-        class="mx-auto"
         [desc]="'Ingresar con código'"
         [icon]="faKey"></app-button-home>
     </div>
