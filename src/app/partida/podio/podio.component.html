@@ -60,6 +60,7 @@
       </div>
     </div>
     <div
+      *ngIf="partidaResultadosFinales.length >= 3"
       class="columna_podio"
       [@onGrowAnimation]="{ value: ':enter', params: { time: '750ms' } }">
       <div class="ranking_podio tercero">
