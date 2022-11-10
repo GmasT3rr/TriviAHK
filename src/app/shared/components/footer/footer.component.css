@@ -1,5 +1,12 @@
 .footer {
-  padding: 15rem;
-  width: 100%;
-  flex: 0 0 auto;
+  background-color: #ececec;
+  color: rgb(91, 91, 91);
+}
+.footer-content p,
+.footer-content a,
+.bottom {
+  font-size: 1.4rem;
+}
+.footer-content h6 {
+  font-size: 1.8rem;
 }

@@ -41,7 +41,7 @@
 <div class="container">
   <div class="actividades">
     <p>Actividades Recientes</p>
-    <hr />
+    <hr class="divisor" />
   </div>
   <div class="row d-flex justify-content-center">
     <div
@@ -51,9 +51,8 @@
         class="card card-decoration-body mb-3"
         [@onLoadAnimation]
         *ngIf="trivia"
-        (click)="irVerTrivia(trivia.id)"
-        style="cursor: pointer">
-        <div class="card-header card-header-background p-3">
+        (click)="irVerTrivia(trivia.id)">
+        <div class="card-header p-3">
           <h3 class="card-title trivia-nombre">{{ trivia._nombre }}</h3>
         </div>
         <div class="card-body">
@@ -75,9 +74,9 @@
   </div>
 
   <div class="body-btn-next-prev d-flex justify-content-center mt-4 mb-4">
-    <div
-      (click)="prevQuiz()"
-      class="btn btn-prev mx-3 d-flex align-items-center">
+    <button
+      class="btn btn-prev mx-3 d-flex align-items-center"
+      (click)="prevQuiz()">
       <fa-icon [icon]="faArrowLeft"></fa-icon>
     </button>
     <button

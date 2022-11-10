@@ -5,12 +5,20 @@
 .wrapper {
   padding: 10px 0px 60px 0px;
 }
+.card {
+  cursor: pointer;
+}
 
+.card-header{
+  background-color: #7161ef;
+}
+.card-title{
+  font-size: 2.5rem;
+  text-align: center;
+
+}
 .card-decoration-body {
   font-size: 1.6rem;
-  border: 0;
-  top: 0;
-  left: 0;
   min-height: 300px;
   box-shadow: 4px 8px 8px rgba(74, 81, 201, 0.16);
   transition: all 500ms;
@@ -30,13 +38,14 @@
   justify-content: center;
   color: white;
   background: rgba(113, 97, 239, 1);
-  border: 2px;
   border-radius: 20px;
   width: 50px;
   height: 50px;
   transition: all 300ms;
   font-size: 2.4rem;
 }
+
+
 
 .btn-prev:hover,
 .btn-next:hover {
@@ -49,15 +58,7 @@
   font-size: 3rem;
 }
 
-.actividades hr {
-  display: flex;
-  width: 10%;
-  align-items: flex-start;
-  background: #7b61ff;
-  border-radius: 2rem;
-  height: 10px;
-  opacity: 1;
-}
+
 
 @media screen and (max-width: 1024px) {
   .cards {
@@ -79,8 +80,4 @@
   .boton-ingresar .card-text {
     font-size: 2.2rem;
   }
-}
-
-.card-header-background {
-  background-color: #7161ef;
 }
