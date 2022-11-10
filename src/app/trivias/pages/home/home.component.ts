@@ -10,6 +10,13 @@ import { SocketService } from 'app/core/socket/socket.service';
 import { PartidasService } from 'app/trivias/services/partidas.service';
 import { TriviasService } from 'app/trivias/services/trivias.service';
 import { ToastService } from 'app/core/services/toast.service';
+import {
+  faArrowLeft,
+  faArrowRight,
+  faGamepad,
+  faKey,
+  faPlus
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +31,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   public trivias!: Trivia[];
   usuarioID: number = 0;
   public trivia: any;
+  faArrowRight = faArrowRight;
+  faArrowLeft = faArrowLeft;
+  faCreate = faPlus;
+  faGamepad = faGamepad;
+  faKey = faKey;
 
   constructor(
     private authService: AuthService,
