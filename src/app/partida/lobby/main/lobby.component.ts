@@ -28,7 +28,10 @@ export class LobbyComponent implements OnInit {
   preg!: number;
 
   ngOnInit(): void {
-    if(!this._socketsService.socket?.connected || !this._socketsService.socket) {
+    if (
+      !this._socketsService.socket?.connected ||
+      !this._socketsService.socket
+    ) {
       this._socketsService.conectar();
       this._socketsService.iniciarListeners();
       const urlLobby = this.router.url.split('/');

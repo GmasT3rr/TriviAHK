@@ -114,4 +114,30 @@ export class ModalComponent implements OnInit {
         }
       });
   }
+
+  actualizarPartida() {
+    const urlLobby = this.router.url.split('/');
+    const idPartida = Number(urlLobby[urlLobby.length - 1]);
+    this._partidasSevice
+      .actualizarPartida(
+        idPartida,
+        Number(this.ingresarTiempoEntrePartida.value['tiempo'])
+      )
+      .subscribe({
+        next: (res: any) => {
+          this.btnModalCerrar.nativeElement.click();
+
+          this.toastService.showSuccess(
+            'Tiempo de Partida actualizada',
+            'Partida actualizada'
+          );
+        },
+        error: (err: any) => {
+          // console.log(err);
+          this.ingresarTiempoEntrePartida.reset();
+          this.btnModalCerrar.nativeElement.click();
+          this.toastService.showError(err.error.body, 'Error');
+        }
+      });
+  }
 }

@@ -172,6 +172,61 @@
       </div>
     </div>
 
+    <div
+      style="background-color: #ffb1b5; border-radius: 25px"
+      *ngIf="modalPorAbrir == 'actualizarTiempoPartida'"
+      class="modal-content">
+      <div
+        class="modal-body text-center p-5"
+        style="color: white">
+        <h1
+          class="modal-title"
+          id="exampleModalLabel"
+          style="font-weight: bold">
+          Ingrese el nuevo tiempo entre preguntas
+        </h1>
+        <div class="modal-body">
+          <form [formGroup]="ingresarTiempoEntrePartida">
+            <input
+              type="number"
+              class="form-control"
+              placeholder="En segundos..."
+              min="5"
+              name=""
+              id=""
+              formControlName="tiempo" />
+            <div
+              class="alert alert-danger mt-2"
+              role="alert"
+              *ngIf="
+                ingresarTiempoEntrePartida.controls['tiempo'].errors &&
+                ingresarTiempoEntrePartida.controls['tiempo'].touched
+              ">
+              Este campo presenta errores
+            </div>
+          </form>
+
+          <button
+            type="button"
+            class="btn col-sm-4 mt-3"
+            data-bs-dismiss="modal"
+            style="background-color: #fd999b; color: white"
+            #btnModalCerrar>
+            Cancelar y cerrar
+          </button>
+          <button
+            type="button"
+            class="btn offset-sm-4 col-sm-4 mt-3"
+            data-bs-dismiss="modal"
+            style="background-color: #7161ef; color: white"
+            [disabled]="ingresarTiempoEntrePartida.invalid"
+            (click)="actualizarPartida()">
+            Actualizar tiempo
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- fin -->
   </div>
 </div>
