@@ -44,7 +44,7 @@ export class ModalComponent implements OnInit {
           if (res.id == this.ingresarPartidaForm.value['codigo']) {
             this._partidasSevice.getPartidas().subscribe((res: any) => {
               //Si no tiene ninguna partida el usuario
-              if (res.body.length == 0) {
+              if (res.body) {
                 // this._socketsService.unirse(
                 //   idUser,
                 //   this.ingresarPartidaForm.value['codigo']
