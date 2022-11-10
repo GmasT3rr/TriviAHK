@@ -10,6 +10,13 @@ import { SocketService } from 'app/core/socket/socket.service';
 import { PartidasService } from 'app/trivias/services/partidas.service';
 import { TriviasService } from 'app/trivias/services/trivias.service';
 import { ToastService } from 'app/core/services/toast.service';
+import {
+  faArrowLeft,
+  faArrowRight,
+  faGamepad,
+  faKey,
+  faPlus
+} from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'app/core/services/user.service';
 
 @Component({
@@ -25,6 +32,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   public trivias!: Trivia[];
   usuarioID: number = 0;
   public trivia: any;
+  faArrowRight = faArrowRight;
+  faArrowLeft = faArrowLeft;
+  faCreate = faPlus;
+  faGamepad = faGamepad;
+  faKey = faKey;
 
   constructor(
     private authService: AuthService,
@@ -34,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private triviasService: TriviasService,
     private toastService: ToastService,
     private router: Router,
-    private userService:UserService
+    private userService: UserService
   ) {
     this.offset = 0;
     this.limit = 4;
@@ -45,9 +57,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       // console.log(res.body);
       this.trivias = res.body;
     });
-    this.userService.getIdUser().subscribe((res:any)=>{
-      localStorage.setItem('idUser',res.body)
-    })
+    this.userService.getIdUser().subscribe((res: any) => {
+      localStorage.setItem('idUser', res.body);
+    });
   }
   ngOnDestroy() {}
 

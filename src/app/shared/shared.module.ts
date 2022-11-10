@@ -7,6 +7,8 @@ import { ModalComponent } from './components/modal/modal.component';
 import { EsHostDirective } from './directives/es-host.directive';
 import { ModalBorrarTriviaComponent } from './components/modal-borrar-trivia/modal-borrar-trivia.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -14,15 +16,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModalMisTriviasComponent,
     ModalComponent,
     EsHostDirective,
-    ModalBorrarTriviaComponent
+    ModalBorrarTriviaComponent,
+    FooterComponent
   ],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
+
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
+    FontAwesomeModule
+  ],
   exports: [
     NavbarComponent,
     ModalMisTriviasComponent,
     ModalComponent,
     EsHostDirective,
-    ModalBorrarTriviaComponent
+    ModalBorrarTriviaComponent,
+    FooterComponent
   ]
 })
 export class SharedModule {}
