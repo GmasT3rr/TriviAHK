@@ -26,16 +26,16 @@ export class PodioComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.partidaResultadosFinales);
-    this.ordenarPuntaje();
+    // this.ordenarPuntaje();
   }
 
-  ordenarPuntaje() {
-    this.partidaResultadosFinales = this.partidaResultadosFinales.sort(
-      (a: any, b: any) => {
-        return b.puntaje - a.puntaje;
-      }
-    );
-  }
+  // ordenarPuntaje() {
+  //   this.partidaResultadosFinales = this.partidaResultadosFinales.sort(
+  //     (a: any, b: any) => {
+  //       return b.puntaje - a.puntaje;
+  //     }
+  //   );
+  // }
 
   options = {
     /* ... */
