@@ -6,6 +6,13 @@
   background-color: white;
   overflow: hidden;
 }
+.time-question{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+}
 
 /* Style the links inside the navigation bar */
 .topnav a {
@@ -17,6 +24,22 @@
   font-size: 17px;
 }
 
+@media (max-width: 576px) {
+    .time-question{
+        font-size: 16px;
+        text-align: center;
+    }
+    .icon-exit{
+        width: 32px;
+        height: 32px;
+       
+    }
+    .logo-triviahk{
+        width: 100px;
+        height: 45px;
+    }
+ 
+  }
 
 /* Centered section inside the top navigation */
 .topnav-centered a {
