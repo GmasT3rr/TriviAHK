@@ -110,7 +110,14 @@ export class PartidaComponent implements OnInit, OnDestroy {
                 };
 
                 this.partidaResultadosFinales.push(puntaje);
-                // console.log(this.partidaResultadosFinales);
+                this.partidaResultadosFinales =
+                  this.partidaResultadosFinales.sort(
+                    (a: UsuariosPuntuacion, b: UsuariosPuntuacion) => {
+                      return b.puntaje - a.puntaje;
+                    }
+                  );
+
+                console.log(this.partidaResultadosFinales);
               }
             }
           );
