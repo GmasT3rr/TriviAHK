@@ -1,4 +1,4 @@
-<nav
+<!-- <nav
   class="navbar navbar-expand-lg"
   style="background-color: white">
   <div class="container">
@@ -23,21 +23,8 @@
           stroke-width="50" />
       </svg>
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      style="background-color: #fcfcfc"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div
-      class="collapse navbar-collapse text-center"
-      id="navbarNavAltMarkup">
+    <div>
       <ul class="navbar-nav mr-auto ml-auto">
         <li
           class="nav-item"
@@ -61,27 +48,48 @@
         class="navbar-nav"
         (click)="salirYBorrarPartida()">
         <li class="nav-item">
-          <a
-            class="btn"
-            style="color: #fd999b">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              fill="currentColor"
-              class="bi bi-box-arrow-left"
-              viewBox="0 0 16 16">
-              <path
-                fill-rule="evenodd"
-                d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
-              <path
-                fill-rule="evenodd"
-                d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
-            </svg>
+          <a class="btn"
+           >
+            <img
+            src="assets\svgs\salirDePartida.svg" alt="">
           </a>
         </li>
       </ul>
       <div></div>
     </div>
   </div>
-</nav>
+</nav> -->
+<!-- Top navigation -->
+<div class="topnav">
+  <!-- Centered link -->
+  <div class="topnav-centered">
+    <a
+      *ngIf="!esPodio && tiempoPreguntasSeg != 0"
+      class="nav-link"
+      style="font-weight: bold"
+      >{{ tiempoPreguntasSeg }} seg</a
+    >
+    <a
+      *ngIf="!esPodio && tiempoPreguntasSeg == 0"
+      class="nav-link"
+      style="font-weight: bold"
+      >Tiempo Finalizado</a
+    >
+  </div>
+
+  <!-- Left-aligned links (default) -->
+  <a routerLink="/home" class="__logo">
+    <img src="assets\svgs\Logo Fondo Blanco.svg" alt="">
+  </a>
+
+  <!-- Right-aligned links -->
+  <div class="topnav-right" >
+    <a style="margin-top: 20%;"
+      class="btn"
+      (click)="salirYBorrarPartida()">
+      <img
+        src="assets\svgs\salirDePartida.svg"
+        alt="" />
+    </a>
+  </div>
+</div>
