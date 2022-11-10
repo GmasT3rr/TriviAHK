@@ -1,6 +1,10 @@
 <app-partida-navbar></app-partida-navbar>
-<div style="background-color: #4A51C9; min-height: 854px" [@onLoadAnimation]>
-  <div *ngIf="sesiones$ | async as sesiones" class="lobby container mx-auto">
+<div
+  style="background-color: #4a51c9; min-height: 854px"
+  [@onLoadAnimation]>
+  <div
+    *ngIf="sesiones$ | async as sesiones"
+    class="lobby container mx-auto">
     <!--
       Manera de usar ng template para mostrar contenido exclusivo
       para el creador o el usuario
@@ -33,12 +37,23 @@
       <div
         *esHost="{idPartida,renderContentUser: true}; sino esUsuario"
         class="data__host">
-        <button class="btn btn_iniciar_partida" (click)="iniciarPartida()" >Iniciar partida</button>
+        <button
+          class="btn btn_iniciar_partida"
+          (click)="iniciarPartida()">
+          Iniciar partida
+        </button>
+        <button
+          class="btn btn_iniciar_partida"
+          data-bs-toggle="modal"
+          data-bs-target="#modalGeneral">
+          Actualizar tiempo partida
+        </button>
         <button
           class="btn btn_finalizar_lobby"
           (click)="finalizarLobby()">
           Finalizar lobby
         </button>
+        <app-modal [modalPorAbrir]="'actualizarTiempoPartida'"></app-modal>
       </div>
       <ng-template
         #esUsuario

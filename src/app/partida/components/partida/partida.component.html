@@ -4,23 +4,23 @@
 
   <div *esHost="{idPartida,renderContentUser: true};sino esUsuario">
     <div
-      class="container d-flex justify-content-end"
-      *ngIf="!finDePartida">
-      <div class="d-flex align-items-center">
-        <button
-          *ngIf="inicioPartida"
-          class="btn btn_iniciar_partida mt-4"
-          [disabled]="!habilitarBtnPregunta"
-          (click)="mostrarSiguientePreg()">
-          Mostrar siguiente pregunta
-        </button>
-      </div>
+    class="container d-flex justify-content-center"
+    *ngIf="!finDePartida">
+    <div class="d-flex align-items-center">
+      <button
+        *ngIf="inicioPartida"
+        class="btn btn_iniciar_partida mt-5 mb-5"
+        [disabled]="!habilitarBtnPregunta"
+        style="font-size: 2rem;"
+        (click)="mostrarSiguientePreg()">
+        Mostrar siguiente pregunta
+      </button>
     </div>
-    <ng-container *ngIf="this.resultados$ | async as resultados">
+  </div>
+    <ng-container *ngIf="this.resultados$ | async as resultados" [@onLoadAnimation]>
       <div
         *ngIf="resultados.length > 0 && !finDePartida; else mostrarPregunta"
-        class="row d-flex justify-content-center"
-        [@onLoadAnimation]>
+        class="row d-flex justify-content-center">
         <app-ranking [partidaResultadosPrevios]="resultados"></app-ranking>
       </div>
       <ng-template #mostrarPregunta>
@@ -29,11 +29,11 @@
             [partidaResultadosFinales]="partidaResultadosFinales"></app-podio>
         </div>
         <div
+        [@onLoadAnimation]
           *ngIf="!finDePartida"
           class="container">
           <div
-            class="bg row d-flex justify-content-center"
-            [@onLoadAnimation]>
+            class="bg row d-flex justify-content-center">
             <app-pregunta [pregunta]="preguntaActual"></app-pregunta>
             <!-- <div class="container">
               <div class="d-flex justify-content-center">
@@ -55,10 +55,23 @@
 
   <ng-template #esUsuario>
     <ng-container *ngIf="this.resultados$ | async as resultados">
+      <div style="visibility: hidden;"
+      class="container d-flex justify-content-center"
+      *ngIf="!finDePartida">
+      <div class="d-flex align-items-center">
+        <button
+          *ngIf="inicioPartida"
+          class="btn btn_iniciar_partida mt-5 mb-5"
+          [disabled]="!habilitarBtnPregunta"
+          style="font-size: 2rem;"
+          (click)="mostrarSiguientePreg()">
+          Mostrar siguiente pregunta
+        </button>
+      </div>
+    </div>
       <div
         *ngIf="resultados.length > 0 && !finDePartida; else mostrarPregunta"
-        class="row d-flex justify-content-center"
-        [@onLoadAnimation]>
+        class="row d-flex justify-content-center">
         <app-ranking [partidaResultadosPrevios]="resultados"></app-ranking>
       </div>
       <ng-template #mostrarPregunta>
@@ -77,13 +90,19 @@
                 (opcSeleccionadasEmit)="
                   obtenerOpcSelectDeChild($event)
                 "></app-opciones>
-              <div class="d-flex justify-content-center">
-                <button
-                  class="btn btn-primary"
+                <!--  -->
+                <div
+                class="d-flex justify-content-center mt-4"
+                >
+                <div class="d-flex align-items-center">
+                  <button
+                  class="btn btn_iniciar_partida mt-4 p-3"
                   (click)="responder()"
+                  style="font-size: 2rem;"
                   [disabled]="!opcionesSeleccionadas || yaRespondiste">
                   Responder
-                </button>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
