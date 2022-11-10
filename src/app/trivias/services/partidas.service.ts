@@ -29,7 +29,7 @@ export class PartidasService {
       `${env.dev.serverUrl}/partida/obtenerPartidas/usuario`
     );
     return res.pipe(
-      tap(res => {
+      tap((res: any) => {
         of(res);
       }),
       catchError(err => {

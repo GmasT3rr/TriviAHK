@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="misPartidas col-md-9 mt-5">
+      <h2 style="font-weight: bold">Mis Partidas</h2>
+      <hr />
+    </div>
+    <div class="col-md-8">
+      <div
+        class="row d-flex justify-content-center my-5"
+        *ngIf="!sinPartidas">
+        <div class="my-4">
+          <h1>Partida Actual</h1>
+          <hr />
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="row d-flex">
+              <div class="col-md-8 __descripcion">
+                <p>Id de la partida: {{ partidaActual.id }}</p>
+                <hr />
+                <p>
+                  Tiempo entre preguntas:
+                  {{ partidaActual._segundosEntrePreguntas }} seg
+                </p>
+              </div>
+              <div class="col-md-4 text-center __descripcion">
+                <p>Info Trivia</p>
+                <p>Id: {{ partidaActual._trivia.id }}</p>
+                <p>Nombre: {{ partidaActual._trivia._nombre }}</p>
+                <p>Descripción: {{ partidaActual._trivia._descripcion }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

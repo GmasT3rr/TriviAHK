@@ -6,6 +6,7 @@ import { CrearTriviaComponent } from './pages/crear-trivia/crear-trivia.componen
 import { EditarTriviaComponent } from './pages/editar-trivia/editar-trivia.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InfoTriviaComponent } from './pages/info-trivia/info-trivia.component';
+import { MisPartidasComponent } from './pages/mis-partidas/mis-partidas.component';
 import { MisTriviasComponent } from './pages/mis-trivias/mis-trivias.component';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'crear-trivia', component: CrearTriviaComponent },
   { path: 'crearPartida', component: CrearPartidaComponent },
   { path: 'mis-trivias', component: MisTriviasComponent },
+  { path: 'mis-partidas', component: MisPartidasComponent },
   { path: 'info-trivia/:id', component: InfoTriviaComponent },
 
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
