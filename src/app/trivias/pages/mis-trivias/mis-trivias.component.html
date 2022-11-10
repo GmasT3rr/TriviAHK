@@ -46,7 +46,7 @@
     <!-- Fin parte de arriba -->
     <div class="col-md-9 mt-3 mb-3 text-center">
       <div
-        class="row d-flex justify-content-center"
+        class="row d-flex justify-content-center mb-5"
         *ngFor="let trivia of trivias | slice: offset:limit; let i = index">
         <!-- Laterarl izquierda con color y play -->
         <div
@@ -56,8 +56,8 @@
             [modalPorAbrir]="'iniciarPartida'"
             [idTrivia]="trivia.id"></app-modal>
           <div
-            class="text-center __div_img_jugar"
-            style="cursor: pointer;"
+            class="text-center __div_img_jugar p-2"
+            style="cursor: pointer"
             data-bs-toggle="modal"
             data-bs-target="#modalGeneral">
             <img
@@ -69,10 +69,8 @@
         <div
           class="col-xl-10 card"
           (click)="irVerTrivia(trivia.id)"
-          style="cursor: pointer;"
-          >
-          <div
-            class="p-2 d-flex row align-items-center justify-content-center">
+          style="cursor: pointer">
+          <div class="p-2 d-flex row align-items-center justify-content-center">
             <div class="col-6 text-start">
               <h2>{{ trivia._nombre }}</h2>
               <hr />
