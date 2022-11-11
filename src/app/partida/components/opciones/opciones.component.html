@@ -3,7 +3,8 @@
     class="col-md-5"
     *ngFor="let opc of preguntaActual._opciones; let i = index">
     <div
-      class="p-5 card mt-5 button-transition"
+      #opcion
+      class="p-5 card mt-5 button-transition pointer"
       [ngClass]="{ selected: opcionesSeleccionadas.includes(opc) }"
       [ngStyle]="getColor(i)"
       (click)="selectOpc(opc)"

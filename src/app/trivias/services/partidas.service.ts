@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
-import { catchError, of, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, of, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PartidasService {
+
+  puedeResponder = new BehaviorSubject<boolean>(true);
+
   constructor(private http: HttpClient) {}
 
   crearPartida(idTrivia: number, segundosEntrePreguntas: number) {
