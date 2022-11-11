@@ -24,7 +24,6 @@ export class ComprobacionOpcionesComponent implements OnInit, OnDestroy {
   idPartida!: number;
 
   ngOnInit(): void {
-    console.log('hola comprobacion');
     this.activatedRoute.paramMap.subscribe((x: any) => {
       this.idPartida = x.params.id;
     });

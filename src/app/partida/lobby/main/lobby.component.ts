@@ -57,7 +57,7 @@ export class LobbyComponent implements OnInit {
     console.log(this._socketsService);
   }
   salirseLobby() {
-    this._socketsService.salirse();
+    this._socketsService.desconectar();
     this.router.navigateByUrl('/main/home');
   }
   iniciarPartida() {

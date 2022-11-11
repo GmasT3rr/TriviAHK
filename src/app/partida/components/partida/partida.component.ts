@@ -128,7 +128,6 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   obtenerOpcSelectDeChild(opc: Opciones[]) {
-    console.log('opciones obtenidas del child', opc);
     this.opcionesSeleccionadas = opc;
   }
 
