@@ -47,6 +47,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   tiempoFinalizo: boolean = false;
   tiempoPreguntasSeg: any;
   opcionesSeleccionadas: Opciones[] = [];
+  opcionesCorrectas: any[] = [];
   resultados$ = this._socketsService.resultados$;
   yaRespondiste = false;
 
@@ -64,6 +65,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // console.log('buenas');
     this.getIdPartida();
+    this.mostrarSiguientePreg();
     if (
       !this._socketsService.socket?.connected ||
       !this._socketsService.socket
@@ -74,7 +76,6 @@ export class PartidaComponent implements OnInit, OnDestroy {
       const idUser = Number(localStorage.getItem('idUser'));
       this._socketsService.unirse(idUser, Number(this.idPartida));
     }
-    this.mostrarSiguientePreg();
     this.inicioPartida = true;
 
     this.preguntas = this._socketsService.trivia._preguntas;
@@ -82,18 +83,25 @@ export class PartidaComponent implements OnInit, OnDestroy {
     this._socketsService.pregunta$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((pregunta: any) => {
+        // console.log('preguntas',pregunta);
+        // console.log('numero preguntas',pregunta.numeroDePregunta);
+        // console.log('preg[numPreg]',this.preguntas[pregunta.numeroDePregunta]);
+
         this._socketsService.resultados$.next([]);
         this.posicionPregSockets = pregunta.numeroDePregunta + 1;
+        // this.posicionPregSockets = pregunta.numeroDePregunta ;
+
         this.preguntaActual = this.preguntas[pregunta.numeroDePregunta];
         this.tiempoPreguntasSeg = pregunta.segundosEntrePreguntas;
       });
 
     this._socketsService.opcionesCorrectas$
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(opciones => {
+      .subscribe(opcionesCorrectas => {
+        this.opcionesCorrectas = opcionesCorrectas;
         this.habilitarBtnPregunta = true;
         this.yaRespondiste = false;
-        console.log(opciones);
+        // console.log(opciones);
         if (this.preguntas.length == this.posicionPregSockets) {
           // console.log('hola llegue al fin');
           this.habilitarBtnPregunta = false;

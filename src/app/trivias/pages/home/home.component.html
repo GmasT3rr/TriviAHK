@@ -1,30 +1,34 @@
 <div
   [@onLoadAnimation]
-  style="background-color: #ffb1b5"
-  class="pt-2 pb-5">
-  <div class="container">
-    <div class="row d-flex justify-content-center cards">
-      <div
-        class="col-sm-4 btn"
-        style="border: none">
-        <app-button-home
-          [desc]="'Crear Trivia'"
-          [route]="'/main/crear-trivia'"></app-button-home>
-      </div>
-      <div
-        class="col-sm-4 btn"
-        style="border: none">
-        <app-button-home
-          [desc]="'Crear Partida'"
-          [route]="'/main/mis-trivias'"></app-button-home>
-      </div>
-      <div
-        class="col-sm-8 btn mt-2"
-        style="border: none"
-        data-bs-toggle="modal"
-        data-bs-target="#modalGeneral">
-        <app-button-home [desc]="'Ingresar con código'"></app-button-home>
-      </div>
+  class="wrapper"
+  style="background-color: #ffb1b5">
+  <div
+    [@onLoadAnimation]
+    class="row cards container mx-auto d-flex justify-content-center">
+    <div
+      class="col-lg-6 btn"
+      style="border: none">
+      <app-button-home
+        [desc]="'Crear Trivia'"
+        [route]="'/main/crear-trivia'"
+        [icon]="faCreate"></app-button-home>
+    </div>
+    <div
+      class="col-lg-6 btn"
+      style="border: none">
+      <app-button-home
+        [desc]="'Crear Partida'"
+        [route]="'/main/mis-trivias'"
+        [icon]="faGamepad"></app-button-home>
+    </div>
+    <div
+      class="col-sm-12 btn "
+      style="border: none"
+      data-bs-toggle="modal"
+      data-bs-target="#modalGeneral">
+      <app-button-home
+        [desc]="'Ingresar con código'"
+        [icon]="faKey"></app-button-home>
     </div>
   </div>
 </div>
@@ -34,7 +38,7 @@
 <div class="container">
   <div class="actividades">
     <p>Actividades Recientes</p>
-    <hr />
+    <hr class="divisor" />
   </div>
   <div class="row d-flex justify-content-center">
     <div
@@ -44,9 +48,8 @@
         class="card card-decoration-body mb-3"
         [@onLoadAnimation]
         *ngIf="trivia"
-        (click)="irVerTrivia(trivia.id)"
-        style="cursor: pointer">
-        <div class="card-header card-header-background p-3">
+        (click)="irVerTrivia(trivia.id)">
+        <div class="card-header p-3">
           <h3 class="card-title trivia-nombre">{{ trivia._nombre }}</h3>
         </div>
         <div class="card-body">
@@ -68,19 +71,15 @@
   </div>
 
   <div class="body-btn-next-prev d-flex justify-content-center mt-4 mb-4">
-    <div
-      (click)="prevQuiz()"
-      class="btn btn-prev mx-3 d-flex align-items-center">
-      <i
-        class="bi bi-arrow-left"
-        style="font-style: inherit"></i>
-    </div>
-    <div
+    <button
+      class="btn btn-prev mx-3 d-flex align-items-center"
+      (click)="prevQuiz()">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+    </button>
+    <button
       (click)="nextQuiz()"
       class="btn btn-next mx-3">
-      <i
-        class="bi bi-arrow-right"
-        style="font-style: inherit"></i>
-    </div>
+      <fa-icon [icon]="faArrowRight"></fa-icon>
+    </button>
   </div>
 </div>

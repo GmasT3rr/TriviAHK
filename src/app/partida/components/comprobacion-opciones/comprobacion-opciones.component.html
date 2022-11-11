@@ -1,0 +1,34 @@
+<div
+  class="container"
+  *esHost="{idPartida,renderContentUser: true};sino esUsuario"></div>
+<ng-template #esUsuario>
+  <div
+    class="container"
+    style="background-color: white">
+    <div
+      *ngIf="tuvisteErrores; else todoCorrecto"
+      class="container">
+      <h2>TUVISTE ERRORES</h2>
+      <img
+        src="../../../../assets/svgs/icono-respuesta-incorrecta.svg"
+        alt="" />
+      <h3>Opcs Correctas para esta pregunta:</h3>
+      <pre>{{ opcionesCorrectas | json }}</pre>
+      <h3>Opcs selec para esta pregunta:</h3>
+      <pre>{{ opcionesSeleccionadas | json }}</pre>
+    </div>
+    <ng-template #todoCorrecto>
+      <div class="container">
+        <h2>TUVISTE TODO BIEN PA</h2>
+        <img
+          src="../../../../assets/svgs/icono-respuesta-correcta.svg"
+          alt="" />
+        <h3>Opcs Correctas para esta pregunta:</h3>
+        <pre>{{ opcionesCorrectas | json }}</pre>
+        <h3>Opcs selec para esta pregunta:</h3>
+        <pre>{{ opcionesSeleccionadas | json }}</pre>
+      </div>
+    </ng-template>
+    >
+  </div>
+</ng-template>

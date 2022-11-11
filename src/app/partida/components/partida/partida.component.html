@@ -9,8 +9,9 @@
         <div><h1>soy host</h1></div>
         <button
           *ngIf="inicioPartida"
-          class="btn btn_iniciar_partida mt-4"
+          class="btn btn_iniciar_partida mt-5 mb-5"
           [disabled]="!habilitarBtnPregunta"
+          style="font-size: 2rem"
           (click)="mostrarSiguientePreg()">
           Mostrar siguiente pregunta
         </button>

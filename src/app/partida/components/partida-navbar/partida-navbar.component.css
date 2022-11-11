@@ -1,20 +1,33 @@
 
+
+/* Add a black background color to the top navigation */
+.topnav {
+  position: relative;
+  background-color: white;
+  overflow: hidden;
+}
 .time-question{
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 24px;
     line-height: 150%;
 }
-.icon-exit{
-    transform: rotate(180deg);
-    fill: #FD999B;
-    border-radius: 10px;
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
 
 @media (max-width: 576px) {
     .time-question{
-        font-size: 20px;
+        font-size: 16px;
+        text-align: center;
     }
     .icon-exit{
         width: 32px;
@@ -28,20 +41,35 @@
  
   }
 
-  @media (max-width: 767.98px) { 
-    .time-question{
-        font-size: 20px;
-    }
-    .icon-exit{
-        width: 32px;
-        height: 32px;
-       
-    }
-    .logo-triviahk{
-        width: 100px;
-        height: 45px;
-    }
- 
+/* Centered section inside the top navigation */
+.topnav-centered a {
+  float: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+  float: right;
+}
+
+/* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
+@media screen and (max-width: 600px) {
+  .topnav a, .topnav-right {
+    float: none;
+    display: block;
+    margin-top: 0 !important;
+  }
+  .__logo{
+    display: none !important;
   }
 
+  .topnav-centered a {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+}

@@ -13,3 +13,10 @@ export interface UsuariosPuntuacion {
   nombre: string;
   puntaje: number;
 }
+
+export interface OpcionesCorrectas {
+  _descripcion: string;
+  _esCorrecta: boolean;
+  id: number;
+  _fueSeleccionada: boolean;
+}

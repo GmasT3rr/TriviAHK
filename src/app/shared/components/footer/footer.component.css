@@ -1,0 +1,12 @@
+.footer {
+  background-color: #ececec;
+  color: rgb(91, 91, 91);
+}
+.footer-content p,
+.footer-content a,
+.bottom {
+  font-size: 1.4rem;
+}
+.footer-content h6 {
+  font-size: 1.8rem;
+}

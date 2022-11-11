@@ -30,10 +30,7 @@ export class EsHostDirective implements OnInit {
     //Agarro endpoint para obtener las partidas creadas del usuario
     this._partidaService.getPartidas().subscribe((res: any) => {
       //Si me devuelve una partida y el id coincide con el id de la partida significa que es el creador
-      if (
-        res.body.length > 0 &&
-        res.body[0].id == this.inputRecibido.idPartida
-      ) {
+      if (res.body && res.body.id == this.inputRecibido.idPartida) {
         return this.viewContainer.createEmbeddedView(this.templateRef);
         // return console.log('sos el creador');
       }

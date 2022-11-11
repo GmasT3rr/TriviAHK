@@ -1,18 +1,17 @@
-<div class="card flex-row">
+<div class="card flex-row d-flex align-items-center">
   <!-- <img
     class="card-img-left example-card-img-responsive"
     src="/postboot/assets/img/thumbnail.jpg"
   /> -->
-  <div class="imagen d-flex align-items-center ml-3" style="width: 100px">
-    <!-- <fa-icon [icon]="faUser" class=""></fa-icon>
-     -->
-    <img
-      class="card-img-left"
-      src="https://cdn-icons-png.flaticon.com/512/2919/2919600.png"
-      style="width: 50%"
-    />
+  <div class="imagen col-2">
+    <picture>
+      <img
+        class="card-img-left w-100"
+        src="https://cdn-icons-png.flaticon.com/512/2919/2919600.png"
+        alt="logo del usuario" />
+    </picture>
   </div>
-  <div class="card-body d-flex align-items-center">
-    <h4 class="card-title h5 h4-sm">{{sesion.nombre}}</h4>
+  <div class="card-body col-10">
+    <h4 class="card-title">{{ sesion.nombre }}</h4>
   </div>
 </div>
