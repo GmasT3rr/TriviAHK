@@ -39,7 +39,7 @@ export class LobbyGuard implements CanActivate {
     return this._partidasService
       .obtenerPartida(idLobbyNumber)
       .then((res: any) => {
-        console.log(res);
+        // console.log(res);
         // if (res.id == idLobbyNumber && res._estaAbierta == 1 && res._esActiva != 0) return true;
         if (
           res.id == idLobbyNumber &&

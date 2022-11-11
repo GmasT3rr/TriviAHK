@@ -15,6 +15,7 @@ import { PreguntaComponent } from './components/pregunta/pregunta.component';
 import { OpcionesComponent } from './components/opciones/opciones.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComprobacionOpcionesComponent } from './components/comprobacion-opciones/comprobacion-opciones.component';
 // Necesitamos angular 14+ para usar esto
 // import { NgParticlesModule } from 'ng-particles';
 
@@ -30,7 +31,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PartidaComponent,
     PreguntaComponent,
     OpcionesComponent,
-    RankingComponent
+    RankingComponent,
+    ComprobacionOpcionesComponent
   ],
   imports: [
     CommonModule,

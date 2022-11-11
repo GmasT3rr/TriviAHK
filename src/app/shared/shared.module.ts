@@ -9,6 +9,7 @@ import { ModalBorrarTriviaComponent } from './components/modal-borrar-trivia/mod
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
+import { OcultarDespuesDeDirective } from './directives/ocultar-despues-de.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ModalComponent,
     EsHostDirective,
     ModalBorrarTriviaComponent,
-    FooterComponent
+    FooterComponent,
+    OcultarDespuesDeDirective
   ],
 
   imports: [
@@ -32,6 +34,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ModalMisTriviasComponent,
     ModalComponent,
     EsHostDirective,
+    OcultarDespuesDeDirective,
     ModalBorrarTriviaComponent,
     FooterComponent
   ]
