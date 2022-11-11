@@ -29,6 +29,7 @@ export class MisTriviasComponent implements OnInit {
   usuarioID: number = 0;
   partidas: any;
   modalPorAbrir!: string;
+  idTriviaModal!: number;
 
   constructor(
     public _socketService: SocketService,
@@ -104,5 +105,9 @@ export class MisTriviasComponent implements OnInit {
   }
   irVerTrivia(id: any) {
     this.router.navigateByUrl(`/main/info-trivia/${id}`);
+  }
+  asignarIdTriviaParaModal(idTrivia: number) {
+    this.idTriviaModal = idTrivia;
+    this.modalPorAbrir = 'iniciarPartida';
   }
 }

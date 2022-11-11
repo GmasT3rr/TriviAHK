@@ -52,14 +52,12 @@
         <div
           class="col-xl-2 card align-self-stretch"
           style="background-color: #4a51c9">
-          <app-modal
-            [modalPorAbrir]="'iniciarPartida'"
-            [idTrivia]="trivia.id"></app-modal>
           <div
             class="text-center __div_img_jugar p-2"
             style="cursor: pointer"
             data-bs-toggle="modal"
-            data-bs-target="#modalGeneral">
+            data-bs-target="#modalGeneral"
+            (click)="asignarIdTriviaParaModal(trivia.id)">
             <img
               src="assets\svgs\play.svg"
               alt="" />
@@ -106,6 +104,9 @@
     <!-- Fin div container -->
   </div>
 </div>
+<app-modal
+  [modalPorAbrir]="modalPorAbrir"
+  [idTrivia]="idTriviaModal"></app-modal>
 <!-- <div class="col-md-8">
           <div
             [@onLoadAnimation]
