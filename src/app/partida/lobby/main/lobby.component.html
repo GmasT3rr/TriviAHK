@@ -1,7 +1,7 @@
 <app-partida-navbar></app-partida-navbar>
 <div class="body-lobby" [@onLoadAnimation]>
   <div *ngIf="sesiones$ | async as sesiones" class="container container-data-lobby">
-   
+
     <div class="lobby-data row">
 
       <div class="col-sm-6 col-md-6 col-lg-4">
@@ -16,18 +16,18 @@
       </div>
 
       <div class="col-sm-6 col-md-6 col-lg-4 data__pin d-flex justify-content-center  ">
-       
+
         <div style="height: 100px;">
           <div class=""><small>Codigo de la sala</small></div>
           <div class="pt-2" > <b>{{ idPartida }}</b></div>
-  
+
         </div>
-      
+
 
       </div>
 
       <div class="col-sm-12 col-md-12 col-lg-4 bg-l d-flex align-content-between justify-content-center">
-        
+
         <div
         *esHost="{idPartida,renderContentUser: true}; sino esUsuario"
         class="data__host">
@@ -64,27 +64,27 @@
     </div>
     <!--
     <div class="lobby-data d-flex justify-content-center px-5 bg-warning">
-    
+
       <div class="data__pin">
-        
+
       </div>
-  
+
         Si queremos renderizar unicamente lo del creador
         y no definir el ng template para el user mandar
         renderContentUser: false
- 
-     
-     
-  
+
+
+
+
     </div>     -->
-    <div class=" bg-warning row" >
+    <div class="row" >
       <div
         class="col-sm-12 col-lg-4 my-3 "
         *ngFor="let sesion of sesiones">
         <app-user-card [sesion]="sesion"></app-user-card>
       </div>
-     
-      
+
+
     </div>
   </div>
 </div>

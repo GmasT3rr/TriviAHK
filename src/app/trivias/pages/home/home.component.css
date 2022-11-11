@@ -10,7 +10,9 @@
 }
 
 .card-header{
-  background-color: #7161ef;
+  background-color: #4a51c9;
+  color: white;
+
 }
 .card-title{
   font-size: 2.5rem;
@@ -20,12 +22,12 @@
 .card-decoration-body {
   font-size: 1.6rem;
   min-height: 300px;
-  box-shadow: 4px 8px 8px rgba(74, 81, 201, 0.16);
+  box-shadow: 4px 8px 8px #4a51c929;
   transition: all 500ms;
   transition-timing-function: ease;
 }
 .card-decoration-body:hover {
-  box-shadow: 4px 8px 4px rgba(74, 81, 201, 0.16);
+  box-shadow: 4px 8px 4px #4a51c929;
 }
 
 .body-buttons-n-p {
@@ -37,7 +39,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  background: rgba(113, 97, 239, 1);
+  background: #4a51c9;
   border-radius: 20px;
   width: 50px;
   height: 50px;
@@ -49,7 +51,7 @@
 
 .btn-prev:hover,
 .btn-next:hover {
-  background: rgba(113, 97, 239, 0.5);
+  background: #7161ef80;
 }
 
 .actividades p {

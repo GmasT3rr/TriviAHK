@@ -10,7 +10,7 @@ hr {
 .btn-prev,
 .btn-next {
   color: white;
-  background: rgba(113, 97, 239, 1);
+  background: #4a51c9;
   border: 2px;
   border-radius: 20px;
   width: 50px;
@@ -19,7 +19,7 @@ hr {
 }
 .btn-prev:hover,
 .btn-next:hover {
-  background: rgba(113, 97, 239, 0.5);
+  background: #7161ef80;
   border: 2px;
   color: white;
 }

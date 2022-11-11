@@ -17,7 +17,7 @@
       </button>
     </div>
   </div>
-    <ng-container *ngIf="this.resultados$ | async as resultados" [@onLoadAnimation]>
+    <ng-container *ngIf="this.resultados$ | async as resultados" >
       <div
         *ngIf="resultados.length > 0 && !finDePartida; else mostrarPregunta"
         class="row d-flex justify-content-center">
