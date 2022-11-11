@@ -47,6 +47,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   tiempoFinalizo: boolean = false;
   tiempoPreguntasSeg: any;
   opcionesSeleccionadas: Opciones[] = [];
+  opcionesCorrectas: any[] = [];
   resultados$ = this._socketsService.resultados$;
   yaRespondiste = false;
 
@@ -98,10 +99,11 @@ export class PartidaComponent implements OnInit, OnDestroy {
 
     this._socketsService.opcionesCorrectas$
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(opciones => {
+      .subscribe(opcionesCorrectas => {
+        this.opcionesCorrectas = opcionesCorrectas;
         this.habilitarBtnPregunta = true;
         this.yaRespondiste = false;
-        console.log(opciones);
+        // console.log(opciones);
         if (this.preguntas.length == this.posicionPregSockets) {
           // console.log('hola llegue al fin');
           this.habilitarBtnPregunta = false;
