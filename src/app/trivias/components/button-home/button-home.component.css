@@ -1,6 +1,5 @@
 .homeBtns {
   height: auto;
-  word-break: break-all;
   background-color: #fd999b;
   color: white;
   border-radius: 15px;
@@ -18,7 +17,8 @@
 }
 .button-desc {
   font-weight: bold;
-  font-size: 2.4rem;
+  font-size: 3rem;
+  word-wrap: break-word;
 }
 
 .wave:hover span {

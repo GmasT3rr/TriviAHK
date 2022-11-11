@@ -14,10 +14,9 @@
   color: white;
 
 }
-.card-title{
+.card-title {
   font-size: 2.5rem;
   text-align: center;
-
 }
 .card-decoration-body {
   font-size: 1.6rem;
@@ -30,9 +29,6 @@
   box-shadow: 4px 8px 4px #4a51c929;
 }
 
-.body-buttons-n-p {
-  height: 7vh;
-}
 .btn-prev,
 .btn-next {
   display: flex;
@@ -47,8 +43,6 @@
   font-size: 2.4rem;
 }
 
-
-
 .btn-prev:hover,
 .btn-next:hover {
   background: #7161ef80;
@@ -59,8 +53,6 @@
   font-weight: 700;
   font-size: 3rem;
 }
-
-
 
 @media screen and (max-width: 1024px) {
   .cards {
