@@ -2,8 +2,8 @@
 <div class="container" [@onLoadAnimation]>
   <div class="row d-flex justify-content-center">
         <!-- Titulo de la página -->
-        <div class="misPartidas col-9 mt-5 ml-5">
-          <h2 style="font-weight: bold">Editar Trivia</h2>
+        <div class="subtitulo col-9 mt-5 ml-5">
+          <h2>Editar Trivia</h2>
           <hr />
         </div>
   </div>
@@ -36,7 +36,7 @@
             <!-- <div class="my-4 text-left">
               <h4 style="font-weight: bold">{{trivia?._nombre }}</h4>
             </div> -->
-            <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre: {{trivia?._nombre }}"/>
+            <input type="text" maxlength="25" class="form-control" formControlName="nombre" placeholder="Nombre: {{trivia?._nombre }}"/>
           </div>
           <div *ngIf="
           triviaForm.get('nombre')?.errors &&
@@ -46,7 +46,7 @@
         <small>Es requerido un nombre</small>
       </div>
           <div class="mt-2 mb-2">
-            <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion: {{trivia?._descripcion }}"/>
+            <input type="text" maxlength="200" class="form-control" formControlName="descripcion" placeholder="Descripcion: {{trivia?._descripcion }}"/>
           </div>
           <div *ngIf="
           triviaForm.get('descripcion')?.errors &&
@@ -73,7 +73,7 @@
                   <h4 style="font-weight: bold;">Pregunta N°{{ indexPreg + 1 }}</h4>
                 </div>
                 <div class="mt-2 mb-2">
-                  <input type="text" class="form-control" formControlName="leyenda" placeholder="Leyenda"/>
+                  <input type="text" maxlength="100" class="form-control" formControlName="leyenda" placeholder="Leyenda"/>
                 </div>
                 <div *ngIf="
                 pregunta.get('leyenda')?.errors &&
@@ -135,7 +135,7 @@
                   <div class="row d-flex justify-content-center mt-4">
                       <div [formGroupName]="indexOpc" class="col-12">
                         <div class="mt-2 mb-2 ">
-                          <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion"/>
+                          <input type="text" maxlength="50" class="form-control" formControlName="descripcion" placeholder="Descripcion"/>
                         </div>
                         <div *ngIf="
                         opcion.get('descripcion')?.errors &&

@@ -3,7 +3,7 @@
   class="container"
   [@onLoadAnimation]>
   <div class="row d-flex justify-content-center">
-    <div class="misPartidas col-md-9 mt-5">
+    <div class="subtitulo col-md-9 mt-5">
       <h2 style="font-weight: bold">Mis trivias</h2>
       <hr />
     </div>
@@ -14,7 +14,7 @@
         (click)="toggleFlip()"
         data-toggle="collapse"
         href="#collapseExample">
-        <div class="col-md-2 text-center">Ordenar por:</div>
+        <div class="col-md-2 text-center text-ordenar">Ordenar por:</div>
         <div
           class="col-md-1 text-center align-self-center"
           [@flipAnimation]="rotateOrdenar">
@@ -28,7 +28,7 @@
         class="collapse ordenarPor text-center"
         id="collapseExample">
         <div
-          class="col-md-4 p-1"
+          class="col-md-3 p-1"
           [@onLoadAnimation]>
           <div
             class="btn"
@@ -68,12 +68,12 @@
           class="col-xl-10 card"
           (click)="irVerTrivia(trivia.id)"
           style="cursor: pointer">
-          <div class="p-2 d-flex row align-items-center justify-content-center">
-            <div class="col-6 text-start">
+          <div class="p-2 d-flex row align-items-center justify-content-center card-trivia-nombre">
+            <div class="col-10 text-start">
               <h2>{{ trivia._nombre }}</h2>
               <hr />
             </div>
-            <div class="col-6 text-end mb-5">
+            <div class="col-2 text-end mb-5">
               <img
                 (click)="irEditarTrivia(trivia.id)"
                 src="assets\svgs\editar.svg"

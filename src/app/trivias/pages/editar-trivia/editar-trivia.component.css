@@ -1,26 +1,9 @@
-hr {
-  display: flex;
-  width: 10%;
-  align-items: flex-start;
-  background: #7B61FF;
-  border-radius: 30px;
-  height: 10px;
-  opacity: 1;
-}
-.btn-prev, .btn-next {
-  color: white;
-  background: rgba(113, 97, 239, 1);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
 
-}
-.btn-prev:hover, .btn-next:hover {
-background: rgba(113, 97, 239, .5);
+input, select, .btn{
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.11);
+  font-size: 1.6rem;
 }
 
-input, select{
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
-}
 .float__addpregunta{
   text-align: center;
   position: fixed;

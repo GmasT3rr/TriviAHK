@@ -1,18 +1,10 @@
-hr {
-  display: flex;
-  width: 10%;
-  align-items: flex-start;
-  background: #7B61FF;
-  border-radius: 30px;
-  height: 10px;
-  opacity: 1;
+input, select, .btn, .alert{
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.11);
+  font-size: 1.6rem;
 }
 
-input, select{
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
-}
 .alert{
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  margin: 1%;
 }
 
 .float__addpregunta{

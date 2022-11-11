@@ -28,3 +28,10 @@ hr {
   height: 10px;
   opacity: 1;
 }
+/* Subtitulos generales */
+.subtitulo h2 {
+  margin-top: 2.8rem;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
