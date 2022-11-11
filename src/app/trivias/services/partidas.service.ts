@@ -29,7 +29,7 @@ export class PartidasService {
       `${env.dev.serverUrl}/partida/obtenerPartidas/usuario`
     );
     return res.pipe(
-      tap(res => {
+      tap((res: any) => {
         of(res);
       }),
       catchError(err => {
@@ -53,7 +53,22 @@ export class PartidasService {
     });
   }
 
-  async borrarPartida(id:any) {
+  async borrarPartida(id: any) {
     return this.http.delete(`${env.dev.serverUrl}/partida/eliminar/${id}`);
+  }
+
+  actualizarPartida(idPartida: number, segundosEntrePreguntas: number) {
+    const res = this.http.put(
+      `${env.dev.serverUrl}/partida/actualizarTiempo/${idPartida}`,
+      { segundosEntrePreguntas }
+    );
+    return res.pipe(
+      tap(res => {
+        of(res);
+      }),
+      catchError(err => {
+        return throwError(() => err);
+      })
+    );
   }
 }

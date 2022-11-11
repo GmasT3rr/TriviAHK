@@ -15,11 +15,10 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LobbyModule } from './partida/lobby.module';
-
-
+import { MisPartidasComponent } from './trivias/pages/mis-partidas/mis-partidas.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MisPartidasComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,9 +30,9 @@ import { LobbyModule } from './partida/lobby.module';
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       preventDuplicates: true,
-      progressBar:true,
-      progressAnimation:'decreasing',
-      timeOut:4000
+      progressBar: true,
+      progressAnimation: 'decreasing',
+      timeOut: 4000
     }),
     AuthModule.forRoot({
       ...env.auth,

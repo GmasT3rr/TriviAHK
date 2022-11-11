@@ -70,6 +70,16 @@
   color: black;
 }
 
+.btn-exit {
+  background-color: #fd999b;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: white;
+  font-size: 2rem;
+  padding: 1rem;
+}
+
 @media screen and (max-width: 758px) {
   .imagen_primer_lugar {
     width: 75px;

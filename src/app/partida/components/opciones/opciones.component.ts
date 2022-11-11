@@ -24,41 +24,11 @@ export class OpcionesComponent implements OnInit {
   opciones: any[] = [];
   @Input('pregunta') preguntaActual!: Pregunta;
 
-  @Input() opcion?: any;
   opcionesSeleccionadas: Opciones[] = [];
   @Output() opcSeleccionadasEmit = new EventEmitter<Opciones[]>();
   errorOpcSelec = false;
 
   ngOnInit(): void {
-    // console.log(this.preguntaActual._opciones);
-    // this.form = this.formGroupDir.control;
-    // this.formArray = this.form.get('opciones') as FormArray;
-    // this.preguntaActual = {
-    //   id: 1,
-    //   tipoDePregunta: 'multiple_choice' as TipoDePregunta,
-    //   _leyenda: 'pregunta 1',
-    //   _opciones: [
-    //     {
-    //       _descripcion: 'opc 1',
-    //       _esCorrecta: false,
-    //       _fueSeleccionada: false,
-    //       id: 800
-    //     },
-    //     {
-    //       _descripcion: 'opc 2',
-    //       _esCorrecta: false,
-    //       _fueSeleccionada: false,
-    //       id: 801
-    //     },
-    //     {
-    //       _descripcion: 'opc 3',
-    //       _esCorrecta: false,
-    //       _fueSeleccionada: false,
-    //       id: 802
-    //     }
-    //   ]
-    // };
-    // console.log(this.preguntaActual);
     this.limpiarOpciones();
   }
 

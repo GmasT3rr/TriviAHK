@@ -40,7 +40,13 @@ export class LobbyGuard implements CanActivate {
       .obtenerPartida(idLobbyNumber)
       .then((res: any) => {
         // console.log(res);
-        if (res.id == idLobbyNumber) return true;
+        // if (res.id == idLobbyNumber && res._estaAbierta == 1 && res._esActiva != 0) return true;
+        if (
+          res.id == idLobbyNumber &&
+          res._estaAbierta == true
+          // && res._esActiva != true
+        )
+          return true;
         // console.log('canACtivate');
         this.router.navigateByUrl('/main/home');
         return false;

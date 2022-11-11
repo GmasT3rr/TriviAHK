@@ -44,21 +44,20 @@ export class ModalComponent implements OnInit {
           if (res.id == this.ingresarPartidaForm.value['codigo']) {
             this._partidasSevice.getPartidas().subscribe((res: any) => {
               //Si no tiene ninguna partida el usuario
-              if (res.body.length == 0) {
+              if (res.body) {
                 // this._socketsService.unirse(
                 //   idUser,
                 //   this.ingresarPartidaForm.value['codigo']
                 // );
-                this.toastService.showSuccess(
-                  'Te has unido a la partida correctamente',
-                  'Felicidades'
-                );
+                // this.toastService.showSuccess(
+                //   'Te has unido a la partida correctamente',
+                //   'Felicidades'
+                // );
                 this.btnModalCerrar.nativeElement.click();
                 this.router.navigateByUrl(
                   `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
                 );
-              }
-              else{
+              } else {
                 this.btnModalCerrar.nativeElement.click();
                 this.router.navigateByUrl(
                   `/partida/lobby/${this.ingresarPartidaForm.value['codigo']}`
@@ -105,6 +104,32 @@ export class ModalComponent implements OnInit {
           this.toastService.showSuccess(
             `Unido a la partida ${partida.id}`,
             'Felicidades'
+          );
+        },
+        error: (err: any) => {
+          // console.log(err);
+          this.ingresarTiempoEntrePartida.reset();
+          this.btnModalCerrar.nativeElement.click();
+          this.toastService.showError(err.error.body, 'Error');
+        }
+      });
+  }
+
+  actualizarPartida() {
+    const urlLobby = this.router.url.split('/');
+    const idPartida = Number(urlLobby[urlLobby.length - 1]);
+    this._partidasSevice
+      .actualizarPartida(
+        idPartida,
+        Number(this.ingresarTiempoEntrePartida.value['tiempo'])
+      )
+      .subscribe({
+        next: (res: any) => {
+          this.btnModalCerrar.nativeElement.click();
+
+          this.toastService.showSuccess(
+            'Tiempo de Partida actualizada',
+            'Partida actualizada'
           );
         },
         error: (err: any) => {

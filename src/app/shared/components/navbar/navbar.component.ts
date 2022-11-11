@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
 import { filter } from 'rxjs/operators';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -12,6 +13,7 @@ export class NavbarComponent implements OnInit {
   public user: any;
   public logo = 'assets/logo-temporal.jpeg';
   public estaEnPartida = true;
+  public faLogout = faArrowRightFromBracket;
 
   constructor(private userService: UserService, private router: Router) {}
 

@@ -5,6 +5,10 @@ import { UserService } from 'app/core/services/user.service';
 import { SocketService } from 'app/core/socket/socket.service';
 import { onLoadAnimation } from 'app/shared/animations/onLoad.component';
 import {
+  Resultado,
+  UsuariosPuntuacion
+} from 'app/trivias/interfaces/Resultado.interface';
+import {
   Opciones,
   Pregunta,
   Trivia
@@ -43,19 +47,9 @@ export class PartidaComponent implements OnInit, OnDestroy {
   tiempoFinalizo: boolean = false;
   tiempoPreguntasSeg: any;
   opcionesSeleccionadas: Opciones[] = [];
-
-  /*
-  {
-    [
-      {id:1},
-      {id:2}
-    ]
-  }
-  */
-
-  verOpcion(preguntaActual: any) {
-    console.log({ preguntaActual, selecccionado: true });
-  }
+  opcionesCorrectas: any[] = [];
+  resultados$ = this._socketsService.resultados$;
+  yaRespondiste = false;
 
   getIdPartida() {
     this.activatedRoute.paramMap.subscribe((x: any) => {
@@ -67,37 +61,11 @@ export class PartidaComponent implements OnInit, OnDestroy {
   //y no va a hacer el trivia.subscribe
   triviaEnviadaLobby!: Trivia;
   inicioPartida: boolean = false;
-  partidaResultadosPrevios = [
-    {
-      nombre: 'Rama',
-      puntaje: '1200'
-    },
-    {
-      nombre: 'Messi',
-      puntaje: '3300'
-    },
-    {
-      nombre: 'Alguien',
-      puntaje: '750'
-    }
-  ];
-  partidaResultadosFinales = [
-    {
-      nombre: 'Rama',
-      puntaje: '3000'
-    },
-    {
-      nombre: 'Messi',
-      puntaje: '5000'
-    },
-    {
-      nombre: 'Alguien',
-      puntaje: '2000'
-    }
-  ];
 
   ngOnInit(): void {
+    // console.log('buenas');
     this.getIdPartida();
+    this.mostrarSiguientePreg();
     if (
       !this._socketsService.socket?.connected ||
       !this._socketsService.socket
@@ -105,12 +73,9 @@ export class PartidaComponent implements OnInit, OnDestroy {
       this._socketsService.conectar();
       this._socketsService.iniciarListeners();
 
-      console.log(this._socketsService.trivia);
-
       const idUser = Number(localStorage.getItem('idUser'));
       this._socketsService.unirse(idUser, Number(this.idPartida));
     }
-    this.mostrarSiguientePreg();
     this.inicioPartida = true;
 
     this.preguntas = this._socketsService.trivia._preguntas;
@@ -118,25 +83,36 @@ export class PartidaComponent implements OnInit, OnDestroy {
     this._socketsService.pregunta$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((pregunta: any) => {
+        // console.log('preguntas',pregunta);
+        // console.log('numero preguntas',pregunta.numeroDePregunta);
+        // console.log('preg[numPreg]',this.preguntas[pregunta.numeroDePregunta]);
+
+        this._socketsService.resultados$.next([]);
         this.posicionPregSockets = pregunta.numeroDePregunta + 1;
+        // this.posicionPregSockets = pregunta.numeroDePregunta ;
+
         this.preguntaActual = this.preguntas[pregunta.numeroDePregunta];
         this.tiempoPreguntasSeg = pregunta.segundosEntrePreguntas;
-        this.tengoTriviaYOpciones = true;
       });
 
-    this._socketsService.terminaTiempo$
+    this._socketsService.opcionesCorrectas$
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(() => {
+      .subscribe(opcionesCorrectas => {
+        this.opcionesCorrectas = opcionesCorrectas;
         this.habilitarBtnPregunta = true;
+        this.yaRespondiste = false;
+        // console.log(opciones);
         if (this.preguntas.length == this.posicionPregSockets) {
-          console.log('final');
+          // console.log('hola llegue al fin');
+          this.habilitarBtnPregunta = false;
+          this.finDePartida = true;
         }
       });
 
-    this._socketsService.resultados$
+    this._socketsService.respondiste$
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(resultados => {
-        console.log('results: ', resultados);
+      .subscribe((respondiste: string) => {
+        this.yaRespondiste = true;
       });
   }
 
@@ -152,7 +128,6 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   obtenerOpcSelectDeChild(opc: Opciones[]) {
-    console.log('opciones obtenidas del child', opc);
     this.opcionesSeleccionadas = opc;
   }
 

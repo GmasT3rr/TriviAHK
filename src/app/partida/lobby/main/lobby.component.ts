@@ -28,7 +28,10 @@ export class LobbyComponent implements OnInit {
   preg!: number;
 
   ngOnInit(): void {
-    if(!this._socketsService.socket?.connected || !this._socketsService.socket) {
+    if (
+      !this._socketsService.socket?.connected ||
+      !this._socketsService.socket
+    ) {
       this._socketsService.conectar();
       this._socketsService.iniciarListeners();
       const urlLobby = this.router.url.split('/');
@@ -36,7 +39,6 @@ export class LobbyComponent implements OnInit {
       const idUser = Number(localStorage.getItem('idUser'));
       this.unirse(idUser, Number(this.idPartida));
     }
-
     this._socketsService.routerIdPartida$.subscribe((idPartida: Number) => {
       this.router.navigate([`/partida/${idPartida}`]);
     });
@@ -55,7 +57,7 @@ export class LobbyComponent implements OnInit {
     console.log(this._socketsService);
   }
   salirseLobby() {
-    this._socketsService.salirse();
+    this._socketsService.desconectar();
     this.router.navigateByUrl('/main/home');
   }
   iniciarPartida() {

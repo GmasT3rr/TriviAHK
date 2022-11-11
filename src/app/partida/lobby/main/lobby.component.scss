@@ -1,27 +1,44 @@
+.body-lobby{
+  position: absolute;
+  width: 100%;
+  background-color: #4A51C9;
+   min-height: 850px;
+   height:auto;
+}
+.container-data-lobby{
+  margin-top: 4%;
+ 
+  position: relative;   
+  
+}
 .lobby-data {
+
+    
   text-align: center;
   color: white;
   .data__pin {
     small {
-      font-size: 45px;
-      font-weight: 100;
+      font-weight: lighter;
+      font-size: 18px;
+      line-height: 150%;
     }
     b {
-      font-size: 65px;
+      font-weight: 600;
+      font-size: 50px;
+      line-height: 150%;
     }
   }
   .data__usuarios {
     p {
-      font-size: 65px;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 150%;
     }
     fa-icon {
       font-size: 45px;
     }
   }
-  .data__usuarios,
-  .data__pin {
-    margin: 50px 120px 0px 120px;
-  }
+ 
 }
 
 .data__host, .data__player {
@@ -31,21 +48,57 @@
   justify-content: center;
 }
 
+.btn{
+  font-size: 2rem;
+  padding: 1rem;
+}
 .btn_iniciar_partida {
-  background-color: #fd999b;
+  background-color: #FD999B;
   color: white;
 }
 
 .btn_iniciar_partida:hover {
-  background-color: #da888a;
+  background-color: #FFB1B5;
   color: white;
 }
 .btn_finalizar_lobby, .btn_salirse {
-  background-color: #fc1a1e;
-  color: white;
+  background-color: #7161EF;
+  color:  #ffffff;
 }
 
 .btn_finalizar_lobby:hover, .btn_salirse:hover {
-  background-color: #c73b3d;
-  color: white;
+  background-color: #ab75f1;
+  color:  #ffffff;
 }
+
+
+@media (max-width: 576px) {
+   
+  .lobby-data {
+
+    
+   
+    .data__pin {
+     
+      b {
+        
+        font-size: 32px;
+        
+      }
+    }
+    .data__usuarios {
+      p {
+        
+        font-size: 20px;
+      
+      }
+      fa-icon {
+        font-size: 30px;
+      }
+    }
+   
+  }
+  
+
+}
+

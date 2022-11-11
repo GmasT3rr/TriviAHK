@@ -1,44 +1,53 @@
 <app-partida-navbar></app-partida-navbar>
-<div style="background-color: #4A51C9; min-height: 854px" [@onLoadAnimation]>
-  <div *ngIf="sesiones$ | async as sesiones" class="lobby container mx-auto">
-    <!--
-      Manera de usar ng template para mostrar contenido exclusivo
-      para el creador o el usuario
-    -->
-    <!-- <div *esHost="{idPartida, renderContentUser:true}; sino esUsuario">
-      Sos creador
-    </div>
-    <ng-template #esUsuario>
-      <div>Sos player</div>
-    </ng-template> -->
+<div class="body-lobby" [@onLoadAnimation]>
+  <div *ngIf="sesiones$ | async as sesiones" class="container container-data-lobby">
 
-    <div class="lobby-data d-flex justify-content-center px-5">
-      <div class="data__usuarios">
-        <fa-icon
-          [icon]="faUsers"
-          class="data__usuarios--icon"></fa-icon>
-        <br />
-        <p>{{ sesiones.length }}</p>
+    <div class="lobby-data row">
+
+      <div class="col-sm-6 col-md-6 col-lg-4">
+        <div class="data__usuarios">
+          <fa-icon
+            [icon]="faUsers"
+            class="data__usuarios--icon">
+          </fa-icon>
+          <br />
+          <p>{{ sesiones.length }}</p>
+        </div>
       </div>
-      <div class="data__pin">
-        <small>Codigo de la sala</small>
-        <br />
-        <b>{{ idPartida }}</b>
+
+      <div class="col-sm-6 col-md-6 col-lg-4 data__pin d-flex justify-content-center  ">
+
+        <div style="height: 100px;">
+          <div class=""><small>Codigo de la sala</small></div>
+          <div class="pt-2" > <b>{{ idPartida }}</b></div>
+
+        </div>
+
+
       </div>
-      <!--
-        Si queremos renderizar unicamente lo del creador
-        y no definir el ng template para el user mandar
-        renderContentUser: false
-      -->
-      <div
+
+      <div class="col-sm-12 col-md-12 col-lg-4 bg-l d-flex align-content-between justify-content-center">
+
+        <div
         *esHost="{idPartida,renderContentUser: true}; sino esUsuario"
         class="data__host">
-        <button class="btn btn_iniciar_partida" (click)="iniciarPartida()" >Iniciar partida</button>
+        <button
+          class="btn btn_iniciar_partida"
+          (click)="iniciarPartida()">
+          Iniciar partida
+        </button>
+        <button
+          class="btn btn_iniciar_partida"
+          data-bs-toggle="modal"
+          data-bs-target="#modalGeneral">
+          Actualizar tiempo partida
+        </button>
         <button
           class="btn btn_finalizar_lobby"
           (click)="finalizarLobby()">
           Finalizar lobby
         </button>
+        <app-modal [modalPorAbrir]="'actualizarTiempoPartida'"></app-modal>
       </div>
       <ng-template
         #esUsuario
@@ -47,17 +56,35 @@
           <button
             class="btn btn_salirse"
             (click)="salirseLobby()">
-            Salirse lobby
+            Salir del lobby
           </button>
         </div>
       </ng-template>
+      </div>
     </div>
-    <div class="usuarios-container row">
+    <!--
+    <div class="lobby-data d-flex justify-content-center px-5 bg-warning">
+
+      <div class="data__pin">
+
+      </div>
+
+        Si queremos renderizar unicamente lo del creador
+        y no definir el ng template para el user mandar
+        renderContentUser: false
+
+
+
+
+    </div>     -->
+    <div class="row" >
       <div
-        class="col-4 my-3"
+        class="col-sm-12 col-lg-4 my-3 "
         *ngFor="let sesion of sesiones">
         <app-user-card [sesion]="sesion"></app-user-card>
       </div>
+
+
     </div>
   </div>
 </div>

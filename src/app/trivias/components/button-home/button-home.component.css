@@ -1,7 +1,24 @@
-i {
-  font-style: inherit;
+.homeBtns {
+  height: auto;
+  background-color: #fd999b;
+  color: white;
+  border-radius: 15px;
+  padding: 15px;
+  transition: all 300ms ease;
+}
+
+.homeBtns:hover {
+  box-shadow: 10px 10px rgba(255, 255, 255, 0.329);
+}
+
+.homeBtns {
+  display: flex;
+  justify-content: center;
+}
+.button-desc {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 3rem;
+  word-wrap: break-word;
 }
 
 .wave:hover span {
@@ -12,7 +29,6 @@ i {
 }
 
 @keyframes wave-anim {
-
   0%,
   20%,
   40%,
@@ -23,20 +39,4 @@ i {
   20% {
     transform: translateY(-5px);
   }
-}
-.homeBtns {
-  height: auto;
-  word-break: break-all;
-  text-align: center;
-  background-color: #fd999b;
-  color: white;
-  border-radius: 15px;
-  padding: 15px;
-  transition: all 300ms ease;
-  word-break: break-all;
-}
-
-.homeBtns:hover {
-  background-color: rgba(253, 153, 155, 0.5);
-  box-shadow: 10px 10px rgba(255, 255, 255, 0.329);
 }

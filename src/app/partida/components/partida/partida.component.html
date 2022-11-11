@@ -1,70 +1,90 @@
-<div *ngIf="!finDePartida">
+<div class="bg">
   <app-partida-navbar
     (tiempoPreguntasSeg)="(this.tiempoPreguntasSeg)"></app-partida-navbar>
 
-  <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario">
-    <div class="container d-flex justify-content-end">
+
+  <div *esHost="{idPartida,renderContentUser: false}">
+    <div *ngIf="!finDePartida"
+      class="container d-flex justify-content-end">
       <div class="d-flex align-items-center">
-        <div><h1>soy host</h1></div>
         <button
           *ngIf="inicioPartida"
-          class="btn btn_iniciar_partida mt-4"
+          class="btn btn_iniciar_partida mt-5 mb-5"
           [disabled]="!habilitarBtnPregunta"
+          style="font-size: 2rem"
           (click)="mostrarSiguientePreg()">
           Mostrar siguiente pregunta
         </button>
       </div>
     </div>
   </div>
-</div>
-<ng-template #esUsuario>
-  <div
-    class="bg row d-flex justify-content-center"
-    [@onLoadAnimation]>
-    <div *ngIf="habilitarBtnPregunta && inicioPartida && !finDePartida">
-      <app-ranking
-        [partidaResultadosPrevios]="partidaResultadosPrevios"></app-ranking>
+
+  <ng-container *ngIf="this.resultados$ | async as resultados">
+    <!-- <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario"></div> -->
+    <div *ngIf="resultados.length > 0 && !finDePartida; else mostrarPregunta"
+      class="bg row d-flex justify-content-center"
+      [@onLoadAnimation]>
+      <!-- <ng-template #esUsuario> -->
+
+          <app-comprobacion-opciones
+            *ocultarDespuesDe="5000; mostrar: templateDespuesDelay"
+            [opcionesSeleccionadas]="opcionesSeleccionadas"
+            [opcionesCorrectas]="opcionesCorrectas"
+            [tipoDePregunta]="
+            preguntaActual.tipoDePregunta">
+          </app-comprobacion-opciones>
+
+        <ng-template #templateDespuesDelay>
+          <app-ranking [partidaResultadosPrevios]="resultados"></app-ranking>
+        </ng-template>
+      <!-- </ng-template> -->
     </div>
-    <div>
-      <app-pregunta
-        *ngIf="tengoTriviaYOpciones"
-        [pregunta]="preguntaActual._leyenda"></app-pregunta>
-      <h3>{{ preguntaActual.tipoDePregunta | json }}</h3>
-      <app-opciones
-        *ngIf="tengoTriviaYOpciones"
-        [pregunta]="preguntaActual"
-        (opcSeleccionadasEmit)="obtenerOpcSelectDeChild($event)"></app-opciones>
-      <button
-        class="btn btn-primary"
-        (click)="responder()"
-        [disabled]="!opcionesSeleccionadas">
-        Responder
-      </button>
-    </div>
-  </div>
-</ng-template>
-<div *ngIf="finDePartida">
-  <app-podio [partidaResultadosFinales]="partidaResultadosFinales"></app-podio>
+    
+    <ng-template #mostrarPregunta>
+      <!-- <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario"></div> -->
+      
+      <div *ngIf="finDePartida else pregunta">
+        <!-- <ng-template #esUsuario> -->
+          <app-comprobacion-opciones
+            *ocultarDespuesDe="5000; mostrar: templateDespuesDelay"
+            [opcionesSeleccionadas]="opcionesSeleccionadas"
+            [opcionesCorrectas]="opcionesCorrectas"
+            [tipoDePregunta]="
+            preguntaActual.tipoDePregunta">
+          </app-comprobacion-opciones>
+    
+          <ng-template #templateDespuesDelay>
+            <app-podio *ngIf="resultados.length > 0" [resultados]="resultados"></app-podio>
+          </ng-template>
+        <!-- </ng-template> -->
+      </div>
+
+      <ng-template #pregunta>
+        <div
+          class="bg row d-flex justify-content-center"
+          [@onLoadAnimation]>
+          <app-pregunta [pregunta]="preguntaActual"></app-pregunta>
+
+          <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario"></div>
+          <ng-template #esUsuario>
+            <app-opciones
+              [pregunta]="preguntaActual"
+              (opcSeleccionadasEmit)="obtenerOpcSelectDeChild($event)"></app-opciones>
+            <div class="d-flex justify-content-center mt-4">
+              <div class="d-flex align-items-center">
+                <button
+                  class="btn btn_iniciar_partida mt-4 p-3"
+                  (click)="responder()"
+                  style="font-size: 2rem"
+                  [disabled]="!opcionesSeleccionadas || yaRespondiste">
+                  Responder
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </ng-template>
+    </ng-template>
+  </ng-container>
 </div>
 
-<!--
-  <ng-template #esUsuario>
-  <div
-    class="bg row d-flex justify-content-center"
-    [@onLoadAnimation]>
-
-    <div *ngIf="habilitarBtnPregunta && inicioPartida && !finDePartida">
-      <app-ranking
-        [partidaResultadosPrevios]="partidaResultadosPrevios"></app-ranking>
-    </div>
-    <div *ngIf="!habilitarBtnPregunta && !finDePartida">
-      <app-pregunta
-        *ngIf="tengoTriviaYOpciones"
-        [pregunta]="preguntaActual._leyenda"></app-pregunta>
-      <app-opciones
-        *ngIf="tengoTriviaYOpciones"
-        [pregunta]="preguntaActual"></app-opciones>
-    </div>
-  </div>
-</ng-template>
- -->

@@ -1,15 +1,18 @@
 <div
   class="homeBtns wave"
   [routerLink]="route">
-  <i class="bi bi-plus">
+  <p class="button-desc">
+    <fa-icon [icon]="icon"></fa-icon>
+  </p>
+  <p class="button-desc ml-3">
     <span
       *ngFor="let letra of textArr; let i = index"
-      [style]="{ '--item': i }">
+      [style]="{ '--item': i + 1 }">
       <span *ngIf="textArr[i] != ' '; else espacio">{{ letra }}</span>
 
       <ng-template #espacio>
-        <span class="ml-2"></span>
+        <span class="ml-3"></span>
       </ng-template>
     </span>
-  </i>
+  </p>
 </div>
