@@ -9,7 +9,7 @@
       <div class="d-flex align-items-center">
         <button
           *ngIf="inicioPartida"
-          class="btn btn_iniciar_partida mt-5 mb-5"
+          class="btn btn_iniciar_partida mt-5"
           [disabled]="!habilitarBtnPregunta"
           style="font-size: 2rem"
           (click)="mostrarSiguientePreg()">
@@ -21,6 +21,21 @@
 
   <ng-container *ngIf="this.resultados$ | async as resultados">
     <!-- <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario"></div> -->
+    <div style="visibility: hidden;">
+      <div *ngIf="!finDePartida"
+        class="container d-flex justify-content-end">
+        <div class="d-flex align-items-center">
+          <button
+            *ngIf="inicioPartida"
+            class="btn btn_iniciar_partida mt-5"
+            [disabled]="!habilitarBtnPregunta"
+            style="font-size: 2rem"
+            (click)="mostrarSiguientePreg()">
+            Mostrar siguiente pregunta
+          </button>
+        </div>
+      </div>
+    </div>
     <div *ngIf="resultados.length > 0 && !finDePartida; else mostrarPregunta"
       class="bg row d-flex justify-content-center"
       [@onLoadAnimation]>
@@ -39,10 +54,10 @@
         </ng-template>
       <!-- </ng-template> -->
     </div>
-    
+
     <ng-template #mostrarPregunta>
       <!-- <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario"></div> -->
-      
+
       <div *ngIf="finDePartida else pregunta">
         <!-- <ng-template #esUsuario> -->
           <app-comprobacion-opciones
@@ -52,7 +67,7 @@
             [tipoDePregunta]="
             preguntaActual.tipoDePregunta">
           </app-comprobacion-opciones>
-    
+
           <ng-template #templateDespuesDelay>
             <app-podio *ngIf="resultados.length > 0" [resultados]="resultados"></app-podio>
           </ng-template>
@@ -70,10 +85,10 @@
             <app-opciones
               [pregunta]="preguntaActual"
               (opcSeleccionadasEmit)="obtenerOpcSelectDeChild($event)"></app-opciones>
-            <div class="d-flex justify-content-center mt-4">
+            <div class="d-flex justify-content-center">
               <div class="d-flex align-items-center">
                 <button
-                  class="btn btn_iniciar_partida mt-4 p-3"
+                  class="btn btn_iniciar_partida"
                   (click)="responder()"
                   style="font-size: 2rem"
                   [disabled]="!opcionesSeleccionadas || yaRespondiste">

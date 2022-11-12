@@ -61,4 +61,6 @@ export class ComprobacionOpcionesComponent implements OnInit, OnDestroy {
     this.unsubscribe$.next(true);
     this.unsubscribe$.unsubscribe();
   }
+
+
 }

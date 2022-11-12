@@ -1,34 +1,76 @@
+
 <div
   class="container"
-  *esHost="{idPartida,renderContentUser: true};sino esUsuario"></div>
+  *esHost="{idPartida,renderContentUser: true};sino esUsuario">
+</div>
 <ng-template #esUsuario>
-  <div
-    class="container"
-    style="background-color: white">
+
+<div class="bg">
+  <!-- Si tuvo errores -->
+  <div *ngIf="tuvisteErrores; else todoCorrecto">
     <div
-      *ngIf="tuvisteErrores; else todoCorrecto"
-      class="container">
-      <h2>TUVISTE ERRORES</h2>
-      <img
-        src="../../../../assets/svgs/icono-respuesta-incorrecta.svg"
-        alt="" />
-      <h3>Opcs Correctas para esta pregunta:</h3>
-      <pre>{{ opcionesCorrectas | json }}</pre>
-      <h3>Opcs selec para esta pregunta:</h3>
-      <pre>{{ opcionesRespondidas | json }}</pre>
+      class="d-flex justify-content-center align-items-center flex-column my-3">
+      <div class="my-2">
+        <h2 style="color: white">Oops</h2>
+      </div>
+      <div class="my-2">
+        <img
+          src="../../../../assets/svgs/icono-respuesta-incorrecta.svg"
+          alt="" />
+      </div>
     </div>
-    <ng-template #todoCorrecto>
-      <div class="container">
-        <h2>TUVISTE TODO BIEN PA</h2>
+  <div class="row d-flex justify-content-center align-items-center text-center my-3">
+    <div class="my-2">
+      <h2 style="color: white;">La opcion correcta era</h2>
+    </div>
+    <div class="col-md-4 __eraCorrecta" *ngFor="let opc of opcionesCorrectas">
+      <div class="card my-3 p-3">
+        <div class="card-body">
+          <h4>{{ opc._descripcion }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center align-items-center text-center my-3">
+    <div class="my-2">
+      <h2 style="color: white;">Has seleccionado</h2>
+    </div>
+    <div class="col-md-4 __respondidas" *ngFor="let opc of opcionesRespondidas">
+      <div class="card my-3 p-3">
+        <div class="card-body">
+          <h4>{{ opc._descripcion }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+    <!-- Si respondio correctamente -->
+  <ng-template #todoCorrecto>
+    <div
+      class="d-flex justify-content-center align-items-center flex-column my-3">
+      <div class="my-2">
+        <h2 style="color: white">¡Bien hecho!</h2>
+      </div>
+      <div class="my-2">
         <img
           src="../../../../assets/svgs/icono-respuesta-correcta.svg"
           alt="" />
-        <h3>Opcs Correctas para esta pregunta:</h3>
-        <pre>{{ opcionesCorrectas | json }}</pre>
-        <h3>Opcs selec para esta pregunta:</h3>
-        <pre>{{ opcionesRespondidas | json }}</pre>
       </div>
-    </ng-template>
-    >
-  </div>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center text-center my-3">
+      <div class="my-2">
+        <h2 style="color: white;">Has seleccionado</h2>
+      </div>
+      <div class="col-md-4 __respondidas" *ngFor="let opc of opcionesRespondidas; let i=index">
+        <div class="card my-3 p-3" >
+          <div class="card-body">
+            <h4>{{ opc._descripcion }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+
+</div>
 </ng-template>

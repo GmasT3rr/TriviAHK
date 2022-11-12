@@ -7,7 +7,6 @@ import { LobbyRoutingModule } from './lobby-routing.module';
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { PartidaNavbarComponent } from './components/partida-navbar/partida-navbar.component';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
-import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
 import { PodioComponent } from './podio/podio.component';
 import { LobbyComponent } from './lobby/main/lobby.component';
 import { PartidaComponent } from './components/partida/partida.component';
@@ -25,7 +24,6 @@ import { ComprobacionOpcionesComponent } from './components/comprobacion-opcione
     SingleChoiceComponent,
     PartidaNavbarComponent,
     MultipleChoiceComponent,
-    TodasLasRutasComponent,
     PodioComponent,
     LobbyComponent,
     PartidaComponent,
