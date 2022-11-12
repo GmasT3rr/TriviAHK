@@ -7,7 +7,6 @@ import { BehaviorSubject, catchError, of, tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class PartidasService {
-
   puedeResponder = new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient) {}
@@ -64,6 +63,20 @@ export class PartidasService {
     const res = this.http.put(
       `${env.dev.serverUrl}/partida/actualizarTiempo/${idPartida}`,
       { segundosEntrePreguntas }
+    );
+    return res.pipe(
+      tap(res => {
+        of(res);
+      }),
+      catchError(err => {
+        return throwError(() => err);
+      })
+    );
+  }
+
+  obtenerHistorial() {
+    const res = this.http.get(
+      `${env.dev.serverUrl}/partida/obtenerHistorialPartidas/usuario`
     );
     return res.pipe(
       tap(res => {

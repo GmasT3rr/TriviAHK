@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faGamepad } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { Partida } from 'app/trivias/interfaces/Partida.interface';
 import { PartidasService } from 'app/trivias/services/partidas.service';
 @Component({
   selector: 'app-mis-partidas',
@@ -12,7 +13,8 @@ export class MisPartidasComponent implements OnInit {
   faGamepad = faGamepad;
   partidaActual: any;
   sinPartidas = true;
-
+  tenesPartidasJugadas!: boolean;
+  historialPartidas: Partida[] = [];
   ngOnInit(): void {
     // this._partidasService.getPartidas().subscribe((res: any) => {
     //   console.log(res.body[0]);
@@ -38,6 +40,17 @@ export class MisPartidasComponent implements OnInit {
         // this.triviaNombre = res.body[0]._trivia._nombre;
         // this.triviaDesc = res.body[0]._trivia._descripcion;
         this.sinPartidas = false;
+        return;
+      }
+    });
+
+    this._partidasService.obtenerHistorial().subscribe({
+      next: (res: any) => {
+        if (res.body == 'El usuario no tiene partidas jugadas') {
+          return (this.tenesPartidasJugadas = false);
+        }
+        this.tenesPartidasJugadas = true;
+        this.historialPartidas = res.body;
         return;
       }
     });
