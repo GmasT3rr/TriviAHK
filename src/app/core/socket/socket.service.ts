@@ -35,7 +35,8 @@ export class SocketService {
   constructor(private http: HttpClient) {}
 
   conectar() {
-    this._socket = io('http://localhost:3000/juego');
+    // this._socket = io('http://localhost:3000/juego');
+    this._socket = io(`${env.socket.serverUrl}`);
   }
 
   public iniciarListeners() {
