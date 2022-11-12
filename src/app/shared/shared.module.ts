@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
 import { OcultarDespuesDeDirective } from './directives/ocultar-despues-de.directive';
+import { TipoDePreguntaPipe } from './pipes/tipo-de-pregunta.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { OcultarDespuesDeDirective } from './directives/ocultar-despues-de.direc
     EsHostDirective,
     ModalBorrarTriviaComponent,
     FooterComponent,
-    OcultarDespuesDeDirective
+    OcultarDespuesDeDirective,
+    TipoDePreguntaPipe
   ],
 
   imports: [
@@ -36,7 +38,8 @@ import { OcultarDespuesDeDirective } from './directives/ocultar-despues-de.direc
     EsHostDirective,
     OcultarDespuesDeDirective,
     ModalBorrarTriviaComponent,
-    FooterComponent
+    FooterComponent,
+    TipoDePreguntaPipe
   ]
 })
 export class SharedModule {}

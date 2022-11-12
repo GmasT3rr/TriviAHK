@@ -21,7 +21,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MisTriviasComponent,
     EditarTriviaComponent,
     InfoTriviaComponent,
-    ButtonHomeComponent
+    ButtonHomeComponent,
+
   ],
   imports: [
     CommonModule,

@@ -100,8 +100,8 @@
                     value="">
                     Seleccione el tipo de pregunta
                   </option>
-                  <option *ngFor="let tipo of tipoDePregunta">
-                    {{ tipo }}
+                  <option [value]="tipo" *ngFor="let tipo of tipoDePregunta ">
+                    {{ tipo | tipoDePregunta}}
                   </option>
                 </select>
               </div>
@@ -247,26 +247,29 @@
 <!-- flotante agregar pregunta -->
 
 <div
-  class="container"
-  [@onLoadAnimation]
-  *ngIf="preguntas().controls.length >= 2">
-  <div
-    class="btn float__addpregunta"
-    (click)="toggleFlip()">
-    <fa-icon
-      class="__fa-icon"
-      [icon]="faClipboardQuestion">
-    </fa-icon>
-    <span
-      type="button"
-      [@flipRigthAnimation]="flip.status">
-      <i class="ml-2 bi bi-caret-right-fill"></i>
-    </span>
-    <span
-      class="text-center"
-      [hidden]="flip.status === 'inactive'">
-      <span> | </span>
-      <span (click)="agregarPregunta()"> Agregar Pregunta </span>
-    </span>
-  </div>
+class="container"
+[@onLoadAnimation]
+*ngIf="preguntas().controls.length >= 1">
+<div
+  class="btn float__addpregunta"
+  (click)="toggleFlip()">
+  <fa-icon
+    class="__fa-icon"
+    [icon]="faClipboardQuestion">
+  </fa-icon>
+  <span class="ml-1"
+    type="button"
+    [@flipRigthAnimation]="flip.status">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+      <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+    </svg>
+
+  </span>
+  <span
+    class="text-center"
+    [hidden]="flip.status === 'inactive'">
+    <span> | </span>
+    <span (click)="agregarPregunta()"> Agregar Pregunta </span>
+  </span>
+</div>
 </div>

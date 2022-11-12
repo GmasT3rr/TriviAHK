@@ -24,7 +24,9 @@ export class CrearTriviaComponent implements OnInit {
     private _triviasService: TriviasService
   ) {}
   faClipboardQuestion=faClipboardQuestion
-  tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
+   tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
+  //tipoDePregunta = ['Votación', 'Multiple choice', 'Single choice'];
+
 
   triviaForm!: FormGroup;
 
