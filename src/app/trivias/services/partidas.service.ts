@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
-import { catchError, of, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, of, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PartidasService {
+  puedeResponder = new BehaviorSubject<boolean>(true);
+
   constructor(private http: HttpClient) {}
 
   crearPartida(idTrivia: number, segundosEntrePreguntas: number) {
@@ -61,6 +63,20 @@ export class PartidasService {
     const res = this.http.put(
       `${env.dev.serverUrl}/partida/actualizarTiempo/${idPartida}`,
       { segundosEntrePreguntas }
+    );
+    return res.pipe(
+      tap(res => {
+        of(res);
+      }),
+      catchError(err => {
+        return throwError(() => err);
+      })
+    );
+  }
+
+  obtenerHistorial() {
+    const res = this.http.get(
+      `${env.dev.serverUrl}/partida/obtenerHistorialPartidas/usuario`
     );
     return res.pipe(
       tap(res => {

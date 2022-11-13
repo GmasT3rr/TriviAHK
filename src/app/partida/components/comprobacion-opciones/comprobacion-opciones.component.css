@@ -1,0 +1,17 @@
+.bg {
+  /* background: url("../../../assets/login-bg.jpeg") !important; */
+  background-color: #4a51c9 !important;
+  /* Center the image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+}
+.__respondidas .card{
+  background-color: #7161EF;
+}
+
+.__eraCorrecta .card{
+  background-color: #FD999B;
+}

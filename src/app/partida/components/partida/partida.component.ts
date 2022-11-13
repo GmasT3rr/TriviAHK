@@ -13,6 +13,7 @@ import {
   Pregunta,
   Trivia
 } from 'app/trivias/interfaces/Trivias.interface';
+import { PartidasService } from 'app/trivias/services/partidas.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -27,8 +28,8 @@ export class PartidaComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private _socketsService: SocketService,
-    private _userService: UserService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private readonly _partidaService: PartidasService
   ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as { trivia: Trivia };
@@ -47,6 +48,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   tiempoFinalizo: boolean = false;
   tiempoPreguntasSeg: any;
   opcionesSeleccionadas: Opciones[] = [];
+  opcionesRespondidas: Opciones[] = [];
   opcionesCorrectas: any[] = [];
   resultados$ = this._socketsService.resultados$;
   yaRespondiste = false;
@@ -133,5 +135,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
 
   responder() {
     this._socketsService.responder(this.opcionesSeleccionadas);
+    this.opcionesRespondidas = this.opcionesSeleccionadas;
+    this._partidaService.puedeResponder.next(false);
   }
 }

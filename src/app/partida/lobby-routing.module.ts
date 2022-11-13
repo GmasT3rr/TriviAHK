@@ -8,7 +8,6 @@ import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.compo
 import { PodioComponent } from './podio/podio.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
-import { TodasLasRutasComponent } from './todas-las-rutas/todas-las-rutas.component';
 
 const routes: Routes = [
   // {
@@ -16,11 +15,6 @@ const routes: Routes = [
   //   component: LobbyComponent,
   //   canActivate: [LobbyGuard]
   // },
-
-  {
-    path: 'todas-las-rutas',
-    component: TodasLasRutasComponent
-  },
   {
     path: 'ranking',
     component: RankingComponent

@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+.pointer {
+  cursor: pointer;
+}
+
 @import '~bootstrap-icons/font/bootstrap-icons.css';
 html {
   overflow: auto;
@@ -24,3 +28,10 @@ hr {
   height: 10px;
   opacity: 1;
 }
+/* Subtitulos generales */
+.subtitulo h2 {
+  margin-top: 2.8rem;
+  font-weight: 700;
+  font-size: 3rem;
+}
+

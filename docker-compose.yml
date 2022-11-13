@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  front-angular:
+    container_name: triviasFrontAngular
+    build: .
+    restart: always
+    ports:
+      - '4200:80'

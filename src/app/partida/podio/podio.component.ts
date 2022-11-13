@@ -22,21 +22,21 @@ export class PodioComponent implements OnInit {
     // console.log(this.partidaResultadosFinales);
     console.log(this.resultados);
     this.ordenarPuntaje();
-  }
-
-  ordenarPuntaje() {
-    this.resultados = this.resultados.sort(
-      (a: any, b: any) => {
-        return b.puntajeTotal - a.puntajeTotal;
-      }
-    );
-    // this.ordenarPuntaje();
-  }
-
-  ngOnDestroy(): void {
+    //Se paso acá porque el ngOnDestroy no se ejecuta si
+    //haces un refresh, solamente cuando seguis el workflow de angular y el refresh
+    //no es parte del mismo. De esta manera nos aseguramos que se cierra la partida
     this._socketService.finalizarPartida();
     this._socketService.desconectar();
   }
+
+  ordenarPuntaje() {
+    this.resultados = this.resultados.sort((a: any, b: any) => {
+      return b.puntajeTotal - a.puntajeTotal;
+    });
+    // this.ordenarPuntaje();
+  }
+
+  ngOnDestroy(): void {}
 
   // ordenarPuntaje() {
   //   this.partidaResultadosFinales = this.partidaResultadosFinales.sort(

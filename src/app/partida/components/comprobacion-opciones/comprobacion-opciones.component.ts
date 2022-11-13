@@ -16,7 +16,7 @@ export class ComprobacionOpcionesComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  @Input('opcionesSeleccionadas') opcionesSeleccionadas!: Opciones[] | null;
+  @Input('opcionesRespondidas') opcionesRespondidas!: Opciones[] | null;
   @Input('opcionesCorrectas') opcionesCorrectas!: OpcionesCorrectas[];
   @Input('tipoDePregunta') tipoDePregunta!: string;
   unsubscribe$ = new Subject<any>();
@@ -34,14 +34,14 @@ export class ComprobacionOpcionesComponent implements OnInit, OnDestroy {
     //     console.log('opciones rec', this.opcionesSeleccionadas);
     //   });
 
-    if (this.opcionesSeleccionadas) {
+    if (this.opcionesRespondidas) {
       if (this.tipoDePregunta != 'votacion') {
         let cantOpcCorrectasAcertadas = 0;
         let cantOpcCorrectasDePreg = 0;
         for (const opcCorrecta of this.opcionesCorrectas) {
           const idOpcCorrecta = opcCorrecta.id;
           cantOpcCorrectasDePreg++;
-          for (const opcSelec of this.opcionesSeleccionadas) {
+          for (const opcSelec of this.opcionesRespondidas) {
             const idOpcSelec = opcSelec.id;
             if (idOpcCorrecta == idOpcSelec) {
               cantOpcCorrectasAcertadas++;
@@ -61,4 +61,6 @@ export class ComprobacionOpcionesComponent implements OnInit, OnDestroy {
     this.unsubscribe$.next(true);
     this.unsubscribe$.unsubscribe();
   }
+
+
 }

@@ -6,6 +6,8 @@ import { flipAnimation } from 'app/shared/animations/flip.component';
 import { Trivia } from 'app/trivias/interfaces/Trivias.interface';
 import { SocketService } from 'app/core/socket/socket.service';
 import { TriviasService } from 'app/trivias/services/trivias.service';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-mis-trivias',
@@ -21,9 +23,13 @@ export class MisTriviasComponent implements OnInit {
   public rotateOrdenar = 'inactive';
   public filtrarPor: string = '';
 
+  faArrowRight = faArrowRight;
+  faArrowLeft = faArrowLeft;
+
   usuarioID: number = 0;
   partidas: any;
   modalPorAbrir!: string;
+  idTriviaModal!: number;
 
   constructor(
     public _socketService: SocketService,
@@ -99,5 +105,9 @@ export class MisTriviasComponent implements OnInit {
   }
   irVerTrivia(id: any) {
     this.router.navigateByUrl(`/main/info-trivia/${id}`);
+  }
+  asignarIdTriviaParaModal(idTrivia: number) {
+    this.idTriviaModal = idTrivia;
+    this.modalPorAbrir = 'iniciarPartida';
   }
 }

@@ -19,7 +19,7 @@ export class EditarTriviaComponent implements OnInit {
   public triviaForm!: FormGroup;
   public mostrarPreguntas = false;
   faClipboardQuestion = faClipboardQuestion;
-
+  valorTipoDePreguntaInicial:any[] = []
   tipoDePregunta = ['VOTACION', 'MULTIPLE_CHOICE', 'SINGLE_CHOICE'];
 
   constructor(
@@ -72,6 +72,46 @@ export class EditarTriviaComponent implements OnInit {
       descripcion: this.trivia._descripcion
     });
     this.trivia._preguntas.forEach((e: any, index: any) => {
+      // const arrayOpciones = e._opciones;
+
+      // switch (e.tipoDePregunta) {
+      //   case 'votacion':
+      //     this.preguntas().push(
+      //       this.preguntasDeLaTrivia(e._leyenda, 'Votación', false)
+      //     );
+      //     arrayOpciones.forEach((opc: any) => {
+      //       this.opciones(index).push(
+      //         this.opcionesDeLaTrivia(opc._descripcion, opc._esCorrecta)
+      //       );
+      //     });
+      //     break;
+      //   case 'multiple_choice':
+      //     this.preguntas().push(
+      //       this.preguntasDeLaTrivia(e._leyenda, 'Multiple choice', false)
+      //     );
+      //     arrayOpciones.forEach((opc: any) => {
+      //       this.opciones(index).push(
+      //         this.opcionesDeLaTrivia(opc._descripcion, opc._esCorrecta)
+      //       );
+      //     });
+      //     break;
+      //   case 'single_choice':
+      //     this.preguntas().push(
+      //       this.preguntasDeLaTrivia(e._leyenda, 'Single choice', false)
+      //     );
+      //     arrayOpciones.forEach((opc: any) => {
+      //       this.opciones(index).push(
+      //         this.opcionesDeLaTrivia(opc._descripcion, opc._esCorrecta)
+      //       );
+      //     });
+      //     break;
+      //   default:
+      //     break;
+      // }
+
+      this.valorTipoDePreguntaInicial.push(
+        e.tipoDePregunta
+      );
       this.preguntas().push(
         this.preguntasDeLaTrivia(e._leyenda, e.tipoDePregunta, false)
       );

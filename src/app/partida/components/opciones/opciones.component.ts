@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -11,14 +11,19 @@ import {
   Pregunta,
   TipoDePregunta
 } from 'app/trivias/interfaces/Trivias.interface';
+import { PartidasService } from 'app/trivias/services/partidas.service';
+import { pipe, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-opciones',
   templateUrl: './opciones.component.html',
   styleUrls: ['./opciones.component.css']
 })
-export class OpcionesComponent implements OnInit {
-  constructor(private _socketsService: SocketService) {}
+export class OpcionesComponent implements OnInit, OnDestroy {
+  constructor(
+      private _socketsService: SocketService,
+      private readonly _partidaService: PartidasService) {}
+
   // form!: FormGroup;
   // formArray!: FormArray;
   opciones: any[] = [];
@@ -27,9 +32,20 @@ export class OpcionesComponent implements OnInit {
   opcionesSeleccionadas: Opciones[] = [];
   @Output() opcSeleccionadasEmit = new EventEmitter<Opciones[]>();
   errorOpcSelec = false;
+  puedeResponder = true;
+  unsubscribe$ = new Subject<any>();
 
   ngOnInit(): void {
+    this._partidaService.puedeResponder
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(puede => this.puedeResponder = puede);
     this.limpiarOpciones();
+  }
+
+  ngOnDestroy(): void {
+    this._partidaService.puedeResponder.next(true);
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.unsubscribe();
   }
 
   limpiarOpciones() {
@@ -42,61 +58,63 @@ export class OpcionesComponent implements OnInit {
   }
 
   selectOpc(opc: Opciones) {
-    switch (this.preguntaActual.tipoDePregunta) {
-      case 'multiple_choice':
-        if (this.opcionesSeleccionadas.length >= 2) {
-          this.errorOpcSelec = true;
-          // alert('llegaste al limite pa');
-        }
-
-        if (
-          opc._fueSeleccionada == false &&
-          this.opcionesSeleccionadas.length < 2
-        ) {
-          this.addOpcion(opc);
-          // console.log('sume');
-          return;
-        }
-
-        break;
-      case 'single_choice':
-        if (this.opcionesSeleccionadas.length >= 1) {
-          this.errorOpcSelec = true;
-          // alert('llegaste al limite pa');
-        }
-        if (
-          opc._fueSeleccionada == false &&
-          this.opcionesSeleccionadas.length < 1
-        ) {
-          this.addOpcion(opc);
-          // console.log('sume');
-          return;
-        }
-
-        break;
-      case 'votacion':
-        // console.log(this.opcionesSeleccionadas.length);
-        // console.log(opc._fueSeleccionada);
-        if (this.opcionesSeleccionadas.length >= 1) {
-          this.errorOpcSelec = true;
-          // alert('llegaste al limite pa');
-        }
-        if (
-          opc._fueSeleccionada == false &&
-          this.opcionesSeleccionadas.length < 1
-        ) {
-          this.addOpcion(opc);
-          // console.log('sume');
-          return;
-        }
-
-        break;
-    }
-
-    if (opc._fueSeleccionada == true) {
-      // console.log('remove');
-      this.removeOpcion(opc);
-      return;
+    if(this.puedeResponder) {      
+      switch (this.preguntaActual.tipoDePregunta) {
+        case 'multiple_choice':
+          if (this.opcionesSeleccionadas.length >= 2) {
+            this.errorOpcSelec = true;
+            // alert('llegaste al limite pa');
+          }
+  
+          if (
+            opc._fueSeleccionada == false &&
+            this.opcionesSeleccionadas.length < this.preguntaActual._opciones.length - 1
+          ) {
+            this.addOpcion(opc);
+            // console.log('sume');
+            return;
+          }
+  
+          break;
+        case 'single_choice':
+          if (this.opcionesSeleccionadas.length >= 1) {
+            this.errorOpcSelec = true;
+            // alert('llegaste al limite pa');
+          }
+          if (
+            opc._fueSeleccionada == false &&
+            this.opcionesSeleccionadas.length < 1
+          ) {
+            this.addOpcion(opc);
+            // console.log('sume');
+            return;
+          }
+  
+          break;
+        case 'votacion':
+          // console.log(this.opcionesSeleccionadas.length);
+          // console.log(opc._fueSeleccionada);
+          if (this.opcionesSeleccionadas.length >= 1) {
+            this.errorOpcSelec = true;
+            // alert('llegaste al limite pa');
+          }
+          if (
+            opc._fueSeleccionada == false &&
+            this.opcionesSeleccionadas.length < 1
+          ) {
+            this.addOpcion(opc);
+            // console.log('sume');
+            return;
+          }
+  
+          break;
+      }
+  
+      if (opc._fueSeleccionada == true) {
+        // console.log('remove');
+        this.removeOpcion(opc);
+        return;
+      }
     }
     // if (opc._fueSeleccionada == false) {
     //   this.addOpcion(opc);
