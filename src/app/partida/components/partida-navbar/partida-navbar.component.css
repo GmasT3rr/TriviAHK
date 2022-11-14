@@ -62,9 +62,11 @@
     display: block;
     margin-top: 0 !important;
   }
-  .__logo{
-    display: none !important;
-  }
+  .icon-exit{
+    width: 32px;
+    height: 32px;
+   
+}
 
   .topnav-centered a {
     position: relative;
@@ -73,3 +75,19 @@
     transform: none;
   }
 }
+
+@media screen and (max-width: 769px) {
+
+  .icon-exit{
+    width: 32px;
+    height: 32px;
+   
+}
+.time-question{
+  font-size: 16px;
+  text-align: center;
+}
+
+  
+}
+
