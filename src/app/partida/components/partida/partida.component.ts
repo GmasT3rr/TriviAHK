@@ -90,6 +90,8 @@ export class PartidaComponent implements OnInit, OnDestroy {
         // console.log('preg[numPreg]',this.preguntas[pregunta.numeroDePregunta]);
 
         this._socketsService.resultados$.next([]);
+        // TODO: si no respondes luego de haber respondido en la pregunta anterior, te salta como si hubieses respondido la anterior
+        this.opcionesRespondidas = [];
         this.posicionPregSockets = pregunta.numeroDePregunta + 1;
         // this.posicionPregSockets = pregunta.numeroDePregunta ;
 
@@ -134,7 +136,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   responder() {
-    this._socketsService.responder(this.opcionesSeleccionadas);
+    this._socketsService.responder(this.opcionesSeleccionadas, this.preguntaActual.id);
     this.opcionesRespondidas = this.opcionesSeleccionadas;
     this._partidaService.puedeResponder.next(false);
   }

@@ -148,7 +148,7 @@ export class SocketService {
     this.socket!.emit('partida:siguiente-pregunta');
   }
 
-  public responder(opcSeleccionadas: Opciones[]) {
+  public responder(opcSeleccionadas: Opciones[], preguntaId: number) {
     // const opciones = {
     //   opciones: [
     //     {
@@ -166,7 +166,7 @@ export class SocketService {
     const opciones = opcsIds;
     // console.log(opciones);
 
-    this.socket!.emit('partida:responder', opciones);
+    this.socket!.emit('partida:responder', {opciones, preguntaId});
     // const respuestas = {
     //   opcion: [1]
     // }
