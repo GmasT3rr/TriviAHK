@@ -88,16 +88,17 @@
             *esHost="{idPartida,renderContentUser: true}; sino esUsuario"></div>
           <ng-template #esUsuario>
             <app-opciones
+            style="margin-top: -18rem;"
               [pregunta]="preguntaActual"
               (opcSeleccionadasEmit)="
                 obtenerOpcSelectDeChild($event)
               "></app-opciones>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center __btn_responder" style="margin-top: -50rem;">
               <div class="d-flex align-items-center">
                 <button
                   class="btn btn_iniciar_partida"
                   (click)="responder()"
-                  style="font-size: 2rem"
+                  style="font-size: 2rem;"
                   [disabled]="!opcionesSeleccionadas || yaRespondiste">
                   Responder
                 </button>
