@@ -1,63 +1,96 @@
 <div
   class="container"
-  *esHost="{idPartida,renderContentUser: true};sino esUsuario">
-</div>
+  *esHost="{idPartida,renderContentUser: true};sino esUsuario"></div>
 <ng-template #esUsuario>
-
-    <div  *ngIf="tuvisteErrores; else todoCorrecto" class="container d-flex align-content-between justify-content-center flex-wrap container-respuesta mt-2">
-      <div  class="row w-100">
-          <div class="col-12 my-5 detalle-respuesta d-flex justify-content-center align-items-center ">
-              <h2 class="tittle-points ">Opps</h2>
-          </div>
-          <div class="col d-flex justify-content-center w-100">
-              <img class="icono-respuesta-incorrecta" src="../../../../assets/svgs/icono-respuesta-incorrecta.svg" alt="respuesta-incorrecta" height="196" width="196"/>
-          </div>
-       
+  <div *ngIf="tipoDePregunta != 'votacion'; else esVotacion">
+    <div
+      *ngIf="tuvisteErrores; else todoCorrecto"
+      class="container d-flex align-content-between justify-content-center flex-wrap container-respuesta mt-2">
+      <div class="row w-100">
+        <div
+          class="col-12 my-5 detalle-respuesta d-flex justify-content-center align-items-center">
+          <h2 class="tittle-points">Opps</h2>
+        </div>
+        <div class="col d-flex justify-content-center w-100">
+          <img
+            class="icono-respuesta-incorrecta"
+            src="../../../../assets/svgs/icono-respuesta-incorrecta.svg"
+            alt="respuesta-incorrecta"
+            height="196"
+            width="196" />
+        </div>
       </div>
       <div class="row d-flex justify-content-center">
-          <div class="d-flex flex-column">
-              <div class="p-2 my-3"><h2>Has seleccionado</h2></div>
-              <div class="card my-3  __respondidas" *ngFor="let opc of opcionesRespondidas">
-                <div class="card-body">
-                 <h4>{{ opc._descripcion }}</h4>
-                   
-                </div>
-               
-              </div>
-              
-              <div class="p-2"><h2>La opcion correcta era</h2></div>
-              <div class="card my-3 p-3 __eraCorrecta" *ngFor="let opc of opcionesCorrectas">
-                <div class="card-body">
-                    <h4>{{ opc._descripcion }}</h4>
-                </div>
-                  
-              </div>
+        <div class="d-flex flex-column">
+          <div class="p-2 my-3"><h2>Has seleccionado</h2></div>
+          <div
+            class="card my-3 __respondidas"
+            *ngFor="let opc of opcionesRespondidas">
+            <div class="card-body">
+              <h4>{{ opc._descripcion }}</h4>
+            </div>
           </div>
-      </div>
-    </div>
-      <ng-template #todoCorrecto>
-        <div class="container d-flex align-content-between justify-content-center flex-wrap container-respuesta mt-2">
-          <div  class="row w-100">
-              <div class="col-12 my-5 detalle-respuesta d-flex justify-content-center align-items-center ">
-                  <h2 class="tittle-points ">¡Bien Hecho!</h2>
-              </div>
-              <div class="col d-flex justify-content-center w-100">
-                  <img class="icono-respuesta-correcta" src="../../../../assets/svgs/icono-respuesta-correcta.svg" alt="respuesta-correcta" height="196" width="196"/>
-              </div>
-           
-          </div>
-          
-          <div class="row d-flex justify-content-center">
-              <div class="d-flex flex-column">
-                  <div class="p-2"><h2>Has seleccionado</h2></div>
-                  <div class="card my-3 p-3 __eraCorrecta"  *ngFor="let opc of opcionesRespondidas; let i=index">
-                    <div class="card-body">
-                        <h4>{{ opc._descripcion }}</h4>       
-                    </div>
-                  </div>
-              </div>
+
+          <div class="p-2"><h2>La opcion correcta era</h2></div>
+          <div
+            class="card my-3 p-3 __eraCorrecta"
+            *ngFor="let opc of opcionesCorrectas">
+            <div class="card-body">
+              <h4>{{ opc._descripcion }}</h4>
+            </div>
           </div>
         </div>
-      </ng-template>
-  
+      </div>
+    </div>
+    <ng-template #todoCorrecto>
+      <div
+        class="container d-flex align-content-between justify-content-center flex-wrap container-respuesta mt-2">
+        <div class="row w-100">
+          <div
+            class="col-12 my-5 detalle-respuesta d-flex justify-content-center align-items-center">
+            <h2 class="tittle-points">¡Bien Hecho!</h2>
+          </div>
+          <div class="col d-flex justify-content-center w-100">
+            <img
+              class="icono-respuesta-correcta"
+              src="../../../../assets/svgs/icono-respuesta-correcta.svg"
+              alt="respuesta-correcta"
+              height="196"
+              width="196" />
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+          <div class="d-flex flex-column">
+            <div class="p-2"><h2>Has seleccionado</h2></div>
+            <div
+              class="card my-3 p-3 __eraCorrecta"
+              *ngFor="let opc of opcionesRespondidas; let i = index">
+              <div class="card-body">
+                <h4>{{ opc._descripcion }}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <ng-template #esVotacion>
+    <div
+      *ngIf="!opcYCant || opcYCant.length == 0; else opcVotadas"
+      class="container"
+      style="background-color: white">
+      <p>Upa! No votaron nada</p>
+    </div>
+    <ng-template #opcVotadas>
+      <div
+        *ngFor="let opc of opcYCant"
+        class="container"
+        style="background-color: white">
+        <p>Id opc: {{ opc.id }}</p>
+        <p>Descripcion opc: {{ opc.descripcion }}</p>
+        <p>Cantidad que la voto: {{ opc.cantidad }}</p>
+      </div>
+    </ng-template>
+  </ng-template>
 </ng-template>

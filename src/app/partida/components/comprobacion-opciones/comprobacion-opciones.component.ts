@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SocketService } from 'app/core/socket/socket.service';
 import { OpcionesCorrectas } from 'app/trivias/interfaces/Resultado.interface';
@@ -19,6 +26,11 @@ export class ComprobacionOpcionesComponent implements OnInit, OnDestroy {
   @Input('opcionesRespondidas') opcionesRespondidas!: Opciones[] | null;
   @Input('opcionesCorrectas') opcionesCorrectas!: OpcionesCorrectas[];
   @Input('tipoDePregunta') tipoDePregunta!: string;
+  @Input('opcYCant') opcYCant!: {
+    id: number | undefined;
+    descripcion: string | undefined;
+    cantidad: number;
+  }[];
   unsubscribe$ = new Subject<any>();
   tuvisteErrores = false;
   idPartida!: number;
@@ -33,6 +45,8 @@ export class ComprobacionOpcionesComponent implements OnInit, OnDestroy {
     //     console.log('opciones cor', opcionesCorrectas);
     //     console.log('opciones rec', this.opcionesSeleccionadas);
     //   });
+
+    console.log('opcYCant: ', this.opcYCant);
 
     if (this.opcionesRespondidas) {
       if (this.tipoDePregunta != 'votacion') {
@@ -61,6 +75,4 @@ export class ComprobacionOpcionesComponent implements OnInit, OnDestroy {
     this.unsubscribe$.next(true);
     this.unsubscribe$.unsubscribe();
   }
-
-
 }
