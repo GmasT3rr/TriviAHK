@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="d-flex row justify-content-center align-items-center">
+    <div class="col-lg-3">
+      <div
+        class="card my-2 p-2"
+        *ngFor="let opc of opcYCant; let i = index">
+        <span
+          ><h2>{{ opc?.descripcion }}</h2></span
+        >
+        <span
+          style="background-color: #fd999b"
+          [ngStyle]="{
+            width: calcularPorcentaje(opc?.cantidad),
+            height: '1.5rem'
+          }">
+        </span>
+        <span class="d-flex justify-content-between"
+          ><h4>Votos: {{ opc?.cantidad }}</h4>
+          <span class="align-self-center"
+            ><h4>{{ porcentajes[i] | slice: 0:4 }}%</h4></span
+          >
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

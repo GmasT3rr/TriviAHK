@@ -79,18 +79,12 @@
     <div
       *ngIf="!opcYCant || opcYCant.length == 0; else opcVotadas"
       class="container"
-      style="background-color: white">
-      <p>Upa! No votaron nada</p>
+      style="color: white">
+      <h1>Upa! No votaron nada</h1>
     </div>
     <ng-template #opcVotadas>
-      <div
-        *ngFor="let opc of opcYCant"
-        class="container"
-        style="background-color: white">
-        <p>Id opc: {{ opc.id }}</p>
-        <p>Descripcion opc: {{ opc.descripcion }}</p>
-        <p>Cantidad que la voto: {{ opc.cantidad }}</p>
-      </div>
+      <app-vote-bar [opcYCant]="opcYCant"></app-vote-bar>
+
     </ng-template>
   </ng-template>
 </ng-template>
