@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
 import { ButtonHomeComponent } from './components/button-home/button-home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LobbyModule } from 'app/partida/lobby.module';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    // LobbyModule
   ]
 })
 export class TriviasModule {}

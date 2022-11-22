@@ -52,6 +52,11 @@ export class PartidaComponent implements OnInit, OnDestroy {
   opcionesCorrectas: any[] = [];
   resultados$ = this._socketsService.resultados$;
   yaRespondiste = false;
+  opcYCant: {
+    id: number | undefined;
+    descripcion: string | undefined;
+    cantidad: number;
+  }[] = [];
 
   getIdPartida() {
     this.activatedRoute.paramMap.subscribe((x: any) => {
@@ -85,11 +90,14 @@ export class PartidaComponent implements OnInit, OnDestroy {
     this._socketsService.pregunta$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((pregunta: any) => {
+        this.opcYCant = [];
         // console.log('preguntas',pregunta);
         // console.log('numero preguntas',pregunta.numeroDePregunta);
         // console.log('preg[numPreg]',this.preguntas[pregunta.numeroDePregunta]);
 
         this._socketsService.resultados$.next([]);
+        // TODO: si no respondes luego de haber respondido en la pregunta anterior, te salta como si hubieses respondido la anterior
+        this.opcionesRespondidas = [];
         this.posicionPregSockets = pregunta.numeroDePregunta + 1;
         // this.posicionPregSockets = pregunta.numeroDePregunta ;
 
@@ -116,6 +124,32 @@ export class PartidaComponent implements OnInit, OnDestroy {
       .subscribe((respondiste: string) => {
         this.yaRespondiste = true;
       });
+
+    this._socketsService.opcMasSeleccionadaVot$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((opcSeleccionadas: { id: number; cantidad: number }[]) => {
+        // console.log('opcs', opcSeleccionadas);
+        this.opcYCant = [];
+        for (const opc of opcSeleccionadas) {
+          const pregunta = this.preguntaActual._opciones.find(
+            opcionPreg => opcionPreg.id == opc.id
+          );
+          this.opcYCant.push({
+            id: pregunta?.id,
+            descripcion: pregunta?._descripcion,
+            cantidad: opc.cantidad
+          });
+          // console.log(
+          //   'pregunta ',
+          //   this.preguntaActual._opciones.find(
+          //     opcionPreg => opcionPreg.id == opc.id
+          //   ),
+          //   'cant ',
+          //   opc.cantidad
+          // );
+        }
+        console.log('cant opc vot, ', this.opcYCant);
+      });
   }
 
   mostrarSiguientePreg() {
@@ -134,7 +168,10 @@ export class PartidaComponent implements OnInit, OnDestroy {
   }
 
   responder() {
-    this._socketsService.responder(this.opcionesSeleccionadas);
+    this._socketsService.responder(
+      this.opcionesSeleccionadas,
+      this.preguntaActual.id
+    );
     this.opcionesRespondidas = this.opcionesSeleccionadas;
     this._partidaService.puedeResponder.next(false);
   }

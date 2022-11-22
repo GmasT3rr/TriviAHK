@@ -2,9 +2,9 @@
   <app-partida-navbar
     (tiempoPreguntasSeg)="(this.tiempoPreguntasSeg)"></app-partida-navbar>
 
-
   <div *esHost="{idPartida,renderContentUser: false}">
-    <div *ngIf="!finDePartida"
+    <div
+      *ngIf="!finDePartida"
       class="container d-flex justify-content-end">
       <div class="d-flex align-items-center">
         <button
@@ -21,8 +21,9 @@
 
   <ng-container *ngIf="this.resultados$ | async as resultados">
     <!-- <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario"></div> -->
-    <div style="visibility: hidden;">
-      <div *ngIf="!finDePartida"
+    <div style="visibility: hidden">
+      <div
+        *ngIf="!finDePartida"
         class="container d-flex justify-content-end">
         <div class="d-flex align-items-center">
           <button
@@ -36,41 +37,44 @@
         </div>
       </div>
     </div>
-    <div *ngIf="resultados.length > 0 && !finDePartida; else mostrarPregunta"
+    <div
+      *ngIf="resultados.length > 0 && !finDePartida; else mostrarPregunta"
       class="bg row d-flex justify-content-center"
       [@onLoadAnimation]>
       <!-- <ng-template #esUsuario> -->
 
-          <app-comprobacion-opciones
-            *ocultarDespuesDe="5000; mostrar: templateDespuesDelay"
-            [opcionesRespondidas]="opcionesRespondidas"
-            [opcionesCorrectas]="opcionesCorrectas"
-            [tipoDePregunta]="
-            preguntaActual.tipoDePregunta">
-          </app-comprobacion-opciones>
+      <app-comprobacion-opciones
+        *ocultarDespuesDe="5000; mostrar: templateDespuesDelay"
+        [opcionesRespondidas]="opcionesRespondidas"
+        [opcionesCorrectas]="opcionesCorrectas"
+        [tipoDePregunta]="preguntaActual.tipoDePregunta"
+        [opcYCant]="opcYCant">
+      </app-comprobacion-opciones>
 
-        <ng-template #templateDespuesDelay>
-          <app-ranking [partidaResultadosPrevios]="resultados"></app-ranking>
-        </ng-template>
+      <ng-template #templateDespuesDelay>
+        <app-ranking [partidaResultadosPrevios]="resultados"></app-ranking>
+      </ng-template>
       <!-- </ng-template> -->
     </div>
 
     <ng-template #mostrarPregunta>
       <!-- <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario"></div> -->
 
-      <div *ngIf="finDePartida else pregunta">
+      <div *ngIf="finDePartida; else pregunta">
         <!-- <ng-template #esUsuario> -->
-          <app-comprobacion-opciones
-            *ocultarDespuesDe="5000; mostrar: templateDespuesDelay"
-            [opcionesRespondidas]="opcionesRespondidas"
-            [opcionesCorrectas]="opcionesCorrectas"
-            [tipoDePregunta]="
-            preguntaActual.tipoDePregunta">
-          </app-comprobacion-opciones>
+        <app-comprobacion-opciones
+          *ocultarDespuesDe="5000; mostrar: templateDespuesDelay"
+          [opcionesRespondidas]="opcionesRespondidas"
+          [opcionesCorrectas]="opcionesCorrectas"
+          [tipoDePregunta]="preguntaActual.tipoDePregunta"
+          [opcYCant]="opcYCant">
+        </app-comprobacion-opciones>
 
-          <ng-template #templateDespuesDelay>
-            <app-podio *ngIf="resultados.length > 0" [resultados]="resultados"></app-podio>
-          </ng-template>
+        <ng-template #templateDespuesDelay>
+          <app-podio
+            *ngIf="resultados.length > 0"
+            [resultados]="resultados"></app-podio>
+        </ng-template>
         <!-- </ng-template> -->
       </div>
 
@@ -80,17 +84,21 @@
           [@onLoadAnimation]>
           <app-pregunta [pregunta]="preguntaActual"></app-pregunta>
 
-          <div *esHost="{idPartida,renderContentUser: true}; sino esUsuario"></div>
+          <div
+            *esHost="{idPartida,renderContentUser: true}; sino esUsuario"></div>
           <ng-template #esUsuario>
             <app-opciones
+            style="margin-top: -18rem;"
               [pregunta]="preguntaActual"
-              (opcSeleccionadasEmit)="obtenerOpcSelectDeChild($event)"></app-opciones>
-            <div class="d-flex justify-content-center">
+              (opcSeleccionadasEmit)="
+                obtenerOpcSelectDeChild($event)
+              "></app-opciones>
+            <div class="d-flex justify-content-center __btn_responder" style="margin-top: -50rem;">
               <div class="d-flex align-items-center">
                 <button
                   class="btn btn_iniciar_partida"
                   (click)="responder()"
-                  style="font-size: 2rem"
+                  style="font-size: 2rem;"
                   [disabled]="!opcionesSeleccionadas || yaRespondiste">
                   Responder
                 </button>
@@ -102,4 +110,3 @@
     </ng-template>
   </ng-container>
 </div>
-

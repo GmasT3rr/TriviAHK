@@ -1,3 +1,4 @@
+
 .bg {
   /* background: url("../../../assets/login-bg.jpeg") !important; */
   background-color: #4a51c9 !important;
@@ -6,12 +7,186 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: white;
+
 }
-.__respondidas .card{
+.__respondidas{
   background-color: #7161EF;
 }
 
-.__eraCorrecta .card{
+.__eraCorrecta{
   background-color: #FD999B;
+
 }
+.row h2{
+  text-align: center;
+}
+.card-body{
+  text-align: center;
+  color: white;
+}
+.detalle-respuesta, .tittle-points {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 150%;
+    color: #FFFFFF;
+}
+
+.tittle-points {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+
+   
+    text-shadow: 1px 1px rgba(210, 210, 210, 0.60),
+                 2px 2px rgba(186, 186, 186, 0.60),
+                 3px 3px rgba(148, 148, 148, 0.60)
+                  ;
+    /* or 48px */
+
+  
+    -webkit-animation: el-meneo 5.0s linear infinite;
+    animation: el-meneo 5.0s linear infinite;
+    
+  }
+  
+  
+  
+  .container-respuesta{
+      margin-top: 4%;
+      margin-bottom: 4%;
+      position: relative;   
+      min-height: 500px;
+      height: auto;
+      color: #FFFFFF;
+      
+  }
+  .icono-respuesta-correcta{
+    -webkit-animation: bounce-down-correcta 3.0s linear infinite;
+      animation: bounce-down-correcta 3.0s linear infinite;
+      border-radius: 100%;
+      background-color: #1cd598;
+  
+  }
+  .icono-respuesta-incorrecta{
+    -webkit-animation: bounce-down-incorrecta 3.0s linear infinite;
+      animation: bounce-down-incorrecta 3.0s linear infinite;
+      border-radius: 100%;
+      background-color: #a11f2c;
+
+  }
+  
+  
+  @keyframes bounce-down-correcta {
+     25% {
+          transform: translateY(-4px);
+          transform: scale(0.91);
+          box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.80);
+     }
+     50%, 100% {
+          transform: translateY(0);
+          transform: scale(1.0);
+          box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.0);
+  
+     }
+     75% {
+          transform: translateY(4px);
+          transform: scale(1.11);
+          box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.80);
+     }
+  }
+
+  @keyframes bounce-down-incorrecta {
+    25% {
+         transform: translateY(-4px);
+         transform: scale(0.91);
+         box-shadow: 0px 0px 20px rgba(203, 38, 38, 0.8)
+    }
+    50%, 100% {
+         transform: translateY(0);
+         transform: scale(1.0);
+         box-shadow: 0px 0px 20px rgba(216, 52, 52, 0);
+ 
+    }
+    75% {
+         transform: translateY(4px);
+         transform: scale(1.11);
+         box-shadow: 0px 0px 20px rgba(203, 38, 38, 0.8);
+    }
+ }
+ 
+  
+  
+  @keyframes el-meneo {
+  
+    0%{
+      -webkit-transform: scale(1.0);
+      top: 0px;
+      -webkit-transform: rotate(8deg);
+      
+    }
+    25% {
+      -webkit-transform: scale(1.3);
+      top: -40px;
+      -webkit-transform: rotate(0deg);
+   
+  }
+  50% {
+      -webkit-transform: scale(1.0);
+      top: 0px;
+      -webkit-transform: rotate(-8deg);
+  }
+  75% {
+    -webkit-transform: scale(1.3);
+    top: -40px;
+    -webkit-transform: rotate(0deg);
+      
+  }
+  100% {
+    -webkit-transform: scale(1.0);
+    top: 0px;
+    -webkit-transform: rotate(8deg);
+    
+  }
+  }
+  
+  
+  
+  @media (max-width: 576px) {
+     
+    .tittle-points {
+      font-size: 28px;
+    
+    }
+    .icono-respuesta-correcta{
+      height: 120px;
+      width: 120px;
+    
+    }
+    .container-respuesta-correcta{
+      min-height: 300px;
+    }
+    
+  
+  }
+  
+    @media (max-width: 767.98px) { 
+      .tittle-points {
+        font-size: 28px;
+      
+      }
+      .icono-respuesta-correcta{
+        height: 160px;
+        width: 160px;
+      
+      }
+      .container-respuesta-correcta{
+        min-height: 350px;
+      }
+      
+  
+    }
+  
+  

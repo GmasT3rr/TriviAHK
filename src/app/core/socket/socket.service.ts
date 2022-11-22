@@ -19,6 +19,7 @@ export class SocketService {
   public sesionId!: number;
   public routerIdPartida$ = new Subject<any>();
   private _resultados$ = new Subject<any[]>();
+  public opcMasSeleccionadaVot$ = new Subject<any>();
 
   public get sesiones() {
     return this.sesiones$ as Observable<any>;
@@ -118,6 +119,10 @@ export class SocketService {
       // console.log('hola router', r);
       this.routerIdPartida$.next(r);
     });
+
+    this.socket?.on('partida:opc-mas-seleccionada', r => {
+      this.opcMasSeleccionadaVot$.next(r);
+    });
   }
 
   public iniciarPartida() {
@@ -148,7 +153,7 @@ export class SocketService {
     this.socket!.emit('partida:siguiente-pregunta');
   }
 
-  public responder(opcSeleccionadas: Opciones[]) {
+  public responder(opcSeleccionadas: Opciones[], preguntaId: number) {
     // const opciones = {
     //   opciones: [
     //     {
@@ -166,7 +171,7 @@ export class SocketService {
     const opciones = opcsIds;
     // console.log(opciones);
 
-    this.socket!.emit('partida:responder', opciones);
+    this.socket!.emit('partida:responder', { opciones, preguntaId });
     // const respuestas = {
     //   opcion: [1]
     // }

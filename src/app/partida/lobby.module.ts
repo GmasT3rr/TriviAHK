@@ -15,6 +15,7 @@ import { OpcionesComponent } from './components/opciones/opciones.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComprobacionOpcionesComponent } from './components/comprobacion-opciones/comprobacion-opciones.component';
+import { VoteBarComponent } from './components/vote-bar/vote-bar.component';
 // Necesitamos angular 14+ para usar esto
 // import { NgParticlesModule } from 'ng-particles';
 
@@ -30,7 +31,8 @@ import { ComprobacionOpcionesComponent } from './components/comprobacion-opcione
     PreguntaComponent,
     OpcionesComponent,
     RankingComponent,
-    ComprobacionOpcionesComponent
+    ComprobacionOpcionesComponent,
+    VoteBarComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,9 @@ import { ComprobacionOpcionesComponent } from './components/comprobacion-opcione
     LobbyRoutingModule,
     ReactiveFormsModule,
     FormsModule
-  ]
+  ],
+  // exports:[
+  //   VoteBarComponent
+  // ]
 })
 export class LobbyModule {}
